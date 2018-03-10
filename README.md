@@ -76,7 +76,7 @@ The following classes have special features:
 Changelog
 =================
 
-v0.9
+v0.0.1
 -----------------
 
 * Fixed issue with mount failure after changing mounts
