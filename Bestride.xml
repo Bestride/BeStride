@@ -1,0 +1,47 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+<Button name="BestrideButtonMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			Bestride:PreClick()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BestrideButtonGround" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			Bestride:SetMacroButton(true, 2)
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BestrideButtonPassenger" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			Bestride:ForcePassengerMount()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BestrideButtonRepair" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			Bestride:ForceRepairMount()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+</Ui>
