@@ -469,7 +469,21 @@ end
 --check if we have cold weather flying, a loaned mount, and/or flight master's license
 function Bestride:CheckLoanerMount()
   local zone = GetRealZoneText()
-  if zone == BestrideLocale.Zone.StormPeaks or zone == BestrideLocale.Zone.Icecrown then
+  if zone == BestrideLocale.Zone.Dalaran then
+	  local subzone = GetSubZoneText()
+	  if subzone == BestrideLocale.Zone.DalaranSubZone.Underbelly or
+			  subzone == BestrideLocale.Zone.DalaranSubZone.UnderbellyDescent or
+			  subzone == BestrideLocale.Zone.DalaranSubZone.CircleofWills or
+			  subzone == BestrideLocale.Zone.DalaranSubZone.BlackMarket then
+		  if GetItemCount(139421, false) > 0 then
+			  return 139421
+		  else
+			  return nil
+		  end
+	  else
+		  return nil
+	  end
+  elseif zone == BestrideLocale.Zone.StormPeaks or zone == BestrideLocale.Zone.Icecrown then
     if GetItemCount(44221, false) > 0 then
       return 44221
     elseif GetItemCount(44229, false) > 0 then
@@ -490,9 +504,11 @@ function Bestride:SetMacroButton(mount, button)
 		elseif mount and BestrideState.forceRepairMount then
 			BestrideButtonRepair:SetAttribute("macrotext", "/use "..mount)
 		elseif mount then
-			BestrideButtonMount:SetAttribute("macrotext", "/use "..mount)   
+			BestrideButtonMount:SetAttribute("macrotext", "/use "..mount)
+			--YayMountsButton:SetAttribute("macrotext", "/use "..mount)
 		else
 			BestrideButtonMount:SetAttribute("macrotext", nil)
+			--YayMountsButton:SetAttribute("macrotext", nil)
 		end
 	end
 end
