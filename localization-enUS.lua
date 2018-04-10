@@ -36,6 +36,13 @@ BestrideLocale = {
 	Zone = {
 		AQ40 = "Ahn'Qiraj",
 		Deadmines = "The Deadmines",
+		Dalaran = "Dalaran",
+		DalaranSubZone = {
+			UnderbellyDescent = "The Underbelly Descent",
+			Underbelly = "The Underbelly",
+			CircleofWills = "Circle of Wills",
+			BlackMarket = "The Black Market"
+		},
 		Icecrown = "Icecrown",
 		Oculus = "The Oculus",
 		StormPeaks = "The Storm Peaks",

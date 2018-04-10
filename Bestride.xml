@@ -43,5 +43,10 @@
 		</PreClick>
 	</Scripts>  
 </Button>
-
+	<Button name="YayMountsButton" inherits="SecureActionButtonTemplate" parent="UIParent">
+		<Attributes>
+			<Attribute name="type" type="string" value="macro"/>
+			<Attribute name="macrotext" type="string" value="/click BestrideButtonMount"/>
+		</Attributes>
+	</Button>
 </Ui>

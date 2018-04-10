@@ -75,6 +75,10 @@ The following classes have special features:
 
 Changelog
 =================
+v0.0.2
+-----------------
+
+* Fixed issue with YayMounts Macros not working
 
 v0.0.1
 -----------------

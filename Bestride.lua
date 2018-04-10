@@ -68,7 +68,7 @@ local f2 = CreateFrame("frame")
 
 local defaults = { 
   global = { 
-    ["CV"] = "0.0.1", --Current version
+    ["CV"] = "0.0.2", --Current version
   },
   profile = {
     settings = {
