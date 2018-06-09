@@ -87,7 +87,7 @@ function Bestride:BuildPassengerTable(mountType)
   
 	for k,v in pairs(BestrideType["Passenger"]) do
 		local mountIndex = self.db.profile.mounts[k][3]
-		if Bestride:IsUsableMount(mountIndex) and v == mountType then
+		if mountIndex and Bestride:IsUsableMount(mountIndex) and v == mountType then
 			e[i] = k
 			i = i + 1
 		end
@@ -97,7 +97,7 @@ function Bestride:BuildPassengerTable(mountType)
 	if #e == 0 then
 		for k,v in pairs(BestrideType["Passenger"]) do
 			local mountIndex = self.db.profile.mounts[k][3]
-			if Bestride:IsUsableMount(mountIndex) then
+			if mountIndex and Bestride:IsUsableMount(mountIndex) then
 				e[i] = k
 				i = i + 1
 			end
