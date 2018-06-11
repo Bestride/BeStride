@@ -27,6 +27,8 @@ BestrideType = {
 		[75973] = "fly", --X-53 Touring Rocket
 		[93326] = "fly", --Sandstone Drake
 		[121820] = "fly", --Obsidian Nightwing
+		[245725] = "fly", --Orgrimmar Interceptor
+		[245723] = "fly", -- Stormwind Skychaser
 	},
 	["Mounts"] = {
 		[230] = "ground", -- Ground mounts
