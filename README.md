@@ -75,6 +75,15 @@ The following classes have special features:
 
 Changelog
 =================
+v0.0.4
+-----------------
+* Fixes logic for 8.0.1 - Thanks to Daeymien for the pull request to resolve
+
+v0.0.3
+-----------------
+* Fix logic with passenger mount summoning - Thanks to Xsear for the pull request to resolve
+* Adds Blizzcon Mounts
+
 v0.0.2
 -----------------
 
