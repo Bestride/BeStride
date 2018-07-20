@@ -208,7 +208,11 @@ function Bestride:PreClick()
 	isFlyable = IsFlyableArea()
 	
 	--Check if we're in Draenor for flying
-	if((GetCurrentMapContinent() == 7 or zone == "Tanaan Jungle") and not IsSpellKnown(191645)) then
+    if (WorldMapFrame:GetMapID('player') == nil) then
+	    WorldMapFrame:Show()
+        WorldMapFrame:Hide()
+	end
+	if((WorldMapFrame:GetMapID('player') == 7 or zone == "Tanaan Jungle") and not IsSpellKnown(191645)) then
 		isFlyable = false
 		if(zone == "Nagrand" and self.db.profile.settings["TELAARI"] == true) then
 			if(Bestride:CheckNagrandSpecialMount()) then --Telaari Talbuk/Horde wolf
@@ -218,7 +222,7 @@ function Bestride:PreClick()
 	end
 	
 	--Check if we're in Broken Isles for flying
-	if ( GetCurrentMapContinent() == 8 and not IsSpellKnown(233368) ) then
+	if ( WorldMapFrame:GetMapID('player') == 8 and not IsSpellKnown(233368) ) then
 		isFlyable = false
 	end
 
