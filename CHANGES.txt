@@ -1,0 +1,46 @@
+lightweight tag 8142b9d1b508716cda46843376ce0ede4fbf0775 v0.0.5
+Author:	GitHub <noreply@github.com>
+Date:	Sat Jul 21 00:40:02 2018 -0500
+
+commit d93172e4886972c6dfb1b3521104601cd79a8cb6
+Author: Malivil <mlebson@outlook.com>
+Date:   Fri Jul 20 17:45:10 2018 -0400
+
+    Updated TOC for BfA
+
+commit d93172e4886972c6dfb1b3521104601cd79a8cb6
+Author: Malivil <mlebson@outlook.com>
+Date:   Fri Jul 20 17:45:10 2018 -0400
+
+    Updated TOC for BfA
+
+commit 58bbd8f6a00aad26f444c05b162b2d3d7c84b1db
+Author: DanSheps <dans@dansheps.com>
+Date:   Fri Jul 20 09:26:16 2018 -0500
+
+    Update bestride.toc
+
+commit 58bbd8f6a00aad26f444c05b162b2d3d7c84b1db
+Author: DanSheps <dans@dansheps.com>
+Date:   Fri Jul 20 09:26:16 2018 -0500
+
+    Update bestride.toc
+
+commit 6e345b0a3969c91a435b0019cc2784b7c7e20be5
+Author: DanSheps <dans@dansheps.com>
+Date:   Fri Jul 20 09:25:51 2018 -0500
+
+    Update Bestride_Gui.lua
+
+commit 54e5debfb9899013af669b59e4880d2d17d3c874
+Author: DanSheps <dans@dansheps.com>
+Date:   Fri Jul 20 09:24:42 2018 -0500
+
+    Update Bestride.lua
+
+commit 7e9515b27fe10c0479f4b8a70a504daa8f729919
+Author: DanSheps <dans@dansheps.com>
+Date:   Fri Jul 20 09:23:49 2018 -0500
+
+    Update README.md
+
