@@ -1,4 +1,4 @@
-## Interface: 70000
+## Interface: 80000
 ## Title: Bestride
 ## Notes: Manages your Mounts
 ## Author: Anaximander - Burning Legion US
