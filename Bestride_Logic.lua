@@ -404,12 +404,8 @@ function Bestride:Swimming(flyable, zone, broom)
 	local aquaticForm = 783
 
 	local timer, _,_,scale,_,_ = GetMirrorTimerInfo(2)
-	local i;
-	for i=1,40 do
-		local name, _, _, _, _, _, _, _, _, _, _ = UnitBuff("player", i)
-		if (name == BestrideLocale.Misc.WaterBreathing or name == Bestride:SpellToName(5697)) then
-			return
-		end
+	if AuraUtil.FindAuraByName(BestrideLocale.Misc.WaterBreathing,"player") or AuraUtil.FindAuraByName(Bestride:SpellToName(5697),"player") then
+		return
 	end
 	
 	if timer == "UNKNOWN" or scale >= 0 then
