@@ -408,7 +408,7 @@ function Bestride:Swimming(flyable, zone, broom)
 	for i=1,40 do
 		local name, _, _, _, _, _, _, _, _, _, _ = UnitBuff("player", i)
 		if (name == BestrideLocale.Misc.WaterBreathing or name == Bestride:SpellToName(5697)) then
-			return name
+			return
 		end
 	end
 	
