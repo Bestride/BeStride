@@ -82,6 +82,14 @@ The following classes have special features:
 
 Changelog
 =================
+v0.0.6
+-----------------
+* Fixes mounting while swimming - Thanks to Daeymien for the pull request to resolve and to Malivil for helping
+
+v0.0.5
+-----------------
+* Housekeeping and Version bump by Malivil
+
 v0.0.4
 -----------------
 * Fixes logic for 8.0.1 - Thanks to Daeymien for the pull request to resolve

@@ -2,7 +2,7 @@
 ## Title: Bestride
 ## Notes: Manages your Mounts
 ## Author: Anaximander - Burning Legion US
-## Version: 0.0.4
+## Version: 0.0.6
 ## X-Category: Interface Enhancements 
 ## X-Embeds: Ace3
 ## OptionalDeps: Ace3
@@ -15,7 +15,7 @@ libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 libs\AceAddon-3.0\AceAddon-3.0.xml
 libs\AceEvent-3.0\AceEvent-3.0.xml
 libs\AceDB-3.0\AceDB-3.0.xml
-libs\AceDB-3.0\AceDBOptions-3.0.xml
+libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
 libs\AceConsole-3.0\AceConsole-3.0.xml
 libs\AceGUI-3.0\AceGUI-3.0.xml
 libs\AceConfig-3.0\AceConfig-3.0.xml
