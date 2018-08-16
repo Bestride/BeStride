@@ -226,6 +226,11 @@ function Bestride:PreClick()
 		isFlyable = false
 	end
 
+	--No flying on Argus
+	if ( (C_Map.GetBestMapForUnit("player") == (830 or 882 or 885)) )then
+		isFlyable = false
+	end
+
 	--Check if we're in BfA areas for flying
 	if ( (C_Map.GetBestMapForUnit("player") == (862 or 863 or 864 or 875 or 876 or 895 or 896 or 942 or 1161 or 1165)) and not IsSpellKnown(278833) ) then
 		isFlyable = false
