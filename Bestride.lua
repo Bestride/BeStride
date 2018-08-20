@@ -68,7 +68,7 @@ local f2 = CreateFrame("frame")
 
 local defaults = { 
   global = { 
-    ["CV"] = "0.0.6", --Current version
+    ["CV"] = "0.0.10", --Current version
   },
   profile = {
     settings = {
@@ -87,7 +87,7 @@ local defaults = {
 	  ["MONKZENUSE"] = true, --Monk: Use Zen Flight at all
       ["ROGUE"] = true, --Rogue: Sprint
       ["PRIEST"] = true, --Priest/Mage: Levitate/Slowfall
-	  ["MAGE"] = true, --Priest/Mage: Levitate/Slowfall
+	  ["MAGE"] = true, --Priest/Mage: Blink/Slowfall
       ["URM"] = true, --use a repair mount if one exists
 	  ["TELAARI"] = true, --Use the Telaari Talbuk (or horde equivalent) in Nagrand
 	  ["ENABLENEW"] = false, -- New mounts are selected upon learning them
@@ -174,8 +174,10 @@ function Bestride:EventHandler(arg1, arg2)
 			Bestride:SetMacroButtonCombat("[@player] "..Bestride:SpellToName(1706).."\n/cancelaura "..Bestride:SpellToName(1706)) --Levitate
 		end
       
-    elseif BestrideState.class == "MAGE" then
-		if IsUsableSpell(130) and self.db.profile.settings["MAGE"] then
+    elseif BestrideState.class == "MAGE" and self.db.profile.settings["MAGE"] then
+		if IsUsableSpell(1953) then
+			Bestride:SetMacroButtonCombat(Bestride:SpellToName(1953)) --Blink
+		elseif IsUsableSpell(130) then
 			Bestride:SetMacroButtonCombat("[@player] "..Bestride:SpellToName(130).."\n/cancelaura "..Bestride:SpellToName(130)) --Slow fall
 		end
     
