@@ -1,4 +1,4 @@
-local version = "0.0.6"
+local version = "0.0.10"
 local bestrideFrame = nil
 
 function Bestride:HandleNewCompanion()
