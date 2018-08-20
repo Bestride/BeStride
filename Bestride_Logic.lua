@@ -343,25 +343,16 @@ function Bestride:CheckNagrandSpecialMount()
 	end
 end
 
--- Checks if blink, slowfall or levitate should be used
+-- Checks if slowfall or levitate should be used
 function Bestride:PriestOrMageSpecial()
 	if not BestrideState.playerCombat then
 		if (IsFalling() or GetUnitSpeed("player") ~= 0) and BestrideState.class == "PRIEST" and IsUsableSpell(1706) and self.db.profile.settings["PRIEST"] then --IsUsableSpell checks for reagents/glyphs
 			Bestride:SetMacroButton("[@player] "..Bestride:SpellToName(1706).."\n/cancelaura "..Bestride:SpellToName(1706)) --Levitate
 			return true
-		
-		elseif BestrideState.class == "MAGE" and self.db.profile.settings["MAGE"] then
-		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
-			if (GetUnitSpeed("player") ~= 0 and IsUsableSpell(1953) and BlinkOnCooldown == 0 and not IsFalling()) then
-				Bestride:SetMacroButton(Bestride:SpellToName(1953).."\n/cancelaura "..Bestride:SpellToName(130)) --Blink and cancel Slowfall if active, we're running on the ground or swimming.
- 			return true
-			elseif (GetUnitSpeed("player") ~= 0 and IsFalling() and BlinkOnCooldown == 0 and AuraUtil.FindAuraByName(Bestride:SpellToName(130),"player")) then
-				Bestride:SetMacroButton(Bestride:SpellToName(1953)) --Blink in the air, slowfall is active, don't cancel Slowfall.
- 			return true
-			elseif(IsFalling() and IsUsableSpell(130)) then
-				Bestride:SetMacroButton("[@player] "..Bestride:SpellToName(130).."\n/cancelaura "..Bestride:SpellToName(130)) --Slow fall
- 			return true
-			end
+		  
+		elseif (IsFalling() or GetUnitSpeed("player") ~= 0) and BestrideState.class == "MAGE" and IsUsableSpell(130) and self.db.profile.settings["MAGE"] then
+			Bestride:SetMacroButton("[@player] "..Bestride:SpellToName(130).."\n/cancelaura "..Bestride:SpellToName(130)) --Slow fall
+			return true
 		  
 		else
 			return false
