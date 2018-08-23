@@ -82,6 +82,14 @@ The following classes have special features:
 
 Changelog
 =================
+v0.0.10
+-----------------
+* Added Mage Logic - Thanks to Daeymien for the pull request(s)
+
+v0.0.10
+-----------------
+* Multiple fixes - Thanks to Daeymien for the pull request(s)
+
 v0.0.6
 -----------------
 * Fixes mounting while swimming - Thanks to Daeymien for the pull request to resolve and to Malivil for helping
