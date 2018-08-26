@@ -207,11 +207,17 @@ function Bestride:PreClick()
 	-- Check if we can fly
 	isFlyable = IsFlyableArea()
 	
-	--Check if we're in Draenor for flying
     if (WorldMapFrame:GetMapID('player') == nil) then
 	    WorldMapFrame:Show()
         WorldMapFrame:Hide()
 	end
+
+	--Check if we have sufficient Riding skill for flying
+	if not (GetRidingSkill() > 2) then
+		isFlyable = false
+	end
+
+	--Check if we're in Draenor for flying
 	if(((C_Map.GetBestMapForUnit("player") == (534 or 535 or 539 or 542 or 543 or 550 or 582 or 590 or 622 or 624)) or zone == "Tanaan Jungle") and not IsSpellKnown(191645)) then
 		isFlyable = false
 		if(zone == "Nagrand" and self.db.profile.settings["TELAARI"] == true) then
