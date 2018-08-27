@@ -9,12 +9,18 @@
 ## SavedVariables: BestrideDB
 
 libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
 libs\AceAddon-3.0\AceAddon-3.0.xml
-libs\AceConfig-3.0\AceConfig-3.0.xml
+libs\AceEvent-3.0\AceEvent-3.0.xml
+libs\AceConsole-3.0\AceConsole-3.0.xml
+libs\AceDB-3.0\AceDB-3.0.xml
 
-localization-enUS.lua
+
+##localization-enUS.lua
 
 BeStride.lua
 BeStride_Constants.lua
-BeStride_GUI.lua
-BeStride_Logic.lua
+##BeStride_ActionButton.lua
+##BeStride_Events.lua
+##BeStride_GUI.lua
+##BeStride_Logic.lua
