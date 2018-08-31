@@ -1,49 +1,61 @@
 BeStride = LibStub("AceAddon-3.0"):NewAddon("Bestride","AceConsole-3.0", "AceEvent-3.0")
 
+mountTable = {
+	["master"] = {},
+	["ground"] = {},
+	["flying"] = {},
+	["swimming"] = {},
+	["repair"] = {},
+	["passenger"] = {},
+}
+
 local defaults = {
 	["version"] = version,
-	["settings"] = {
-		["emptyrandom"] = true,
-		["hasmount"] = false,
-		["enablenew"] = false,
-		["traveltotravel"] = false,
-		["forceflyingmount"] = false,
-		["nodismountwhileflying"] = false,
-		
-		["repair"] = {
-			["durability"] = 0.2,
-		},
-		["priorities"] = {
-			["flyingbroom"] = false,
-			["repairmount"] = true,
-			["telaari"] = true
-		},
-		["classes"] = {
-			["deathknight"] = {
-				["wraithwalk"] = true,
+	
+	profile = {
+		settings = {
+			["emptyrandom"] = true,
+			["hasmount"] = false,
+			["enablenew"] = false,
+			["traveltotravel"] = false,
+			["forceflyingmount"] = false,
+			["nodismountwhileflying"] = false,
+			
+			["repair"] = {
+				["durability"] = 0.2,
 			},
-			["druid"] = {
-				["flightform"] = true,
-				["flightformpriority"] = false,
-				["mountedtoflightform"] = false,
+			["priorities"] = {
+				["flyingbroom"] = false,
+				["repairmount"] = true,
+				["telaari"] = true
 			},
-			["paladin"] = {
-				["steed"] = true,
+			["classes"] = {
+				["deathknight"] = {
+					["wraithwalk"] = true,
+				},
+				["druid"] = {
+					["flightform"] = true,
+					["flightformpriority"] = false,
+					["mountedtoflightform"] = false,
+				},
+				["paladin"] = {
+					["steed"] = true,
+				},
+				["shaman"] = {
+					["ghostwolf"] = true,
+				},
+				["monk"] = {
+					["roll"] = true,
+					["zenflight"] = true,
+				},
+				["priest"] = {
+					["levitate"] = true,
+				},
+				["mage"] = {
+					["slowfall"] = true,
+				},
 			},
-			["shaman"] = {
-				["ghostwolf"] = true,
-			},
-			["monk"] = {
-				["roll"] = true,
-				["zenflight"] = true,
-			},
-			["priest"] = {
-				["levitate"] = true,
-			},
-			["mage"] = {
-				["slowfall"] = true,
-			},
-		},
+		}
 	}
 }
 
@@ -82,6 +94,8 @@ function BeStride:ChatCommand(input)
 		for k,v in pairs(types) do
 			self:Print("|" .. k .. "|" .. v .. "|")
 		end
+	else
+		BeStride_GUI:Frame()
 	end
 end
 

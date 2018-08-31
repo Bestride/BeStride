@@ -10,14 +10,7 @@ function BeStride_ActionButtonTemplate:PreClick()
 		return
 	end
 	
-	local loanedMount = Bestride:CheckLoanerMount()
-	local isFlyable = BeStride:IsFlyableArea()
-	
-	-- Dismount Logic
-	if IsMounted() and IsFlying() then
-	end
-	
-	
+	BeStride_Logic:MountButton()
 end
 
 function BeStride_ActionButtonTemplate:PostClick()
