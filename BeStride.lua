@@ -94,6 +94,8 @@ function BeStride:ChatCommand(input)
 		for k,v in pairs(types) do
 			self:Print("|" .. k .. "|" .. v .. "|")
 		end
+	elseif input == "map" then
+		BeStride:GetMaps()
 	else
 		BeStride_GUI:Frame()
 	end

@@ -1,5 +1,8 @@
 BeStride_Logic = {}
 
+local class = UnitClass("player")
+
+
 function BeStride:Mount(flags)
 	
 end
@@ -140,27 +143,28 @@ function BeStride_Logic:MountButton()
 	local class = UnitClass("player")
 	
 	-- Dismount Logic
-	-- This Logic needs to be cleaned up
-	if IsMounted() and IsFlying() and isFlyable then
-		if class["class"] == "DRUID" then
-			if self.db.settings["classes"]["druid"]["mountedtoflightform"] and GetUnitSpeed("player") ~= 0 then
-				BeStride_Logic:DruidFlying()
-			elseif self.db.settings["nodismountwhileflying"] then
-				BeStride_Logic:RegularMount()
+	-- This Logic needs to be cleaned up more
+	if IsMounted() and IsFlying() and BeStride_Logic:IsFlyable() then
+		if BeStride_Logic:IsDruid() then
+			if BeStride_Logic:DruidFlyingMTFF() then
+				BeStride_Mount:DruidFlying()
+			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Mount:Regular()
 			else
 				Dismount()
-				BeStride_Logic:RegularMount()
+				BeStride_Mount:Regular()
 			end
-		elseif class["class"] == "PRIEST" then
-			if self.db.settings["classes"]["priest"]["levitate"] then
-				BeStride_Logic:Levitate()
-			elseif self.db.settings["nodismountwhileflying"] then
-				BeStride_Logic:RegularMount()
+		elseif BeStride_Logic:IsPriest() then
+			if BeStride_Logic:PriestCanLevitate() then
+				BeStride_Mount:Levitate()
+			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Mount:Regular()
 			else
 				Dismount()
-				BeStride_Logic:RegularMount()
+				BeStride_Mount:Regular()
 			end
 		end
+	-- Todo: Cleanup from here
 	elseif IsMounted() then
 		if IsSwimming() and class == "DRUID" and IsUsableSpell(783) and GetUnitSpeed("player") ~= 0 then -- Todo: Clean this logic up
 			BeStride_Logic:DruidAuquaticForm()
@@ -220,18 +224,120 @@ end
 function BeStride_Logic:RegularMount()
 end
 
-function BeStride_Logic:SetButton(text,button)
-	if not BeStride_Logic:CheckCombat() then
-		if text and button == "FORCEGROUND" then
-			BeStrideButtonGround:SetAttribute("macrotext","/use " .. text)
-		elseif text and button = "FORCEPASSENGER" then
-			BeStrideButtonPassenger:SetAttribute("macrotext","/use " .. text)
-		elseif text and button = "FORCEREPAIR" then
-			BeStrideButtonRepair:SetAttribute("macrotext","/use " .. text)
-		elseif text then
-			BeStrideButton:SetAttribute("macrotext","/use " .. text)
-		else
-			BestrideButtonMount:SetAttribute("macrotext", nil)
-		end
+-- Checks Player Speed
+-- Returns: integer
+function BeStride_Logic:SpeedCheck()
+	return GetUnitSpeed("player")
+end
+
+function BeStride_Logic:IsFlyable()
+
+end
+
+-- +------------+ --
+-- Special Checks --
+
+function BeStride_Logic:NoDismountWhileFlying()
+	if self.db.settings["nodismountwhileflying"] then
+		return true
+	else
+		return false
+	end
+end
+
+
+-- +----------+ --
+-- Class Checks --
+-- +----------+ --
+
+-- Check for Druid
+function BeStride_Logic:IsDruid()
+	if class["class"] == "DRUID" then
+		return true
+	else
+		return false
+	end
+end
+
+-- Check for Mage
+function BeStride_Logic:IsMage()
+	if class["class"] == "MAGE" then
+		return true
+	else
+		return false
+	end
+end
+
+-- Check for Priest
+function BeStride_Logic:IsPriest()
+	if class["class"] == "PRIEST" then
+		return true
+	else
+		return false
+	end
+end
+
+-- Check for Monk
+function BeStride_Logic:IsMonk()
+	if class["class"] == "MONK" then
+		return true
+	else
+		return false
+	end
+end
+
+-- Check for DeathKnight
+function BeStride_Logic:IsDeathKnight()
+end
+
+-- +--------------------------+ --
+-- Class Specific Spells Checks --
+-- +--------------------------+ --
+-- ------------ --
+-- Druid Spells --
+-- ------------ --
+
+-- Check for Swim Form
+-- Returns: boolean
+function BeStride_Logic:DruidCanSwim()
+end
+
+-- Check for Travel Form
+-- Returns: boolean
+function BeStride_Logic:DruidCanTravel()
+end
+
+-- Check for Travel Form
+-- Returns: boolean
+function BeStride_Logic:DruidCanCat()
+end
+
+-- Check for Flight Form
+-- Returns: boolean
+function BeStride_Logic:DruidCanFly()
+	if IsUsableSpell(783) then
+		return true
+	else
+		return false
+	end
+end
+
+
+-- +-------------------------+ --
+-- Class Specific Mount Checks --
+-- +-------------------------+ --
+
+-- ----- --
+-- Druid --
+-- ----- --
+
+-- Check for Flying, Mounted and Mount to Flight Form
+-- Returns: boolean
+function Bestride_Logic:DruidFlyingMTFF()
+	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
+	if self.db.settings["classes"]["druid"]["mountedtoflightform"] then
+		return true
+	else
+		return false
 	end
 end

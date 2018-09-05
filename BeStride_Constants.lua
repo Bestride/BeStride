@@ -1,5 +1,9 @@
 version = "0.5.0"
 
+Bestride_Constants = {}
+Bestride_Constants.spells = {}
+Bestride_Constants.spells.druid = {}
+
 mountData = {
 	[25953] = {
 		["name"] = "Blue Qiraji Battle Tank",
@@ -217,3 +221,8 @@ ridingSkill = {
 		["depends"] = 34090
 	},
 }
+
+Bestride_Constants.spells.druid.catform = 783
+Bestride_Constants.spells.druid.aquaticform = 783
+Bestride_Constants.spells.druid.travelform = 783
+Bestride_Constants.spells.druid.flightform = 783
