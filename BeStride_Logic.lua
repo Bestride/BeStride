@@ -238,6 +238,7 @@ end
 -- Special Checks --
 
 function BeStride_Logic:NoDismountWhileFlying()
+	-- Todo: Bitwise Compare
 	if self.db.settings["nodismountwhileflying"] then
 		return true
 	else
@@ -335,6 +336,7 @@ end
 -- Returns: boolean
 function Bestride_Logic:DruidFlyingMTFF()
 	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
+	-- Todo: Bitwise Compare
 	if self.db.settings["classes"]["druid"]["mountedtoflightform"] then
 		return true
 	else
