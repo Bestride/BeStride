@@ -22,6 +22,8 @@ local defaults = {
 			["nodismountwhileflying"] = false,
 			
 			["repair"] = {
+				["use"] = false
+				["force"] = false,
 				["durability"] = 0.2,
 			},
 			["priorities"] = {

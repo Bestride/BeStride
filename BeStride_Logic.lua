@@ -1,6 +1,7 @@
 BeStride_Logic = {}
 
 local class = UnitClass("player")
+local canRepair = false
 
 
 function BeStride:Mount(flags)
@@ -237,15 +238,78 @@ end
 -- +------------+ --
 -- Special Checks --
 
+-- Check whether we can dismount while flying
+-- Returns: boolean
 function BeStride_Logic:NoDismountWhileFlying()
 	-- Todo: Bitwise Compare
-	if self.db.settings["nodismountwhileflying"] then
+	if self.db.profile.settings["nodismountwhileflying"] then
 		return true
 	else
 		return false
 	end
 end
 
+-- Check whether we force a repair mount
+-- Returns: boolean
+function BeStride_Logic:ForceRepair()
+	if self.db.profile.settings["repair"]["force"] then
+		return true
+	else
+		return false
+	end
+end
+
+-- Checks whether we check to repair or not
+-- Returns: boolean
+function BeStride_Logic:UseRepair()
+	if self.db.profile.settings["repair"]["use"] then
+		return true
+	else
+		return false
+	end
+end
+
+-- Get repair threshold
+-- Returns: signed integer
+function BeStride_Logic:GetRepairThreshold()
+	if self.db.profile.settings["repair"]["durability"] then
+		return self.db.profile.settings["repair"]["durability"]
+	else
+		return -1
+	end
+end
+
+-- Check whether we can repair
+-- Returns: boolean
+function BeStride_Logic:CanRepair()
+	if canRepair then
+		return true
+	end
+	
+	if BeStride_Mount:CountRepairMounts() > 0 then
+	end
+	
+	return false
+end
+
+-- Check whether we need to repair
+-- Returns: boolean
+function BeStride_Logic:NeedToRepair()
+	if BeStride_Logic:ForceRepair() then
+		return true
+	end
+	
+	if size(self.db.profile.misc.RepairMounts) > 0 and BeStride_Logic:UseRepair() then
+		for i = 0, 17 do
+			local current, maximum = GetInventoryItemDurability(i)
+			if current ~= nil and maximum ~= nil and ( (current/maximum) <= BeStride_Logic:GetRepairThreshold() then
+				return true
+			end
+		end
+	end
+	
+	return false
+end
 
 -- +----------+ --
 -- Class Checks --
@@ -337,7 +401,7 @@ end
 function Bestride_Logic:DruidFlyingMTFF()
 	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
 	-- Todo: Bitwise Compare
-	if self.db.settings["classes"]["druid"]["mountedtoflightform"] then
+	if self.db.profile.settings["classes"]["druid"]["mountedtoflightform"] then
 		return true
 	else
 		return false
