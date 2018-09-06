@@ -20,9 +20,8 @@ local defaults = {
 			["traveltotravel"] = false,
 			["forceflyingmount"] = false,
 			["nodismountwhileflying"] = false,
-			
 			["repair"] = {
-				["use"] = false
+				["use"] = false,
 				["force"] = false,
 				["durability"] = 0.2,
 			},
@@ -98,6 +97,8 @@ function BeStride:ChatCommand(input)
 		end
 	elseif input == "map" then
 		BeStride:GetMaps()
+	elseif input == "mount" then
+		BeStride_Logic:MountButton()
 	else
 		BeStride_GUI:Frame()
 	end

@@ -120,7 +120,7 @@ function BeStride:IsFlyableArea()
 	
 	-- Wintergrasp Flying
 	if zone == "Wintergrasp" then 
-		isFlyable = not BeStride:WGActive()
+		return not BeStride:WGActive()
 	end
 end
 
@@ -139,8 +139,7 @@ function BeStride:GetMapUntil(locID,filter)
 end
 
 function BeStride_Logic:MountButton()
-	local loanedMount = Bestride:CheckLoanerMount()
-	local isFlyable = BeStride:IsFlyableArea()
+	local loanedMount = BeStride_Logic:CheckLoanerMount()
 	local class = UnitClass("player")
 	
 	-- Dismount Logic
@@ -157,7 +156,7 @@ function BeStride_Logic:MountButton()
 			end
 		elseif BeStride_Logic:IsPriest() then
 			if BeStride_Logic:PriestCanLevitate() then
-				BeStride_Mount:Levitate()
+				BeStride_Mount:PriestLevitate()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
 				BeStride_Mount:Regular()
 			else
@@ -167,62 +166,66 @@ function BeStride_Logic:MountButton()
 		end
 	-- Todo: Cleanup from here
 	elseif IsMounted() then
-		if IsSwimming() and class == "DRUID" and IsUsableSpell(783) and GetUnitSpeed("player") ~= 0 then -- Todo: Clean this logic up
-			BeStride_Logic:DruidAuquaticForm()
+		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
+			BeStride_Mount:DruidAuquaticForm()
 		elseif IsSwimming() then
-			BeStride_Logic:SwimmingMount()
+			BeStride_Mount:Swimming()
 		else
 			Dismount()
-			BeStride_Logic:RegularMount()
+			BeStride_Mount:Regular()
 		end
 	elseif CanExitVehicle() then
 		VehicleExit()
-		BeStride_Logic:SetRegularMount()
-	elseif BestrideState.class == "MONK" and isFlyable and BeStride:MonkSpecial() then
-		BeStride_Logic:MonkSpecial()
-	elseif BeStride_Logic:PriestOrMageSpecial() then
-		BeStride_Logic:PriestOrMageSpecial()
-	elseif BeStride_Logic:ClassCheck() or BeStride_Logic:PriestOrMageSpecial() then
-		BeStride_Logic:ClassSpecial()
-	elseif isFlyable and IsOutdoors() then
-		if BeStride_Logic:canBroom() then
-			BeStride_Logic:Broom()
+		BeStride_Mount:Regular()
+	elseif BeStride_Logic:IsMonk() and BeStride_Logic:IsFlyable() and BeStride:MonkCanZen() then
+		BeStride_Mount:MonkZen()
+	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
+		BeStride_Mount:PriestLevitate()
+	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
+		BeStride_Mount:MageSlowFall()
+	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
+		if BeStride_Logic:CanBroom() then
+			BeStride_Mount:Broom()
 		elseif IsSwimming() then
-			BeStride_Logic:SwimmingMount()
-		elseif class == "DRUID" then
-			BeStride_Logic:Druid()
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:IsDruid() then
+			BeStride_Mount:DruidFlying()
 		else
-			BeStride_Logic:FlyingMount()
+			BeStride_Mount:Flying()
 		end
-	elseif not isFlyable and IsOutdoors() then
+	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
 		if zone == BestrideLocale.Zone.Oculus and Bestride:Filter(nil, zone) then
-		elseif BeStride_Logic:canBroom() then
-			BeStride_Logic:Broom()
+		elseif BeStride_Logic:CanBroom() then
+			BeStride_Mount:Broom()
 		elseif IsSwimming() then
-			BeStride_Logic:SwimmingMount()
-		elseif loanedMount then
-			BeStride_Logic:LoanedMount()
-		elseif class == "DRUID" then
-			BeStride_Logic:Druid()
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:HasLoanedMount() then
+			BeStride_Mount:LoanedMount()
+		elseif BeStride_Logic:IsDruid() then
+			BeStride_Mount:Druid()
 		end
 	elseif not IsOutdoors() then
 		if IsSwimming() then
-			Bestride_Logic:SwimmingMount()
-		elseif class == "DRUID" then
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:IsDruid() then
 			BeStride_Logic:Druid()
 		end
 	else
-		BeStride_Logic:Mount()
+		BeStride_Logic:Regular()
 	end
 end
 
-function BeStride_Logic:DruidAuquaticForm()
-end
-
-function BeStride_Logic:Levitate()
-end
-
 function BeStride_Logic:RegularMount()
+end
+
+-- Checks Player Speed
+-- Returns: integer
+function BeStride_Logic:MovementCheck()
+	if BeStride_Logic:SpeedCheck() ~= 0 then
+		return true
+	else
+		return false
+	end
 end
 
 -- Checks Player Speed
@@ -232,17 +235,55 @@ function BeStride_Logic:SpeedCheck()
 end
 
 function BeStride_Logic:IsFlyable()
+	if IsFlyableArea() and BeStride_Logic:IsFlyableArea() then
+		return true
+	else
+		return false
+	end
+end
 
+function BeStride_Logic:IsFalling()
+	return IsFalling()
 end
 
 -- +------------+ --
 -- Special Checks --
+-- +------------+ --
+
+function BeStride_Logic:CheckLoanerMount()
+	return false
+	--local zone = GetRealZoneText()
+	--if zone == BestrideLocale.Zone.Dalaran then
+	--	local subzone = GetSubZoneText()
+	--	if subzone == BestrideLocale.Zone.DalaranSubZone.Underbelly or
+	--			subzone == BestrideLocale.Zone.DalaranSubZone.UnderbellyDescent or
+	--			subzone == BestrideLocale.Zone.DalaranSubZone.CircleofWills or
+	--			subzone == BestrideLocale.Zone.DalaranSubZone.BlackMarket then
+	--		if GetItemCount(139421, false) > 0 then
+	--			return 139421
+	--		else
+	--			return nil
+	--		end
+	--	else
+	--		return nil
+	--	end
+	--elseif zone == BestrideLocale.Zone.StormPeaks or zone == BestrideLocale.Zone.Icecrown then
+	--	if GetItemCount(44221, false) > 0 then
+	--		return 44221
+	--	elseif GetItemCount(44229, false) > 0 then
+	--		return 44229
+	--	else
+	--		return nil
+	--	end
+	--end
+	--return nil
+end
 
 -- Check whether we can dismount while flying
 -- Returns: boolean
 function BeStride_Logic:NoDismountWhileFlying()
 	-- Todo: Bitwise Compare
-	if self.db.profile.settings["nodismountwhileflying"] then
+	if BeStride.db.profile.settings["nodismountwhileflying"] then
 		return true
 	else
 		return false
@@ -252,7 +293,7 @@ end
 -- Check whether we force a repair mount
 -- Returns: boolean
 function BeStride_Logic:ForceRepair()
-	if self.db.profile.settings["repair"]["force"] then
+	if BeStride.db.profile.settings["repair"]["force"] then
 		return true
 	else
 		return false
@@ -262,7 +303,7 @@ end
 -- Checks whether we check to repair or not
 -- Returns: boolean
 function BeStride_Logic:UseRepair()
-	if self.db.profile.settings["repair"]["use"] then
+	if BeStride.db.profile.settings["repair"]["use"] then
 		return true
 	else
 		return false
@@ -272,8 +313,8 @@ end
 -- Get repair threshold
 -- Returns: signed integer
 function BeStride_Logic:GetRepairThreshold()
-	if self.db.profile.settings["repair"]["durability"] then
-		return self.db.profile.settings["repair"]["durability"]
+	if BeStride.db.profile.settings["repair"]["durability"] then
+		return BeStride.db.profile.settings["repair"]["durability"]
 	else
 		return -1
 	end
@@ -299,10 +340,10 @@ function BeStride_Logic:NeedToRepair()
 		return true
 	end
 	
-	if size(self.db.profile.misc.RepairMounts) > 0 and BeStride_Logic:UseRepair() then
+	if size(BeStride.db.profile.misc.RepairMounts) > 0 and BeStride_Logic:UseRepair() then
 		for i = 0, 17 do
 			local current, maximum = GetInventoryItemDurability(i)
-			if current ~= nil and maximum ~= nil and ( (current/maximum) <= BeStride_Logic:GetRepairThreshold() then
+			if current ~= nil and maximum ~= nil and ( (current/maximum) <= BeStride_Logic:GetRepairThreshold() ) then
 				return true
 			end
 		end
@@ -365,16 +406,31 @@ end
 -- Check for Swim Form
 -- Returns: boolean
 function BeStride_Logic:DruidCanSwim()
+	if IsUsableSpell(783) then
+		return true
+	else
+		return false
+	end
 end
 
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride_Logic:DruidCanTravel()
+	if IsUsableSpell(783) then
+		return true
+	else
+		return false
+	end
 end
 
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride_Logic:DruidCanCat()
+	if IsUsableSpell(783) then
+		return true
+	else
+		return false
+	end
 end
 
 -- Check for Flight Form
@@ -398,10 +454,10 @@ end
 
 -- Check for Flying, Mounted and Mount to Flight Form
 -- Returns: boolean
-function Bestride_Logic:DruidFlyingMTFF()
+function BeStride_Logic:DruidFlyingMTFF()
 	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
 	-- Todo: Bitwise Compare
-	if self.db.profile.settings["classes"]["druid"]["mountedtoflightform"] then
+	if BeStride.db.profile.settings["classes"]["druid"]["mountedtoflightform"] then
 		return true
 	else
 		return false
