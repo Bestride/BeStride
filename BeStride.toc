@@ -23,7 +23,7 @@ libs\AceGUI-3.0\AceGUI-3.0.xml
 
 BeStride.lua
 BeStride_Constants.lua
-##BeStride_ActionButton.lua
+BeStride_ActionButton.lua
 BeStride_Events.lua
 BeStride_GUI.lua
 BeStride_Logic.lua

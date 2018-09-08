@@ -100,7 +100,124 @@ function BeStride:GetRidingSkill()
 	
 end
 
-function BeStride:IsFlyableArea()
+function BeStride:WGActive()
+	return true
+end
+
+function BeStride:GetMapUntil(locID,filter)
+	local map = C_Map.GetMapInfo(locID)
+	
+	if map["mapType"] ~= filter then
+		return BeStride:GetMap(map["parentMapID"])
+	else
+		return map
+	end
+end
+
+function BeStride_Logic:MountButton()
+	local loanedMount = BeStride_Logic:CheckLoanerMount()
+	local class = UnitClass("player")
+	
+	-- Dismount Logic
+	-- This Logic needs to be cleaned up more
+	--BeStride_Debug:Debug("Starting Mount Logic")
+	if IsMounted() and IsFlying() and BeStride_Logic:IsFlyable() then
+		--BeStride_Debug:Debug("Mounted, Flying, Flyable")
+		if BeStride_Logic:IsDruid() then
+			if BeStride_Logic:DruidFlyingMTFF() then
+				BeStride_Mount:DruidFlying()
+			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Mount:Regular()
+			else
+				Dismount()
+				BeStride_Mount:Regular()
+			end
+		elseif BeStride_Logic:IsPriest() then
+			if BeStride_Logic:PriestCanLevitate() then
+				BeStride_Mount:PriestLevitate()
+			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Mount:Regular()
+			else
+				Dismount()
+				BeStride_Mount:Regular()
+			end
+		end
+		--BeStride_Debug:Debug("End Mounted, Flying, Flyable")
+	-- Todo: Cleanup from here
+	elseif IsMounted() then
+		--BeStride_Debug:Debug("Mounted")
+		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
+			BeStride_Mount:DruidAuquaticForm()
+		elseif IsSwimming() then
+			BeStride_Mount:Swimming()
+		else
+			Dismount()
+			BeStride_Mount:Regular()
+		end
+		--BeStride_Debug:Debug("Ending Mounted")
+	elseif CanExitVehicle() then
+		--BeStride_Debug:Debug("CanExitVehicle")
+		VehicleExit()
+		BeStride_Mount:Regular()
+		--BeStride_Debug:Debug("Ending CanExitVehicle")
+	elseif BeStride_Logic:IsMonk() and BeStride_Logic:IsFlyable() and BeStride:MonkCanZen() then
+		--BeStride_Debug:Debug("IsMonk,IsFlyable,CanZen")
+		BeStride_Mount:MonkZen()
+		--BeStride_Debug:Debug("End IsMonk,IsFlyable,CanZen")
+	elseif BeStride_Logic:IsPriest() and BeStride_Logic:PriestCanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
+		--BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
+		BeStride_Mount:PriestLevitate()
+		--BeStride_Debug:Debug("End IsPriest, CanLevitate, IsFalling, MovementCheck")
+	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
+		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
+		BeStride_Mount:MageSlowFall()
+		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
+	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
+		--BeStride_Debug:Debug("IsFlyable, IsOutdoors")
+		if BeStride_Logic:CanBroom() then
+			BeStride_Mount:Broom()
+		elseif IsSwimming() then
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:IsDruid() then
+			BeStride_Mount:DruidFlying()
+		else
+			BeStride_Mount:Flying()
+		end
+		--BeStride_Debug:Debug("End IsFlyable, IsOutdoors")
+	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
+		--BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
+		if zone == BestrideLocale.Zone.Oculus and Bestride:Filter(nil, zone) then
+		elseif BeStride_Logic:CanBroom() then
+			BeStride_Mount:Broom()
+		elseif IsSwimming() then
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:HasLoanedMount() then
+			BeStride_Mount:LoanedMount()
+		elseif BeStride_Logic:IsDruid() then
+			BeStride_Mount:Druid()
+		end
+		--BeStride_Debug:Debug("End Not IsFlyable, IsOutdoors")
+	elseif not IsOutdoors() then
+		--BeStride_Debug:Debug("IsOutdoors")
+		if IsSwimming() then
+			BeStride_Mount:Swimming()
+		elseif BeStride_Logic:IsDruid() then
+			BeStride_Logic:Druid()
+		end
+		--BeStride_Debug:Debug("Not IsOutdoors")
+	else
+		--BeStride_Debug:Debug("Final Test")
+		BeStride_Logic:Regular()
+		--BeStride_Debug:Debug("End Final Test")
+	end
+	--BeStride_Debug:Debug("End Logic")
+end
+
+function BeStride_Logic:GroundMountButton()
+	
+end
+
+function BeStride_Logic:IsFlyableArea()
 	local mapID = C_Map.GetBestMapForUnit(unitToken)
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
@@ -124,100 +241,6 @@ function BeStride:IsFlyableArea()
 	end
 end
 
-function BeStride:WGActive()
-	return true
-end
-
-function BeStride:GetMapUntil(locID,filter)
-	local map = C_Map.GetMapInfo(locID)
-	
-	if map["mapType"] ~= filter then
-		return BeStride:GetMap(map["parentMapID"])
-	else
-		return map
-	end
-end
-
-function BeStride_Logic:MountButton()
-	local loanedMount = BeStride_Logic:CheckLoanerMount()
-	local class = UnitClass("player")
-	
-	-- Dismount Logic
-	-- This Logic needs to be cleaned up more
-	if IsMounted() and IsFlying() and BeStride_Logic:IsFlyable() then
-		if BeStride_Logic:IsDruid() then
-			if BeStride_Logic:DruidFlyingMTFF() then
-				BeStride_Mount:DruidFlying()
-			elseif BeStride_Logic:NoDismountWhileFlying() then
-				BeStride_Mount:Regular()
-			else
-				Dismount()
-				BeStride_Mount:Regular()
-			end
-		elseif BeStride_Logic:IsPriest() then
-			if BeStride_Logic:PriestCanLevitate() then
-				BeStride_Mount:PriestLevitate()
-			elseif BeStride_Logic:NoDismountWhileFlying() then
-				BeStride_Mount:Regular()
-			else
-				Dismount()
-				BeStride_Mount:Regular()
-			end
-		end
-	-- Todo: Cleanup from here
-	elseif IsMounted() then
-		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
-			BeStride_Mount:DruidAuquaticForm()
-		elseif IsSwimming() then
-			BeStride_Mount:Swimming()
-		else
-			Dismount()
-			BeStride_Mount:Regular()
-		end
-	elseif CanExitVehicle() then
-		VehicleExit()
-		BeStride_Mount:Regular()
-	elseif BeStride_Logic:IsMonk() and BeStride_Logic:IsFlyable() and BeStride:MonkCanZen() then
-		BeStride_Mount:MonkZen()
-	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
-		BeStride_Mount:PriestLevitate()
-	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
-		BeStride_Mount:MageSlowFall()
-	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
-		if BeStride_Logic:CanBroom() then
-			BeStride_Mount:Broom()
-		elseif IsSwimming() then
-			BeStride_Mount:Swimming()
-		elseif BeStride_Logic:IsDruid() then
-			BeStride_Mount:DruidFlying()
-		else
-			BeStride_Mount:Flying()
-		end
-	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
-		if zone == BestrideLocale.Zone.Oculus and Bestride:Filter(nil, zone) then
-		elseif BeStride_Logic:CanBroom() then
-			BeStride_Mount:Broom()
-		elseif IsSwimming() then
-			BeStride_Mount:Swimming()
-		elseif BeStride_Logic:HasLoanedMount() then
-			BeStride_Mount:LoanedMount()
-		elseif BeStride_Logic:IsDruid() then
-			BeStride_Mount:Druid()
-		end
-	elseif not IsOutdoors() then
-		if IsSwimming() then
-			BeStride_Mount:Swimming()
-		elseif BeStride_Logic:IsDruid() then
-			BeStride_Logic:Druid()
-		end
-	else
-		BeStride_Logic:Regular()
-	end
-end
-
-function BeStride_Logic:RegularMount()
-end
-
 -- Checks Player Speed
 -- Returns: integer
 function BeStride_Logic:MovementCheck()
@@ -235,7 +258,7 @@ function BeStride_Logic:SpeedCheck()
 end
 
 function BeStride_Logic:IsFlyable()
-	if IsFlyableArea() and BeStride_Logic:IsFlyableArea() then
+	if BeStride_Logic:IsFlyableArea() then
 		return true
 	else
 		return false
@@ -331,6 +354,16 @@ function BeStride_Logic:CanRepair()
 	end
 	
 	return false
+end
+
+function BeStride_Logic:CanBroom()
+	if GetItemCount(37011, false) > 0 and not BeStride_Logic:IsCombat() and BeStride_Logic:CanBroomSetting() == true then
+		return true
+	end
+end
+
+function BeStride_Logic:CanBroomSetting()
+	return self.db.profile.settings["priorities"]["flyingbroom"]
 end
 
 -- Check whether we need to repair
@@ -458,6 +491,61 @@ function BeStride_Logic:DruidFlyingMTFF()
 	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
 	-- Todo: Bitwise Compare
 	if BeStride.db.profile.settings["classes"]["druid"]["mountedtoflightform"] then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------ --
+-- Priest --
+-- ------ --
+
+function BeStride_Logic:PriestCanLevitate()
+	-- Todo: Bitwise Compare
+	if BeStride_Logic:PriestSpellCanLevitate() and BeStride.db.profile.settings["classes"]["priest"]["levitate"] then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:PriestSpellCanLevitate()
+	if IsUsableSpell(1706) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ---- --
+-- Mage --
+-- ---- --
+
+function BeStride_Logic:MageSpecial()
+	if BeStride_Logic:IsMage() and (not BeStride_Logic:IsCombat()) then
+		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
+		if not BlinkOnCooldown and IsFalling() and BeStride_Logic:MovementCheck() and BeStride_Logic:MageCanBlink() then
+			BeStride_Mount:MageBlinkNoSlowFall()
+		elseif not BlinkOnCooldown and not IsFalling() and BeStride_Logic:MovementCheck() and BeStride_Logic:MageCanBlink() and BeStride_Logic:MageIsSlowFalling() then
+			BeStride_Mount:MageBlink()
+		elseif IsFalling()
+			BeStride_Mount:MageSlowFall()
+		end
+	end
+end
+
+function BeStride_Logic:MageCanSlowFall()
+	-- Todo: Bitwise Compare
+	if BeStride_Logic:MageSpellCanSlowFall() and BeStride.db.profile.settings["classes"]["priest"]["levitate"] then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MageSpellCanSlowFall()
+	if IsUsableSpell(1706) then
 		return true
 	else
 		return false

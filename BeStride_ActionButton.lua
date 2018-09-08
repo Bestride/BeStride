@@ -20,6 +20,24 @@ function BeStride:SetButton(text,button)
 	end
 end
 
+function BeStride:SetButtonOld
+	if not BestrideState.playerCombat then
+		if mount and button == 2 then
+			BestrideButtonGround:SetAttribute("macrotext", "/use "..Bestride:Mounting(false, GetRealZoneText()))
+		elseif mount and BestrideState.usePassengerMount then
+			BestrideButtonPassenger:SetAttribute("macrotext", "/use "..mount)
+		elseif mount and BestrideState.forceRepairMount then
+			BestrideButtonRepair:SetAttribute("macrotext", "/use "..mount)
+		elseif mount then
+			BestrideButtonMount:SetAttribute("macrotext", "/use "..mount)
+			--YayMountsButton:SetAttribute("macrotext", "/use "..mount)
+		else
+			BestrideButtonMount:SetAttribute("macrotext", nil)
+			--YayMountsButton:SetAttribute("macrotext", nil)
+		end
+	end
+end
+
 -- Creates Action Buttons
 function BeStride:CreateActionButton(name)
 	local name = "BeStride_AB" .. name
@@ -58,7 +76,7 @@ function BeStride_ActionButtonGroundMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:MountButton()
+	BeStride_Logic:GroundMountButton()
 end
 
 -- Action Button Cleanup
@@ -77,7 +95,7 @@ function BeStride_ActionButtonPassengerMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:MountButton()
+	BeStride_Logic:PassengerMountButton()
 end
 
 -- Action Button Cleanup
@@ -96,7 +114,7 @@ function BeStride_ActionButtonRepairMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:MountButton()
+	BeStride_Logic:RepairMountButton()
 end
 
 -- Action Button Cleanup
