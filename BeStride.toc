@@ -19,7 +19,7 @@ libs\AceDB-3.0\AceDB-3.0.xml
 libs\AceGUI-3.0\AceGUI-3.0.xml
 
 
-##localization-enUS.lua
+localization\en-US.lua
 
 BeStride.lua
 BeStride_Constants.lua

@@ -64,9 +64,23 @@ function BeStride:OnInitialize()
 	self.db = LibStub("AceDB-3.0"):New("BeStride", defaults, "Default")
 	self:RegisterChatCommand("bestride","ChatCommand")
 	self:RegisterChatCommand("br","ChatCommand")
+	
+	self.buttons = {
+		["mount"] = nil,
+		["ground"] = nil,
+		["repair"] = nil,
+		["passenger"] = nil,
+	}
+	
+	self.buttons["mount"] = BeStride:CreateActionButton('Mount')
+	self.buttons["ground"] = BeStride:CreateActionButton('Ground')
+	self.buttons["repair"] = BeStride:CreateActionButton('Repair')
+	self.buttons["passenger"] = BeStride:CreateActionButton('Passenger')
 end
 
 function BeStride:OnEnable()
+	
+	BeStride:buildMountTables()
 	
 end
 
@@ -98,7 +112,10 @@ function BeStride:ChatCommand(input)
 	elseif input == "map" then
 		BeStride:GetMaps()
 	elseif input == "mount" then
-		BeStride_Logic:MountButton()
+		-- BeStride_Logic:MountButton()
+		self.buttons["mount"]:PreClick()
+		self.buttons["mount"]:Click("left")
+		self.buttons["mount"]:PostClick()
 	else
 		BeStride_GUI:Frame()
 	end

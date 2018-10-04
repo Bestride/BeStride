@@ -8,6 +8,14 @@ function BeStride:Mount(flags)
 	
 end
 
+function BeStride_Logic:IsCombat()
+	if InCombatLockdown() then
+		return true
+	else
+		return false
+	end
+end
+
 function BeStride:buildMountTables()
 	BeStride:BuildMasterMountTable()
 	BeStride:LoadMountTables()
@@ -47,8 +55,8 @@ function BeStride:BuildMasterMountTable()
 			else
 				faction = ""
 			end
-			
-			mountTable["master"][mountId] = {
+			print("Adding Mount: " .. name .. " Id: " .. value)
+			mountTable["master"][value] = {
 				["name"] = name,
 				["spellID"] = spellID,
 				["factionLocked"] = isFactionSpecific,
@@ -56,6 +64,9 @@ function BeStride:BuildMasterMountTable()
 				["description"] = description,
 				["type"] = mountTypes[mountTypeID],
 			}
+			if mountTypes[mountTypeID] == "flying" then
+			    break
+			end
 		end
 	end
 end
@@ -75,23 +86,24 @@ end
 
 function BeStride:AddCommonMount(mountId)
 	local mount = mountTable["master"][mountId]
-	if mountTypes[mount["type"]] == "ground" then
-		table.insert(mountTable["ground"],key)
-	elseif mountTypes[mount["type"]] == "flying" then
-		table.insert(mountTable["flying"],key)
-	elseif mountTypes[mount["type"]] == "swimming" then
-		table.insert(mountTable["swimming"],key)
+	if mount["type"] == "ground" then
+		table.insert(mountTable["ground"],mountId)
+	elseif mount["type"] == "flying" then
+		table.insert(mountTable["ground"],mountId)
+		table.insert(mountTable["flying"],mountId)
+	elseif mount["type"] == "swimming" then
+		table.insert(mountTable["swimming"],mountId)
 	end
 end
 
 function BeStride:AddPassengerMount(mountId)
-	if mountData[mountId]["type"] == "passenger" then
+	if mountData[mountId] ~= nil and mountData[mountId]["type"] == "passenger" then
 		table.insert(mountTable["passenger"],mountId)
 	end
 end
 
-function BeStride:AddRepairMount()
-	if mountData[mountId]["repair"] then
+function BeStride:AddRepairMount(mountId)
+	if mountData[mountId] ~= nil and mountData[mountId]["repair"] then
 		table.insert(mountTable["repair"],mountId)
 	end
 end
@@ -106,16 +118,15 @@ end
 
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
-	
+	BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
 	if map["mapType"] ~= filter then
-		return BeStride:GetMap(map["parentMapID"])
+		return BeStride:GetMapUntil(map["parentMapID"],filter)
 	else
 		return map
 	end
 end
 
 function BeStride_Logic:MountButton()
-	local loanedMount = BeStride_Logic:CheckLoanerMount()
 	local class = UnitClass("player")
 	
 	-- Dismount Logic
@@ -165,44 +176,56 @@ function BeStride_Logic:MountButton()
 		BeStride_Mount:MonkZen()
 		--BeStride_Debug:Debug("End IsMonk,IsFlyable,CanZen")
 	elseif BeStride_Logic:IsPriest() and BeStride_Logic:PriestCanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
-		--BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
+		BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
 		BeStride_Mount:PriestLevitate()
 		--BeStride_Debug:Debug("End IsPriest, CanLevitate, IsFalling, MovementCheck")
-	elseif BeStride_Logic:IsPriest() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
+	elseif BeStride_Logic:IsMage() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
 		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
 		BeStride_Mount:MageSlowFall()
 		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
 	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
-		--BeStride_Debug:Debug("IsFlyable, IsOutdoors")
+		BeStride_Debug:Debug("IsFlyable, IsOutdoors")
 		if BeStride_Logic:CanBroom() then
+			BeStride_Debug:Debug("--Broom")
 			BeStride_Mount:Broom()
 		elseif IsSwimming() then
+			BeStride_Debug:Debug("--Swimming")
 			BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
+			BeStride_Debug:Debug("--Druid")
 			BeStride_Mount:DruidFlying()
 		else
+			BeStride_Debug:Debug("--Flying")
 			BeStride_Mount:Flying()
 		end
 		--BeStride_Debug:Debug("End IsFlyable, IsOutdoors")
 	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
-		--BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
-		if zone == BestrideLocale.Zone.Oculus and Bestride:Filter(nil, zone) then
+		BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
+		if zone == BeStride_Locale.Zone.Oculus and Bestride:Filter(nil, zone) then
 		elseif BeStride_Logic:CanBroom() then
+			BeStride_Debug:Debug("--Broom")
 			BeStride_Mount:Broom()
 		elseif IsSwimming() then
+			BeStride_Debug:Debug("--Swimming")
 			BeStride_Mount:Swimming()
 		elseif BeStride_Logic:HasLoanedMount() then
+			BeStride_Debug:Debug("--Loaner")
 			BeStride_Mount:LoanedMount()
 		elseif BeStride_Logic:IsDruid() then
+			BeStride_Debug:Debug("--Druid")
 			BeStride_Mount:Druid()
+		else
+			BeStride_Mount:Regular()
 		end
 		--BeStride_Debug:Debug("End Not IsFlyable, IsOutdoors")
 	elseif not IsOutdoors() then
-		--BeStride_Debug:Debug("IsOutdoors")
+		BeStride_Debug:Debug("IsOutdoors")
 		if IsSwimming() then
 			BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
 			BeStride_Logic:Druid()
+		else
+			BeStride_Mount:Regular()
 		end
 		--BeStride_Debug:Debug("Not IsOutdoors")
 	else
@@ -218,9 +241,13 @@ function BeStride_Logic:GroundMountButton()
 end
 
 function BeStride_Logic:IsFlyableArea()
-	local mapID = C_Map.GetBestMapForUnit(unitToken)
+	local mapID = C_Map.GetBestMapForUnit("player")
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
+	
+	if ( not IsSpellKnown(34090) and not IsSpellKnown(34091) and not IsSpellKnown(90265) ) then
+		return false
+	end
 	
 	-- Northrend Flying
 	-- Mists Flying
@@ -239,6 +266,8 @@ function BeStride_Logic:IsFlyableArea()
 	if zone == "Wintergrasp" then 
 		return not BeStride:WGActive()
 	end
+	
+	return true
 end
 
 -- Checks Player Speed
@@ -272,6 +301,16 @@ end
 -- +------------+ --
 -- Special Checks --
 -- +------------+ --
+
+function BeStride_Logic:HasLoanedMount()
+	local loanedMount = BeStride_Logic:CheckLoanerMount()
+	
+	if loanedMount then
+		return true
+	else
+		return false
+	end
+end
 
 function BeStride_Logic:CheckLoanerMount()
 	return false
@@ -529,7 +568,7 @@ function BeStride_Logic:MageSpecial()
 			BeStride_Mount:MageBlinkNoSlowFall()
 		elseif not BlinkOnCooldown and not IsFalling() and BeStride_Logic:MovementCheck() and BeStride_Logic:MageCanBlink() and BeStride_Logic:MageIsSlowFalling() then
 			BeStride_Mount:MageBlink()
-		elseif IsFalling()
+		elseif IsFalling() then
 			BeStride_Mount:MageSlowFall()
 		end
 	end
