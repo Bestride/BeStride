@@ -1,6 +1,46 @@
-<Bindings>
-    <Binding name="BeStride_ABMountMount" header="BESTRIDE_TITLE" category="ADDONS"></Binding>
-    <Binding name="BeStride_ABGroundMount" category="ADDONS"></Binding>
-    <Binding name="BeStride_ABRepairMount" category="ADDONS"></Binding>
-	<Binding name="BeStride_ABPassengerMount" category="ADDONS"></Binding>
-</Bindings> 
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
+
+<Button name="BeStride_ABMountMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			BeStride_ActionButtonMount:PreClick()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BeStride_ABGRoundMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			BeStride_ActionButtonGroundMount:PreClick()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BeStride_ABPassengerMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			BeStride_ActionButtonPassengerMount:PreClick()
+		</PreClick>
+	</Scripts>  
+</Button>
+
+<Button name="BeStride_ABRepairMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+	<Attributes>
+		<Attribute name="type" type="string" value="macro"/>
+	</Attributes>
+	<Scripts>
+		<PreClick>
+			BeStride_ActionButtonRepairMount:PreClick()
+		</PreClick>
+	</Scripts>  
+</Button>
+</Ui>

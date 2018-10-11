@@ -7,15 +7,18 @@ BeStride_ActionButtonRepairMount = {}
 function BeStride:CreateActionButton(buttontype)
 	local name = "BeStride_AB" .. buttontype .. "Mount"
 
-	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate")
+	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
 	br:SetAttribute("type","macro")
+	br:SetAttribute("type1", "macro")
 	br:SetAttribute("macrotext","/script print('Test')")
 	
     if buttontype == "Mount" then
-		Mixin(br, BeStride_ActionButtonMount)
+		--Mixin(br, BeStride_ActionButtonMount)
 		BeStride_Debug:Debug("Setting Binding")
 		SetBindingClick("Middle Mouse", br:GetName() )
 		SetBindingClick("F12", br:GetName() )
+		br:SetSize(64 ,64)
+		br:SetPoint("CENTER")
 	elseif buttontype == "GroundMount" then
 		Mixin(br, BeStride_ActionButtonGroundMount)
 	elseif buttontype == "RepairMount" then
@@ -26,12 +29,12 @@ function BeStride:CreateActionButton(buttontype)
 	
 	br.id = buttontype
 	br:SetScript("PreClick",function(self)
-	  self:PreClick()
+	  BeStride_ActionButtonMount:PreClick()
 	end)
 	br:SetScript("PostClick",function(self)
-	  self:PostClick()
+	  BeStride_ActionButtonMount:PostClick()
 	end)
-	SaveBindings(GetCurrentBindingSet())
+	--SaveBindings(GetCurrentBindingSet())
 	if br then
 	    print("Returning: " .. br:GetName())
 		return br

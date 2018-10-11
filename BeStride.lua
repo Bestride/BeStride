@@ -72,10 +72,16 @@ function BeStride:OnInitialize()
 		["passenger"] = nil,
 	}
 	
-	self.buttons["mount"] = BeStride:CreateActionButton('Mount')
-	self.buttons["ground"] = BeStride:CreateActionButton('Ground')
-	self.buttons["repair"] = BeStride:CreateActionButton('Repair')
-	self.buttons["passenger"] = BeStride:CreateActionButton('Passenger')
+	self.buttons["mount"] = BeStride_ABMountMount
+	self.buttons["ground"] = BeStride_ABGroundMount
+	self.buttons["repair"] = BeStride_ABRepairMount
+	self.buttons["passenger"] = BeStride_ABPassengerMount
+	
+	--local b = CreateFrame("Button", "TestButton", UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
+	--b:SetSize(64 ,64)
+	--b:SetPoint("CENTER")
+	--b:SetAttribute("type1", "macro")
+	--b:SetAttribute("macrotext", "/script print('hello world')\n/use Azure Water Strider")
 end
 
 function BeStride:OnEnable()

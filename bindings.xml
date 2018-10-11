@@ -1,0 +1,6 @@
+<Bindings>
+    <Binding name="BeStride_ABMountMount" header="BESTRIDE_TITLE" category="ADDONS"></Binding>
+    <Binding name="BeStride_ABGroundMount" category="ADDONS"></Binding>
+    <Binding name="BeStride_ABRepairMount" category="ADDONS"></Binding>
+	<Binding name="BeStride_ABPassengerMount" category="ADDONS"></Binding>
+</Bindings> 
