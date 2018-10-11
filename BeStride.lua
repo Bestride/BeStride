@@ -1,5 +1,7 @@
 BeStride = LibStub("AceAddon-3.0"):NewAddon("Bestride","AceConsole-3.0", "AceEvent-3.0")
 
+playerTable = {}
+
 mountTable = {
 	["master"] = {},
 	["ground"] = {},
@@ -77,6 +79,16 @@ function BeStride:OnInitialize()
 	self.buttons["repair"] = BeStride_ABRepairMount
 	self.buttons["passenger"] = BeStride_ABPassengerMount
 	
+	BeStride:SetBindings()
+	
+	local className,classFilename,classID = UnitClass("player")
+	
+	playerTable["class"] = {}
+	playerTable["class"]["id"] = classID
+	playerTable["class"]["name"] = className
+	
+	--BeStride_ABMountMount:SetAttribute("macrotext", "/script print('hello world')\n/use Azure Water Strider")
+	
 	--local b = CreateFrame("Button", "TestButton", UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
 	--b:SetSize(64 ,64)
 	--b:SetPoint("CENTER")
@@ -88,6 +100,32 @@ function BeStride:OnEnable()
 	
 	BeStride:buildMountTables()
 	
+end
+
+function BeStride:SetBindings()
+	ClearOverrideBindings(BeStride_ABMountMount)
+	local ABMountKey = GetBindingKey("BeStride_ABMountMount")
+	if ABMountKey then
+      SetOverrideBindingClick(BeStride_ABMountMount, true, ABMountKey, BeStride_ABMountMount:GetName())
+    end
+	
+	ClearOverrideBindings(BeStride_ABGroundMount)
+	local ABGroundKey = GetBindingKey("BeStride_ABGroundMount")
+	if ABGroundKey then
+      SetOverrideBindingClick(BeStride_ABGroundMount, true, ABGroundKey, BeStride_ABGroundMount:GetName())
+    end
+	
+	ClearOverrideBindings(BeStride_ABRepairMount)
+	local ABRepairKey = GetBindingKey("BeStride_ABRepairMount")
+	if ABRepairKey then
+      SetOverrideBindingClick(BeStride_ABRepairMount, true, ABRepairKey, BeStride_ABRepairMount:GetName())
+    end
+	
+	ClearOverrideBindings(BeStride_ABPassengerMount)
+	local ABPassengerKey = GetBindingKey("BeStride_ABPassengerMount")
+	if ABRepaidKey then
+      SetOverrideBindingClick(BeStride_ABPassengerMount, true, ABRepaidKey, BeStride_ABPassengerMount:GetName())
+    end
 end
 
 function BeStride:ChatCommand(input)

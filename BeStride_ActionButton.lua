@@ -58,7 +58,11 @@ end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonMount:PostClick()
-
+	if BeStride_Logic:IsCombat() then
+		return
+	end
+	
+	BeStride_ABMountMount:SetAttribute("macrotext", nil)
 end
 
 

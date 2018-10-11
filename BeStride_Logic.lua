@@ -45,10 +45,10 @@ end
 
 function BeStride:BuildMasterMountTable()
 	for key,value in pairs(C_MountJournal.GetMountIDs()) do
-		local name,spellID,_,_,_,_,_,isFactionSpecific,faction,isCollected,_ = C_MountJournal.GetMountInfoByID(value)
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
 		
 		if isCollected then
-			local _,description,_,_,mountTypeID,_ = C_MountJournal.GetMountInfoExtraByID(value)
+			local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(value)
 			
 			if isFactionSpecific then
 				faction = faction
@@ -127,36 +127,42 @@ function BeStride:GetMapUntil(locID,filter)
 end
 
 function BeStride_Logic:MountButton()
-	local class = UnitClass("player")
-	
 	-- Dismount Logic
 	-- This Logic needs to be cleaned up more
 	--BeStride_Debug:Debug("Starting Mount Logic")
 	if IsMounted() and IsFlying() and BeStride_Logic:IsFlyable() then
-		--BeStride_Debug:Debug("Mounted, Flying, Flyable")
+		BeStride_Debug:Debug("Mounted, Flying, Flyable")
 		if BeStride_Logic:IsDruid() then
 			if BeStride_Logic:DruidFlyingMTFF() then
+				BeStride_Debug:Debug("DruidFlyingMTFF")
 				BeStride_Mount:DruidFlying()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Debug:Debug("DruidNoDismountWhileFlying")
 				BeStride_Mount:Regular()
 			else
+				BeStride_Debug:Debug("DruidDismountAndmount")
 				Dismount()
 				BeStride_Mount:Regular()
 			end
 		elseif BeStride_Logic:IsPriest() then
 			if BeStride_Logic:PriestCanLevitate() then
+				BeStride_Debug:Debug("PriestCanLevitate")
 				BeStride_Mount:PriestLevitate()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
+				BeStride_Debug:Debug("PriestNoDismountWhileFlying")
 				BeStride_Mount:Regular()
 			else
+				BeStride_Debug:Debug("Priest Dismounting")
 				Dismount()
 				BeStride_Mount:Regular()
 			end
+		else
+			BeStride_Debug:Debug("No Action")
 		end
-		--BeStride_Debug:Debug("End Mounted, Flying, Flyable")
+		BeStride_Debug:Debug("End Mounted, Flying, Flyable")
 	-- Todo: Cleanup from here
 	elseif IsMounted() then
-		--BeStride_Debug:Debug("Mounted")
+		BeStride_Debug:Debug("Mounted")
 		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
 			BeStride_Mount:DruidAuquaticForm()
 		elseif IsSwimming() then
@@ -430,7 +436,7 @@ end
 
 -- Check for Druid
 function BeStride_Logic:IsDruid()
-	if class["class"] == "DRUID" then
+	if playerTable["class"]["name"] == "DRUID" then
 		return true
 	else
 		return false
@@ -439,7 +445,7 @@ end
 
 -- Check for Mage
 function BeStride_Logic:IsMage()
-	if class["class"] == "MAGE" then
+	if playerTable["class"]["name"] == "MAGE" then
 		return true
 	else
 		return false
@@ -448,7 +454,8 @@ end
 
 -- Check for Priest
 function BeStride_Logic:IsPriest()
-	if class["class"] == "PRIEST" then
+	BeStride_Debug:Debug(playerTable["class"]["name"])
+	if playerTable["class"]["name"] == "PRIEST" then
 		return true
 	else
 		return false
@@ -457,7 +464,7 @@ end
 
 -- Check for Monk
 function BeStride_Logic:IsMonk()
-	if class["class"] == "MONK" then
+	if playerTable["class"]["name"] == "MONK" then
 		return true
 	else
 		return false

@@ -11,7 +11,7 @@
 	</Scripts>  
 </Button>
 
-<Button name="BeStride_ABGRoundMount" inherits="SecureActionButtonTemplate" parent="UIParent">
+<Button name="BeStride_ABGroundMount" inherits="SecureActionButtonTemplate" parent="UIParent">
 	<Attributes>
 		<Attribute name="type" type="string" value="macro"/>
 	</Attributes>

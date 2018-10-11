@@ -1,8 +1,10 @@
 BeStride_Mount = {}
 
 function BeStride_Mount:MountSpell(spell)
-	BeStride.buttons["mount"]:SetAttribute("macrotext", "/use " .. spell)
-	BeStride_Debug:Debug(BeStride.buttons["mount"]:GetAttribute("macrotext"))
+	BeStride_ABMountMount:SetAttribute("macrotext", "/script print('hello world')\n/use " .. spell)
+	BeStride_Debug:Debug("Mounting")
+	BeStride_Debug:Debug("Action: "..BeStride.buttons["mount"]:GetAttribute("macrotext"))
+	--BeStride_Debug(debugstack(2,3,2))
 end
 
 function BeStride_Mount:CountRepairMounts()
