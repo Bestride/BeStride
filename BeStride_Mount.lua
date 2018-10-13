@@ -1,13 +1,35 @@
 BeStride_Mount = {}
 
 function BeStride_Mount:MountSpell(spell)
-	BeStride_ABMountMount:SetAttribute("macrotext", "/script print('hello world')\n/use " .. spell)
+	BeStride_ABMountMount:SetAttribute("macrotext", "/cast " .. spell)
+	BeStride_Debug:Debug("Mounting")
+	BeStride_Debug:Debug("Action: "..BeStride.buttons["mount"]:GetAttribute("macrotext"))
+end
+
+function BeStride_Mount:Mount(spell)
+	BeStride_ABMountMount:SetAttribute("macrotext", "/use " .. spell)
 	BeStride_Debug:Debug("Mounting")
 	BeStride_Debug:Debug("Action: "..BeStride.buttons["mount"]:GetAttribute("macrotext"))
 	--BeStride_Debug(debugstack(2,3,2))
 end
 
 function BeStride_Mount:CountRepairMounts()
+end
+
+function BeStride_Mount:Repair()
+	local repair = mountTable["repair"]
+	print(#repair)
+	if #mountTable["repair"] == 0 then
+		BeStride_Debug:Debug("No Mounts")
+		return nil
+	end
+	
+	local mount = mountTable["repair"][math.random(#mountTable["repair"])]
+	local spell = mountTable["master"][mount]["spellID"]
+	local name = GetSpellInfo(spell)
+	BeStride_Debug:Debug("Mount: " .. mount)
+    BeStride_Debug:Debug("Spell: " .. spell)
+	BeStride_Mount:Mount(name)
 end
 
 function BeStride_Mount:Flying()
@@ -23,13 +45,39 @@ function BeStride_Mount:Flying()
 	local name = GetSpellInfo(spell)
 	BeStride_Debug:Debug("Mount: " .. mount)
     BeStride_Debug:Debug("Spell: " .. spell)
-	BeStride_Mount:MountSpell(name)
+	BeStride_Mount:Mount(name)
 end
 
 function BeStride_Mount:Swimming()
+	local swimming = mountTable["swimming"]
+	print(#swimming)
+	if #mountTable["swimming"] == 0 then
+		BeStride_Debug:Debug("No Mounts")
+		return nil
+	end
+	
+	local mount = mountTable["swimming"][math.random(#mountTable["swimming"])]
+	local spell = mountTable["master"][mount]["spellID"]
+	local name = GetSpellInfo(spell)
+	BeStride_Debug:Debug("Mount: " .. mount)
+    BeStride_Debug:Debug("Spell: " .. spell)
+	BeStride_Mount:Mount(name)
 end
 
 function BeStride_Mount:Regular()
+	local ground = mountTable["ground"]
+	print(#ground)
+	if #mountTable["ground"] == 0 then
+		BeStride_Debug:Debug("No Mounts")
+		return nil
+	end
+	
+	local mount = mountTable["ground"][math.random(#mountTable["ground"])]
+	local spell = mountTable["master"][mount]["spellID"]
+	local name = GetSpellInfo(spell)
+	BeStride_Debug:Debug("Mount: " .. mount)
+    BeStride_Debug:Debug("Spell: " .. spell)
+	BeStride_Mount:Mount(name)
 end
 
 function BeStride_Mount:Druid()
@@ -42,8 +90,24 @@ function BeStride_Mount:DruidAquaticForm()
 end
 
 function BeStride_Mount:PriestLevitate()
+	if not (not BeStride_Logic:IsCombat()) then
+		BeStride_Debug:Debug("Fail Combat Check")
+	end
+	if not (BeStride_Logic:IsFalling()) then
+		BeStride_Debug:Debug("Fail Failing")
+	end
+	if not (BeStride_Logic:IsPriest()) then
+		BeStride_Debug:Debug("Fail Priest Check")
+	end
+	if not (BeStride_Logic:MovementCheck()) then
+		BeStride_Debug:Debug("Fail Movement Check")
+	end
+	if not (BeStride_Logic:PriestCanLevitate()) then
+		BeStride_Debug:Debug("Fail Can Levitate Check")
+	end
 	if (not BeStride_Logic:IsCombat()) and IsFalling() and BeStride_Logic:IsPriest() and BeStride_Logic:MovementCheck() and BeStride_Logic:PriestCanLevitate() then
-		Bestride_Mount:MountSpell("[@player] "..Bestride:SpellToName(1706).."\n/cancelaura "..Bestride:SpellToName(1706)) --Levitate
+		BeStride_Debug:Debug("Can Levitate #2")
+		BeStride_Mount:MountSpell("[@player] "..BeStride:SpellToName(1706).."\n/cancelaura "..BeStride:SpellToName(1706)) --Levitate
 	end
 end
 

@@ -3,11 +3,6 @@ BeStride_Logic = {}
 local class = UnitClass("player")
 local canRepair = false
 
-
-function BeStride:Mount(flags)
-	
-end
-
 function BeStride_Logic:IsCombat()
 	if InCombatLockdown() then
 		return true
@@ -55,7 +50,7 @@ function BeStride:BuildMasterMountTable()
 			else
 				faction = ""
 			end
-			print("Adding Mount: " .. name .. " Id: " .. value)
+			--print("Adding Mount: " .. name .. " Id: " .. value)
 			mountTable["master"][value] = {
 				["name"] = name,
 				["spellID"] = spellID,
@@ -64,9 +59,6 @@ function BeStride:BuildMasterMountTable()
 				["description"] = description,
 				["type"] = mountTypes[mountTypeID],
 			}
-			if mountTypes[mountTypeID] == "flying" then
-			    break
-			end
 		end
 	end
 end
@@ -119,7 +111,7 @@ end
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
 	BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
-	if map["mapType"] ~= filter then
+	if map["mapType"] ~= filter and map["mapType"] > filter then
 		return BeStride:GetMapUntil(map["parentMapID"],filter)
 	else
 		return map
@@ -436,7 +428,7 @@ end
 
 -- Check for Druid
 function BeStride_Logic:IsDruid()
-	if playerTable["class"]["name"] == "DRUID" then
+	if playerTable["class"]["name"] == "Druid" then
 		return true
 	else
 		return false
@@ -445,7 +437,7 @@ end
 
 -- Check for Mage
 function BeStride_Logic:IsMage()
-	if playerTable["class"]["name"] == "MAGE" then
+	if playerTable["class"]["name"] == "Mage" then
 		return true
 	else
 		return false
@@ -455,7 +447,7 @@ end
 -- Check for Priest
 function BeStride_Logic:IsPriest()
 	BeStride_Debug:Debug(playerTable["class"]["name"])
-	if playerTable["class"]["name"] == "PRIEST" then
+	if playerTable["class"]["name"] == "Priest" then
 		return true
 	else
 		return false
@@ -464,7 +456,7 @@ end
 
 -- Check for Monk
 function BeStride_Logic:IsMonk()
-	if playerTable["class"]["name"] == "MONK" then
+	if playerTable["class"]["name"] == "Monk" then
 		return true
 	else
 		return false
@@ -550,8 +542,10 @@ end
 function BeStride_Logic:PriestCanLevitate()
 	-- Todo: Bitwise Compare
 	if BeStride_Logic:PriestSpellCanLevitate() and BeStride.db.profile.settings["classes"]["priest"]["levitate"] then
+		BeStride_Debug:Debug("Can Levitate")
 		return true
 	else
+		BeStride_Debug:Debug("Can not Levitate")
 		return false
 	end
 end

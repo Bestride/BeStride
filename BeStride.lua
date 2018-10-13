@@ -103,6 +103,7 @@ function BeStride:OnEnable()
 end
 
 function BeStride:SetBindings()
+    BeStride_Debug:Debug("Start Set Bindings")
 	ClearOverrideBindings(BeStride_ABMountMount)
 	local ABMountKey = GetBindingKey("BeStride_ABMountMount")
 	if ABMountKey then
@@ -126,6 +127,7 @@ function BeStride:SetBindings()
 	if ABRepaidKey then
       SetOverrideBindingClick(BeStride_ABPassengerMount, true, ABRepaidKey, BeStride_ABPassengerMount:GetName())
     end
+	BeStride_Debug:Debug("End Set Bindings")
 end
 
 function BeStride:ChatCommand(input)
@@ -165,7 +167,11 @@ function BeStride:ChatCommand(input)
 	end
 end
 
-
+function BeStride:SpellToName(spellID)
+	local name, rank, icon, castTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
+	
+	return name
+end
 
 function BeStride:GetMaps()
 	local locID = C_Map.GetBestMapForUnit("player")

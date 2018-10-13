@@ -1,4 +1,5 @@
 version = "0.5.0"
+author = "Anaximander"
 
 Bestride_Constants = {}
 Bestride_Constants.spells = {}
