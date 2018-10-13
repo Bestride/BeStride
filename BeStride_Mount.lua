@@ -80,13 +80,18 @@ function BeStride_Mount:Druid()
 	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
 
 	if GetUnitSpeed("player") ~= 0 then
-		Bestride:MountSpell(Bestride:SpellToName(783))
+		BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif BeStride_Logic:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
-		Bestride:MountSpell(Bestride:SpellToName(783))
+		BeStride_Mount:MountSpell(BeStride:SpellToName(783))
+	elseif IsFlying() then
+		BeStride_Mount:Flying(name)
+	else
+		BeStride_Mount:Regular(name)
 	end
 end
 
 function BeStride_Mount:DruidFlying()
+	BeStride_Mount:Druid()
 end
 
 function BeStride_Mount:DruidAquaticForm()
