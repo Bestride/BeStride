@@ -35,7 +35,7 @@ function BeStride_GUI:Open()
 	tab:SetLayout("Flow")
 	tab:SetTabs(frameTabs)
 	tab:SetCallback("OnGroupSelected", function (container, event, group ) BeStride_GUI:SelectTab(container, event, group) end )
-    --tab:SelectTab(selectedTab)
+    tab:SelectTab("mounts")
 	
     BeStride_Frame:AddChild(tab)
 end
@@ -53,7 +53,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	BeStride_Debug:Debug("Group: " .. group)
 	container:ReleaseChildren()
 	if group == "mounts" then
-		--BeStride_GUI:DrawMountTab(container)
+		BeStride_GUI:DrawMountsTab(container)
 	elseif group == "mountoptions" then
 		--BeStride_GUI:DrawMountOptionTab(container)
 	elseif group == "classoptions" then
@@ -78,10 +78,11 @@ function BeStride_GUI:DrawMountsTab(container)
 	local tab  = AceGUI:Create("TabGroup")
 	tab:SetLayout("Flow")
 	tab:SetTabs({
-		{text="Ground ("..Bestride.db.profile.misc.NumMounts["Ground"]..")", value="ground"}, 
-		{text="Flying ("..Bestride.db.profile.misc.NumMounts["Flying"]..")", value="flying"}, 
-		{text="Swimming ("..Bestride.db.profile.misc.NumMounts["Flying"]..")", value="swimming"}, 
-		{text="Special ("..Bestride.db.profile.misc.NumMounts["Special"]..")", value="repair"}}
+		{text="Ground (".. #mountTable["ground"] ..")", value="ground"},
+		{text="Flying (".. #mountTable["flying"] ..")", value="flying"},
+		{text="Swimming (".. #mountTable["swimming"] ..")", value="swimming"},
+		{text="Repair (".. #mountTable["repair"] ..")", value="repair"},
+		{text="Passenger (".. #mountTable["passenger"] ..")", value="passenger"}}
 	)
 	tab:SetCallback("OnGroupSelected", function (container,event,group) BeStride_GUI:DrawMountsSubTab(container,group) end )
   
@@ -94,6 +95,7 @@ function BeStride_GUI:DrawMountsTab(container)
 end
 
 function BeStride_GUI:DrawMountsSubTab(container,group)
+	container:ReleaseChildren()
 	container:SetLayout("Flow")
     
 	local selectallbutton = AceGUI:Create("Button")
@@ -121,7 +123,37 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 
 	local scrollframe = AceGUI:Create("ScrollFrame")
 	scrollcontainerframe:AddChild(scrollframe)
+	
+	local mounts = AceGUI:Create("InlineGroup")
+	mounts:SetFullWidth(true)
+	mounts:SetLayout("Flow")
+	
+	for mountID,mount in pairs(mountTable["master"]) do
+		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
+		if mount["type"] == group then
+			local mountCheck = BeStride_GUI:CreateMountButton(mountID)
+			if mountCheck ~= nil then
+				--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mountID]["name"])
+				mounts:AddChild( mountCheck )
+			end
+		end
+	end
+	
+	scrollframe:AddChild(mounts)
+end
 
+function BeStride_GUI:CreateMountButton(mountID)
+	local mount = mountTable.master[mountID]
+	if mount["isUsable"] and mount["isCollected"] then
+		mountButton = AceGUI:Create("CheckBox")
+		mountButton:SetImage(mount["icon"])
+		mountButton:SetLabel(mount["name"])
+		mountButton:SetValue(BeStride:DBGetMount(mountID))
+		mountButton:SetCallback("OnValueChanged", function(container) Bestride:DBSetMount(mount["mountID"],not container:GetValue()) end)
+		return mountButton
+	else
+		return nil
+	end
 end
 
 function BeStride_GUI:DrawAboutTab(container)

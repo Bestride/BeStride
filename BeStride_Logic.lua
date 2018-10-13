@@ -11,113 +11,6 @@ function BeStride_Logic:IsCombat()
 	end
 end
 
-function BeStride:buildMountTables()
-	BeStride:BuildMasterMountTable()
-	BeStride:LoadMountTables()
-end
-
-function BeStride:AddNewMount(mountId)
-	local name,spellID,_,_,_,_,_,isFactionSpecific,faction,isCollected,_ = C_MountJournal.GetMountInfoByID(value)
-	local _,description,_,_,mountTypeID,_ = C_MountJournal.GetMountInfoExtraByID(value)
-			
-	if isFactionSpecific then
-		faction = faction
-	else
-		faction = ""
-	end
-
-	mountTable["master"][mountId] = {
-		["name"] = name,
-		["spellID"] = spellID,
-		["factionLocked"] = isFactionSpecific,
-		["faction"] = faction,
-		["description"] = description,
-		["type"] = mountTypes[mountTypeID],
-	}
-	
-	
-end
-
-function BeStride:BuildMasterMountTable()
-	for key,value in pairs(C_MountJournal.GetMountIDs()) do
-		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
-		
-		if isCollected then
-			local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(value)
-			
-			if isFactionSpecific then
-				faction = faction
-			else
-				faction = ""
-			end
-			--print("Adding Mount: " .. name .. " Id: " .. value)
-			mountTable["master"][value] = {
-				["name"] = name,
-				["spellID"] = spellID,
-				["factionLocked"] = isFactionSpecific,
-				["faction"] = faction,
-				["description"] = description,
-				["type"] = mountTypes[mountTypeID],
-			}
-		end
-	end
-end
-
-function BeStride:LoadMountTables()
-	mountTable["ground"] = {}
-	mountTable["flying"] = {}
-	mountTable["swimming"] = {}
-	mountTable["passenger"] = {}
-	mountTable["repair"] = {}
-	for key,value in pairs(mountTable["master"]) do
-		BeStride:AddCommonMount(key)
-		BeStride:AddPassengerMount(key)
-		BeStride:AddRepairMount(key)
-	end
-end
-
-function BeStride:AddCommonMount(mountId)
-	local mount = mountTable["master"][mountId]
-	if mount["type"] == "ground" then
-		table.insert(mountTable["ground"],mountId)
-	elseif mount["type"] == "flying" then
-		table.insert(mountTable["ground"],mountId)
-		table.insert(mountTable["flying"],mountId)
-	elseif mount["type"] == "swimming" then
-		table.insert(mountTable["swimming"],mountId)
-	end
-end
-
-function BeStride:AddPassengerMount(mountId)
-	if mountData[mountId] ~= nil and mountData[mountId]["type"] == "passenger" then
-		table.insert(mountTable["passenger"],mountId)
-	end
-end
-
-function BeStride:AddRepairMount(mountId)
-	if mountData[mountId] ~= nil and mountData[mountId]["repair"] then
-		table.insert(mountTable["repair"],mountId)
-	end
-end
-
-function BeStride:GetRidingSkill()
-	
-end
-
-function BeStride:WGActive()
-	return true
-end
-
-function BeStride:GetMapUntil(locID,filter)
-	local map = C_Map.GetMapInfo(locID)
-	BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
-	if map["mapType"] ~= filter and map["mapType"] > filter then
-		return BeStride:GetMapUntil(map["parentMapID"],filter)
-	else
-		return map
-	end
-end
-
 function BeStride_Logic:MountButton()
 	-- Dismount Logic
 	-- This Logic needs to be cleaned up more
@@ -590,4 +483,12 @@ function BeStride_Logic:MageSpellCanSlowFall()
 	else
 		return false
 	end
+end
+
+function BeStride_Logic:GetRidingSkill()
+	
+end
+
+function BeStride_Logic:WGActive()
+	return true
 end

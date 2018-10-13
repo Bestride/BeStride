@@ -49,9 +49,9 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonMount:PreClick()
-	if BeStride_Logic:IsCombat() then
-		return
-	end
+	--if BeStride_Logic:IsCombat() then
+	--	return
+	--end
 	
 	BeStride_Logic:MountButton()
 end
