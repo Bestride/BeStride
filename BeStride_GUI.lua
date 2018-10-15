@@ -50,7 +50,7 @@ function BeStride_GUI:GetStatusText()
 end
 
 function BeStride_GUI:SelectTab(container, event, group)-- Callback function for OnGroupSelected
-	BeStride_Debug:Debug("Group: " .. group)
+	--BeStride_Debug:Debug("Group: " .. group)
 	container:ReleaseChildren()
 	if group == "mounts" then
 		BeStride_GUI:DrawMountsTab(container)
@@ -63,7 +63,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	elseif group == "profile" then
 		--BeStride_GUI:DrawProfileTab(container)
 	elseif group == "about" then
-		BeStride_Debug:Debug("Drawing About")
+		--BeStride_Debug:Debug("Drawing About")
 		BeStride_GUI:DrawAboutTab(container)
 	end
 	
@@ -128,14 +128,12 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	mounts:SetFullWidth(true)
 	mounts:SetLayout("Flow")
 	
-	for mountID,mount in pairs(mountTable["master"]) do
+	for key,mount in pairs(mountTable[group]) do
 		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
-		if mount["type"] == group then
-			local mountCheck = BeStride_GUI:CreateMountButton(mountID)
-			if mountCheck ~= nil then
-				--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mountID]["name"])
-				mounts:AddChild( mountCheck )
-			end
+		BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
+		local mountCheck = BeStride_GUI:CreateMountButton(mount)
+		if mountCheck ~= nil then
+			mounts:AddChild( mountCheck )
 		end
 	end
 	
@@ -144,7 +142,7 @@ end
 
 function BeStride_GUI:CreateMountButton(mountID)
 	local mount = mountTable.master[mountID]
-	if mount["isUsable"] and mount["isCollected"] then
+	if mount["isCollected"] and (mount["faction"]== nil or mount["faction"] == playerTable["faction"]["id"]) then
 		mountButton = AceGUI:Create("CheckBox")
 		mountButton:SetImage(mount["icon"])
 		mountButton:SetLabel(mount["name"])

@@ -85,6 +85,13 @@ function BeStride:OnInitialize()
 	local className,classFilename,classID = UnitClass("player")
 	local raceName,raceFile,raceID = UnitRace("player")
 	local factionName,factionLocalized =  UnitFactionGroup("player")
+	local factionId = nil
+	
+	if factionName == "Alliance" then
+		factionId = 1
+	else
+		factionId = 0
+	end
 	
 	playerTable["class"] = {}
 	playerTable["class"]["id"] = classID
@@ -94,7 +101,10 @@ function BeStride:OnInitialize()
 	playerTable["race"]["id"] = raceID
 	playerTable["faction"] = {}
 	playerTable["faction"]["name"] = factionName
+	playerTable["faction"]["id"] = factionId
 	playerTable["faction"]["localization"] = factionLocalized
+	
+	print("Faction: " .. factionId)
 	
 	--BeStride_ABMountMount:SetAttribute("macrotext", "/script print('hello world')\n/use Azure Water Strider")
 	
@@ -167,6 +177,9 @@ function BeStride:ChatCommand(input)
 		BeStride:GetMaps()
 	elseif input == "dbtest" then
 		BeStride:DBGetMount(2929)
+	elseif input  == "factiontest" then
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(61469)
+		print(":" .. name .. ":" .. faction .. ":")
 	elseif input == "mount" then
 		-- BeStride_Logic:MountButton()
 		self.buttons["mount"]:PreClick()
@@ -202,7 +215,7 @@ function BeStride:DBGetMount(mountID)
 	if self.db.profile.mounts[mountID] ~= nil then
 		return self.db.profile.mounts[mountID]
 	else
-		BeStride_Debug:Debug("MountID: " .. mountID)
+		--BeStride_Debug:Debug("MountID: " .. mountID)
 		self.db.profile.mounts[mountID] = true
 		return self.db.profile.mounts[mountID]
 	end
@@ -222,27 +235,7 @@ function BeStride:BuildMasterMountTable()
 		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
 		
 		if isCollected then
-			local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(value)
-			
-			if not isFactionSpecific then
-				faction = nil
-			end
-			
-			if isUsable then
-				print("Adding Mount: " .. name .. " Id: " .. value)
-			end
-			mountTable["master"][value] = {
-				["name"] = name,
-				["spellID"] = spellID,
-				["factionLocked"] = isFactionSpecific,
-				["faction"] = faction,
-				["description"] = description,
-				["isActive"] = isActive,
-				["isUsable"] = isUsable,
-				["isCollected"] = isCollected,
-				["icon"] = icon,
-				["type"] = mountTypes[mountTypeID],
-			}
+			BeStride:AddNewMount(value)
 		end
 	end
 end
@@ -250,18 +243,19 @@ end
 
 
 function BeStride:AddNewMount(mountId)
-	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
-	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(value)
+	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mountId)
+	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 			
 	if isFactionSpecific then
 		faction = faction
 	else
-		faction = ""
+		faction = nil
 	end
 
 	mountTable["master"][mountId] = {
 		["name"] = name,
 		["spellID"] = spellID,
+		["mountID"] = mountID,
 		["factionLocked"] = isFactionSpecific,
 		["faction"] = faction,
 		["description"] = description,
@@ -271,8 +265,6 @@ function BeStride:AddNewMount(mountId)
 		["icon"] = icon,
 		["type"] = mountTypes[mountTypeID],
 	}
-	
-	
 end
 
 function BeStride:LoadMountTables()
@@ -282,8 +274,14 @@ function BeStride:LoadMountTables()
 	mountTable["passenger"] = {}
 	mountTable["repair"] = {}
 	for key,value in pairs(mountTable["master"]) do
+		--if not value["isUsable"] then
+			--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " Faction: " .. value["faction"])
+		--end
 		
-		if value["isUsable"] and (value["faction"]== nil or value["faction"] == playerTable["faction"]["name"]) then
+		if value["faction"] == nil or value["faction"] == playerTable["faction"]["id"] then
+			--if value["faction"] then
+				--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " Faction: " .. value["faction"] .. " Player Faction: " .. playerTable["faction"]["id"] .. " SID: " .. value["spellID"] .. " MID: " .. value["mountID"])
+			--end
 			BeStride:AddCommonMount(key)
 			BeStride:AddPassengerMount(key)
 			BeStride:AddRepairMount(key)
@@ -293,6 +291,7 @@ end
 
 function BeStride:AddCommonMount(mountId)
 	local mount = mountTable["master"][mountId]
+	--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 	if mount["type"] == "ground" then
 		table.insert(mountTable["ground"],mountId)
 	elseif mount["type"] == "flying" then
@@ -303,20 +302,22 @@ function BeStride:AddCommonMount(mountId)
 end
 
 function BeStride:AddPassengerMount(mountId)
-	if mountData[mountId] ~= nil and mountData[mountId]["type"] == "passenger" then
+	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["type"] == "passenger" then
+		--print("Adding Mount: " .. mountTable["master"][mountId]["name"] .. " Type: " .. mountTable["master"][mountId]["type"])
 		table.insert(mountTable["passenger"],mountId)
 	end
 end
 
 function BeStride:AddRepairMount(mountId)
-	if mountData[mountId] ~= nil and mountData[mountId]["repair"] then
+	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["repair"] then
+		--print("Adding Mount: " .. mountTable["master"][mountId]["name"] .. " Type: " .. mountTable["master"][mountId]["type"])
 		table.insert(mountTable["repair"],mountId)
 	end
 end
 
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
-	BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
+	--BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
 	if map["mapType"] ~= filter and map["mapType"] > filter then
 		return BeStride:GetMapUntil(map["parentMapID"],filter)
 	else
