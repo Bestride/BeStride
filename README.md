@@ -14,6 +14,17 @@ Table of Contents
 
 Description
 =================
+
+BeStride is a mount manager that has the following functionality
+
+* All in one mount button
+  * Allows additional keybinds for overriding functionality
+* Randomly select mount, based on a customizable list
+* Intelligently select between ground, flying, swimming, repair or passenger
+* Intelligently select class specific spells & mounts depending on the situation (druid cat form in combat, priest levitate, paladin divine steed, warlock underwater breating, etc)
+
+History
+=================
 Yay Mounts was a mount management Addon for World of Warcraft that has stopped being maintained since September 2016. The addon developers were Faldoncow and askander_kt.
 
 Bestride is a continuation of the code, which will hopefully fix some of the bugs as well as repair some deficiencies in the previous code. Also included is the latest ACE3 versions of the libraries used.  Code will be gradually refactored up to the released, which will be v1.0
@@ -87,6 +98,7 @@ v0.5.0
 * Logic rewritten
 * UI rewritten
 * New Features:
+  * New setting to force flying mounts when unable to fly (previously it would mix ground and flying)
   * Separate Mage Blink and Slowfall if to only trigger one
 v0.0.10
 -----------------
