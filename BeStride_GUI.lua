@@ -2,18 +2,17 @@ local AceGUI = LibStub("AceGUI-3.0")
 	
 local BeStride_Frame = nil
 
-
 BeStride_GUI = {}
 
-function BeStride_GUI:Frame()
+function BeStride_GUI:Frame(tab)
 	if not BeStride_Frame then
-		BeStride_GUI:Open()
+		BeStride_GUI:Open(tab)
 	else
 		BeStride_GUI:Close()
 	end
 end
 
-function BeStride_GUI:Open()
+function BeStride_GUI:Open(defaultTab)
 	local frameTabs = {
 		{text = "Mounts (" .. getn(mountTable) .. ")", value="mounts"},
 		{text = "Mount Options", value="mountoptions"},
@@ -31,13 +30,18 @@ function BeStride_GUI:Open()
 	BeStride_Frame:SetWidth(720)
 	BeStride_Frame:SetHeight(490)
 	
-	local tab = AceGUI:Create("TabGroup")
-	tab:SetLayout("Flow")
-	tab:SetTabs(frameTabs)
-	tab:SetCallback("OnGroupSelected", function (container, event, group ) BeStride_GUI:SelectTab(container, event, group) end )
-    tab:SelectTab("mounts")
+	local tabs = AceGUI:Create("TabGroup")
+	tabs:SetLayout("Flow")
+	tabs:SetTabs(frameTabs)
+	tabs:SetCallback("OnGroupSelected", function (container, event, group ) BeStride_GUI:SelectTab(container, event, group) end )
 	
-    BeStride_Frame:AddChild(tab)
+	if defaultTab ~= nil and ( defaultTab == "mounts" or defaultTab == "mountoptions" or defaultTab == "classoptions" or defaultTab == "keybinds" or defaultTab == "profile" or defaultTab == "about" ) then
+		tabs:SelectTab(defaultTab)
+	else
+		tabs:SelectTab("mounts")
+	end
+	
+    BeStride_Frame:AddChild(tabs)
 end
 
 function BeStride_GUI:Close()
@@ -55,7 +59,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	if group == "mounts" then
 		BeStride_GUI:DrawMountsTab(container)
 	elseif group == "mountoptions" then
-		--BeStride_GUI:DrawMountOptionTab(container)
+		BeStride_GUI:DrawMountOptionTab(container)
 	elseif group == "classoptions" then
 		--BeStride_GUI:DrawClassOptionTab(container)
 	elseif group == "keybinds" then
@@ -124,20 +128,27 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	local scrollframe = AceGUI:Create("ScrollFrame")
 	scrollcontainerframe:AddChild(scrollframe)
 	
-	local mounts = AceGUI:Create("InlineGroup")
-	mounts:SetFullWidth(true)
-	mounts:SetLayout("Flow")
+	local mountsGroup = AceGUI:Create("InlineGroup")
+	mountsGroup:SetFullWidth(true)
+	mountsGroup:SetLayout("Flow")
+	
+	local mounts = {}
 	
 	for key,mount in pairs(mountTable[group]) do
 		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
-		BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
+		--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
 		local mountCheck = BeStride_GUI:CreateMountButton(mount)
 		if mountCheck ~= nil then
-			mounts:AddChild( mountCheck )
+			mounts[mountTable["master"][mount]["name"]] = mountCheck
 		end
 	end
 	
-	scrollframe:AddChild(mounts)
+	
+	mountsTable = sortTable(mounts)
+	
+	for _,mountCheck in pairsByKeys(mounts) do mountsGroup:AddChild(mountCheck) end
+	
+	scrollframe:AddChild(mountsGroup)
 end
 
 function BeStride_GUI:CreateMountButton(mountID)
@@ -151,6 +162,26 @@ function BeStride_GUI:CreateMountButton(mountID)
 		return mountButton
 	else
 		return nil
+	end
+end
+
+function BeStride_GUI:DrawMountOptionTab(container, parent)
+	container:SetLayout("Flow")
+	
+	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
+		local element = nil
+		print(name .. ":" .. setting.element)
+		if setting.element == "CheckBox" then
+			element = AceGUI:Create("CheckBox")
+			element:SetLabel(setting.label)
+			element:SetValue(BeStride:DBGetSetting(parent,setting.dbvalue))
+			element:SetFullWidth(true)
+			element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(parent,setting.dbvalue,not container:GetValue()) end)
+		end
+		
+		if element ~= nil then
+			container:AddChild(element)
+		end
 	end
 end
 

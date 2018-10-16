@@ -1,4 +1,4 @@
-BeStride_ActionButtonMount = {}
+BeStride_ActionButtonRegularMount = {}
 BeStride_ActionButtonGroundMount = {}
 BeStride_ActionButtonPassengerMount = {}
 BeStride_ActionButtonRepairMount = {}
@@ -9,31 +9,21 @@ function BeStride:CreateActionButton(buttontype)
 
 	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
 	br:SetAttribute("type","macro")
-	br:SetAttribute("type1", "macro")
-	br:SetAttribute("macrotext","/script print('Test')")
+	br:SetAttribute("macrotext",nil)
 	
-    if buttontype == "Mount" then
-		--Mixin(br, BeStride_ActionButtonMount)
-		BeStride_Debug:Debug("Setting Binding")
-		SetBindingClick("Middle Mouse", br:GetName() )
-		SetBindingClick("F12", br:GetName() )
-		br:SetSize(64 ,64)
-		br:SetPoint("CENTER")
-	elseif buttontype == "GroundMount" then
+    if buttontype == "Regular" then
+		Mixin(br, BeStride_ActionButtonRegularMount)
+	elseif buttontype == "Ground" then
 		Mixin(br, BeStride_ActionButtonGroundMount)
-	elseif buttontype == "RepairMount" then
+	elseif buttontype == "Repair" then
 		Mixin(br, BeStride_ActionButtonRepairMount)
-	elseif buttontype == "PassengerMount" then
+	elseif buttontype == "Passenger" then
 		Mixin(br, BeStride_ActionButtonPassengerMount)
 	end
 	
 	br.id = buttontype
-	br:SetScript("PreClick",function(self)
-	  BeStride_ActionButtonMount:PreClick()
-	end)
-	br:SetScript("PostClick",function(self)
-	  BeStride_ActionButtonMount:PostClick()
-	end)
+	br:SetScript("PreClick",function (self) self:PreClick() end )
+	br:SetScript("PostClick",self.PostClick)
 	--SaveBindings(GetCurrentBindingSet())
 	if br then
 	    print("Returning: " .. br:GetName())
@@ -48,21 +38,22 @@ end
 -- +-------+ --
 
 -- Action Button Wrapper
-function BeStride_ActionButtonMount:PreClick()
+function BeStride_ActionButtonRegularMount:PreClick()
 	--if BeStride_Logic:IsCombat() then
 	--	return
 	--end
 	
-	BeStride_Logic:MountButton()
+	local mount = BeStride_Logic:MountButton()
+	self:SetAttribute("macrotext",mount)
 end
 
 -- Action Button Cleanup
-function BeStride_ActionButtonMount:PostClick()
+function BeStride_ActionButtonRegularMount:PostClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
 	
-	BeStride_ABMountMount:SetAttribute("macrotext", nil)
+	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
 end
 
 
@@ -76,12 +67,17 @@ function BeStride_ActionButtonGroundMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:GroundMountButton()
+	local mount = BeStride_Logic:GroundMountButton()
+	self:SetAttribute("macrotext",mount)
 end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonGroundMount:PostClick()
-
+	if BeStride_Logic:IsCombat() then
+		return
+	end
+	
+	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
 end
 
 
@@ -95,12 +91,17 @@ function BeStride_ActionButtonPassengerMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:PassengerMountButton()
+	local mount = BeStride_Logic:PassengerMountButton()
+	self:SetAttribute("macrotext",mount)
 end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonPassengerMount:PostClick()
-
+	if BeStride_Logic:IsCombat() then
+		return
+	end
+	
+	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
 end
 
 
@@ -114,10 +115,15 @@ function BeStride_ActionButtonRepairMount:PreClick()
 		return
 	end
 	
-	BeStride_Logic:RepairMountButton()
+	local mount = BeStride_Logic:RepairMountButton()
+	self:SetAttribute("macrotext",mount)
 end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonRepairMount:PostClick()
-
+	if BeStride_Logic:IsCombat() then
+		return
+	end
+	
+	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
 end

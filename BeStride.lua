@@ -4,6 +4,29 @@ debugLevel = 8
 
 playerTable = {}
 
+function sortTable(unsortedTable)
+	keys = {}
+	sortedTable = {}
+	for key in pairs(unsortedTable) do table.insert(keys,key) end
+	table.sort(keys)
+	for _,key in ipairs(keys) do sortedTable[key] = unsortedTable[key] end
+	return sortedTable
+end
+
+function pairsByKeys (t, f)
+	local a = {}
+	for n in pairs(t) do table.insert(a, n) end
+	table.sort(a, f)
+	local i = 0      -- iterator variable
+	local iter = function ()   -- iterator function
+		i = i + 1
+		if a[i] == nil then return nil
+		else return a[i], t[a[i]]
+		end
+	end
+	return iter
+end
+
 mountTable = {
 	["master"] = {},
 	["ground"] = {},
@@ -21,18 +44,14 @@ local defaults = {
 			["emptyrandom"] = true,
 			["hasmount"] = false,
 			["enablenew"] = false,
-			["traveltotravel"] = false,
 			["forceflyingmount"] = false,
 			["nodismountwhileflying"] = false,
+			["flyingbroom"] = false,
+			["telaari"] = true,
 			["repair"] = {
 				["use"] = false,
 				["force"] = false,
 				["durability"] = 0.2,
-			},
-			["priorities"] = {
-				["flyingbroom"] = false,
-				["repairmount"] = true,
-				["telaari"] = true
 			},
 			["classes"] = {
 				["deathknight"] = {
@@ -40,6 +59,7 @@ local defaults = {
 				},
 				["druid"] = {
 					["flightform"] = true,
+					["traveltotravel"] = false,
 					["flightformpriority"] = false,
 					["mountedtoflightform"] = false,
 				},
@@ -77,10 +97,14 @@ function BeStride:OnInitialize()
 		["passenger"] = nil,
 	}
 	
-	self.buttons["mount"] = BeStride_ABMountMount
-	self.buttons["ground"] = BeStride_ABGroundMount
-	self.buttons["repair"] = BeStride_ABRepairMount
-	self.buttons["passenger"] = BeStride_ABPassengerMount
+	--self.buttons["mount"] = BeStride_ABMountMount
+	self.buttons["regular"] = BeStride:CreateActionButton('Regular')
+	--self.buttons["ground"] = BeStride_ABGroundMount
+	self.buttons["ground"] = BeStride:CreateActionButton('Ground')
+	--self.buttons["repair"] = BeStride_ABRepairMount
+	self.buttons["repair"] = BeStride:CreateActionButton('Repair')
+	--self.buttons["passenger"] = BeStride_ABPassengerMount
+	self.buttons["passenger"] = BeStride:CreateActionButton('Passenger')
 	
 	local className,classFilename,classID = UnitClass("player")
 	local raceName,raceFile,raceID = UnitRace("player")
@@ -117,33 +141,20 @@ end
 
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
-	BeStride:SetBindings()
+	BeStride:SetBindings(self.buttons["regular"])
+	BeStride:SetBindings(self.buttons["ground"])
+	BeStride:SetBindings(self.buttons["passenger"])
+	BeStride:SetBindings(self.buttons["repair"])
 end
 
-function BeStride:SetBindings()
-    BeStride_Debug:Debug("Start Set Bindings")
-	ClearOverrideBindings(BeStride_ABMountMount)
-	local ABMountKey = GetBindingKey("BeStride_ABMountMount")
-	if ABMountKey then
-      SetOverrideBindingClick(BeStride_ABMountMount, true, ABMountKey, BeStride_ABMountMount:GetName())
-    end
+function BeStride:SetBindings(button)
+    BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
+	ClearOverrideBindings(button)
+	local mountKey = GetBindingKey(button:GetName())
 	
-	ClearOverrideBindings(BeStride_ABGroundMount)
-	local ABGroundKey = GetBindingKey("BeStride_ABGroundMount")
-	if ABGroundKey then
-      SetOverrideBindingClick(BeStride_ABGroundMount, true, ABGroundKey, BeStride_ABGroundMount:GetName())
-    end
-	
-	ClearOverrideBindings(BeStride_ABRepairMount)
-	local ABRepairKey = GetBindingKey("BeStride_ABRepairMount")
-	if ABRepairKey then
-      SetOverrideBindingClick(BeStride_ABRepairMount, true, ABRepairKey, BeStride_ABRepairMount:GetName())
-    end
-	
-	ClearOverrideBindings(BeStride_ABPassengerMount)
-	local ABPassengerKey = GetBindingKey("BeStride_ABPassengerMount")
-	if ABRepaidKey then
-      SetOverrideBindingClick(BeStride_ABPassengerMount, true, ABRepaidKey, BeStride_ABPassengerMount:GetName())
+	if mountKey then
+	  print("Key: " .. mountKey .. " Set!")
+      SetOverrideBindingClick(button, true, mountKey, button:GetName())
     end
 	BeStride_Debug:Debug("End Set Bindings")
 end
@@ -186,7 +197,7 @@ function BeStride:ChatCommand(input)
 		self.buttons["mount"]:Click("left")
 		self.buttons["mount"]:PostClick()
 	else
-		BeStride_GUI:Frame()
+		BeStride_GUI:Frame(input)
 	end
 end
 
@@ -223,6 +234,12 @@ end
 
 function BeStride:DBSetMount(mountID,value)
 	self.db.profile.mounts[mountID] = value
+end
+
+function BeStride:DBGetSetting(setting)
+end
+
+function BeStride:DBSetSetting(setting)
 end
 
 function BeStride:buildMountTables()

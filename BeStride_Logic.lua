@@ -20,108 +20,110 @@ function BeStride_Logic:MountButton()
 		if BeStride_Logic:IsDruid() then
 			if BeStride_Logic:DruidFlyingMTFF() then
 				BeStride_Debug:Debug("DruidFlyingMTFF")
-				BeStride_Mount:DruidFlying()
+				return BeStride_Mount:DruidFlying()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
 				BeStride_Debug:Debug("DruidNoDismountWhileFlying")
-				BeStride_Mount:Regular()
+				return BeStride_Mount:Regular()
 			else
 				BeStride_Debug:Debug("DruidDismountAndmount")
 				Dismount()
-				BeStride_Mount:Regular()
+				return BeStride_Mount:Regular()
 			end
 		elseif BeStride_Logic:IsPriest() then
 			if BeStride_Logic:PriestCanLevitate() then
 				BeStride_Debug:Debug("PriestCanLevitate")
-				BeStride_Mount:PriestLevitate()
+				return BeStride_Mount:PriestLevitate()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
 				BeStride_Debug:Debug("PriestNoDismountWhileFlying")
-				BeStride_Mount:Regular()
+				return BeStride_Mount:Regular()
 			else
 				BeStride_Debug:Debug("Priest Dismounting")
 				Dismount()
-				BeStride_Mount:Regular()
+				return BeStride_Mount:Regular()
 			end
 		else
 			BeStride_Debug:Debug("No Action")
+			return nil
 		end
 		BeStride_Debug:Debug("End Mounted, Flying, Flyable")
 	-- Todo: Cleanup from here
 	elseif IsMounted() then
 		BeStride_Debug:Debug("Mounted")
 		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
-			BeStride_Mount:DruidAuquaticForm()
+			return BeStride_Mount:DruidAuquaticForm()
 		elseif IsSwimming() then
-			BeStride_Mount:Swimming()
+			return BeStride_Mount:Swimming()
 		else
 			Dismount()
-			BeStride_Mount:Regular()
+			return BeStride_Mount:Regular()
 		end
 		--BeStride_Debug:Debug("Ending Mounted")
 	elseif CanExitVehicle() then
 		--BeStride_Debug:Debug("CanExitVehicle")
 		VehicleExit()
-		BeStride_Mount:Regular()
+		return BeStride_Mount:Regular()
 		--BeStride_Debug:Debug("Ending CanExitVehicle")
 	elseif BeStride_Logic:IsMonk() and BeStride_Logic:IsFlyable() and BeStride:MonkCanZen() then
 		--BeStride_Debug:Debug("IsMonk,IsFlyable,CanZen")
-		BeStride_Mount:MonkZen()
+		return BeStride_Mount:MonkZen()
 		--BeStride_Debug:Debug("End IsMonk,IsFlyable,CanZen")
 	elseif BeStride_Logic:IsPriest() and BeStride_Logic:PriestCanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
 		BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
-		BeStride_Mount:PriestLevitate()
+		return BeStride_Mount:PriestLevitate()
 		--BeStride_Debug:Debug("End IsPriest, CanLevitate, IsFalling, MovementCheck")
 	elseif BeStride_Logic:IsMage() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
 		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
-		BeStride_Mount:MageSlowFall()
+		return BeStride_Mount:MageSlowFall()
 		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
 	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
 		BeStride_Debug:Debug("IsFlyable, IsOutdoors")
 		if BeStride_Logic:CanBroom() then
 			BeStride_Debug:Debug("--Broom")
-			BeStride_Mount:Broom()
+			return BeStride_Mount:Broom()
 		elseif IsSwimming() then
 			BeStride_Debug:Debug("--Swimming")
-			BeStride_Mount:Swimming()
+			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
 			BeStride_Debug:Debug("--Druid")
-			BeStride_Mount:DruidFlying()
+			return BeStride_Mount:DruidFlying()
 		else
 			BeStride_Debug:Debug("--Flying")
-			BeStride_Mount:Flying()
+			return BeStride_Mount:Flying()
 		end
 		--BeStride_Debug:Debug("End IsFlyable, IsOutdoors")
 	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
 		BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
 		if zone == BeStride_Locale.Zone.Oculus and Bestride:Filter(nil, zone) then
+			return nil
 		elseif BeStride_Logic:CanBroom() then
 			BeStride_Debug:Debug("--Broom")
-			BeStride_Mount:Broom()
+			return BeStride_Mount:Broom()
 		elseif IsSwimming() then
 			BeStride_Debug:Debug("--Swimming")
-			BeStride_Mount:Swimming()
+			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:HasLoanedMount() then
 			BeStride_Debug:Debug("--Loaner")
-			BeStride_Mount:LoanedMount()
+			return BeStride_Mount:LoanedMount()
 		elseif BeStride_Logic:IsDruid() then
 			BeStride_Debug:Debug("--Druid")
-			BeStride_Mount:Druid()
+			return BeStride_Mount:Druid()
 		else
-			BeStride_Mount:Regular()
+			return BeStride_Mount:Regular()
 		end
 		--BeStride_Debug:Debug("End Not IsFlyable, IsOutdoors")
 	elseif not IsOutdoors() then
 		BeStride_Debug:Debug("IsOutdoors")
 		if IsSwimming() then
-			BeStride_Mount:Swimming()
+			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
-			BeStride_Logic:Druid()
+			return BeStride_Logic:Druid()
 		else
-			BeStride_Mount:Regular()
+			return BeStride_Mount:Regular()
 		end
 		--BeStride_Debug:Debug("Not IsOutdoors")
 	else
 		--BeStride_Debug:Debug("Final Test")
-		BeStride_Logic:Regular()
+		return BeStride_Logic:Regular()
 		--BeStride_Debug:Debug("End Final Test")
 	end
 	--BeStride_Debug:Debug("End Logic")

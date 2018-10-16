@@ -1,9 +1,29 @@
 version = "0.5.0"
 author = "Anaximander"
 
-Bestride_Constants = {}
-Bestride_Constants.spells = {}
-Bestride_Constants.spells.druid = {}
+BeStride_Constants = {
+	Settings = {
+		Mount = {
+			EnableNew = {element="CheckBox",label=BeStride_Locale.Settings.EnableNew,dbvalue="enablenew"},
+			EmptyRandom = {element="CheckBox",label=BeStride_Locale.Settings.EmptyRandom,dbvalue="emptyrandom"},
+			NoDismountWhileFlying = {element="CheckBox",label=BeStride_Locale.Settings.NoDismountWhileFlying,dbvalue="nodismountwhileflying"},
+			ForceFlyingMount = {element="CheckBox",label=BeStride_Locale.Settings.ForceFlyingMount,dbvalue="forceflyingmount"},
+			FlyingBroom = {element="CheckBox",label=BeStride_Locale.Settings.FlyingBroom,dbvalue="flyingbroom"},
+			Telaari = {element="CheckBox",label=BeStride_Locale.Settings.Telaari,dbvalue="telaari"},
+			Repair = {
+				element="Group",
+				dbvalue="repair",
+				children={
+					Use = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Use,dbvalue="use"},
+					Force = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Repair,dbvalue="force"},
+					Durability = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Durability,dbvalue="durability"}
+				}
+			}
+		}
+	}
+}
+BeStride_Constants.spells = {}
+BeStride_Constants.spells.druid = {}
 
 mountData = {
 	[25953] = {
@@ -223,7 +243,7 @@ ridingSkill = {
 	},
 }
 
-Bestride_Constants.spells.druid.catform = 783
-Bestride_Constants.spells.druid.aquaticform = 783
-Bestride_Constants.spells.druid.travelform = 783
-Bestride_Constants.spells.druid.flightform = 783
+BeStride_Constants.spells.druid.catform = 783
+BeStride_Constants.spells.druid.aquaticform = 783
+BeStride_Constants.spells.druid.travelform = 783
+BeStride_Constants.spells.druid.flightform = 783
