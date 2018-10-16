@@ -26,6 +26,11 @@ BeStride_Constants.spells = {}
 BeStride_Constants.spells.druid = {}
 
 mountData = {
+	[75207] = {
+		["type"] = "zone",
+		["subtype"] = "swimming",
+		["zone"] = "Vash'jir",
+	},
 	[25953] = {
 		["name"] = "Blue Qiraji Battle Tank",
 		["type"] = "zone",
@@ -45,27 +50,6 @@ mountData = {
 		["name"] = "Green Qiraji Battle Tank",
 		["type"] = "zone",
 		["zone"] = "taq",
-	},
-	[5784] = {
-		["name"] = "Felsteed",
-		["type"] = "class",
-		["class"] = "warlock",
-	},
-	[23161] = {
-		["name"] = "Dreadsteed",
-		["type"] = "class",
-		["class"] = "warlock",
-	},
-	[23214] = {
-		["name"] = "Charger",
-		["type"] = "class",
-		["class"] = "paladin",
-	},
-	[13819] = {
-		["name"] = "Warhorse",
-		["type"] = "class",
-		["class"] = "paladin",
-		["repair"] = false,
 	},
 	[55531] = {
 		["name"] = "Mechano-Hog",

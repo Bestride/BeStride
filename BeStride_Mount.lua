@@ -59,7 +59,7 @@ function BeStride_Mount:Swimming()
 	return BeStride_Mount:Mount(name)
 end
 
-function BeStride_Mount:Regular()
+function BeStride_Mount:Ground()
 	local ground = mountTable["ground"]
 	
 	for k,v in pairs(mountTable["flying"]) do table.insert(ground,v) end

@@ -34,6 +34,7 @@ mountTable = {
 	["swimming"] = {},
 	["repair"] = {},
 	["passenger"] = {},
+	["zone"] = {},
 }
 
 local defaults = {
@@ -41,11 +42,12 @@ local defaults = {
 	
 	profile = {
 		settings = {
-			["emptyrandom"] = true,
-			["hasmount"] = false,
-			["enablenew"] = false,
-			["forceflyingmount"] = false,
-			["nodismountwhileflying"] = false,
+			["emptyrandom"] = true, --ER
+			["hasmount"] = false, --HM
+			["enablenew"] = false, --ENABLENEW
+			["useflyingmount"] = false,
+			["forceflyingmount"] = false, --FFM
+			["nodismountwhileflying"] = false, --NDWF
 			["flyingbroom"] = false,
 			["telaari"] = true,
 			["repair"] = {
@@ -79,9 +81,21 @@ local defaults = {
 				["mage"] = {
 					["slowfall"] = true,
 				},
+				["rogue"] = {
+					["sprint"] = true,
+				},
 			},
 		},
-		["mounts"] = {}
+		mounts = {
+			ground = {},
+			flying = {},
+			repair = {},
+			passenger = {},
+			swimming = {},
+			zone = {
+				aq = {}
+			},
+		}
 	}
 }
 
@@ -129,73 +143,136 @@ function BeStride:OnInitialize()
 	playerTable["faction"]["localization"] = factionLocalized
 	
 	print("Faction: " .. factionId)
-	
-	--BeStride_ABMountMount:SetAttribute("macrotext", "/script print('hello world')\n/use Azure Water Strider")
-	
-	--local b = CreateFrame("Button", "TestButton", UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
-	--b:SetSize(64 ,64)
-	--b:SetPoint("CENTER")
-	--b:SetAttribute("type1", "macro")
-	--b:SetAttribute("macrotext", "/script print('hello world')\n/use Azure Water Strider")
 end
 
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
-	BeStride:SetBindings(self.buttons["regular"])
-	BeStride:SetBindings(self.buttons["ground"])
-	BeStride:SetBindings(self.buttons["passenger"])
-	BeStride:SetBindings(self.buttons["repair"])
+	
+	self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
+	self:RegisterEvent("NEW_MOUNT_ADDED", "NewMount")
+	
+	BeStride:UpdateBindings()
+	BeStride:Upgrade()
 end
 
-function BeStride:SetBindings(button)
-    BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
-	ClearOverrideBindings(button)
-	local mountKey = GetBindingKey(button:GetName())
+function BeStride:NewMount(...)
+	BeStride_Debug:Debug("NewMount")
+	table.foreach(args,function (k,v) print("Arg: " .. k) end)
+end
+
+function BeStride:UpdateBindings()
+	BeStride:SetKeyBindingsOverrides(self.buttons["regular"])
+	BeStride:SetKeyBindingsOverrides(self.buttons["ground"])
+	BeStride:SetKeyBindingsOverrides(self.buttons["passenger"])
+	BeStride:SetKeyBindingsOverrides(self.buttons["repair"])
 	
-	if mountKey then
-	  print("Key: " .. mountKey .. " Set!")
-      SetOverrideBindingClick(button, true, mountKey, button:GetName())
+	SaveBindings(GetCurrentBindingSet())
+end
+
+
+function BeStride:Upgrade()
+	local db = LibStub("AceDB-3.0"):New("BestrideDB")
+	if db.profile.settings then
+		print("Old Settings Exist, Upgrading")
+		
+		table.foreach(db.profile.settings,function (key,value)
+			if key == "HM" then
+				self.db.profile.settings.hasmount = value
+			elseif key == "ER" then
+				self.db.profile.settings.emptyrandom = value
+			elseif key == "FBP" then
+				self.db.profile.settings.flyingbroom = value
+			elseif key == "TTT" then
+				self.db.profile.settings.druid.traveltotravel = value
+			elseif key == "MTFF" then
+				self.db.profile.settings.druid.mountedtoflightform = value
+			elseif key == "NDWF" then
+				self.db.profile.settings.nodismountwhileflying = value
+			elseif key == "FFM" then
+				self.db.profile.settings.useflyingmount = value
+			elseif key == "URM" then
+				self.db.profile.settings.repair.use = value
+			elseif key == "ENABLENEW" then
+				self.db.profile.settings.enablenew = value
+			elseif key == "TELAARI" then
+				self.db.profile.settings.telaari = value
+			elseif key == "DEATHKNIGHT" then
+				self.db.profile.settings.deathknight.wraithwalk = value
+			elseif key == "PALADIN" then
+				self.db.profile.settings.paladin.steed = value
+			elseif key == "SHAMAN" then
+				self.db.profile.settings.shaman.ghostwolf = value
+			elseif key == "MONK" then
+				self.db.profile.settings.monk.roll = value
+			elseif key == "MONKZENUSE" then
+				self.db.profile.settings.monk.zenflight = value
+			elseif key == "ROGUE" then
+				self.db.profile.settings.rogue.sprint = value
+			elseif key == "PRIEST" then
+				self.db.profile.settings.levitate = value
+			elseif key == "MAGE" then
+				self.db.profile.settings.mage.slowfall = value
+			end
+		end)
+		
+		table.foreach(db.profile.mounts,function (key,value)
+			if mountTable.master[value[3]] and mountTable.master[value[3]].spellID == key then
+				local mountID,spellID,status,savedType = value[3],key,value[1],value[2]
+				local mountType = mountTable.master[mountID].type
+				
+				if mountType == "ground" or mountType == "flying" or mountType == "swimming" then
+					self.db.profile.mounts[mountType][mountID] = status
+				end
+				
+				if savedType == "special" then
+					if mountData[mountTable.master[mountID].spellID] and mountData[mountTable.master[mountID].spellID].type == "zone" then
+						self.db.profile.mounts[mountType][mountID] = status
+					end
+				end
+			end
+		end)
+	end
+end
+
+function BeStride:SetKeyBindings(button)
+    --BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
+	
+	local primaryKey,secondaryKey = GetBindingKey(button:GetName())
+	
+	if primaryKey then
+	  --print("1st Key: " .. primaryKey .. " Set!")
+      SetBindingClick(primaryKey,button:GetName())
     end
-	BeStride_Debug:Debug("End Set Bindings")
+	
+	if secondaryKey then
+	  print("2nd Key: " .. secondaryKey .. " Set!")
+      SetBindingClick(secondaryKey,button:GetName())
+    end
+	--BeStride_Debug:Debug("End Set Bindings")
+end
+
+function BeStride:SetKeyBindingsOverrides(button)
+    --BeStride_Debug:Debug("Start Set Override Bindings: " .. button:GetName())
+	ClearOverrideBindings(button)
+	
+	local primaryKey,secondaryKey = GetBindingKey(button:GetName())
+	if primaryKey then
+	  --print("1st Key: " .. primaryKey .. " Set!")
+      SetOverrideBindingClick(button, true, primaryKey, button:GetName())
+    end
+	
+	if secondaryKey then
+	  --print("2nd Key: " .. secondaryKey .. " Set!")
+      SetOverrideBindingClick(button, true, secondaryKey, button:GetName())
+    end
+	--BeStride_Debug:Debug("End Set Override Bindings")
 end
 
 function BeStride:ChatCommand(input)
 	if input == "reload" then
 		BeStride:buildMountTables()
-	elseif input == "enum" then
-		local types = {}
-		for key,value in pairs(C_MountJournal.GetMountIDs()) do
-			local name,spellID,_,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,_,isCollected,mountId = C_MountJournal.GetMountInfoByID(value)
-			local creatureDisplayInfoId,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(value)
-			
-			if mountTypes[mountTypeID] then
-				types[mountTypeID] = mountTypes[mountTypeID]
-			else
-				types[mountTypeID] = mountTypeID
-			end
-			
-			if isCollected == true then
-				if mountTypes[mountTypeID] then
-					self:Print("|" .. name .. "|" .. mountTypes[mountTypeID] .. "|")
-				end
-			end
-		end
-		
-		for k,v in pairs(types) do
-			self:Print("|" .. k .. "|" .. v .. "|")
-		end
 	elseif input == "map" then
 		BeStride:GetMaps()
-	elseif input == "dbtest" then
-		BeStride:DBGetMount(2929)
-	elseif input  == "factiontest" then
-		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(61469)
-		print(":" .. name .. ":" .. faction .. ":")
-	elseif input == "mount" then
-		-- BeStride_Logic:MountButton()
-		self.buttons["mount"]:PreClick()
-		self.buttons["mount"]:Click("left")
-		self.buttons["mount"]:PostClick()
 	else
 		BeStride_GUI:Frame(input)
 	end
@@ -222,18 +299,18 @@ function BeStride:GetMap(locID)
 	end
 end
 
-function BeStride:DBGetMount(mountID)
-	if self.db.profile.mounts[mountID] ~= nil then
-		return self.db.profile.mounts[mountID]
+function BeStride:DBGetMount(mountType,mountID)
+	if self.db.profile.mounts[mountType][mountID] ~= nil then
+		return self.db.profile.mounts[mountType][mountID]
 	else
-		--BeStride_Debug:Debug("MountID: " .. mountID)
-		self.db.profile.mounts[mountID] = true
-		return self.db.profile.mounts[mountID]
+		
+		self.db.profile.mounts[mountType][mountID] = true
+		return self.db.profile.mounts[mountType][mountID]
 	end
 end
 
-function BeStride:DBSetMount(mountID,value)
-	self.db.profile.mounts[mountID] = value
+function BeStride:DBSetMount(mountType,mountID,value)
+	self.db.profile.mounts[mountType][mountID] = value
 end
 
 function BeStride:DBGetSetting(setting)
@@ -280,6 +357,8 @@ function BeStride:AddNewMount(mountId)
 		["isUsable"] = isUsable,
 		["isCollected"] = isCollected,
 		["icon"] = icon,
+		["source"] = source,
+		["sourceType"] = sourceType,
 		["type"] = mountTypes[mountTypeID],
 	}
 end
@@ -291,10 +370,6 @@ function BeStride:LoadMountTables()
 	mountTable["passenger"] = {}
 	mountTable["repair"] = {}
 	for key,value in pairs(mountTable["master"]) do
-		--if not value["isUsable"] then
-			--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " Faction: " .. value["faction"])
-		--end
-		
 		if value["faction"] == nil or value["faction"] == playerTable["faction"]["id"] then
 			--if value["faction"] then
 				--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " Faction: " .. value["faction"] .. " Player Faction: " .. playerTable["faction"]["id"] .. " SID: " .. value["spellID"] .. " MID: " .. value["mountID"])
@@ -315,6 +390,8 @@ function BeStride:AddCommonMount(mountId)
 		table.insert(mountTable["flying"],mountId)
 	elseif mount["type"] == "swimming" then
 		table.insert(mountTable["swimming"],mountId)
+	elseif mount["type"] == "zone" then
+		table.insert(mountTable["zone"],mountId)
 	end
 end
 

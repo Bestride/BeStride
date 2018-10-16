@@ -45,7 +45,7 @@ function BeStride_GUI:Open(defaultTab)
 end
 
 function BeStride_GUI:Close()
-	AceGUI:Release(widget)
+	AceGUI:Release(BeStride_Frame)
 	BeStride_Frame = nil
 end
 
@@ -137,7 +137,7 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	for key,mount in pairs(mountTable[group]) do
 		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
 		--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
-		local mountCheck = BeStride_GUI:CreateMountButton(mount)
+		local mountCheck = BeStride_GUI:CreateMountButton(group,mount)
 		if mountCheck ~= nil then
 			mounts[mountTable["master"][mount]["name"]] = mountCheck
 		end
@@ -151,14 +151,14 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	scrollframe:AddChild(mountsGroup)
 end
 
-function BeStride_GUI:CreateMountButton(mountID)
+function BeStride_GUI:CreateMountButton(group,mountID)
 	local mount = mountTable.master[mountID]
 	if mount["isCollected"] and (mount["faction"]== nil or mount["faction"] == playerTable["faction"]["id"]) then
 		mountButton = AceGUI:Create("CheckBox")
 		mountButton:SetImage(mount["icon"])
 		mountButton:SetLabel(mount["name"])
-		mountButton:SetValue(BeStride:DBGetMount(mountID))
-		mountButton:SetCallback("OnValueChanged", function(container) Bestride:DBSetMount(mount["mountID"],not container:GetValue()) end)
+		mountButton:SetValue(BeStride:DBGetMount(group,mountID))
+		mountButton:SetCallback("OnValueChanged", function(container) Bestride:DBSetMount(group,mount["mountID"],not container:GetValue()) end)
 		return mountButton
 	else
 		return nil

@@ -23,11 +23,11 @@ function BeStride_Logic:MountButton()
 				return BeStride_Mount:DruidFlying()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
 				BeStride_Debug:Debug("DruidNoDismountWhileFlying")
-				return BeStride_Mount:Regular()
+				return BeStride_Mount:Flying()
 			else
 				BeStride_Debug:Debug("DruidDismountAndmount")
 				Dismount()
-				return BeStride_Mount:Regular()
+				return BeStride_Mount:Flying()
 			end
 		elseif BeStride_Logic:IsPriest() then
 			if BeStride_Logic:PriestCanLevitate() then
@@ -35,11 +35,11 @@ function BeStride_Logic:MountButton()
 				return BeStride_Mount:PriestLevitate()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
 				BeStride_Debug:Debug("PriestNoDismountWhileFlying")
-				return BeStride_Mount:Regular()
+				return BeStride_Mount:Flying()
 			else
 				BeStride_Debug:Debug("Priest Dismounting")
 				Dismount()
-				return BeStride_Mount:Regular()
+				return BeStride_Mount:Flying()
 			end
 		else
 			BeStride_Debug:Debug("No Action")
@@ -53,15 +53,18 @@ function BeStride_Logic:MountButton()
 			return BeStride_Mount:DruidAuquaticForm()
 		elseif IsSwimming() then
 			return BeStride_Mount:Swimming()
+		elseif BeStride_Logic:IsFlyable() then
+			Dismount()
+			return BeStride_Mount:Flying()
 		else
 			Dismount()
-			return BeStride_Mount:Regular()
+			return BeStride_Mount:Ground()
 		end
 		--BeStride_Debug:Debug("Ending Mounted")
 	elseif CanExitVehicle() then
 		--BeStride_Debug:Debug("CanExitVehicle")
 		VehicleExit()
-		return BeStride_Mount:Regular()
+		return BeStride_Mount:Ground()
 		--BeStride_Debug:Debug("Ending CanExitVehicle")
 	elseif BeStride_Logic:IsMonk() and BeStride_Logic:IsFlyable() and BeStride:MonkCanZen() then
 		--BeStride_Debug:Debug("IsMonk,IsFlyable,CanZen")
@@ -108,7 +111,7 @@ function BeStride_Logic:MountButton()
 			BeStride_Debug:Debug("--Druid")
 			return BeStride_Mount:Druid()
 		else
-			return BeStride_Mount:Regular()
+			return BeStride_Mount:Ground()
 		end
 		--BeStride_Debug:Debug("End Not IsFlyable, IsOutdoors")
 	elseif not IsOutdoors() then
@@ -295,7 +298,7 @@ function BeStride_Logic:CanBroom()
 end
 
 function BeStride_Logic:CanBroomSetting()
-	return self.db.profile.settings["priorities"]["flyingbroom"]
+	return self.db.profile.settings["flyingbroom"]
 end
 
 -- Check whether we need to repair
