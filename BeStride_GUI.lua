@@ -3,6 +3,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 local BeStride_Frame = nil
 
 BeStride_GUI = {
+	buttons = {},
 	elements = {}
 }
 
@@ -65,7 +66,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	elseif group == "classoptions" then
 		BeStride_GUI:DrawClassOptionTab(container)
 	elseif group == "keybinds" then
-		--BeStride_GUI:DrawKeybindsTab(container)
+		BeStride_GUI:DrawKeybindsTab(container)
 	elseif group == "profile" then
 		--BeStride_GUI:DrawProfileTab(container)
 	elseif group == "about" then
@@ -73,7 +74,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 		BeStride_GUI:DrawAboutTab(container)
 	end
 	
-	BeStride_Debug:Debug("Group: " .. group)
+	--BeStride_Debug:Debug("Group: " .. group)
 	
 	currentTab = group
 end
@@ -173,19 +174,19 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
 		local element = nil
 		if setting.element == "CheckBox" then
-			element = self:CreateSettingCheckBox(setting.name,setting.label,parent,setting.dbvalue)
+			element = self:CreateSettingCheckBox(setting.name,setting.label,setting.depends)
 		elseif setting.element == "Slider" then
-			element = self:CreateSettingSlider(setting.name,setting.label,parent,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment,setting.disabled)
+			element = self:CreateSettingSlider(setting.name,setting.label,setting.minDurability,setting.maxDurability,setting.increment,setting.disabled,setting.depends)
 		elseif setting.element == "Group" and setting.children then
 			element = AceGUI:Create("SimpleGroup")
 			element:SetFullWidth(true)
 			for subName,subSetting in pairs(setting.children) do
-				print("    SubName: " .. subName)
+				--print("    SubName: " .. subName)
 				local subElement = nil
 				if subSetting.element == "CheckBox" then
-					subElement = self:CreateSettingCheckBox(subSetting.name,subSetting.label,setting.dbvalue,subSetting.dbvalue)
+					subElement = self:CreateSettingCheckBox(subSetting.name,subSetting.label,subSetting.depends)
 				elseif subSetting.element == "Slider" then
-					subElement = self:CreateSettingSlider(subSetting.name,subSetting.label,setting.dbvalue,subSetting.dbvalue,subSetting.minDurability,subSetting.maxDurability,subSetting.increment,subSetting.disabled)
+					subElement = self:CreateSettingSlider(subSetting.name,subSetting.label,subSetting.minDurability,subSetting.maxDurability,subSetting.increment,subSetting.depends)
 				end
 				element:AddChild(subElement)
 			end
@@ -197,38 +198,58 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	end
 end
 
-function BeStride_GUI:CreateSettingCheckBox(name,label,parent,setting)
+function BeStride_GUI:CreateSettingCheckBox(name,label,depends)
 	local element = AceGUI:Create("CheckBox")
 	element:SetLabel(label)
-	element:SetValue(BeStride:DBGetSetting(parent,setting))
+	element:SetValue(BeStride:DBGetSetting(name))
 	element:SetFullWidth(true)
-	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(parent,setting,container:GetValue()) end)
+	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(name,container:GetValue()) end)
 	
-	if  setting.depends  then
+	if  depends ~= nil then
 		local disabled = nil
-		for key,value in pairs(setting.depends) do
+		for key,value in pairs(depends) do
 			if disabled == nil then
-				disabled = self.elements[value]:GetValue()
+				print("Depends Value: " .. tostring(BeStride:DBGetSetting(value)))
+				disabled = BeStride:DBGetSetting(value)
+				
 			else
-				bit.band(disabled,self.elements[value]:GetValue())
+				print("Depends Value: " .. tostring(BeStride:DBGetSetting(value)))
+				disabled = bit.band(disabled,BeStride:DBGetSetting(value))
 			end
+			print("DisabledCheck: " .. name .. ":" .. tostring(disabled))
 		end
 		
-		element.SetDisabled(disabled)
+		element:SetDisabled(not disabled)
 	end
-	print("Setting: " .. tostring(name) .. " Label: " .. label)
 	self.elements[name] = element
 	return element
 end
 
-function BeStride_GUI:CreateSettingSlider(name,label,parent,setting,minValue,maxValue,increment,disabled)
+function BeStride_GUI:CreateSettingSlider(name,label,minValue,maxValue,increment,depends)
 	local element = AceGUI:Create("Slider")
 	element:SetLabel(label)
-	element:SetValue(BeStride:DBGetSetting(parent,setting))
+	element:SetValue(BeStride:DBGetSetting(name))
 	element:SetFullWidth(true)
 	element:SetSliderValues(minValue,maxValue,increment)
-	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetSetting(parent,setting,container:GetValue()) end)
+	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetSetting(name,container:GetValue()) end)
 	
+	if  depends ~= nil then
+		local disabled = nil
+		for key,value in pairs(depends) do
+			if disabled == nil then
+				print("Depends Value: " .. tostring(BeStride:DBGetSetting(value)))
+				disabled = BeStride:DBGetSetting(value)
+				
+			else
+				print("Depends Value: " .. tostring(BeStride:DBGetSetting(value)))
+				disabled = bit.band(disabled,BeStride:DBGetSetting(value))
+			end
+			print("DisabledCheck: " .. name .. ":" .. tostring(disabled))
+		end
+		
+		element:SetDisabled(not disabled)
+	end
+	self.elements[name] = element
 	return element
 end
 
@@ -240,9 +261,9 @@ function BeStride_GUI:DrawClassOptionTab(container)
 			for name,setting in pairs(classSetting) do
 				
 				if setting.element == "CheckBox" then
-					element = self:CreateClassSettingCheckBox(setting.label,setting.class,setting.dbvalue)
+					element = self:CreateClassSettingCheckBox(setting.name,setting.label)
 				elseif setting.element == "Slider" then
-					element = self:CreateClassSettingSlider(setting.label,setting.class,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment)
+					element = self:CreateClassSettingSlider(setting.name,setting.label,setting.minDurability,setting.maxDurability,setting.increment)
 				end
 				
 				if element ~= nil then
@@ -253,12 +274,12 @@ function BeStride_GUI:DrawClassOptionTab(container)
 	end)
 end
 
-function BeStride_GUI:CreateClassSettingCheckBox(label,parent,setting)
+function BeStride_GUI:CreateClassSettingCheckBox(name,label)
 	local element = AceGUI:Create("CheckBox")
 	element:SetLabel(label)
-	element:SetValue(BeStride:DBGetClassSetting(parent,setting))
+	element:SetValue(BeStride:DBGetSetting(name))
 	element:SetFullWidth(true)
-	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetClassSetting(parent,setting,container:GetValue()) end)
+	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(name,container:GetValue()) end)
 	
 	return element
 end
@@ -266,12 +287,44 @@ end
 function BeStride_GUI:CreateClassSettingSlider(label,parent,setting,minValue,maxValue,increment,disabled)
 	local element = AceGUI:Create("Slider")
 	element:SetLabel(label)
-	element:SetValue(BeStride:DBGetClassSetting(parent,setting))
+	element:SetValue(BeStride:DBGetSetting(name))
 	element:SetFullWidth(true)
 	element:SetSliderValues(minValue,maxValue,increment)
-	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetClassSetting(parent,setting,container:GetValue()) end)
+	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetSetting(name,container:GetValue()) end)
 	
 	return element
+end
+
+function BeStride_GUI:DrawKeybindsTab(container)
+	container:SetLayout("Flow")
+	
+	self.buttons[BeStride_ABRegularMount:GetName()] = AceGUI:Create("Keybinding")
+	self.buttons[BeStride_ABGroundMount:GetName()] = AceGUI:Create("Keybinding")
+	self.buttons[BeStride_ABPassengerMount:GetName()] = AceGUI:Create("Keybinding")
+	self.buttons[BeStride_ABRepairMount:GetName()] = AceGUI:Create("Keybinding")
+	
+	self.buttons[BeStride_ABRegularMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABRegularMount)
+	self.buttons[BeStride_ABRegularMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABRegularMount"))
+	self.buttons[BeStride_ABRegularMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABRegularMount,self.buttons[BeStride_ABRegularMount:GetName()]:GetKey()) end)
+	container:AddChild(self.buttons[BeStride_ABRegularMount:GetName()])
+	
+	self.buttons[BeStride_ABGroundMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABGroundMount)
+	self.buttons[BeStride_ABGroundMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABGroundMount"))
+	self.buttons[BeStride_ABGroundMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABGroundMount,self.buttons[BeStride_ABGroundMount:GetName()]:GetKey()) end)
+	container:AddChild(self.buttons[BeStride_ABGroundMount:GetName()])
+	
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABPassengerMount)
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABPassengerMount"))
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABPassengerMount,self.buttons[BeStride_ABPassengerMount:GetName()]:GetKey()) end)
+	container:AddChild(self.buttons[BeStride_ABPassengerMount:GetName()])
+	
+	self.buttons[BeStride_ABRepairMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABRepairMount)
+	self.buttons[BeStride_ABRepairMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABRepairMount"))
+	self.buttons[BeStride_ABRepairMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABRepairMount,self.buttons[BeStride_ABRepairMount:GetName()]:GetKey()) end)
+	container:AddChild(self.buttons[BeStride_ABRepairMount:GetName()])
+end
+
+function BeStride_GUI:UpdateBinding(button,key)
 end
 
 function BeStride_GUI:DrawAboutTab(container)

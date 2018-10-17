@@ -23,33 +23,33 @@ BeStride_Constants = {
 		},
 		Classes = {
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.DeathKnight.WraithWalk,class="deathknight",dbvalue="wraithwalk"},
+				{name="classes.deathknight.wraithwalk",element="CheckBox",label=BeStride_Locale.Settings.Classes.DeathKnight.WraithWalk,class="deathknight",dbvalue="wraithwalk"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightForm,class="druid",dbvalue="flightform", dependants = {"classes.druid.traveltotravel","classes.druid.flightformpriority","classes.druid.mountedtoflightform"}},
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.TravelToTravel,class="druid",dbvalue="traveltotravel", depends = {"classes.druid.flightform"}},
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid",dbvalue="flightformpriority", depends = {"classes.druid.flightform"}},
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid",dbvalue="mountedtoflightform", depends = {"classes.druid.flightform"}},
+				{name="classes.druid.flightform",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightForm,class="druid",dbvalue="flightform", dependants = {"classes.druid.traveltotravel","classes.druid.flightformpriority","classes.druid.mountedtoflightform"}},
+				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.TravelToTravel,class="druid",dbvalue="traveltotravel", depends = {"classes.druid.flightform"}},
+				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid",dbvalue="flightformpriority", depends = {"classes.druid.flightform"}},
+				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid",dbvalue="mountedtoflightform", depends = {"classes.druid.flightform"}},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.SlowFall,class="mage",dbvalue="slowfall"},
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.Blink,class="mage",dbvalue="blink"},
+				{name="classes.mage.slowfall",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.SlowFall,class="mage",dbvalue="slowfall"},
+				{name="classes.mage.blink",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.Blink,class="mage",dbvalue="blink"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="roll"},
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="zenflight"},
+				{name="classes.monk.roll",element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="roll"},
+				{name="classes.monk.zenflight",element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="zenflight"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Paladin.DivineSteed,class="paladin",dbvalue="steed"},
+				{name="classes.paladin.steed",element="CheckBox",label=BeStride_Locale.Settings.Classes.Paladin.DivineSteed,class="paladin",dbvalue="steed"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Priest.Levitate,class="priest",dbvalue="levitate"},
+				{name="classes.priest.levitate",element="CheckBox",label=BeStride_Locale.Settings.Classes.Priest.Levitate,class="priest",dbvalue="levitate"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Rogue.Sprint,class="rogue",dbvalue="sprint"},
+				{name="classes.rogue.sprint",element="CheckBox",label=BeStride_Locale.Settings.Classes.Rogue.Sprint,class="rogue",dbvalue="sprint"},
 			},
 			{
-				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Shaman.GhostWolf,class="shaman",dbvalue="ghostwolf"},
+				{name="classes.shaman.ghostwolf",element="CheckBox",label=BeStride_Locale.Settings.Classes.Shaman.GhostWolf,class="shaman",dbvalue="ghostwolf"},
 			},
 		}
 	}

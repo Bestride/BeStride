@@ -298,7 +298,7 @@ function BeStride_Logic:CanBroom()
 end
 
 function BeStride_Logic:CanBroomSetting()
-	return self.db.profile.settings["flyingbroom"]
+	return BeStride:DBGet("settings.mount.flyingbroom")
 end
 
 -- Check whether we need to repair
