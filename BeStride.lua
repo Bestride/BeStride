@@ -53,7 +53,7 @@ local defaults = {
 			["repair"] = {
 				["use"] = false,
 				["force"] = false,
-				["durability"] = 0.2,
+				["durability"] = 20,
 			},
 			["classes"] = {
 				["deathknight"] = {
@@ -65,24 +65,25 @@ local defaults = {
 					["flightformpriority"] = false,
 					["mountedtoflightform"] = false,
 				},
-				["paladin"] = {
-					["steed"] = true,
-				},
-				["shaman"] = {
-					["ghostwolf"] = true,
+				["mage"] = {
+					["blink"] = true,
+					["slowfall"] = true,
 				},
 				["monk"] = {
 					["roll"] = true,
 					["zenflight"] = true,
 				},
+				["paladin"] = {
+					["steed"] = true,
+				},
 				["priest"] = {
 					["levitate"] = true,
 				},
-				["mage"] = {
-					["slowfall"] = true,
-				},
 				["rogue"] = {
 					["sprint"] = true,
+				},
+				["shaman"] = {
+					["ghostwolf"] = true,
 				},
 			},
 		},
@@ -100,7 +101,7 @@ local defaults = {
 }
 
 function BeStride:OnInitialize()
-	self.db = LibStub("AceDB-3.0"):New("BeStride", defaults, "Default")
+	self.db = LibStub("AceDB-3.0"):New("BeStrideDB", defaults, "Default")
 	self:RegisterChatCommand("bestride","ChatCommand")
 	self:RegisterChatCommand("br","ChatCommand")
 	
@@ -212,6 +213,7 @@ function BeStride:Upgrade()
 				self.db.profile.settings.levitate = value
 			elseif key == "MAGE" then
 				self.db.profile.settings.mage.slowfall = value
+				self.db.profile.settings.mage.blink = value
 			end
 		end)
 		
@@ -313,10 +315,36 @@ function BeStride:DBSetMount(mountType,mountID,value)
 	self.db.profile.mounts[mountType][mountID] = value
 end
 
-function BeStride:DBGetSetting(setting)
+function BeStride:DBGetSetting(parent,setting)
+	if parent and self.db.profile.settings[parent] ~= nil and self.db.profile.settings[parent][setting] ~= nil then
+		return self.db.profile.settings[parent][setting]
+	elseif self.db.profile.settings[setting] ~= nil then
+		return self.db.profile.settings[setting]
+	else
+		return nil
+	end
 end
 
-function BeStride:DBSetSetting(setting)
+function BeStride:DBSetSetting(parent,setting, value)
+	if parent and self.db.profile.settings[parent] ~= nil then
+		self.db.profile.settings[parent][setting] = value
+	elseif self.db.profile.settings[setting] ~= nil then
+		self.db.profile.settings[setting] = value
+	end
+end
+
+function BeStride:DBGetClassSetting(parent,setting)
+	if parent and self.db.profile.settings.classes[parent] ~= nil and self.db.profile.settings.classes[parent][setting] ~= nil then
+		return self.db.profile.settings.classes[parent][setting]
+	else
+		return nil
+	end
+end
+
+function BeStride:DBSetClassSetting(parent,setting, value)
+	if parent and self.db.profile.settings.classes[parent] ~= nil then
+		self.db.profile.settings.classes[parent][setting] = value
+	end
 end
 
 function BeStride:buildMountTables()

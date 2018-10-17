@@ -6,7 +6,7 @@
 ## X-Category: Interface Enhancements 
 ## X-Embeds: Ace3
 ## OptionalDeps: Ace3
-## SavedVariables: BestrideDB
+## SavedVariables: BeStrideDB, BestrideDB
 
 BeStride_Debug.lua
 ## BeStride.xml

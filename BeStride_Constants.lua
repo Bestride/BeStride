@@ -4,21 +4,53 @@ author = "Anaximander"
 BeStride_Constants = {
 	Settings = {
 		Mount = {
-			EnableNew = {element="CheckBox",label=BeStride_Locale.Settings.EnableNew,dbvalue="enablenew"},
-			EmptyRandom = {element="CheckBox",label=BeStride_Locale.Settings.EmptyRandom,dbvalue="emptyrandom"},
-			NoDismountWhileFlying = {element="CheckBox",label=BeStride_Locale.Settings.NoDismountWhileFlying,dbvalue="nodismountwhileflying"},
-			ForceFlyingMount = {element="CheckBox",label=BeStride_Locale.Settings.ForceFlyingMount,dbvalue="forceflyingmount"},
-			FlyingBroom = {element="CheckBox",label=BeStride_Locale.Settings.FlyingBroom,dbvalue="flyingbroom"},
-			Telaari = {element="CheckBox",label=BeStride_Locale.Settings.Telaari,dbvalue="telaari"},
-			Repair = {
+			{name="mount.enablenew",element="CheckBox",label=BeStride_Locale.Settings.EnableNew,dbvalue="enablenew"},
+			{name="mount.emptyrandom",element="CheckBox",label=BeStride_Locale.Settings.EmptyRandom,dbvalue="emptyrandom"},
+			{name="mount.nodismountwhileflying",element="CheckBox",label=BeStride_Locale.Settings.NoDismountWhileFlying,dbvalue="nodismountwhileflying"},
+			{name="mount.useflyingmount",element="CheckBox",label=BeStride_Locale.Settings.UseFlyingMount,dbvalue="useflyingmount", dependants = {"mount.forceflyingmount"}},
+			{name="mount.forceflyingmount",element="CheckBox",label=BeStride_Locale.Settings.ForceFlyingMount,dbvalue="forceflyingmount", depends = {"mount.useflyingmount"}},
+			{name="mount.flyingbroom",element="CheckBox",label=BeStride_Locale.Settings.FlyingBroom,dbvalue="flyingbroom"},
+			{name="mount.telaari",element="CheckBox",label=BeStride_Locale.Settings.Telaari,dbvalue="telaari"},
+			{
 				element="Group",
 				dbvalue="repair",
 				children={
-					Use = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Use,dbvalue="use"},
-					Force = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Repair,dbvalue="force"},
-					Durability = {element="CheckBox",label=BeStride_Locale.Settings.Repair.Durability,dbvalue="durability"}
+					{name="mount.repair.use",element="CheckBox",label=BeStride_Locale.Settings.Repair.Use,dbvalue="use", dependants = {"mount.repair.force"} },
+					{name="mount.repair.force",element="CheckBox",label=BeStride_Locale.Settings.Repair.Force,dbvalue="force", depends = {"mount.repair.use"}},
+					{name="mount.repair.durability",element="Slider",label=BeStride_Locale.Settings.Repair.Durability,dbvalue="durability",minDurability=0,maxDurability=100, increment=5, depends = {"mount.repair.use"}}
 				}
 			}
+		},
+		Classes = {
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.DeathKnight.WraithWalk,class="deathknight",dbvalue="wraithwalk"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightForm,class="druid",dbvalue="flightform", dependants = {"classes.druid.traveltotravel","classes.druid.flightformpriority","classes.druid.mountedtoflightform"}},
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.TravelToTravel,class="druid",dbvalue="traveltotravel", depends = {"classes.druid.flightform"}},
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid",dbvalue="flightformpriority", depends = {"classes.druid.flightform"}},
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid",dbvalue="mountedtoflightform", depends = {"classes.druid.flightform"}},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.SlowFall,class="mage",dbvalue="slowfall"},
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.Blink,class="mage",dbvalue="blink"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="roll"},
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="zenflight"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Paladin.DivineSteed,class="paladin",dbvalue="steed"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Priest.Levitate,class="priest",dbvalue="levitate"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Rogue.Sprint,class="rogue",dbvalue="sprint"},
+			},
+			{
+				{element="CheckBox",label=BeStride_Locale.Settings.Classes.Shaman.GhostWolf,class="shaman",dbvalue="ghostwolf"},
+			},
 		}
 	}
 }

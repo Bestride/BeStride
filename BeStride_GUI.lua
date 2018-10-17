@@ -2,7 +2,9 @@ local AceGUI = LibStub("AceGUI-3.0")
 	
 local BeStride_Frame = nil
 
-BeStride_GUI = {}
+BeStride_GUI = {
+	buttons = {}
+}
 
 function BeStride_GUI:Frame(tab)
 	if not BeStride_Frame then
@@ -61,7 +63,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	elseif group == "mountoptions" then
 		BeStride_GUI:DrawMountOptionTab(container)
 	elseif group == "classoptions" then
-		--BeStride_GUI:DrawClassOptionTab(container)
+		BeStride_GUI:DrawClassOptionTab(container)
 	elseif group == "keybinds" then
 		--BeStride_GUI:DrawKeybindsTab(container)
 	elseif group == "profile" then
@@ -158,7 +160,7 @@ function BeStride_GUI:CreateMountButton(group,mountID)
 		mountButton:SetImage(mount["icon"])
 		mountButton:SetLabel(mount["name"])
 		mountButton:SetValue(BeStride:DBGetMount(group,mountID))
-		mountButton:SetCallback("OnValueChanged", function(container) Bestride:DBSetMount(group,mount["mountID"],not container:GetValue()) end)
+		mountButton:SetCallback("OnValueChanged", function(container) BeStride:DBSetMount(group,mount["mountID"],container:GetValue()) end)
 		return mountButton
 	else
 		return nil
@@ -170,19 +172,92 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	
 	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
 		local element = nil
-		print(name .. ":" .. setting.element)
 		if setting.element == "CheckBox" then
-			element = AceGUI:Create("CheckBox")
-			element:SetLabel(setting.label)
-			element:SetValue(BeStride:DBGetSetting(parent,setting.dbvalue))
+			element = self:CreateSettingCheckBox(setting.label,parent,setting.dbvalue)
+		elseif setting.element == "Slider" then
+			element = self:CreateSettingSlider(setting.label,parent,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment,setting.disabled)
+		elseif setting.element == "Group" and setting.children then
+			element = AceGUI:Create("SimpleGroup")
 			element:SetFullWidth(true)
-			element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(parent,setting.dbvalue,not container:GetValue()) end)
+			for subName,subSetting in pairs(setting.children) do
+				print("    SubName: " .. subName)
+				local subElement = nil
+				if subSetting.element == "CheckBox" then
+					subElement = self:CreateSettingCheckBox(subSetting.label,setting.dbvalue,subSetting.dbvalue)
+				elseif subSetting.element == "Slider" then
+					subElement = self:CreateSettingSlider(subSetting.label,setting.dbvalue,subSetting.dbvalue,subSetting.minDurability,subSetting.maxDurability,subSetting.increment,subSetting.disabled)
+				end
+				element:AddChild(subElement)
+			end
 		end
 		
 		if element ~= nil then
 			container:AddChild(element)
 		end
 	end
+end
+
+function BeStride_GUI:CreateSettingCheckBox(label,parent,setting)
+	local element = AceGUI:Create("CheckBox")
+	element:SetLabel(label)
+	element:SetValue(BeStride:DBGetSetting(parent,setting))
+	element:SetFullWidth(true)
+	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(parent,setting,container:GetValue()) end)
+	
+	return element
+end
+
+function BeStride_GUI:CreateSettingSlider(label,parent,setting,minValue,maxValue,increment,disabled)
+	local element = AceGUI:Create("Slider")
+	element:SetLabel(label)
+	element:SetValue(BeStride:DBGetSetting(parent,setting))
+	element:SetFullWidth(true)
+	element:SetSliderValues(minValue,maxValue,increment)
+	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetSetting(parent,setting,container:GetValue()) end)
+	
+	return element
+end
+
+function BeStride_GUI:DrawClassOptionTab(container)
+	container:SetLayout("Flow")
+	
+	table.foreach(BeStride_Constants.Settings.Classes,function (key,classSetting)
+		--if tolower(class) == tolower(playerTable["class"]["name"])
+			for name,setting in pairs(classSetting) do
+				
+				if setting.element == "CheckBox" then
+					element = self:CreateClassSettingCheckBox(setting.label,setting.class,setting.dbvalue)
+				elseif setting.element == "Slider" then
+					element = self:CreateClassSettingSlider(setting.label,setting.class,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment)
+				end
+				
+				if element ~= nil then
+					container:AddChild(element)
+				end
+			end
+		--end
+	end)
+end
+
+function BeStride_GUI:CreateClassSettingCheckBox(label,parent,setting)
+	local element = AceGUI:Create("CheckBox")
+	element:SetLabel(label)
+	element:SetValue(BeStride:DBGetClassSetting(parent,setting))
+	element:SetFullWidth(true)
+	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetClassSetting(parent,setting,container:GetValue()) end)
+	
+	return element
+end
+
+function BeStride_GUI:CreateClassSettingSlider(label,parent,setting,minValue,maxValue,increment,disabled)
+	local element = AceGUI:Create("Slider")
+	element:SetLabel(label)
+	element:SetValue(BeStride:DBGetClassSetting(parent,setting))
+	element:SetFullWidth(true)
+	element:SetSliderValues(minValue,maxValue,increment)
+	element:SetCallback("OnMouseUp",function (container) BeStride:DBSetClassSetting(parent,setting,container:GetValue()) end)
+	
+	return element
 end
 
 function BeStride_GUI:DrawAboutTab(container)
