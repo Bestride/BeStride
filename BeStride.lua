@@ -275,6 +275,16 @@ function BeStride:ChatCommand(input)
 		BeStride:buildMountTables()
 	elseif input == "map" then
 		BeStride:GetMaps()
+	elseif input == "testpathwalk" then
+		print("Path: settings.emptyrandom (" .. tostring(BeStride:DBGet("settings.emptyrandom")) ..")")
+		BeStride:DBSet("settings.emptyrandom",false)
+		print("Path: settings.emptyrandom (" .. tostring(BeStride:DBGet("settings.emptyrandom")) ..")")
+		print("Path: settings.repair.durability (" .. tostring(BeStride:DBGet("settings.repair.durability")) ..")")
+		BeStride:DBSet("settings.repair.durability",50)
+		print("Path: settings.repair.durability (" .. tostring(BeStride:DBGet("settings.repair.durability")) ..")")
+		print("Path: settings.repair.dura (" .. tostring(BeStride:DBGet("settings.repair.dura")) ..")")
+		BeStride:DBSet("settings.repair.dura",50)
+		print("Path: settings.repair.dura (" .. tostring(BeStride:DBGet("settings.repair.dura")) ..")")
 	else
 		BeStride_GUI:Frame(input)
 	end
@@ -298,6 +308,50 @@ function BeStride:GetMap(locID)
 	
 	if map["mapType"] ~= 0 then
 		BeStride:GetMap(map["parentMapID"])
+	end
+end
+
+function BeStride:DBGet(path,parent)
+	local child,nextPath = strsplit(".",path,2)
+	
+	if child ~= nil and parent ~= nil and nextPath == nil then
+		if parent[child] ~= nil then
+			return parent[child]
+		else
+			return nil
+		end
+	elseif child ~= nil and parent ~= nil and parent[child] ~= nil and nextPath ~= nil then
+		return BeStride:DBGet(nextPath,parent[child])
+	elseif child ~= nil and parent == nil and nextPath == nil then
+		return self.db.profile[child]
+	elseif child ~= nil and parent == nil and nextPath ~= nil then
+		if self.db.profile[child] ~= nil then
+			return BeStride:DBGet(nextPath,self.db.profile[child])
+		else
+			return nil
+		end
+	else
+		return nil
+	end
+end
+
+function BeStride:DBSet(path,value,parent)
+	local child,nextPath = strsplit(".",path,2)
+	
+	if child ~= nil and parent ~= nil and nextPath == nil then
+		parent[child] = value
+	elseif child ~= nil and parent ~= nil and parent[child] == nil and nextPath ~= nil then
+		parent[child] = {}
+		BeStride:DBSet(nextPath,value,parent[child])
+	elseif child ~= nil and parent ~= nil and parent[child] ~= nil and nextPath ~= nil then
+		BeStride:DBSet(nextPath,value,parent[child])
+	elseif child ~= nil and parent == nil and nextPath == nil then
+		self.db.profile[child] = value
+	elseif child ~= nil and parent == nil and nextPath ~= nil then
+		if self.db.profile[child] == nil then
+			self.db.profile[child] = {}
+		end
+		BeStride:DBSet(nextPath,value,self.db.profile[child])
 	end
 end
 

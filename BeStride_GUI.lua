@@ -3,7 +3,7 @@ local AceGUI = LibStub("AceGUI-3.0")
 local BeStride_Frame = nil
 
 BeStride_GUI = {
-	buttons = {}
+	elements = {}
 }
 
 function BeStride_GUI:Frame(tab)
@@ -139,7 +139,7 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	for key,mount in pairs(mountTable[group]) do
 		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
 		--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
-		local mountCheck = BeStride_GUI:CreateMountButton(group,mount)
+		local mountCheck = BeStride_GUI:CreateMountCheckBox(group,mount)
 		if mountCheck ~= nil then
 			mounts[mountTable["master"][mount]["name"]] = mountCheck
 		end
@@ -153,7 +153,7 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	scrollframe:AddChild(mountsGroup)
 end
 
-function BeStride_GUI:CreateMountButton(group,mountID)
+function BeStride_GUI:CreateMountCheckBox(group,mountID)
 	local mount = mountTable.master[mountID]
 	if mount["isCollected"] and (mount["faction"]== nil or mount["faction"] == playerTable["faction"]["id"]) then
 		mountButton = AceGUI:Create("CheckBox")
@@ -173,9 +173,9 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
 		local element = nil
 		if setting.element == "CheckBox" then
-			element = self:CreateSettingCheckBox(setting.label,parent,setting.dbvalue)
+			element = self:CreateSettingCheckBox(setting.name,setting.label,parent,setting.dbvalue)
 		elseif setting.element == "Slider" then
-			element = self:CreateSettingSlider(setting.label,parent,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment,setting.disabled)
+			element = self:CreateSettingSlider(setting.name,setting.label,parent,setting.dbvalue,setting.minDurability,setting.maxDurability,setting.increment,setting.disabled)
 		elseif setting.element == "Group" and setting.children then
 			element = AceGUI:Create("SimpleGroup")
 			element:SetFullWidth(true)
@@ -183,9 +183,9 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 				print("    SubName: " .. subName)
 				local subElement = nil
 				if subSetting.element == "CheckBox" then
-					subElement = self:CreateSettingCheckBox(subSetting.label,setting.dbvalue,subSetting.dbvalue)
+					subElement = self:CreateSettingCheckBox(subSetting.name,subSetting.label,setting.dbvalue,subSetting.dbvalue)
 				elseif subSetting.element == "Slider" then
-					subElement = self:CreateSettingSlider(subSetting.label,setting.dbvalue,subSetting.dbvalue,subSetting.minDurability,subSetting.maxDurability,subSetting.increment,subSetting.disabled)
+					subElement = self:CreateSettingSlider(subSetting.name,subSetting.label,setting.dbvalue,subSetting.dbvalue,subSetting.minDurability,subSetting.maxDurability,subSetting.increment,subSetting.disabled)
 				end
 				element:AddChild(subElement)
 			end
@@ -197,17 +197,31 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	end
 end
 
-function BeStride_GUI:CreateSettingCheckBox(label,parent,setting)
+function BeStride_GUI:CreateSettingCheckBox(name,label,parent,setting)
 	local element = AceGUI:Create("CheckBox")
 	element:SetLabel(label)
 	element:SetValue(BeStride:DBGetSetting(parent,setting))
 	element:SetFullWidth(true)
 	element:SetCallback("OnValueChanged",function (container) BeStride:DBSetSetting(parent,setting,container:GetValue()) end)
 	
+	if  setting.depends  then
+		local disabled = nil
+		for key,value in pairs(setting.depends) do
+			if disabled == nil then
+				disabled = self.elements[value]:GetValue()
+			else
+				bit.band(disabled,self.elements[value]:GetValue())
+			end
+		end
+		
+		element.SetDisabled(disabled)
+	end
+	print("Setting: " .. tostring(name) .. " Label: " .. label)
+	self.elements[name] = element
 	return element
 end
 
-function BeStride_GUI:CreateSettingSlider(label,parent,setting,minValue,maxValue,increment,disabled)
+function BeStride_GUI:CreateSettingSlider(name,label,parent,setting,minValue,maxValue,increment,disabled)
 	local element = AceGUI:Create("Slider")
 	element:SetLabel(label)
 	element:SetValue(BeStride:DBGetSetting(parent,setting))
