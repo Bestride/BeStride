@@ -21,8 +21,8 @@ function BeStride_Mount:DoMount(mounts)
 	local mount = mounts[math.random(#mounts)]
 	local spell = mountTable["master"][mount]["spellID"]
 	local name = GetSpellInfo(spell)
-	BeStride_Debug:Debug("Mount: " .. mount)
-    BeStride_Debug:Debug("Spell: " .. spell)
+	--BeStride_Debug:Debug("Mount: " .. mount)
+    --BeStride_Debug:Debug("Spell: " .. spell)
 	return BeStride_Mount:Mount(name)
 end
 
