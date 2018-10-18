@@ -28,12 +28,13 @@ BeStride_Constants = {
 			{
 				{name="classes.druid.flightform",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightForm,class="druid",dbvalue="flightform", dependants = {"classes.druid.traveltotravel","classes.druid.flightformpriority","classes.druid.mountedtoflightform"}},
 				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.TravelToTravel,class="druid",dbvalue="traveltotravel", depends = {"classes.druid.flightform"}},
-				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid",dbvalue="flightformpriority", depends = {"classes.druid.flightform"}},
-				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid",dbvalue="mountedtoflightform", depends = {"classes.druid.flightform"}},
+				{name="classes.druid.flightformpriority",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid",dbvalue="flightformpriority", depends = {"classes.druid.flightform"}},
+				{name="classes.druid.mountedtoflightform",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid",dbvalue="mountedtoflightform", depends = {"classes.druid.flightform"}},
 			},
 			{
 				{name="classes.mage.slowfall",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.SlowFall,class="mage",dbvalue="slowfall"},
 				{name="classes.mage.blink",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.Blink,class="mage",dbvalue="blink"},
+				{name="classes.mage.blinkpriority",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.BlinkPriority,class="mage",dbvalue="blinkpriority"},
 			},
 			{
 				{name="classes.monk.roll",element="CheckBox",label=BeStride_Locale.Settings.Classes.Monk.Roll,class="monk",dbvalue="roll"},

@@ -13,6 +13,12 @@ function BeStride_Debug:Critical(message)
 	end
 end
 
+function BeStride_Debug:Error(message)
+	if debugLevel >= 3 then
+		ChatFrame1:AddMessage("[Error]" .. message,1.0,0,0);
+	end
+end
+
 
 function BeStride_Debug:Informational(message)
 	if debugLevel >= 4 then

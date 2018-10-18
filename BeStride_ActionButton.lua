@@ -43,7 +43,7 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	--	return
 	--end
 	
-	local mount = BeStride_Logic:MountButton()
+	local mount = BeStride_Logic:Regular()
 	self:SetAttribute("macrotext",mount)
 end
 

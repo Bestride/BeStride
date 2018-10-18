@@ -161,6 +161,15 @@ function BeStride:NewMount(...)
 	table.foreach(args,function (k,v) print("Arg: " .. k) end)
 end
 
+function BeStride:UpdateBindings()
+	BeStride:SetKeyBindings(self.buttons["regular"])
+	BeStride:SetKeyBindings(self.buttons["ground"])
+	BeStride:SetKeyBindings(self.buttons["passenger"])
+	BeStride:SetKeyBindings(self.buttons["repair"])
+	
+	SaveBindings(GetCurrentBindingSet())
+end
+
 function BeStride:UpdateOverrideBindings()
 	BeStride:SetKeyBindingsOverrides(self.buttons["regular"])
 	BeStride:SetKeyBindingsOverrides(self.buttons["ground"])
@@ -174,7 +183,7 @@ end
 function BeStride:Upgrade()
 	local db = LibStub("AceDB-3.0"):New("BestrideDB")
 	
-	if self.db.profile.settings.bindingsMigrated == false then
+	--if self.db.profile.settings.bindingsMigrated == false then
 		table.foreach({BeStride_ABRegularMount,BeStride_ABGroundMount,BeStride_ABPassengerMount,BeStride_ABRepairMount},function (key,button)
 			BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
 			local primaryKey,secondaryKey = GetBindingKey(button:GetName())
@@ -187,8 +196,8 @@ function BeStride:Upgrade()
 			end
 			BeStride_Debug:Debug("End Set Bindings")
 		end)
-	end
-	self.db.profile.settings.bindingsMigrated = true
+	--end
+	--self.db.profile.settings.bindingsMigrated = true
 	
 	if db.profile.settings and self.db.profile.settings.migrated == false then
 		print("Old Settings Exist, Upgrading")
@@ -256,12 +265,12 @@ function BeStride:Upgrade()
 end
 
 function BeStride:SetKeyBindings(button)
-    --BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
+    BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
 	
-	local primaryKey,secondaryKey = GetBindingKey(button:GetName())
+	local primaryKey,secondaryKey = GetBindingKey("CLICK " .. button:GetName() .. ":LeftButton")
 	
 	if primaryKey then
-	  --print("1st Key: " .. primaryKey .. " Set!")
+	  print("1st Key: " .. primaryKey .. " Set!")
       SetBindingClick(primaryKey,button:GetName())
     end
 	
@@ -269,7 +278,7 @@ function BeStride:SetKeyBindings(button)
 	  print("2nd Key: " .. secondaryKey .. " Set!")
       SetBindingClick(secondaryKey,button:GetName())
     end
-	--BeStride_Debug:Debug("End Set Bindings")
+	BeStride_Debug:Debug("End Set Bindings")
 end
 
 function BeStride:SetKeyBindingsOverrides(button)
