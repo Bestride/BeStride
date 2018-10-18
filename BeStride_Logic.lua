@@ -100,15 +100,31 @@ end
 
 function BeStride_Logic:IsMageAndSpecial()
 	if self:IsMage() then
-	
+		if IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) and not self:NoDismountWhileFlying() then
+			return true
+		elseif (self:MageSlowFall() or self:MageBlink()) and IsFalling() then
+			return true
+		elseif (self:MageSlowFall() or self:MageBlink()) and self:MovementCheck() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
 end
 
 function BeStride_Logic:IsMonkAndSpecial()
-	if self:IsMage() then
-	
+	if self:IsMonk() then
+		if IsMounted() and IsFlying() and self:MonkZenFlight() and not self:NoDismountWhileFlying() then
+			return true
+		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
+			return true
+		elseif self:MonkRoll() and self:MovementCheck() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -116,7 +132,11 @@ end
 
 function BeStride_Logic:IsPaladinAndSpecial()
 	if self:IsPaladin() then
-	
+		if self:PaladinDivineSteed() and self:MovementCheck() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -124,11 +144,11 @@ end
 
 function BeStride_Logic:IsPriestAndSpecial()
 	if self:IsPriest() then
-		if IsMounted() and IsFlying() and self:PriestCanLevitate() and not self:NoDismountWhileFlying() then
+		if IsMounted() and IsFlying() and self:PriestLevitate() and not self:NoDismountWhileFlying() then
 			return true
-		elseif self:PriestCanLevitate() and IsFalling() then
+		elseif self:PriestLevitate() and IsFalling() then
 			return true
-		elseif self:PriestCanLevitate() and self:MovementCheck() then
+		elseif self:PriestLevitate() and self:MovementCheck() then
 			return true
 		else
 			return false
@@ -183,15 +203,63 @@ function BeStride_Logic:Druid()
 	end
 end
 
+function BeStride_Logic:Mage()
+	if not IsFlying() and self:MovementCheck() and self:MageSlowFall() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return BeStride_Mount:Mage()
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	end
+end
+
+function BeStride_Logic:Monk()
+	if not IsFlying() and self:MovementCheck() and self:MonkRoll() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return nil
+	elseif not IsFlying() and self:MovementCheck() and self:MonkZenFlight() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return nil
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	end
+end
+
+function BeStride_Logic:Paladin()
+	if not IsFlying() and self:MovementCheck() and self:PaladinDivineSteed() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return nil
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	end
+end
+
 function BeStride_Logic:Priest()
 	if self:MovementCheck() then
 		return BeStride_Mount:PriestLevitate()
-	elseif IsMounted() and IsFlying() and self:PriestCanLevitate() and not self:NoDismountWhileFlying() then
+	elseif IsMounted() and IsFlying() and self:PriestLevitate() and not self:NoDismountWhileFlying() then
 		return BeStride_Mount:PriestLevitate()
-	elseif IsFalling() and self:PriestCanLevitate() then
+	elseif IsFalling() and self:PriestLevitate() then
 		return BeStride_Mount:PriestLevitate()
-	elseif self:MovementCheck() and self:PriestCanLevitate() then
+	elseif self:MovementCheck() and self:PriestLevitate() then
 		return BeStride_Mount:PriestLevitate()
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	end
+end
+
+function BeStride_Logic:Shaman()
+	if not IsFlying() and self:MovementCheck() and self:ShamanGhostWolf() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return nil
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	end
+end
+
+function BeStride_Logic:Rogue()
+	if not IsFlying() and self:MovementCheck() and self:RogueSprint() then
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return nil
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	end
@@ -541,7 +609,7 @@ end
 
 -- Check for Druid
 function BeStride_Logic:IsDruid()
-	if playerTable["class"]["name"] == "Druid" then
+	if string.lower(playerTable["class"]["name"]) == "druid" then
 		return true
 	else
 		return false
@@ -550,7 +618,7 @@ end
 
 -- Check for Mage
 function BeStride_Logic:IsMage()
-	if playerTable["class"]["name"] == "Mage" then
+	if string.lower(playerTable["class"]["name"]) == "mage" then
 		return true
 	else
 		return false
@@ -577,7 +645,7 @@ end
 
 -- Check for Priest
 function BeStride_Logic:IsPriest()
-	if playerTable["class"]["name"] == "Priest" then
+	if string.lower(playerTable["class"]["name"]) == "priest" then
 		return true
 	else
 		return false
@@ -649,27 +717,161 @@ function BeStride_Logic:DruidCanFly()
 	end
 end
 
+-- ------------------ --
+-- Deathknight Spells --
+-- ------------------ --
 
--- +-------------------------+ --
--- Class Specific Mount Checks --
--- +-------------------------+ --
-
--- ----- --
--- Druid --
--- ----- --
-
-function BeStride_Logic:DruidFlying()
-	--BeStride:DBGet("settings.classes.druid.flyingmount") == true
-	if self:DruidCanFly() then
+function BeStride_Logic:DeathKnightCanWraithWalk()
+	if IsUsableSpell(212552) then
 		return true
 	else
 		return false
 	end
 end
 
-function BeStride_Logic:DruidFlightFormPriority()
-	if BeStride:DBGet("settings.classes.druid.flightformpriority") == true then
+-- ----------- --
+-- Mage Spells --
+-- ----------- --
+
+function BeStride_Logic:MageCanSlowFall()
+	if IsUsableSpell(1706) then
 		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MageCanBlink()
+	if IsUsableSpell(1953) then
+		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
+		if not BlinkOnCooldown then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ----------- --
+-- Monk Spells --
+-- ----------- --
+
+function BeStride_Logic:MonkCanRoll()
+	if IsUsableSpell(109132) or self:MonkCanTorpedo() then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MonkCanTorpedo()
+	if IsUsableSpell(115008) then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MonkCanZenFlight()
+	if IsUsableSpell(125883) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
+-- Priest Spells --
+-- ------------- --
+
+function BeStride_Logic:PaladinCanDivineSteed()
+	if IsUsableSpell(1706) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
+-- Priest Spells --
+-- ------------- --
+
+function BeStride_Logic:PriestCanLevitate()
+	if IsUsableSpell(1706) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
+-- Shaman Spells --
+-- ------------- --
+
+function BeStride_Logic:ShamanCanGhostWolf()
+	if IsUsableSpell(2645) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
+-- Rogue Spells --
+-- ------------- --
+
+function BeStride_Logic:RogueCanSprint()
+	if IsUsableSpell(2983) then
+		return true
+	else
+		return false
+	end
+end
+
+-- +-------------------------+ --
+-- Class Specific Mount Checks --
+-- +-------------------------+ --
+-- ----------- --
+-- DeathKnight --
+-- ----------- --
+
+function BeStride_Logic:DeathKnightWraithWalk()
+	if self:IsDeathKnight() then
+		if self:DeathKnightCanWraithWalk() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ----- --
+-- Druid --
+-- ----- --
+
+function BeStride_Logic:DruidFlying()
+	if self:IsDruid() then
+		if self:DruidCanFly() then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DruidFlightFormPriority()
+	if self:IsDruid() then
+		if self:DruidFlying() and BeStride:DBGet("settings.classes.druid.flightformpriority") == true then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -680,29 +882,12 @@ end
 function BeStride_Logic:DruidFlyingMTFF()
 	-- Had a "GetUnitSpeed("player") ~= 0", unsure if we want to go with that
 	-- Todo: Bitwise Compare
-	if BeStride:DBGet("settings.classes.druid.mountedtoflightform") then
-		return true
-	else
-		return false
-	end
-end
-
--- ------ --
--- Priest --
--- ------ --
-
-function BeStride_Logic:PriestCanLevitate()
-	-- Todo: Bitwise Compare
-	if BeStride_Logic:PriestSpellCanLevitate() and BeStride.db.profile.settings["classes"]["priest"]["levitate"] then
-		return true
-	else
-		return false
-	end
-end
-
-function BeStride_Logic:PriestSpellCanLevitate()
-	if IsUsableSpell(1706) then
-		return true
+	if self:IsDruid() then
+		if self:DruidFlying() and BeStride:DBGet("settings.classes.druid.mountedtoflightform") then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -713,30 +898,139 @@ end
 -- ---- --
 
 function BeStride_Logic:MageSpecial()
-	if BeStride_Logic:IsMage() and (not BeStride_Logic:IsCombat()) then
-		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
-		if not BlinkOnCooldown and IsFalling() and BeStride_Logic:MovementCheck() and BeStride_Logic:MageCanBlink() then
-			BeStride_Mount:MageBlinkNoSlowFall()
-		elseif not BlinkOnCooldown and not IsFalling() and BeStride_Logic:MovementCheck() and BeStride_Logic:MageCanBlink() and BeStride_Logic:MageIsSlowFalling() then
-			BeStride_Mount:MageBlink()
-		elseif IsFalling() then
-			BeStride_Mount:MageSlowFall()
+	if self:IsMage() then
+		if self:IsMage() and (not self:IsCombat()) then
+			local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
+			if not BlinkOnCooldown and IsFalling() and self:MovementCheck() and self:MageCanBlink() then
+				BeStride_Mount:MageBlinkNoSlowFall()
+			elseif not BlinkOnCooldown and not IsFalling() and self:MovementCheck() and self:MageCanBlink() and self:MageIsSlowFalling() then
+				BeStride_Mount:MageBlink()
+			elseif IsFalling() then
+				BeStride_Mount:MageSlowFall()
+			end
 		end
-	end
-end
-
-function BeStride_Logic:MageCanSlowFall()
-	-- Todo: Bitwise Compare
-	if BeStride_Logic:MageSpellCanSlowFall() and BeStride.db.profile.settings["classes"]["priest"]["levitate"] then
-		return true
 	else
 		return false
 	end
 end
 
-function BeStride_Logic:MageSpellCanSlowFall()
-	if IsUsableSpell(1706) then
-		return true
+function BeStride_Logic:MageBlink()
+	-- Todo: Bitwise Compare
+	if self:IsMage() then
+		if self:MageSpellCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MageSlowFall()
+	-- Todo: Bitwise Compare
+	if self:IsMage() then
+		if self:MageSpellCanSlowFall() and BeStride:DBGet("settings.classes.mage.slowfall") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ---- --
+-- Monk --
+-- ---- --
+
+function BeStride_Logic:MonkRoll()
+	if self:IsMonk() then
+		if self:MonkCanRoll() and BeStride:DBGet("settings.classes.monk.roll") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:MonkZenFlight()
+	if self:IsMonk() then
+		if self:MonkCanZenFlight() and BeStride:DBGet("settings.classes.monk.zenflight") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ------- --
+-- Paladin --
+-- ------- --
+
+function BeStride_Logic:PaladinDivineSteed()
+	-- Todo: Bitwise Compare
+	if self:IsPaladin() then
+		if self:PaladinCanDivineSteed() and BeStride:DBGet("settings.classes.paladin.divinesteed") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ------ --
+-- Priest --
+-- ------ --
+
+function BeStride_Logic:PriestLevitate()
+	-- Todo: Bitwise Compare
+	if self:IsPriest() then
+		if self:PriestCanLevitate() and BeStride:DBGet("settings.classes.priest.levitate") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ----- --
+-- Rogue --
+-- ----- --
+
+function BeStride_Logic:RogueSprint()
+	-- Todo: Bitwise Compare
+	if self:IsRogue() then
+		if self:RogueCanSprint() and BeStride:DBGet("settings.classes.rogue.sprint") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ------ --
+-- Shaman --
+-- ------ --
+
+function BeStride_Logic:ShamanGhostWolf()
+	-- Todo: Bitwise Compare
+	if self:IsShaman() then
+		if self:ShamanCanGhostWolf() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
