@@ -11,6 +11,42 @@ function BeStride_Logic:IsCombat()
 	end
 end
 
+function BeStride_Logic:Regular()
+	-- Check if we are mounted first
+	
+	if self:IsDeathKnightAndSpecial() then
+		return self:DeathKnight()
+	elseif self:IsDruidAndSpecial() then
+		return self:Druid()
+	elseif self:IsMageAndSpecial() then
+		return self:Mage()
+	elseif self:IsMonkAndSpecial() then
+		return self:Monk()
+	elseif self:IsPaladinAndSpecial() then
+		return self:Paldin()
+	elseif self:IsPriestAndSpecial() then
+		return self:Priest()
+	elseif self:IsShamanAndSpecial() then
+		return self:Shaman()
+	elseif self:IsRogueAndSpecial() then
+		return self:Rogue()
+	elseif self:IsSpecialZone() then
+	elseif IsMounted() then
+		if IsFlying() then
+		elseif self:IsFlyable() then
+			
+		else
+			
+		end
+	elseif self:IsFlyable() then
+	elseif self:IsMountable()
+	end
+end
+
+function BeStride_Logic:RegularCombat()
+
+end
+
 function BeStride_Logic:MountButton()
 	-- Dismount Logic
 	-- This Logic needs to be cleaned up more
@@ -126,7 +162,7 @@ function BeStride_Logic:MountButton()
 		--BeStride_Debug:Debug("Not IsOutdoors")
 	else
 		--BeStride_Debug:Debug("Final Test")
-		return BeStride_Logic:Regular()
+		return BeStride_Mount:Regular()
 		--BeStride_Debug:Debug("End Final Test")
 	end
 	--BeStride_Debug:Debug("End Logic")
