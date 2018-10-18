@@ -34,6 +34,7 @@ BeStride_Locale = {
 			Mage = {
 				SlowFall = "Mage: Slowfall",
 				Blink = "Mage: Blink",
+				Blink = "Mage: Prioritize Blink before Slowfall (even when falling)",
 			},
 			Monk = {
 				Roll = "Monk: Roll",
