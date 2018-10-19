@@ -109,10 +109,10 @@ function BeStride_Mount:Repair()
 	return BeStride_Mount:DoMount(mounts)
 end
 
-function BeStride_Mount:Passenger()
+function BeStride_Mount:Passenger(type)
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) and ( (type ~= nil and mountTable.master[v].type) or type == nil ) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
 		BeStride_Debug:Debug("No Mounts")
