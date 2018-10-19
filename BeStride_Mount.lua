@@ -158,3 +158,7 @@ end
 
 function BeStride_Mount:MonkZen()
 end
+
+function BeStride_Mount:Paladin()
+	return self:MountSpell("[@player] "..BeStride:SpellToName(190784).."\n/cancelaura "..BeStride:SpellToName(190784))
+end
