@@ -24,7 +24,7 @@ function BeStride_Logic:Regular()
 	elseif self:IsMonkAndSpecial() then
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
-		return self:Paldin()
+		return self:Paladin()
 	elseif self:IsPriestAndSpecial() then
 		return self:Priest()
 	elseif self:IsShamanAndSpecial() then
@@ -63,7 +63,20 @@ function BeStride_Logic:Regular()
 end
 
 function BeStride_Logic:RegularCombat()
-
+	if InCombatLockdown() then
+		if self:IsDeathKnightAndSpecial() then
+			return self:DeathKnight()
+		elseif self:IsDruid() then
+		elseif self:IsMage() then
+		elseif self:IsMonk() then
+		elseif self:IsPaladin() then
+		elseif self:IsPriest() then
+		elseif self:IsRogue() then
+		elseif self:IsShaman() then
+		else
+			
+		end
+	end
 end
 
 function BeStride_Logic:IsDeathKnightAndSpecial()
@@ -226,8 +239,7 @@ end
 
 function BeStride_Logic:Paladin()
 	if not IsFlying() and self:MovementCheck() and self:PaladinDivineSteed() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
-		return nil
+		return BeStride_Mount:Paladin()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	end
@@ -787,7 +799,7 @@ end
 -- ------------- --
 
 function BeStride_Logic:PaladinCanDivineSteed()
-	if IsUsableSpell(1706) then
+	if IsUsableSpell(190784) then
 		return true
 	else
 		return false
@@ -975,7 +987,7 @@ end
 function BeStride_Logic:PaladinDivineSteed()
 	-- Todo: Bitwise Compare
 	if self:IsPaladin() then
-		if self:PaladinCanDivineSteed() and BeStride:DBGet("settings.classes.paladin.divinesteed") then
+		if self:PaladinCanDivineSteed() and BeStride:DBGet("settings.classes.paladin.steed") then
 			return true
 		else
 			return false
