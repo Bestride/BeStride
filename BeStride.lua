@@ -72,6 +72,7 @@ local defaults = {
 				mage = {
 					blink = true,
 					slowfall = true,
+					blinkpriority = true,
 				},
 				monk = {
 					roll = true,
@@ -152,6 +153,9 @@ function BeStride:OnEnable()
 	self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
 	self:RegisterEvent("NEW_MOUNT_ADDED", "NewMount")
 	
+	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "CombatEnter")
+	BeStride:RegisterEvent("PLAYER_REGEN_ENABLED", "CombatExit")
+	
 	--BeStride:UpdateBindings()
 	BeStride:Upgrade()
 end
@@ -159,6 +163,27 @@ end
 function BeStride:NewMount(...)
 	BeStride_Debug:Debug("NewMount")
 	table.foreach(args,function (k,v) print("Arg: " .. k) end)
+end
+
+function BeStride:CombatEnter()
+	BeStride_Debug:Verbose("Entering Combat")
+	local combatButton = BeStride_Logic:Combat()
+	
+	if combatButton ~= nil then
+		BeStride_Debug:Verbose("Mount: " .. combatButton)
+		BeStride_ABRegularMount:SetAttribute("macrotext",combatButton)
+		BeStride_ABGroundMount:SetAttribute("macrotext",combatButton)
+		BeStride_ABPassengerMount:SetAttribute("macrotext",combatButton)
+		BeStride_ABRepairMount:SetAttribute("macrotext",combatButton)
+	end
+end
+
+function BeStride:CombatExit()
+	BeStride_Debug:Verbose("Exiting Combat")
+	BeStride_ABRegularMount:SetAttribute("macrotext",nil)
+	BeStride_ABGroundMount:SetAttribute("macrotext",nil)
+	BeStride_ABPassengerMount:SetAttribute("macrotext",nil)
+	BeStride_ABRepairMount:SetAttribute("macrotext",nil)
 end
 
 function BeStride:UpdateBindings()

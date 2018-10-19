@@ -325,6 +325,8 @@ function BeStride_GUI:DrawKeybindsTab(container)
 end
 
 function BeStride_GUI:UpdateBinding(button,key)
+	SetBinding(key)
+	SetBindingClick(key,button:GetName())
 end
 
 function BeStride_GUI:DrawAboutTab(container)

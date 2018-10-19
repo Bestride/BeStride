@@ -118,47 +118,71 @@ function BeStride_Mount:Druid()
 	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
 
 	if GetUnitSpeed("player") ~= 0 then
-		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
+		return self:MountSpell(BeStride:SpellToName(783))
 	elseif BeStride_Logic:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
-		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
+		return self:MountSpell(BeStride:SpellToName(783))
 	elseif IsFlying() then
-		return BeStride_Mount:Flying(name)
+		return self:Flying(name)
 	else
-		return BeStride_Mount:Regular(name)
+		return self:Regular(name)
 	end
 end
 
 function BeStride_Mount:DruidFlying()
-	return BeStride_Mount:Druid()
+	return self:Druid()
 end
 
 function BeStride_Mount:DruidAquaticForm()
 end
 
+function BeStride_Mount:DruidTravel()
+	return self:MountSpell(BeStride:SpellToName(783))
+end
+
 function BeStride_Mount:PriestLevitate()
-	if (not BeStride_Logic:IsCombat()) and BeStride_Logic:IsPriest() then
-		return BeStride_Mount:MountSpell("[@player] "..BeStride:SpellToName(1706).."\n/cancelaura "..BeStride:SpellToName(1706)) --Levitate
-	end
+	return self:MountSpell("[@player] "..BeStride:SpellToName(1706).."\n/cancelaura "..BeStride:SpellToName(1706))
 end
 
 function BeStride_Mount:MageSlowFall()
 	--Activate SlowFall
-	return Bestride_Mount:MountSpell("[@player] "..Bestride:SpellToName(130))
+	return self:MountSpell("[@player] "..BeStride:SpellToName(130).."\n/cancelaura "..BeStride:SpellToName(130))
 end
 
 function BeStride_Mount:MageBlink()
 	--Blink
-	return Bestride_Mount:MountSpell("[@player] "..Bestride:SpellToName(1953))
+	return self:MountSpell("[@player] "..BeStride:SpellToName(1953))
 end
 
 function BeStride_Mount:MageBlinkNoSlowFall()
 	--Blink and cancel Slowfall if active, we're running on the ground or swimming.
-	return Bestride_Mount:MountSpell("[@player] "..Bestride:SpellToName(1953).."\n/cancelaura "..Bestride:SpellToName(130))
+	return self:MountSpell("[@player] "..BeStride:SpellToName(1953))
 end
 
-function BeStride_Mount:MonkZen()
+function BeStride_Mount:MonkRoll()
+	BeStride_Debug:Verbose("Monk Roll")
+	if IsUsableSpell(109132) then
+		return self:MountSpell("[@player] " .. BeStride:SpellToName(109132))
+	else
+		return self:MountSpell("[@player] " .. BeStride:SpellToName(115008))
+	end
+end
+
+function BeStride_Mount:MonkZenFlight()
+	return self:MountSpell("[@player] " .. BeStride:SpellToName(125883))
 end
 
 function BeStride_Mount:Paladin()
+	return self:PaladinDivineSteed()
+end
+
+function BeStride_Mount:PaladinDivineSteed()
 	return self:MountSpell("[@player] "..BeStride:SpellToName(190784).."\n/cancelaura "..BeStride:SpellToName(190784))
+end
+
+function BeStride_Mount:Shaman()
+	return self:ShamanGhostWolf()
+end
+
+function BeStride_Mount:ShamanGhostWolf()
+	return self:MountSpell("[@player] "..BeStride:SpellToName(2645).."\n/cancelaura "..BeStride:SpellToName(2645))
 end

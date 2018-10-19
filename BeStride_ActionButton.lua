@@ -39,12 +39,15 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonRegularMount:PreClick()
-	--if BeStride_Logic:IsCombat() then
-	--	return
-	--end
+	if BeStride_Logic:IsCombat() then
+		return
+	end
 	
 	local mount = BeStride_Logic:Regular()
-	self:SetAttribute("macrotext",mount)
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
+		BeStride_Debug:Verbose(self:GetAttribute("macrotext"))
+	end
 end
 
 -- Action Button Cleanup
@@ -68,7 +71,9 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	end
 	
 	local mount = BeStride_Logic:GroundMountButton()
-	self:SetAttribute("macrotext",mount)
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
+	end
 end
 
 -- Action Button Cleanup
@@ -92,7 +97,9 @@ function BeStride_ActionButtonPassengerMount:PreClick()
 	end
 	
 	local mount = BeStride_Logic:PassengerMountButton()
-	self:SetAttribute("macrotext",mount)
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
+	end
 end
 
 -- Action Button Cleanup
@@ -116,7 +123,9 @@ function BeStride_ActionButtonRepairMount:PreClick()
 	end
 	
 	local mount = BeStride_Logic:RepairMountButton()
-	self:SetAttribute("macrotext",mount)
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
+	end
 end
 
 -- Action Button Cleanup
