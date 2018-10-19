@@ -52,13 +52,13 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	end
 	
 	if passenger ~= nil then
-		BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
+		--BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
 		self:SetAttribute("macrotext",passenger)
 	else
 		local mount = BeStride_Logic:Regular()
 		if mount ~= nil then
 			self:SetAttribute("macrotext",mount)
-			BeStride_Debug:Verbose(self:GetAttribute("macrotext"))
+			--BeStride_Debug:Verbose(self:GetAttribute("macrotext"))
 		end
 	end
 end
@@ -90,7 +90,7 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	end
 	
 	if passenger ~= nil then
-		BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
+		--BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
 		self:SetAttribute("macrotext",passenger)
 	else
 		local mount = BeStride_Logic:GroundMountButton()
