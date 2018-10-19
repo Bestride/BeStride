@@ -112,9 +112,9 @@ function BeStride_Logic:RepairMountButton()
 	end
 end
 
-function BeStride_Logic:PassengerMountButton()
+function BeStride_Logic:PassengerMountButton(type)
 	if IsMounted() or IsOutdoors() then
-		return BeStride_Mount:Passenger()
+		return BeStride_Mount:Passenger(type)
 	else
 		return nil
 	end
