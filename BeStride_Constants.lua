@@ -5,6 +5,7 @@ BeStride_Constants = {
 	Settings = {
 		Mount = {
 			{name="mount.enablenew",element="CheckBox",label=BeStride_Locale.Settings.EnableNew,dbvalue="enablenew"},
+			{name="mount.remount",element="CheckBox",label=BeStride_Locale.Settings.RemountAfterDismount,dbvalue="remount"},
 			{name="mount.emptyrandom",element="CheckBox",label=BeStride_Locale.Settings.EmptyRandom,dbvalue="emptyrandom"},
 			{name="mount.nodismountwhileflying",element="CheckBox",label=BeStride_Locale.Settings.NoDismountWhileFlying,dbvalue="nodismountwhileflying"},
 			{name="mount.useflyingmount",element="CheckBox",label=BeStride_Locale.Settings.UseFlyingMount,dbvalue="useflyingmount", dependants = {"mount.forceflyingmount"}},

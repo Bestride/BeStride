@@ -33,6 +33,8 @@ function BeStride_Logic:Regular()
 		return self:Rogue()
 	elseif self:IsSpecialZone() then
 		BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	elseif self:MovementCheck() then
+		return nil
 	elseif IsMounted() then
 		if IsFlying() then
 			if BeStride_Logic:IsFlyable() and not self:NoDismountWhileFlying() then
@@ -45,9 +47,14 @@ function BeStride_Logic:Regular()
 			return BeStride_Mount:Swimming()
 		elseif self:IsFlyable() then
 			Dismount()
-			return BeStride_Mount:Flying()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Flying()
+			end
 		else
-			return BeStride_Mount:Regular()
+			Dismount()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Regular()
+			end
 		end
 	elseif CanExitVehicle() then
 		VehicleExit()
@@ -59,6 +66,55 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Regular()
 	elseif IsOutdoors() then
 		return BeStride_Mount:Ground()
+	else
+		return nil
+	end
+end
+
+
+
+function BeStride_Logic:GroundMountButton()
+	if self:IsDeathKnightAndSpecial() then
+		return self:DeathKnight()
+	elseif self:IsDruidAndSpecial() then
+		return self:Druid()
+	elseif self:IsMageAndSpecial() then
+		return self:Mage()
+	elseif self:IsMonkAndSpecial() then
+		BeStride_Debug:Verbose("MonkSpecial")
+		return self:Monk()
+	elseif self:IsPaladinAndSpecial() then
+		return self:Paladin()
+	elseif self:IsShamanAndSpecial() then
+		return self:Shaman()
+	elseif self:IsRogueAndSpecial() then
+		return self:Rogue()
+	elseif self:IsSpecialZone() then
+		BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	elseif IsMounted() then
+		if IsSwimming() then
+			return BeStride_Mount:Swimming()
+		else
+			return BeStride_Mount:Ground()
+		end
+	elseif IsOutdoors() then
+		return BeStride_Mount:Ground()
+	else
+		return nil
+	end
+end
+
+function BeStride_Logic:RepairMountButton()
+	if IsMounted() or IsOutdoors() then
+		return BeStride_Mount:Repair()
+	else
+		return nil
+	end
+end
+
+function BeStride_Logic:PassengerMountButton()
+	if IsMounted() or IsOutdoors() then
+		return BeStride_Mount:Passenger()
 	else
 		return nil
 	end
@@ -98,7 +154,7 @@ end
 
 function BeStride_Logic:IsDeathKnightAndSpecial()
 	if self:IsDeathKnight() then
-		if not IsFlying() and self:MovementCheck() and self:DeathKnightWraithWalk() then
+		if not IsFlying() and not IsFalling() and self:MovementCheck() and self:DeathKnightWraithWalk() then
 			return true
 		else
 			return false
@@ -136,7 +192,7 @@ function BeStride_Logic:IsMageAndSpecial()
 			return true
 		elseif (self:MageSlowFall() or self:MageBlink()) and IsFalling() then
 			return true
-		elseif (self:MageSlowFall() or self:MageBlink()) and self:MovementCheck() then
+		elseif self:MageBlink() and self:MovementCheck() then
 			return true
 		else
 			return false
@@ -243,10 +299,12 @@ function BeStride_Logic:Druid()
 end
 
 function BeStride_Logic:Mage()
-	if not IsFlying() and self:MovementCheck() and self:MageSlowFall() then
-		return BeStride_Mount:Mage()
-	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: MAGEBSL")
+	if IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) and not self:NoDismountWhileFlying() then
+		return BeStride_Mount:MageSlowFall()
+	elseif (self:MageSlowFall() or self:MageBlink()) and IsFalling() then
+		return BeStride_Mount:MageSlowFall()
+	elseif self:MageBlink() and self:MovementCheck() then
+		return BeStride_Mount:MageBlink()
 	end
 end
 
@@ -349,10 +407,14 @@ function BeStride_Logic:MountButton()
 			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsFlyable() then
 			Dismount()
-			return BeStride_Mount:Flying()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Flying()
+			end
 		else
 			Dismount()
-			return BeStride_Mount:Ground()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Ground()
+			end
 		end
 		--BeStride_Debug:Debug("Ending Mounted")
 	elseif CanExitVehicle() then
@@ -424,10 +486,6 @@ function BeStride_Logic:MountButton()
 		--BeStride_Debug:Debug("End Final Test")
 	end
 	--BeStride_Debug:Debug("End Logic")
-end
-
-function BeStride_Logic:GroundMountButton()
-	
 end
 
 function BeStride_Logic:IsFlyableArea()
@@ -644,7 +702,7 @@ end
 
 -- Check for DeathKnight
 function BeStride_Logic:IsDeathKnight()
-	if string.lower(playerTable["class"]["name"]) == "deathknight" then
+	if string.lower(playerTable["class"]["name"]) == "death knight" then
 		return true
 	else
 		return false
@@ -788,7 +846,7 @@ end
 function BeStride_Logic:MageCanBlink()
 	if IsUsableSpell(1953) then
 		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
-		if not BlinkOnCooldown then
+		if BlinkOnCooldown == 0 then
 			return true
 		else
 			return false
@@ -973,7 +1031,9 @@ end
 function BeStride_Logic:MageBlink()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageSpellCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
+		if self:MageCanBlink() then
+		end
+		if self:MageCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
 			return true
 		else
 			return false
@@ -986,7 +1046,7 @@ end
 function BeStride_Logic:MageSlowFall()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageSpellCanSlowFall() and BeStride:DBGet("settings.classes.mage.slowfall") then
+		if self:MageCanSlowFall() and BeStride:DBGet("settings.classes.mage.slowfall") then
 			return true
 		else
 			return false

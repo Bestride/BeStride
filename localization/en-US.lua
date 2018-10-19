@@ -11,6 +11,7 @@ BeStride_Locale = {
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",
 		EmptyRandom = "Choose random usable mount if no usable mounts selected",
+		RemountAfterDismount = "Remount Immediately After Dismounting",
 		NoDismountWhileFlying = "Don't dismount while flying. You'll have to land or (if enabled in Blizzard options) cast a spell",
 		UseFlyingMount = "Use Flying type mounts even in areas where you cannot fly",
 		ForceFlyingMount = "Force Flying type mounts even in areas where you cannot fly",

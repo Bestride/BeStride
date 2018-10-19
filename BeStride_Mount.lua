@@ -96,22 +96,35 @@ function BeStride_Mount:Swimming()
 end
 
 function BeStride_Mount:Repair()
-	if #mountTable["repair"] == 0 then
+	local mounts = {}
+	
+	for k,v in pairs(mountTable["repair"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	
+	if #mounts == 0 then
 		BeStride_Debug:Debug("No Mounts")
 		return nil
 	end
 	
-	local mount = mountTable["repair"][math.random(#mountTable["repair"])]
-	local spell = mountTable["master"][mount]["spellID"]
-	local name = GetSpellInfo(spell)
-	BeStride_Debug:Debug("Mount: " .. mount)
-    BeStride_Debug:Debug("Spell: " .. spell)
-	return BeStride_Mount:Mount(name)
+	
+	return BeStride_Mount:DoMount(mounts)
+end
+
+function BeStride_Mount:Passenger()
+	local mounts = {}
+	
+	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	
+	if #mounts == 0 then
+		BeStride_Debug:Debug("No Mounts")
+		return nil
+	end
+	
+	
+	return BeStride_Mount:DoMount(mounts)
 end
 
 function BeStride_Mount:DeathKnightWraithWalk()
-	BeStride_Debug:Verbose("Wraith Walk")
-	return nil
+	return self:MountSpell(BeStride:SpellToName(212552))
 end
 
 function BeStride_Mount:Druid()
@@ -185,4 +198,12 @@ end
 
 function BeStride_Mount:ShamanGhostWolf()
 	return self:MountSpell("[@player] "..BeStride:SpellToName(2645).."\n/cancelaura "..BeStride:SpellToName(2645))
+end
+
+function BeStride_Mount:Rogue()
+	return self:RogueSprint()
+end
+
+function BeStride_Mount:Rogue()
+	return self:MountSpell("[@player] "..BeStride:SpellToName(2983))
 end

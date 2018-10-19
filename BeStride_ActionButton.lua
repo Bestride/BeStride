@@ -26,10 +26,10 @@ function BeStride:CreateActionButton(buttontype)
 	br:SetScript("PostClick",self.PostClick)
 	--SaveBindings(GetCurrentBindingSet())
 	if br then
-	    print("Returning: " .. br:GetName())
+	    --print("Returning: " .. br:GetName())
 		return br
 	else
-	  print("Fatal: " .. buttontype)
+	  BeStride_Debug:Critical("Critical: " .. buttontype)
 	end
 end
 
