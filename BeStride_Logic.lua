@@ -17,11 +17,11 @@ function BeStride_Logic:Regular()
 	if self:IsDeathKnightAndSpecial() then
 		return self:DeathKnight()
 	elseif self:IsDruidAndSpecial() then
-		BeStride_Debug:Verbose("DruidSpecial")
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
+		BeStride_Debug:Verbose("MonkSpecial")
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
 		return self:Paladin()
@@ -32,7 +32,7 @@ function BeStride_Logic:Regular()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
 	elseif self:IsSpecialZone() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif IsMounted() then
 		if IsFlying() then
 			if BeStride_Logic:IsFlyable() and not self:NoDismountWhileFlying() then
@@ -57,25 +57,42 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Flying()
 	elseif self:IsMountable() then
 		return BeStride_Mount:Regular()
-	else
+	elseif IsOutdoors() then
 		return BeStride_Mount:Ground()
+	else
+		return nil
 	end
 end
 
-function BeStride_Logic:RegularCombat()
-	if InCombatLockdown() then
-		if self:IsDeathKnightAndSpecial() then
-			return self:DeathKnight()
-		elseif self:IsDruid() then
-		elseif self:IsMage() then
-		elseif self:IsMonk() then
-		elseif self:IsPaladin() then
-		elseif self:IsPriest() then
-		elseif self:IsRogue() then
-		elseif self:IsShaman() then
+function BeStride_Logic:Combat()
+	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
+		BeStride_Debug:Verbose("Mount: DeathKnight")
+		return BeStride_Mount:DeathKnightWraithWalk()
+	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
+		BeStride_Debug:Verbose("Mount: Druid")
+		return BeStride_Mount:DruidTravel()
+	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
+		BeStride_Debug:Verbose("Mount: Mage")
+		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
+			return BeStride_Mount:MageBlink()
 		else
-			
+			return BeStride_Mount:MageSlowFall()
 		end
+	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
+		BeStride_Debug:Verbose("Mount: Monk")
+		return BeStride_Mount:MonkRoll()
+	elseif self:IsPaladin() and BeStride:DBGet("settings.classes.paladin.steed") then
+		BeStride_Debug:Verbose("Mount: Paladin")
+		return BeStride_Mount:PaladinDivineSteed()
+	elseif self:IsPriest() and BeStride:DBGet("settings.classes.priest.levitate") then
+		BeStride_Debug:Verbose("Mount: Priest")
+		return BeStride_Mount:PriestLevitate()
+	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
+		BeStride_Debug:Verbose("Mount: Rogue")
+		return BeStride_Mount:RogueSprint()
+	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
+		BeStride_Debug:Verbose("Mount: Shaman")
+		return BeStride_Mount:ShamanGhostWolf()
 	end
 end
 
@@ -95,13 +112,15 @@ function BeStride_Logic:IsDruidAndSpecial()
 	if self:IsDruid() then
 		if not self:DruidFlying() then
 			return false
-		elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidCanFly() and self:DruidFlyingMTFF() then
+		elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
-		elseif self:IsFlyable() and self:DruidCanFly() and self:DruidFlightFormPriority() then
+		elseif self:IsFlyable() and self:DruidFlying() and self:DruidFlightFormPriority() then
 			return true
-		elseif IsFalling() and self:DruidCanFly() then
+		elseif IsFalling() and self:DruidFlying() then
 			return true
-		elseif IsSwimming() and self:DruidCanSwim() and self:MovementCheck() then
+		elseif IsSwimming() and self:DruidSwimming() then
+			return true
+		elseif self:MovementCheck() then
 			return true
 		else
 			return false
@@ -130,10 +149,13 @@ end
 function BeStride_Logic:IsMonkAndSpecial()
 	if self:IsMonk() then
 		if IsMounted() and IsFlying() and self:MonkZenFlight() and not self:NoDismountWhileFlying() then
+			BeStride_Debug:Verbose("MountedFlying")
 			return true
 		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
+			BeStride_Debug:Verbose("Falling")
 			return true
 		elseif self:MonkRoll() and self:MovementCheck() then
+			BeStride_Debug:Verbose("Moving")
 			return true
 		else
 			return false
@@ -181,7 +203,11 @@ end
 
 function BeStride_Logic:IsShamanAndSpecial()
 	if self:IsShaman() then
-	
+		if self:ShamanGhostWolf() and self:MovementCheck() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -191,7 +217,7 @@ function BeStride_Logic:DeathKnight()
 	if not IsFlying() and self:MovementCheck() and self:DeathKnightWraithWalk() then
 		return BeStride_Mount:DeathKnightWraithWalk()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DKBSL")
 	end
 end
 
@@ -212,28 +238,33 @@ function BeStride_Logic:Druid()
 		BeStride_Debug:Verbose("Druid: Falling")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
 	end
 end
 
 function BeStride_Logic:Mage()
 	if not IsFlying() and self:MovementCheck() and self:MageSlowFall() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 		return BeStride_Mount:Mage()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: MAGEBSL")
 	end
 end
 
 function BeStride_Logic:Monk()
-	if not IsFlying() and self:MovementCheck() and self:MonkRoll() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
-		return nil
-	elseif not IsFlying() and self:MovementCheck() and self:MonkZenFlight() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
-		return nil
+	if not IsFlying() and not IsFalling() and self:MovementCheck() and self:MonkRoll() then
+		return BeStride_Mount:MonkRoll()
+	elseif IsFalling() and self:MonkZenFlight() then
+		return BeStride_Mount:MonkZenFlight()
+	elseif IsMounted() and self:IsFlyable() and self:MonkZenFlight() then
+		BeStride_Debug:Verbose("Trying Flight")
+		return BeStride_Mount:MonkZenFlight()
+	elseif not IsFlying() and self:IsFlyableArea() and self:MonkZenFlight() then
+		BeStride_Debug:Verbose("Trying Flight")
+		return BeStride_Mount:MonkZenFlight()
+	elseif not self:IsFlyable() and self:MovementCheck() and self:MonkZenFlight() then
+		return BeStride_Mount:MonkZenFlight()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: MONKBSL")
 	end
 end
 
@@ -241,7 +272,7 @@ function BeStride_Logic:Paladin()
 	if not IsFlying() and self:MovementCheck() and self:PaladinDivineSteed() then
 		return BeStride_Mount:Paladin()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		--BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	end
 end
 
@@ -255,25 +286,22 @@ function BeStride_Logic:Priest()
 	elseif self:MovementCheck() and self:PriestLevitate() then
 		return BeStride_Mount:PriestLevitate()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: SHBSL")
 	end
 end
 
 function BeStride_Logic:Shaman()
 	if not IsFlying() and self:MovementCheck() and self:ShamanGhostWolf() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
-		return nil
-	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		return BeStride_Mount:Shaman()
 	end
 end
 
 function BeStride_Logic:Rogue()
 	if not IsFlying() and self:MovementCheck() and self:RogueSprint() then
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("Sprinting")
 		return nil
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: RGBSL")
 	end
 end
 
@@ -469,8 +497,12 @@ function BeStride_Logic:SpeedCheck()
 end
 
 function BeStride_Logic:IsFlyable()
-	if self:IsFlyableArea() then
-		return true
+	if IsOutdoors() then
+		if self:IsFlyableArea() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -877,6 +909,18 @@ function BeStride_Logic:DruidFlying()
 	end
 end
 
+function BeStride_Logic:DruidTravelToTravel()
+	if self:IsDruid() then
+		if BeStride:DBGet("settings.classes.druid.traveltotravel") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 function BeStride_Logic:DruidFlightFormPriority()
 	if self:IsDruid() then
 		if self:DruidFlying() and BeStride:DBGet("settings.classes.druid.flightformpriority") == true then
@@ -911,7 +955,7 @@ end
 
 function BeStride_Logic:MageSpecial()
 	if self:IsMage() then
-		if self:IsMage() and (not self:IsCombat()) then
+		if (not self:IsCombat()) then
 			local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
 			if not BlinkOnCooldown and IsFalling() and self:MovementCheck() and self:MageCanBlink() then
 				BeStride_Mount:MageBlinkNoSlowFall()
