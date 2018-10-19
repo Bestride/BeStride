@@ -47,6 +47,7 @@ local defaults = {
 			mount = {
 				emptyrandom = true, --ER
 				hasmount = false, --HM
+				remount = false,
 				enablenew = false, --ENABLENEW
 				useflyingmount = false,
 				forceflyingmount = false, --FFM
@@ -143,20 +144,18 @@ function BeStride:OnInitialize()
 	playerTable["faction"]["name"] = factionName
 	playerTable["faction"]["id"] = factionId
 	playerTable["faction"]["localization"] = factionLocalized
-	
-	print("Faction: " .. factionId)
 end
 
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
 	
-	self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
+	--self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
 	self:RegisterEvent("NEW_MOUNT_ADDED", "NewMount")
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "CombatEnter")
 	BeStride:RegisterEvent("PLAYER_REGEN_ENABLED", "CombatExit")
 	
-	--BeStride:UpdateBindings()
+	BeStride:UpdateBindings()
 	BeStride:Upgrade()
 end
 
@@ -208,9 +207,9 @@ end
 function BeStride:Upgrade()
 	local db = LibStub("AceDB-3.0"):New("BestrideDB")
 	
-	--if self.db.profile.settings.bindingsMigrated == false then
+	if self.db.profile.settings.bindingsMigrated == false then
 		table.foreach({BeStride_ABRegularMount,BeStride_ABGroundMount,BeStride_ABPassengerMount,BeStride_ABRepairMount},function (key,button)
-			BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
+			BeStride_Debug:Info("Migrating Bindings: " .. button:GetName())
 			local primaryKey,secondaryKey = GetBindingKey(button:GetName())
 			if primaryKey then
 				SetBindingClick(primaryKey,button:GetName())
@@ -219,10 +218,10 @@ function BeStride:Upgrade()
 			if secondaryKey then
 				SetBindingClick(secondaryKey,button:GetName())
 			end
-			BeStride_Debug:Debug("End Set Bindings")
+			BeStride_Debug:Info("End Migrating Bindings")
 		end)
-	--end
-	--self.db.profile.settings.bindingsMigrated = true
+	end
+	self.db.profile.settings.bindingsMigrated = true
 	
 	if db.profile.settings and self.db.profile.settings.migrated == false then
 		print("Old Settings Exist, Upgrading")
@@ -290,20 +289,20 @@ function BeStride:Upgrade()
 end
 
 function BeStride:SetKeyBindings(button)
-    BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
+    --BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
 	
 	local primaryKey,secondaryKey = GetBindingKey("CLICK " .. button:GetName() .. ":LeftButton")
 	
 	if primaryKey then
-	  print("1st Key: " .. primaryKey .. " Set!")
+	  --print("1st Key: " .. primaryKey .. " Set!")
       SetBindingClick(primaryKey,button:GetName())
     end
 	
 	if secondaryKey then
-	  print("2nd Key: " .. secondaryKey .. " Set!")
+	  --print("2nd Key: " .. secondaryKey .. " Set!")
       SetBindingClick(secondaryKey,button:GetName())
     end
-	BeStride_Debug:Debug("End Set Bindings")
+	--BeStride_Debug:Debug("End Set Bindings")
 end
 
 function BeStride:SetKeyBindingsOverrides(button)
@@ -384,7 +383,7 @@ function BeStride:DBGet(path,parent)
 			return nil
 		end
 	else
-		BeStride_Debug:Debug("Fatal: Unmatch")
+		BeStride_Debug:Debug("Fatal: Unmatch (" .. path .. ")")
 		return nil
 	end
 end
