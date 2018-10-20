@@ -21,7 +21,7 @@ function BeStride_Logic:Regular()
 	elseif self:IsMageAndSpecial() then
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
-		BeStride_Debug:Verbose("MonkSpecial")
+		--BeStride_Debug:Verbose("MonkSpecial")
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
 		return self:Paladin()
@@ -32,7 +32,7 @@ function BeStride_Logic:Regular()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
 	elseif self:IsSpecialZone() then
-		BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif self:MovementCheck() then
 		return nil
 	elseif IsMounted() then
@@ -60,7 +60,7 @@ function BeStride_Logic:Regular()
 		VehicleExit()
 		return BeStride_Mount:Regular()
 	elseif self:IsFlyable() then
-		BeStride_Debug:Verbose("Flyable")
+		--BeStride_Debug:Verbose("Flyable")
 		return BeStride_Mount:Flying()
 	elseif self:IsMountable() then
 		return BeStride_Mount:Regular()
@@ -81,7 +81,7 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:IsMageAndSpecial() then
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
-		BeStride_Debug:Verbose("MonkSpecial")
+		--BeStride_Debug:Verbose("MonkSpecial")
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
 		return self:Paladin()
@@ -90,7 +90,7 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
 	elseif self:IsSpecialZone() then
-		BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif IsMounted() then
 		if IsSwimming() then
 			return BeStride_Mount:Swimming()
@@ -122,32 +122,32 @@ end
 
 function BeStride_Logic:Combat()
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
-		BeStride_Debug:Verbose("Mount: DeathKnight")
+		--BeStride_Debug:Verbose("Mount: DeathKnight")
 		return BeStride_Mount:DeathKnightWraithWalk()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
-		BeStride_Debug:Verbose("Mount: Druid")
+		--BeStride_Debug:Verbose("Mount: Druid")
 		return BeStride_Mount:DruidTravel()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
-		BeStride_Debug:Verbose("Mount: Mage")
+		--BeStride_Debug:Verbose("Mount: Mage")
 		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
 			return BeStride_Mount:MageBlink()
 		else
 			return BeStride_Mount:MageSlowFall()
 		end
 	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
-		BeStride_Debug:Verbose("Mount: Monk")
+		--BeStride_Debug:Verbose("Mount: Monk")
 		return BeStride_Mount:MonkRoll()
 	elseif self:IsPaladin() and BeStride:DBGet("settings.classes.paladin.steed") then
-		BeStride_Debug:Verbose("Mount: Paladin")
+		--BeStride_Debug:Verbose("Mount: Paladin")
 		return BeStride_Mount:PaladinDivineSteed()
 	elseif self:IsPriest() and BeStride:DBGet("settings.classes.priest.levitate") then
-		BeStride_Debug:Verbose("Mount: Priest")
+		--BeStride_Debug:Verbose("Mount: Priest")
 		return BeStride_Mount:PriestLevitate()
 	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
-		BeStride_Debug:Verbose("Mount: Rogue")
+		--BeStride_Debug:Verbose("Mount: Rogue")
 		return BeStride_Mount:RogueSprint()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
-		BeStride_Debug:Verbose("Mount: Shaman")
+		--BeStride_Debug:Verbose("Mount: Shaman")
 		return BeStride_Mount:ShamanGhostWolf()
 	end
 end
@@ -205,13 +205,13 @@ end
 function BeStride_Logic:IsMonkAndSpecial()
 	if self:IsMonk() then
 		if IsMounted() and IsFlying() and self:MonkZenFlight() and not self:NoDismountWhileFlying() then
-			BeStride_Debug:Verbose("MountedFlying")
+			--BeStride_Debug:Verbose("MountedFlying")
 			return true
 		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
-			BeStride_Debug:Verbose("Falling")
+			--BeStride_Debug:Verbose("Falling")
 			return true
 		elseif self:MonkRoll() and self:MovementCheck() then
-			BeStride_Debug:Verbose("Moving")
+			--BeStride_Debug:Verbose("Moving")
 			return true
 		else
 			return false
@@ -279,19 +279,19 @@ end
 
 function BeStride_Logic:Druid()
 	if self:MovementCheck() then
-		BeStride_Debug:Verbose("Druid: Moving")
+		--BeStride_Debug:Verbose("Druid: Moving")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif GetShapeshiftForm() == 3 then
-		BeStride_Debug:Verbose("Druid: Shapeshifted")
+		--BeStride_Debug:Verbose("Druid: Shapeshifted")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidCanFly() and self:DruidFlyingMTFF() then
-		BeStride_Debug:Verbose("Druid: Flying, Flyable, MTFF")
+		--BeStride_Debug:Verbose("Druid: Flying, Flyable, MTFF")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif self:IsFlyable() and self:DruidCanFly() and self:DruidFlightFormPriority() then
-		BeStride_Debug:Verbose("Druid: FlightFormPriority")
+		--BeStride_Debug:Verbose("Druid: FlightFormPriority")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif IsFalling() and self:DruidCanFly() then
-		BeStride_Debug:Verbose("Druid: Falling")
+		--BeStride_Debug:Verbose("Druid: Falling")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
@@ -314,10 +314,10 @@ function BeStride_Logic:Monk()
 	elseif IsFalling() and self:MonkZenFlight() then
 		return BeStride_Mount:MonkZenFlight()
 	elseif IsMounted() and self:IsFlyable() and self:MonkZenFlight() then
-		BeStride_Debug:Verbose("Trying Flight")
+		--BeStride_Debug:Verbose("Trying Flight")
 		return BeStride_Mount:MonkZenFlight()
 	elseif not IsFlying() and self:IsFlyableArea() and self:MonkZenFlight() then
-		BeStride_Debug:Verbose("Trying Flight")
+		--BeStride_Debug:Verbose("Trying Flight")
 		return BeStride_Mount:MonkZenFlight()
 	elseif not self:IsFlyable() and self:MovementCheck() and self:MonkZenFlight() then
 		return BeStride_Mount:MonkZenFlight()
@@ -356,7 +356,7 @@ end
 
 function BeStride_Logic:Rogue()
 	if not IsFlying() and self:MovementCheck() and self:RogueSprint() then
-		BeStride_Debug:Error("Sprinting")
+		--BeStride_Debug:Error("Sprinting")
 		return nil
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: RGBSL")
@@ -368,39 +368,39 @@ function BeStride_Logic:MountButton()
 	-- This Logic needs to be cleaned up more
 	--BeStride_Debug:Debug("Starting Mount Logic")
 	if IsMounted() and IsFlying() and BeStride_Logic:IsFlyable() then
-		BeStride_Debug:Debug("Mounted, Flying, Flyable")
+		--BeStride_Debug:Debug("Mounted, Flying, Flyable")
 		if BeStride_Logic:IsDruid() then
 			if BeStride_Logic:DruidFlyingMTFF() then
-				BeStride_Debug:Debug("DruidFlyingMTFF")
+				--BeStride_Debug:Debug("DruidFlyingMTFF")
 				return BeStride_Mount:DruidFlying()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
-				BeStride_Debug:Debug("DruidNoDismountWhileFlying")
+				--BeStride_Debug:Debug("DruidNoDismountWhileFlying")
 				return BeStride_Mount:Flying()
 			else
-				BeStride_Debug:Debug("DruidDismountAndmount")
+				--BeStride_Debug:Debug("DruidDismountAndmount")
 				Dismount()
 				return BeStride_Mount:Flying()
 			end
 		elseif BeStride_Logic:IsPriest() then
 			if BeStride_Logic:PriestCanLevitate() then
-				BeStride_Debug:Debug("PriestCanLevitate")
+				--BeStride_Debug:Debug("PriestCanLevitate")
 				return BeStride_Mount:PriestLevitate()
 			elseif BeStride_Logic:NoDismountWhileFlying() then
-				BeStride_Debug:Debug("PriestNoDismountWhileFlying")
+				--BeStride_Debug:Debug("PriestNoDismountWhileFlying")
 				return BeStride_Mount:Flying()
 			else
-				BeStride_Debug:Debug("Priest Dismounting")
+				--BeStride_Debug:Debug("Priest Dismounting")
 				Dismount()
 				return BeStride_Mount:Flying()
 			end
 		else
-			BeStride_Debug:Debug("No Action")
+			--BeStride_Debug:Debug("No Action")
 			return nil
 		end
-		BeStride_Debug:Debug("End Mounted, Flying, Flyable")
+		--BeStride_Debug:Debug("End Mounted, Flying, Flyable")
 	-- Todo: Cleanup from here
 	elseif IsMounted() then
-		BeStride_Debug:Debug("Mounted")
+		--BeStride_Debug:Debug("Mounted")
 		if IsSwimming() and Bestride_Logic:IsDruid() and BeStride_Logic:DruidCanSwim() and BeStride_Logic:MovementCheck() then -- Todo: Clean this logic up
 			return BeStride_Mount:DruidAuquaticForm()
 		elseif IsSwimming() then
@@ -427,7 +427,7 @@ function BeStride_Logic:MountButton()
 		return BeStride_Mount:MonkZen()
 		--BeStride_Debug:Debug("End IsMonk,IsFlyable,CanZen")
 	elseif BeStride_Logic:IsPriest() and BeStride_Logic:PriestCanLevitate() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
-		BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
+		--BeStride_Debug:Debug("IsPriest, CanLevitate, IsFalling, MovementCheck")
 		return BeStride_Mount:PriestLevitate()
 		--BeStride_Debug:Debug("End IsPriest, CanLevitate, IsFalling, MovementCheck")
 	elseif BeStride_Logic:IsMage() and BeStride_Logic:CanSlowFall() and ( BeStride_Logic:IsFalling() or BeStride_Logic:MovementCheck() ) then
@@ -435,43 +435,43 @@ function BeStride_Logic:MountButton()
 		return BeStride_Mount:MageSlowFall()
 		--BeStride_Debug:Debug("IsMage, CanLevitate, IsFalling, MovementCheck")
 	elseif BeStride_Logic:IsFlyable() and IsOutdoors() then
-		BeStride_Debug:Debug("IsFlyable, IsOutdoors")
+		--BeStride_Debug:Debug("IsFlyable, IsOutdoors")
 		if BeStride_Logic:CanBroom() then
-			BeStride_Debug:Debug("--Broom")
+			--BeStride_Debug:Debug("--Broom")
 			return BeStride_Mount:Broom()
 		elseif IsSwimming() then
-			BeStride_Debug:Debug("--Swimming")
+			--BeStride_Debug:Debug("--Swimming")
 			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
-			BeStride_Debug:Debug("--Druid")
+			--BeStride_Debug:Debug("--Druid")
 			return BeStride_Mount:DruidFlying()
 		else
-			BeStride_Debug:Debug("--Flying")
+			--BeStride_Debug:Debug("--Flying")
 			return BeStride_Mount:Flying()
 		end
 		--BeStride_Debug:Debug("End IsFlyable, IsOutdoors")
 	elseif not BeStride_Logic:IsFlyable() and IsOutdoors() then
-		BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
+		--BeStride_Debug:Debug("Not IsFlyable, IsOutdoors")
 		if zone == BeStride_Locale.Zone.Oculus and Bestride:Filter(nil, zone) then
 			return nil
 		elseif BeStride_Logic:CanBroom() then
-			BeStride_Debug:Debug("--Broom")
+			--BeStride_Debug:Debug("--Broom")
 			return BeStride_Mount:Broom()
 		elseif IsSwimming() then
-			BeStride_Debug:Debug("--Swimming")
+			--BeStride_Debug:Debug("--Swimming")
 			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:HasLoanedMount() then
-			BeStride_Debug:Debug("--Loaner")
+			--BeStride_Debug:Debug("--Loaner")
 			return BeStride_Mount:LoanedMount()
 		elseif BeStride_Logic:IsDruid() then
-			BeStride_Debug:Debug("--Druid")
+			--BeStride_Debug:Debug("--Druid")
 			return BeStride_Mount:Druid()
 		else
 			return BeStride_Mount:Ground()
 		end
 		--BeStride_Debug:Debug("End Not IsFlyable, IsOutdoors")
 	elseif not IsOutdoors() then
-		BeStride_Debug:Debug("IsOutdoors")
+		--BeStride_Debug:Debug("IsOutdoors")
 		if IsSwimming() then
 			return BeStride_Mount:Swimming()
 		elseif BeStride_Logic:IsDruid() then
