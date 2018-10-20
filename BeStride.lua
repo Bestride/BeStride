@@ -160,16 +160,16 @@ function BeStride:OnEnable()
 end
 
 function BeStride:NewMount(...)
-	BeStride_Debug:Debug("NewMount")
+	--BeStride_Debug:Debug("NewMount")
 	table.foreach(args,function (k,v) print("Arg: " .. k) end)
 end
 
 function BeStride:CombatEnter()
-	BeStride_Debug:Verbose("Entering Combat")
+	--BeStride_Debug:Verbose("Entering Combat")
 	local combatButton = BeStride_Logic:Combat()
 	
 	if combatButton ~= nil then
-		BeStride_Debug:Verbose("Mount: " .. combatButton)
+		--BeStride_Debug:Verbose("Mount: " .. combatButton)
 		BeStride_ABRegularMount:SetAttribute("macrotext",combatButton)
 		BeStride_ABGroundMount:SetAttribute("macrotext",combatButton)
 		BeStride_ABPassengerMount:SetAttribute("macrotext",combatButton)
@@ -178,7 +178,7 @@ function BeStride:CombatEnter()
 end
 
 function BeStride:CombatExit()
-	BeStride_Debug:Verbose("Exiting Combat")
+	--BeStride_Debug:Verbose("Exiting Combat")
 	BeStride_ABRegularMount:SetAttribute("macrotext",nil)
 	BeStride_ABGroundMount:SetAttribute("macrotext",nil)
 	BeStride_ABPassengerMount:SetAttribute("macrotext",nil)

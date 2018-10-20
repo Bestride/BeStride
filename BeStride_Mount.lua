@@ -172,7 +172,7 @@ function BeStride_Mount:MageBlinkNoSlowFall()
 end
 
 function BeStride_Mount:MonkRoll()
-	BeStride_Debug:Verbose("Monk Roll")
+	--BeStride_Debug:Verbose("Monk Roll")
 	if IsUsableSpell(109132) then
 		return self:MountSpell("[@player] " .. BeStride:SpellToName(109132))
 	else
