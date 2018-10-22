@@ -68,7 +68,7 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	elseif group == "keybinds" then
 		BeStride_GUI:DrawKeybindsTab(container)
 	elseif group == "profile" then
-		--BeStride_GUI:DrawProfileTab(container)
+		BeStride_GUI:DrawProfileTab(container)
 	elseif group == "about" then
 		--BeStride_Debug:Debug("Drawing About")
 		BeStride_GUI:DrawAboutTab(container)
@@ -317,6 +317,115 @@ function BeStride_GUI:DrawKeybindsTab(container)
 	self.buttons[BeStride_ABRepairMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABRepairMount:LeftButton"))
 	self.buttons[BeStride_ABRepairMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABRepairMount,self.buttons[BeStride_ABRepairMount:GetName()]:GetKey()) end)
 	container:AddChild(self.buttons[BeStride_ABRepairMount:GetName()])
+end
+
+function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS
+	container:SetLayout("List")
+	
+	local profiles = BeStride:GetProfiles()
+	local currentProfile = BeStride.db:GetCurrentProfile()
+	local profileID = 1
+	
+	table.foreach(profiles,function (k,v) if v == currentProfile then profileID = k end end)
+	
+	self.elements["profile.create"] = AceGUI:Create("EditBox")
+	self.elements["profile.create"]:SetLabel("Create new Profile")
+	self.elements["profile.create"]:SetMaxLetters(15) 
+
+	self.elements["profile.current"] = AceGUI:Create("Dropdown")
+	self.elements["profile.current"]:SetList(profiles)
+	self.elements["profile.current"]:SetLabel("Current Profile:")
+	self.elements["profile.current"]:SetValue(profileID)
+	
+	self.elements["profile.copy"] = AceGUI:Create("Dropdown")
+	self.elements["profile.copy"]:SetList(profiles)
+	self.elements["profile.copy"]:SetItemDisabled(profileID, true)
+	self.elements["profile.copy"]:SetLabel("Copy settings from:")
+	
+	self.elements["profile.copybutton"] = AceGUI:Create("Button")
+	self.elements["profile.copybutton"]:SetWidth(75)
+	self.elements["profile.copybutton"]:SetText("Copy")
+	self.elements["profile.copybutton"]:SetDisabled(true)
+	
+	self.elements["profile.delete"] = AceGUI:Create("Dropdown")
+	self.elements["profile.delete"]:SetList(profiles)
+	self.elements["profile.delete"]:SetItemDisabled(profileID, true)
+	self.elements["profile.delete"]:SetLabel("Delete profile:")
+	
+	self.elements["profile.deletebutton"] = AceGUI:Create("Button")
+	self.elements["profile.deletebutton"]:SetWidth(100)
+	self.elements["profile.deletebutton"]:SetText("Delete")
+	self.elements["profile.deletebutton"]:SetDisabled(true)
+	
+	self.elements["profile.create"]:SetCallback("OnEnterPressed", function() BeStride_GUI:ProfileCreate(self.elements["profile.create"]:GetText()) end)
+	self.elements["profile.current"]:SetCallback("OnValueChanged", function() BeStride_GUI:ProfileSwitch(self.elements["profile.current"]:GetValue()) end)
+	self.elements["profile.copy"]:SetCallback("OnValueChanged", function() self.elements["profile.copybutton"]:SetDisabled(false) end)
+	self.elements["profile.delete"]:SetCallback("OnValueChanged", function() self.elements["profile.deletebutton"]:SetDisabled(false) end)
+	self.elements["profile.copybutton"]:SetCallback("OnClick",function() BeStride_GUI:ProfileCopy(self.elements["profile.copy"]:GetValue()) end)
+	self.elements["profile.deletebutton"]:SetCallback("OnClick",function() BeStride_GUI:ProfileDelete(self.elements["profile.delete"]:GetValue()) end)
+	
+	container:AddChild(self.elements["profile.create"])
+	container:AddChild(self.elements["profile.current"])
+	container:AddChild(self.elements["profile.copy"])
+	container:AddChild(self.elements["profile.copybutton"])
+	container:AddChild(self.elements["profile.delete"])
+	container:AddChild(self.elements["profile.deletebutton"])
+end
+
+function BeStride_GUI:ProfileCreate(name)
+	if searchTableForValue(BeStride:GetProfiles(),name) ~= nil then
+		return
+	end
+	
+	if name ~= "" then
+		BeStride.db:SetProfile(name)
+		self:ProfileResetLists()
+	end
+	
+	self.elements["profile.create"]:SetText("")
+end
+
+function BeStride_GUI:ProfileSwitch(id)
+	local profiles = BeStride:GetProfiles()
+	key = profiles[self.elements["profile.current"]:GetValue()]
+	BeStride.db:SetProfile(key)
+	self:ProfileResetLists()
+end
+
+function BeStride_GUI:ProfileResetLists()
+	local profiles,currentProfile = BeStride:GetProfiles(),BeStride.db:GetCurrentProfile()
+	
+	self.elements["profile.current"]:SetList(profiles)
+	self.elements["profile.copy"]:SetList(profiles)
+	self.elements["profile.delete"]:SetList(profiles)
+	
+	table.foreach(profiles,function(k,v)
+		self.elements["profile.copy"]:SetItemDisabled(k, false)
+		self.elements["profile.delete"]:SetItemDisabled(k, false)
+	end)
+	
+	local currentProfileID = searchTableForValue(profiles,currentProfile)
+	
+	self.elements["profile.current"]:SetValue(currentProfileID)
+	self.elements["profile.copy"]:SetItemDisabled(currentProfileID, true)
+	self.elements["profile.delete"]:SetItemDisabled(currentProfileID, true)
+end
+
+function BeStride_GUI:ProfileCopy(profileID)
+	local profiles = BeStride:GetProfiles()
+	profile = profiles[profileID]
+	BeStride.db:CopyProfile(profile,true)
+	self.elements["profile.copy"]:SetValue("")
+	self.elements["profile.copybutton"]:SetDisabled(true)
+end
+
+function BeStride_GUI:ProfileDelete(profileID)
+	local profiles = BeStride:GetProfiles()
+	profile = profiles[profileID]
+	BeStride.db:DeleteProfile(profile,true)
+	self.elements["profile.delete"]:SetValue("")
+	self.elements["profile.deletebutton"]:SetDisabled(true)
+	self:ProfileResetLists()
 end
 
 function BeStride_GUI:UpdateBinding(button,key)
