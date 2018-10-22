@@ -37,9 +37,15 @@ function BeStride_Logic:Regular()
 		return nil
 	elseif IsMounted() then
 		if IsFlying() then
-			if BeStride_Logic:IsFlyable() and not self:NoDismountWhileFlying() then
+			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
 				Dismount()
-				return BeStride_Mount:Flying()
+				if BeStride:DBGet("settings.mount.remount") then
+					return BeStride_Mount:Flying()
+				else
+					return nil
+				end
+			elseif BeStride_Logic:IsFlyable() and not self:NoDismountWhileFlying() then
+				return nil
 			else
 				return nil
 			end
@@ -49,11 +55,15 @@ function BeStride_Logic:Regular()
 			Dismount()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Flying()
+			else
+				return nil
 			end
 		else
 			Dismount()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Regular()
+			else
+				return nil
 			end
 		end
 	elseif CanExitVehicle() then
@@ -92,7 +102,9 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:IsSpecialZone() then
 		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif IsMounted() then
-		if IsSwimming() then
+		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
+			return nil
+		elseif IsSwimming() then
 			return BeStride_Mount:Swimming()
 		else
 			return BeStride_Mount:Ground()
@@ -106,7 +118,11 @@ end
 
 function BeStride_Logic:RepairMountButton()
 	if IsMounted() or IsOutdoors() then
-		return BeStride_Mount:Repair()
+		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
+			return nil
+		else
+			return BeStride_Mount:Repair()
+		end
 	else
 		return nil
 	end
@@ -114,7 +130,11 @@ end
 
 function BeStride_Logic:PassengerMountButton(type)
 	if IsMounted() or IsOutdoors() then
-		return BeStride_Mount:Passenger(type)
+		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
+			return nil
+		else
+			return BeStride_Mount:Passenger(type)
+		end
 	else
 		return nil
 	end
@@ -235,7 +255,9 @@ end
 
 function BeStride_Logic:IsPriestAndSpecial()
 	if self:IsPriest() then
-		if IsMounted() and IsFlying() and self:PriestLevitate() and not self:NoDismountWhileFlying() then
+		if IsMounted() and IsFlying() and self:NoDismountWhileFlying() then
+			return false
+		elseif IsMounted() and IsFlying() and self:PriestLevitate() and self:NoDismountWhileFlying() then
 			return true
 		elseif self:PriestLevitate() and IsFalling() then
 			return true
