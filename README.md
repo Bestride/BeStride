@@ -100,6 +100,7 @@ v0.5.0
 * New Features:
   * New setting to force flying mounts when unable to fly (previously it would mix ground and flying)
   * Separate Mage Blink and Slowfall if to only trigger one
+  * Added Death Knights Fel Rush and Gliding
 v0.0.10
 -----------------
 * Added Mage Logic - Thanks to Daeymien for the pull request(s)
