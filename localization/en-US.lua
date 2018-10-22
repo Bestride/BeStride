@@ -15,6 +15,7 @@ BeStride_Locale = {
 		NoDismountWhileFlying = "Don't dismount while flying. You'll have to land or (if enabled in Blizzard options) cast a spell",
 		UseFlyingMount = "Use Flying type mounts even in areas where you cannot fly",
 		ForceFlyingMount = "Force Flying type mounts even in areas where you cannot fly",
+		PrioritizePassenger = "Prioritize Passenger Mounts when in group",
 		FlyingBroom = "Always use Flying Broom instead of a normal mount",
 		Telaari = "Always use the Telaari Talbuk or Frostwolf War Wolf while in Nagrand",
 		Repair = {
