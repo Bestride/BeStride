@@ -65,6 +65,10 @@ local defaults = {
 				deathknight = {
 					wraithwalk = true,
 				},
+				demonhunter = {
+					felrush = true,
+					glide = true,
+				},
 				druid = {
 					flightform = true,
 					traveltotravel = false,

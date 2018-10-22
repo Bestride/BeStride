@@ -27,6 +27,10 @@ BeStride_Constants = {
 				{name="classes.deathknight.wraithwalk",element="CheckBox",label=BeStride_Locale.Settings.Classes.DeathKnight.WraithWalk,class="deathknight"},
 			},
 			{
+				{name="classes.demonhunter.felrush",element="CheckBox",label=BeStride_Locale.Settings.Classes.DemonHunter.FelRush,class="demonhunter"},
+				{name="classes.demonhunter.glide",element="CheckBox",label=BeStride_Locale.Settings.Classes.DemonHunter.Glide,class="demonhunter"},
+			},
+			{
 				{name="classes.druid.flightform",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightForm,class="druid", dependants = {"classes.druid.traveltotravel","classes.druid.flightformpriority","classes.druid.mountedtoflightform"}},
 				{name="classes.druid.traveltotravel",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.TravelToTravel,class="druid", depends = {"classes.druid.flightform"}},
 				{name="classes.druid.flightformpriority",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.FlightFormPriority,class="druid", depends = {"classes.druid.flightform"}},
