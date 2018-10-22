@@ -26,6 +26,19 @@ function BeStride_Mount:DoMount(mounts)
 	return BeStride_Mount:Mount(name)
 end
 
+function BeStride_Mount:DBGetMountStatus(mountType,key)
+
+	local mounts = BeStride:DBGet("mounts." .. mountType)
+	local status = mounts[key]
+	if status ~= nil and status then
+		return true
+	elseif status == nil and BeStride:DBGet("settings.mount.enablenew") then
+		return true
+	else
+		return false
+	end
+end
+
 function BeStride_Mount:IsUsable(mount)
 	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mount)
 	
@@ -36,33 +49,43 @@ function BeStride_Mount:IsUsable(mount)
 	end
 end
 
-function BeStride_Mount:Regular()
+function BeStride_Mount:Failback()
 	local mounts = {}
 	
-	
-	for k,v in pairs(mountTable["ground"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
-	if BeStride:DBGet("settings.mount.useflyingmount") then
-		for k,v in pairs(mountTable["flying"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
-	end
+	for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
 	
 	if #mounts == 0 then
 		BeStride_Debug:Debug("No Mounts")
 		return nil
 	end
 	
-	return BeStride_Mount:DoMount(mounts)
+	return self:DoMount(mounts)
+end
+
+function BeStride_Mount:Regular()
+	local mounts = {}
+	
+	
+	for k,v in pairs(mountTable["ground"]) do if self:IsUsable(v) and self:DBGetMountStatus("ground",v) then table.insert(mounts,v) end end
+	if BeStride:DBGet("settings.mount.useflyingmount") then
+		for k,v in pairs(mountTable["flying"]) do if self:IsUsable(v) and self:DBGetMountStatus("flying",v) then table.insert(mounts,v) end end
+	end
+	
+	if #mounts == 0 then
+		return self:Failback()
+	end
+	
+	return self:DoMount(mounts)
 end
 
 function BeStride_Mount:Flying()
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["flying"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["flying"]) do if self:IsUsable(v) and self:DBGetMountStatus("flying",v) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
-		return nil
+		return self:Failback()
 	end
-	
 	
 	return BeStride_Mount:DoMount(mounts)
 end
@@ -70,13 +93,11 @@ end
 function BeStride_Mount:Ground()
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["ground"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["ground"]) do if self:IsUsable(v) and self:DBGetMountStatus("ground",v) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
-		return nil
+		return self:Failback()
 	end
-	
 	
 	return BeStride_Mount:DoMount(mounts)
 end
@@ -84,11 +105,13 @@ end
 function BeStride_Mount:Swimming()
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["swimming"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["swimming"]) do if self:IsUsable(v) and self:DBGetMountStatus("swimming",v) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
-		return nil
+		for k,v in pairs(mountTable["swimming"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+		if #mounts == 0 then
+			return self:Failback()
+		end
 	end
 	
 	
@@ -98,11 +121,13 @@ end
 function BeStride_Mount:Repair()
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["repair"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["repair"]) do if self:IsUsable(v) and self:DBGetMountStatus("repair",v) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
-		return nil
+		for k,v in pairs(mountTable["repair"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+		if #mounts == 0 then
+			return self:Failback()
+		end
 	end
 	
 	
@@ -112,15 +137,23 @@ end
 function BeStride_Mount:Passenger(type)
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) and ( (type ~= nil and mountTable.master[v].type) or type == nil ) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) and self:DBGetMountStatus("passenger",v) and ( (type ~= nil and mountTable.master[v].type) or type == nil ) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
-		return nil
+		for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
+		if #mounts == 0 then
+			return self:Failback()
+		end
 	end
 	
 	
 	return BeStride_Mount:DoMount(mounts)
+end
+
+function BeStride_Mount:Broom()
+end
+
+function BeStride_Mount:LoanedMount()
 end
 
 function BeStride_Mount:DeathKnightWraithWalk()
