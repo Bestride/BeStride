@@ -54,6 +54,7 @@ local defaults = {
 				forceflyingmount = false, --FFM
 				nodismountwhileflying = false, --NDWF
 				flyingbroom = false,
+				prioritizepassenger = false,
 				telaari = true,
 				repair = {
 					use = false,

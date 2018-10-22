@@ -45,9 +45,9 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	
 	local passenger = nil
 	
-	if IsInGroup() == true and BeStride_Logic:IsFlyable() then
+	if IsInGroup() == true and BeStride_Logic:IsFlyable() and BeStride:DBGet("settings.mount.prioritizepassenger") then
 		passenger = BeStride_Mount:Passenger("flying")
-	elseif IsInGroup() == true then
+	elseif IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") then
 		passenger = BeStride_Mount:Passenger()
 	end
 	
@@ -85,7 +85,7 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	
 	local passenger = nil
 	
-	if IsInGroup() == true then
+	if IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") then
 		passenger = BeStride_Mount:Passenger("ground")
 	end
 	
