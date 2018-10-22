@@ -160,6 +160,14 @@ function BeStride_Mount:DeathKnightWraithWalk()
 	return self:MountSpell(BeStride:SpellToName(212552))
 end
 
+function BeStride_Mount:DemonHunterFelRush()
+	return self:MountSpell(BeStride:SpellToName(195072))
+end
+
+function BeStride_Mount:DemonHunterGlide()
+	return self:MountSpell(BeStride:SpellToName(131347))
+end
+
 function BeStride_Mount:Druid()
 	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
 

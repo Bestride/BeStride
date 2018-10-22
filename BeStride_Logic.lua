@@ -16,6 +16,8 @@ function BeStride_Logic:Regular()
 	
 	if self:IsDeathKnightAndSpecial() then
 		return self:DeathKnight()
+	elseif self:IsDemonHunterAndSpecial() then
+		return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
@@ -86,6 +88,8 @@ end
 function BeStride_Logic:GroundMountButton()
 	if self:IsDeathKnightAndSpecial() then
 		return self:DeathKnight()
+	elseif self:IsDemonHunterAndSpecial() then
+		return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
@@ -144,6 +148,8 @@ function BeStride_Logic:Combat()
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
 		--BeStride_Debug:Verbose("Mount: DeathKnight")
 		return BeStride_Mount:DeathKnightWraithWalk()
+	elseif self:IsDemonHunter() and BeStride:DBGet("setting.classes.demonhunter.felrush") then
+		return BeStride_Mount:FelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
 		--BeStride_Debug:Verbose("Mount: Druid")
 		return BeStride_Mount:DruidTravel()
@@ -179,6 +185,22 @@ function BeStride_Logic:IsDeathKnightAndSpecial()
 		else
 			return false
 		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:IsDemonHunterAndSpecial()
+	if IsFlying() or IsFalling() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			return true
+		elseif IsFalling() then
+			return true
+		else
+			return false
+		end
+	elseif self:MovementCheck() then
+		return true
 	else
 		return false
 	end
@@ -296,6 +318,23 @@ function BeStride_Logic:DeathKnight()
 		return BeStride_Mount:DeathKnightWraithWalk()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DKBSL")
+	end
+end
+
+function BeStride_Logic:DemonHunter()
+	if IsFlying() or IsFalling() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			Dismount()
+			return BeStride_Mount:DemonHunterGlide()
+		elseif IsFalling() then
+			return BeStride_Mount:DemonHunterGlide()
+		else
+			return false
+		end
+	elseif self:MovementCheck() then
+		return BeStride_Mount:DemonHunterFelRush()
+	else
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
 	end
 end
 
@@ -731,6 +770,15 @@ function BeStride_Logic:IsDeathKnight()
 	end
 end
 
+-- Check for DeathKnight
+function BeStride_Logic:IsDemonHunter()
+	if string.lower(playerTable["class"]["name"]) == "demon hunter" then
+		return true
+	else
+		return false
+	end
+end
+
 -- Check for Druid
 function BeStride_Logic:IsDruid()
 	if string.lower(playerTable["class"]["name"]) == "druid" then
@@ -853,6 +901,26 @@ function BeStride_Logic:DeathKnightCanWraithWalk()
 	end
 end
 
+-- ------------------- --
+-- Demon Hunter Spells --
+-- ------------------- --
+
+function BeStride_Logic:DemonHunterCanFelRush()
+	if IsUsableSpell(195072) then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DemonHunterCanGlide()
+	if IsUsableSpell(131347) then
+		return true
+	else
+		return false
+	end
+end
+
 -- ----------- --
 -- Mage Spells --
 -- ----------- --
@@ -964,6 +1032,34 @@ end
 function BeStride_Logic:DeathKnightWraithWalk()
 	if self:IsDeathKnight() then
 		if self:DeathKnightCanWraithWalk() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ------------ --
+-- Demon Hunter --
+-- ------------ --
+
+function BeStride_Logic:DemonHunterFelRush()
+	if self:IsDemonHunter() then
+		if self:DemonHunterCanFelRush() and BeStride:DBGet("settings.classes.demonhunter.felrush") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DemonHunterGlide()
+	if self:IsDemonHunter() then
+		if self:DemonHunterCanGlide() and BeStride:DBGet("settings.classes.demonhunter.glide") then
 			return true
 		else
 			return false

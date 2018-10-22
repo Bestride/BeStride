@@ -33,6 +33,10 @@ BeStride_Locale = {
 				FlightFormPriority = "Druid: Prioritize using Flight Form over a regular mount even when not moving",
 				MountedToFlightForm = "Druid: When on a flying mount and flying + moving, shift into Flight Form",
 			},
+			DemonHunter = {
+				FelRush = "Demon Hunter: Use Fel Rush",
+				Glide = "Demon Hunter: Use Gliding",
+			},
 			Mage = {
 				SlowFall = "Mage: Slowfall",
 				Blink = "Mage: Blink",
