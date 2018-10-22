@@ -44,6 +44,7 @@ local defaults = {
 		settings = {
 			migrated = false,
 			bindingsMigrated = false,
+			ymBindingsMigrated = false,
 			mount = {
 				emptyrandom = true, --ER
 				hasmount = false, --HM
@@ -207,9 +208,27 @@ end
 function BeStride:Upgrade()
 	local db = LibStub("AceDB-3.0"):New("BestrideDB")
 	
+	local mountButtons = {
+		BRMOUNT = BeStride_ABRegularMount,
+		BRFORCEGROUND = BeStride_ABGroundMount,
+		BRFORCEPASSENGER = BeStride_ABPassengerMount,
+		BRFORCEREPAIR = BeStride_ABRepairMount
+	}
+	
+	if self.db.profile.settings.ymBindingsMigrated == false then
+		table.foreach(mountButtons,function (binding,button)
+			local primaryKey,secondaryKey = GetBindingKey(binding)
+			if primaryKey then
+				SetBindingClick(primaryKey,button:GetName())
+			end
+		
+			if secondaryKey then
+				SetBindingClick(secondaryKey,button:GetName())
+			end
+		end)
+	end
 	if self.db.profile.settings.bindingsMigrated == false then
 		table.foreach({BeStride_ABRegularMount,BeStride_ABGroundMount,BeStride_ABPassengerMount,BeStride_ABRepairMount},function (key,button)
-			BeStride_Debug:Info("Migrating Bindings: " .. button:GetName())
 			local primaryKey,secondaryKey = GetBindingKey(button:GetName())
 			if primaryKey then
 				SetBindingClick(primaryKey,button:GetName())
@@ -218,14 +237,12 @@ function BeStride:Upgrade()
 			if secondaryKey then
 				SetBindingClick(secondaryKey,button:GetName())
 			end
-			BeStride_Debug:Info("End Migrating Bindings")
 		end)
 	end
 	self.db.profile.settings.bindingsMigrated = true
+	self.db.profile.settings.ymBindingsMigrated = true
 	
 	if db.profile.settings and self.db.profile.settings.migrated == false then
-		print("Old Settings Exist, Upgrading")
-		
 		table.foreach(db.profile.settings,function (key,value)
 			if key == "HM" then
 				self.db.profile.settings.mount.hasmount = value
