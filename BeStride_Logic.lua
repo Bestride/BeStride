@@ -615,6 +615,14 @@ function BeStride_Logic:SpeedCheck()
 	return GetUnitSpeed("player")
 end
 
+function BeStride_Logic:IsMountable()
+	if IsOutdoors() then
+		return true
+	else
+		return false
+	end
+end
+
 function BeStride_Logic:IsFlyable()
 	if IsOutdoors() then
 		if self:IsFlyableArea() then
