@@ -191,15 +191,15 @@ function BeStride_Logic:IsDeathKnightAndSpecial()
 end
 
 function BeStride_Logic:IsDemonHunterAndSpecial()
-	if IsFlying() or IsFalling() then
+	if ( IsFlying() or IsFalling() ) and self:DemonHunterGlide() then
 		if IsFlying() and self:NoDismountWhileFlying() then
 			return true
-		elseif IsFalling() then
+		elseif IsFalling() and self:DemonHunterGlide() then
 			return true
 		else
 			return false
 		end
-	elseif self:MovementCheck() then
+	elseif self:MovementCheck() and self:DemonHunterFelRush()  then
 		return true
 	else
 		return false
@@ -322,16 +322,16 @@ function BeStride_Logic:DeathKnight()
 end
 
 function BeStride_Logic:DemonHunter()
-	if IsFlying() or IsFalling() then
+	if ( IsFlying() or IsFalling() ) and self:DemonHunterGlide() then
 		if IsFlying() and self:NoDismountWhileFlying() then
 			Dismount()
 			return BeStride_Mount:DemonHunterGlide()
-		elseif IsFalling() then
+		elseif IsFalling() and self:DemonHunterGlide() then
 			return BeStride_Mount:DemonHunterGlide()
 		else
 			return false
 		end
-	elseif self:MovementCheck() then
+	elseif self:MovementCheck() and self:DemonHunterFelRush() then
 		return BeStride_Mount:DemonHunterFelRush()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
