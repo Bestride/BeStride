@@ -20,9 +20,16 @@ function BeStride_Debug:Error(message)
 end
 
 
+function BeStride_Debug:Info(message)
+	if debugLevel >= 4 then
+		ChatFrame1:AddMessage("[Info]" .. message,1.0,1.0,1.0);
+	end
+end
+
+
 function BeStride_Debug:Informational(message)
 	if debugLevel >= 4 then
-		ChatFrame1:AddMessage("[Info]" .. message,0,0,0);
+		ChatFrame1:AddMessage("[Info]" .. message,1.0,1.0,1.0);
 	end
 end
 

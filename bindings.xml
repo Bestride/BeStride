@@ -1,6 +1,6 @@
 <Bindings>
-    <Binding name="BeStride_ABRegularMount" header="BESTRIDE_TITLE" category="ADDONS"></Binding>
-    <Binding name="BeStride_ABGroundMount" category="ADDONS"></Binding>
-    <Binding name="BeStride_ABRepairMount" category="ADDONS"></Binding>
-	<Binding name="BeStride_ABPassengerMount" category="ADDONS"></Binding>
+    <Binding name="CLICK BeStride_ABRegularMount:LeftButton" header="BESTRIDE_TITLE" category="ADDONS"></Binding>
+    <Binding name="CLICK BeStride_ABGroundMount:LeftButton" category="ADDONS"></Binding>
+    <Binding name="CLICK BeStride_ABRepairMount:LeftButton" category="ADDONS"></Binding>
+	<Binding name="CLICK BeStride_ABPassengerMount:LeftButton" category="ADDONS"></Binding>
 </Bindings> 
