@@ -906,8 +906,14 @@ end
 -- ------------------- --
 
 function BeStride_Logic:DemonHunterCanFelRush()
+	
 	if IsUsableSpell(195072) then
-		return true
+		local OnCooldown, _, _, _ = GetSpellCooldown(195072)
+		if OnCooldown == 0 then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -935,8 +941,8 @@ end
 
 function BeStride_Logic:MageCanBlink()
 	if IsUsableSpell(1953) then
-		local BlinkOnCooldown, _, _, _ = GetSpellCooldown(1953)
-		if BlinkOnCooldown == 0 then
+		local OnCooldown, _, _, _ = GetSpellCooldown(1953)
+		if OnCooldown == 0 then
 			return true
 		else
 			return false
