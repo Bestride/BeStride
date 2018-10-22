@@ -107,7 +107,7 @@ mountData = {
 		["subtype"] = "ground",
 		["repair"] = true,
 	},
-	[61448] = {
+	[61447] = {
 		["name"] = "Traveler's Tundra Mammoth",
 		["type"] = "passenger",
 		["subtype"] = "ground",

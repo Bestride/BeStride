@@ -13,6 +13,16 @@ function sortTable(unsortedTable)
 	return sortedTable
 end
 
+function searchTableForValue(haystack,needle)
+	for k,v in pairs(haystack) do
+		if v == needle then
+			return k
+		end
+	end
+	
+	return nil
+end
+
 function pairsByKeys (t, f)
 	local a = {}
 	for n in pairs(t) do table.insert(a, n) end
@@ -155,7 +165,7 @@ end
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
 	
-	--self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
+	self:RegisterEvent("UPDATE_BINDINGS", "UpdateBindings")
 	self:RegisterEvent("NEW_MOUNT_ADDED", "NewMount")
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "CombatEnter")
@@ -163,6 +173,12 @@ function BeStride:OnEnable()
 	
 	BeStride:UpdateBindings()
 	BeStride:Upgrade()
+end
+
+function BeStride:GetProfiles()
+	local profiles = BeStride.db:GetProfiles()
+	table.sort(profiles)
+	return profiles
 end
 
 function BeStride:NewMount(...)
@@ -192,6 +208,7 @@ function BeStride:CombatExit()
 end
 
 function BeStride:UpdateBindings()
+	BeStride_Debug:Verbose("Firing Update Bindings")
 	BeStride:SetKeyBindings(self.buttons["regular"])
 	BeStride:SetKeyBindings(self.buttons["ground"])
 	BeStride:SetKeyBindings(self.buttons["passenger"])
@@ -307,7 +324,7 @@ function BeStride:Upgrade()
 		end)
 	end
 	
-	self.db.profile.settings.migrated = true
+	--self.db.profile.settings.migrated = true
 end
 
 function BeStride:SetKeyBindings(button)
