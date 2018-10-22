@@ -1,8 +1,8 @@
 _G["BINDING_HEADER_BESTRIDE_TITLE"] = "BeStride"
-_G["BINDING_NAME_BeStride_ABRegularMount"] = "Mount Button"
-_G["BINDING_NAME_BeStride_ABGroundMount"] = "Force Ground Mount Button"
-_G["BINDING_NAME_BeStride_ABRepairMount"] = "Force Repair Mount Button"
-_G["BINDING_NAME_BeStride_ABPassengerMount"] = "Force Passenger Mount Button"
+_G["BINDING_NAME_CLICK BeStride_ABRegularMount:LeftButton"] = "Mount Button"
+_G["BINDING_NAME_CLICK BeStride_ABGroundMount:LeftButton"] = "Force Ground Mount Button"
+_G["BINDING_NAME_CLICK BeStride_ABRepairMount:LeftButton"] = "Force Repair Mount Button"
+_G["BINDING_NAME_CLICK BeStride_ABPassengerMount:LeftButton"] = "Force Passenger Mount Button"
 
 BeStride_Locale = {
 	Zone = {
