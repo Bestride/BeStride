@@ -1,6 +1,0 @@
-<Bindings>
-	<Binding name="BRMOUNT" header="BESTRIDE"></Binding>
-	<Binding name="BRFORCEGROUND"></Binding>
-	<Binding name="BRFORCEREPAIR"></Binding>
-	<Binding name="BRFORCEPASSENGER"></Binding>
-</Bindings>
