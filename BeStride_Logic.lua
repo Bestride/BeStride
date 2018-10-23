@@ -270,6 +270,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return true
 		elseif self:MovementCheck() then
 			return true
+		elseif IsOutdoors() ~= true then
 		else
 			return false
 		end
@@ -386,7 +387,9 @@ function BeStride_Logic:DemonHunter()
 end
 
 function BeStride_Logic:Druid()
-	if self:MovementCheck() then
+	if IsOutdoors() ~= true then
+		return BeStride_Mount:MountSpell(BeStride:SpellToName(768))
+	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif GetShapeshiftForm() == 3 then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
