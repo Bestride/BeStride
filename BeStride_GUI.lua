@@ -9,6 +9,7 @@ BeStride_GUI = {
 
 function BeStride_GUI:Frame(tab)
 	if not BeStride_Frame then
+		SetBinding
 		BeStride_GUI:Open(tab)
 	else
 		BeStride_GUI:Close()
@@ -17,7 +18,7 @@ end
 
 function BeStride_GUI:Open(defaultTab)
 	local frameTabs = {
-		{text = "Mounts (" .. getn(mountTable) .. ")", value="mounts"},
+		{text = "Mounts (" .. #mountTable["ground"] + #mountTable["flying"] + #mountTable["swimming"]   .. ")", value="mounts"},
 		{text = "Mount Options", value="mountoptions"},
 		{text = "Class Options", value="classoptions"},
 		{text = "Keybinds", value="keybinds"},
@@ -53,7 +54,7 @@ function BeStride_GUI:Close()
 end
 
 function BeStride_GUI:GetStatusText()
-	return "Version " .. version .. ", by Anaximander <IRONFIST> - Burning Legion US, Original Yay Mounts by Cyrae - Windrunner US & Anzu - Kirin Tor US"
+	return "Version " .. version .. ", by Anaximander <IRONFIST> - Burning Legion US"
 end
 
 function BeStride_GUI:SelectTab(container, event, group)-- Callback function for OnGroupSelected
