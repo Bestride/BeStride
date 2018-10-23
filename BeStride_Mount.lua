@@ -157,6 +157,14 @@ end
 function BeStride_Mount:LoanedMount()
 end
 
+function BeStride_Mount:Chauffeur()
+	if IsUsableSpell(179245) then
+		self:MountSpell(BeStride:SpellToName(179245))
+	elseif IsUsableSpell(179244) then
+		self:MountSpell(BeStride:SpellToName(179244))
+	end
+end
+
 function BeStride_Mount:DeathKnightWraithWalk()
 	return self:MountSpell(BeStride:SpellToName(212552))
 end

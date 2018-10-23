@@ -193,77 +193,88 @@ mountTypes = {
 
 ridingSkill = {
 	[33388] = {
-		["name"] = "Apprentice Riding",
-		["unlocks"] = "ground"
+		name = "Apprentice Riding",
+		unlocks = "ground",
+		level = 75,
 	},
 	[33391] = {
-		["name"] = "Journeyman Riding",
-		["depends"] = 33388,
+		name = "Journeyman Riding",
+		depends = 33388,
+		level = 150,
 	},
 	[34090] = {
-		["name"] = "Expert Riding",
-		["depends"] = 33391,
+		name = "Expert Riding",
+		depends = 33391,
+		level = 225,
 	},
 	[34091] = {
-		["name"] = "Artisan Riding",
-		["depends"] = 34090,
+		name = "Artisan Riding",
+		depends = 34090,
+		level = 300,
 	},
 	[90265] = {
-		["name"] = "Master Riding",
-		["unlocks"] = "flying",
-		["depends"] = 34091,
+		name = "Master Riding",
+		unlocks = "flying",
+		depends = 34091,
+		level = 375,
 	},
 	[90267] = {
-		["name"] = "Flight Master's License",
-		["depends"] = 34090
+		name = "Flight Master's License",
+		depends = 34090,
+		level = 450,
 	},
 	[54197] = {
-		["name"] = "Cold Weather Flying",
-		["unlocks"] = "flying",
-		["zones"] = {
+		name = "Cold Weather Flying",
+		unlocks = "flying",
+		zones = {
 			[1] = "",
 		},
-		["depends"] = 34090
+		depends = 34090,
+		level = 525,
 	},
 	[115913] = {
-		["name"] = "Wisdom of the Four Winds",
-		["unlocks"] = "flying",
-		["zones"] = {
+		name = "Wisdom of the Four Winds",
+		unlocks = "flying",
+		zones = {
 			[1] = "",
 		},
-		["depends"] = 34090
+		depends = 34090,
+		level = 600,
 	},
 	[191645] = {
-		["name"] = "Draenor Pathfinder",
-		["unlocks"] = "flying",
-		["zones"] = {
+		name = "Draenor Pathfinder",
+		unlocks = "flying",
+		zones = {
 			[1] = "",
 		},
-		["depends"] = 34090
+		depends = 34090,
+		level = 675,
 	},
 	[226342] = {
-		["name"] = "Broken Isles Pathfinder",
-		["depends"] = 34090
+		name = "Broken Isles Pathfinder",
+		depends = 34090
 	},
 	[233368] = {
-		["name"] = "Broken Isles Pathfinder",
-		["unlocks"] = "flying",
-		["zones"] = {
+		name = "Broken Isles Pathfinder",
+		unlocks = "flying",
+		zones = {
 			[1] = "",
 		},
-		["depends"] = 226342
+		depends = 226342,
+		level = 750,
 	},
 	--[] = {
-	--	["name"] = "",
-	--	["unlocks"] = "zone",
-	--	["zones"] = {
+	--	name = "",
+	--	unlocks = "zone",
+	--	zones = {
 	--		[]
 	--	},
-	--	["depends"] = ""
+	--	depends = ""
 	--},
 	[281576] = {
-		["name"] = "Battle for Azeroth Pathfinder",
-		["depends"] = 34090
+		name = "Battle for Azeroth Pathfinder",
+		depends = 34090,
+		level = 825,
 	},
 }
 
