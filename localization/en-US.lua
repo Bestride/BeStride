@@ -6,7 +6,67 @@ _G["BINDING_NAME_CLICK BeStride_ABPassengerMount:LeftButton"] = "Force Passenger
 
 BeStride_Locale = {
 	Zone = {
-		Oculus = "The Oculus"
+		Deadmines = {
+			Name = "The Deadmines",
+		},
+		AQ = {
+			Name = "Ahn'Qiraj",
+		},
+		Dalaran = {
+			Name = "Dalaran",
+			SubZone = { 
+				UnderBelly = {
+					Name = "The Underbelly"
+				}, 
+				UnderBellyDescent = {
+					Name = "The Underbelly Descent"
+				}, 
+				CircleOfWills = {
+					Name = "Circle of Wills"
+				}, 
+				BlackMarket = {
+					Name = "The Black Market"
+				},
+			}
+		},
+		Icecrown = {
+			Name = "Icecrown",
+		},
+		Oculus = {
+			Name = "The Oculus",
+		},
+		StormPeaks = {
+			Name = "The Storm Peaks",
+		},
+		Wintergrasp = {
+			Name = "Wintergrasp",
+		},
+		Vashjir = {
+			Name = "Vashj'ir",
+			SubZone = {
+				KelptharForest = {
+					Name = "Kelp'thar Forest"
+				},
+				ShimmeringExpanse = {
+					Name = "Shimmering Expanse"
+				},
+				AbyssalDepths = {
+					Name = "Abyssal Depths"
+				},
+				DamplightChamber = {
+					Name = "Damplight Chamber"
+				},
+				Nespirah = {
+					Name = "Nespirah"
+				},
+				LGhorek = {
+					Name = "L'Ghorek"
+				},
+			},
+		},
+		VortexPinnacle = {
+			Name = "The Vortex Pinnacle"
+		},
 	},
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",

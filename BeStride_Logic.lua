@@ -21,14 +21,13 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Chauffeur()
 	elseif self:IsDeathKnightAndSpecial() then
 		return self:DeathKnight()
-	--elseif self:IsDemonHunterAndSpecial() then
-	--	return self:DemonHunter()
+	elseif self:IsDemonHunterAndSpecial() then
+		return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
-		--BeStride_Debug:Verbose("MonkSpecial")
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
 		return self:Paladin()
@@ -39,7 +38,9 @@ function BeStride_Logic:Regular()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
 	elseif self:IsLoanedMount() then
-		BeStride_Debug:Verbose("Loaned Mount")
+		return BeStride_Mount:Loaned()
+	elseif self:CanBroom() then
+		return BeStride_Mount:Broom()
 	elseif self:IsSpecialZone() then
 		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif self:MovementCheck() then
@@ -95,7 +96,6 @@ function BeStride_Logic:Regular()
 	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 		return BeStride_Mount:Passenger("flying")
 	elseif self:IsFlyable() then
-		--BeStride_Debug:Verbose("Flyable")
 		return BeStride_Mount:Flying()
 	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 		return BeStride_Mount:Passenger("ground")
@@ -125,7 +125,6 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:IsMageAndSpecial() then
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
-		--BeStride_Debug:Verbose("MonkSpecial")
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
 		return self:Paladin()
@@ -133,6 +132,11 @@ function BeStride_Logic:GroundMountButton()
 		return self:Shaman()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
+	elseif self:CanBroom() then
+		return BeStride_Mount:Broom()
+	elseif self:IsLoanedMount() then
+		BeStride_Debug:Verbose("Loaned Mount")
+		return BeStride_Mount:Loaned()
 	elseif self:IsSpecialZone() then
 		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif self:IsRepairable() then
@@ -187,34 +191,26 @@ end
 
 function BeStride_Logic:Combat()
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
-		--BeStride_Debug:Verbose("Mount: DeathKnight")
 		return BeStride_Mount:DeathKnightWraithWalk()
 	elseif self:IsDemonHunter() and BeStride:DBGet("setting.classes.demonhunter.felrush") then
 		return BeStride_Mount:FelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
-		--BeStride_Debug:Verbose("Mount: Druid")
 		return BeStride_Mount:DruidTravel()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
-		--BeStride_Debug:Verbose("Mount: Mage")
 		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
 			return BeStride_Mount:MageBlink()
 		else
 			return BeStride_Mount:MageSlowFall()
 		end
 	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
-		--BeStride_Debug:Verbose("Mount: Monk")
 		return BeStride_Mount:MonkRoll()
 	elseif self:IsPaladin() and BeStride:DBGet("settings.classes.paladin.steed") then
-		--BeStride_Debug:Verbose("Mount: Paladin")
 		return BeStride_Mount:PaladinDivineSteed()
 	elseif self:IsPriest() and BeStride:DBGet("settings.classes.priest.levitate") then
-		--BeStride_Debug:Verbose("Mount: Priest")
 		return BeStride_Mount:PriestLevitate()
 	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
-		--BeStride_Debug:Verbose("Mount: Rogue")
 		return BeStride_Mount:RogueSprint()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
-		--BeStride_Debug:Verbose("Mount: Shaman")
 		return BeStride_Mount:ShamanGhostWolf()
 	end
 end
@@ -300,13 +296,10 @@ end
 function BeStride_Logic:IsMonkAndSpecial()
 	if self:IsMonk() then
 		if IsMounted() and IsFlying() and self:MonkZenFlight() and not self:NoDismountWhileFlying() then
-			--BeStride_Debug:Verbose("MountedFlying")
 			return true
 		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
-			--BeStride_Debug:Verbose("Falling")
 			return true
 		elseif self:MonkRoll() and self:MovementCheck() then
-			--BeStride_Debug:Verbose("Moving")
 			return true
 		else
 			return false
@@ -393,19 +386,14 @@ end
 
 function BeStride_Logic:Druid()
 	if self:MovementCheck() then
-		--BeStride_Debug:Verbose("Druid: Moving")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif GetShapeshiftForm() == 3 then
-		--BeStride_Debug:Verbose("Druid: Shapeshifted")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidCanFly() and self:DruidFlyingMTFF() then
-		--BeStride_Debug:Verbose("Druid: Flying, Flyable, MTFF")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif self:IsFlyable() and self:DruidCanFly() and self:DruidFlightFormPriority() then
-		--BeStride_Debug:Verbose("Druid: FlightFormPriority")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif IsFalling() and self:DruidCanFly() then
-		--BeStride_Debug:Verbose("Druid: Falling")
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
@@ -428,10 +416,8 @@ function BeStride_Logic:Monk()
 	elseif IsFalling() and self:MonkZenFlight() then
 		return BeStride_Mount:MonkZenFlight()
 	elseif IsMounted() and self:IsFlyable() and self:MonkZenFlight() then
-		--BeStride_Debug:Verbose("Trying Flight")
 		return BeStride_Mount:MonkZenFlight()
 	elseif not IsFlying() and self:IsFlyableArea() and self:MonkZenFlight() then
-		--BeStride_Debug:Verbose("Trying Flight")
 		return BeStride_Mount:MonkZenFlight()
 	elseif not self:IsFlyable() and self:MovementCheck() and self:MonkZenFlight() then
 		return BeStride_Mount:MonkZenFlight()
@@ -470,8 +456,7 @@ end
 
 function BeStride_Logic:Rogue()
 	if not IsFlying() and self:MovementCheck() and self:RogueSprint() then
-		--BeStride_Debug:Error("Sprinting")
-		return nil
+		return BeStride_Mount:Rogue()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: RGBSL")
 	end
@@ -536,36 +521,6 @@ function BeStride_Logic:IsRepairable()
 	end
 end
 
-function BeStride_Logic:OldIsFlyableArea()
-	local mapID = C_Map.GetBestMapForUnit("player")
-	local zone = BeStride:GetMapUntil(mapID,3)
-	local continent = BeStride:GetMapUntil(mapID,2)
-	
-	if ( not IsSpellKnown(34090) and not IsSpellKnown(34091) and not IsSpellKnown(90265) ) then
-		return false
-	end
-	
-	-- Northrend Flying
-	-- Mists Flying
-	
-	-- Draenor Flying
-	if ( continent["name"] == "Draenor"  and not IsSpellKnown(191645)) then
-		return false
-	end
-	
-	-- Legion Flying
-	if ( continent["name"] == "Broken Isles" and not IsSpellKnown(233368) ) then
-		return false
-	end
-	
-	-- Wintergrasp Flying
-	if zone == "Wintergrasp" then 
-		return not BeStride:WGActive()
-	end
-	
-	return true
-end
-
 -- Checks Player Speed
 -- Returns: integer
 function BeStride_Logic:MovementCheck()
@@ -613,7 +568,7 @@ end
 function BeStride_Logic:IsLoanedMount()
 	local loanedMount = BeStride_Logic:CheckLoanedMount()
 	
-	if loanedMount then
+	if loanedMount ~= nil then
 		return true
 	else
 		return false
@@ -627,30 +582,24 @@ function BeStride_Logic:CheckLoanedMount()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	--if zone == BestrideLocale.Zone.Dalaran then
-	--	local subzone = GetSubZoneText()
-	--	if subzone == BestrideLocale.Zone.DalaranSubZone.Underbelly or
-	--			subzone == BestrideLocale.Zone.DalaranSubZone.UnderbellyDescent or
-	--			subzone == BestrideLocale.Zone.DalaranSubZone.CircleofWills or
-	--			subzone == BestrideLocale.Zone.DalaranSubZone.BlackMarket then
-	--		if GetItemCount(139421, false) > 0 then
-	--			return 139421
-	--		else
-	--			return nil
-	--		end
-	--	else
-	--		return nil
-	--	end
-	--elseif zone == BestrideLocale.Zone.StormPeaks or zone == BestrideLocale.Zone.Icecrown then
-	--	if GetItemCount(44221, false) > 0 then
-	--		return 44221
-	--	elseif GetItemCount(44229, false) > 0 then
-	--		return 44229
-	--	else
-	--		return nil
-	--	end
-	--end
-	--return nil
+	if dungeon == BeStride_Locale.Zone.Dalaran then
+		if micro == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly or
+				micro == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent or
+				micro == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills or
+				micro == BeStridevLocale.Zone.Dalaran.SubZone.BlackMarket then
+			if GetItemCount(139421, false) > 0 then
+				return 139421
+			end
+		end
+	elseif zone == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown then
+		if GetItemCount(44221, false) > 0 then
+			return 44221
+		elseif GetItemCount(44229, false) > 0 then
+			return 44229
+		end
+	end
+	
+	return nil
 end
 
 -- Check whether we can dismount while flying

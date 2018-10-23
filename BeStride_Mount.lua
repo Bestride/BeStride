@@ -152,9 +152,13 @@ function BeStride_Mount:Passenger(type)
 end
 
 function BeStride_Mount:Broom()
+	self:MountSpell(BeStride:SpellToName(37011))
 end
 
-function BeStride_Mount:LoanedMount()
+function BeStride_Mount:Loaned()
+	local mount = BeStride_Logic:CheckLoanedMount()
+	
+	self:MountSpell(BeStride:SpellToName(mount))
 end
 
 function BeStride_Mount:Chauffeur()
@@ -254,6 +258,6 @@ function BeStride_Mount:Rogue()
 	return self:RogueSprint()
 end
 
-function BeStride_Mount:Rogue()
+function BeStride_Mount:RogueSprint()
 	return self:MountSpell("[@player] "..BeStride:SpellToName(2983))
 end
