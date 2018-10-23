@@ -479,6 +479,14 @@ function BeStride_Logic:IsMountable()
 end
 
 function BeStride_Logic:IsSpecialZone()
+	local mapID = C_Map.GetBestMapForUnit("player")
+	local micro = BeStride:GetMapUntil(mapID,5)
+	local dungeon = BeStride:GetMapUntil(mapID,4)
+	local zone = BeStride:GetMapUntil(mapID,3)
+	local continent = BeStride:GetMapUntil(mapID,2)
+	
+	print(continent .. ":" .. zone .. ":" .. dungeon .. ":" .. micro)
+	
 	return false
 end
 
