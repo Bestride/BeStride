@@ -42,7 +42,7 @@ function BeStride_Logic:Regular()
 	elseif self:CanBroom() then
 		return BeStride_Mount:Broom()
 	elseif self:IsSpecialZone() then
-		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Mount:SpecialZone()
 	elseif self:MovementCheck() then
 		return nil
 	elseif IsMounted() then
@@ -135,12 +135,11 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:CanBroom() then
 		return BeStride_Mount:Broom()
 	elseif self:IsLoanedMount() then
-		BeStride_Debug:Verbose("Loaned Mount")
 		return BeStride_Mount:Loaned()
 	elseif self:IsSpecialZone() then
-		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+		BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
-		--Do Nothing yet
+		BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
@@ -212,6 +211,8 @@ function BeStride_Logic:Combat()
 		return BeStride_Mount:RogueSprint()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
 		return BeStride_Mount:ShamanGhostWolf()
+	elseif self:IsSpecialZone() then
+		BeStride_Mount:SpecialZone()
 	end
 end
 
@@ -485,9 +486,29 @@ function BeStride_Logic:IsSpecialZone()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	print(continent .. ":" .. zone .. ":" .. dungeon .. ":" .. micro)
+	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+		local garrisonAbilityName = GetSpellInfo(161691)
+		local _,_,_,_,_,_,spellID = GetSpellInfo(garrisonAbilityName)
+		if(spellID == 165803 or spellID == 164222) then
+			return true
+		end
+	end
 	
 	return false
+end
+
+function BeStride_Logic:SpecialZone()
+	local mapID = C_Map.GetBestMapForUnit("player")
+	local micro = BeStride:GetMapUntil(mapID,5)
+	local dungeon = BeStride:GetMapUntil(mapID,4)
+	local zone = BeStride:GetMapUntil(mapID,3)
+	local continent = BeStride:GetMapUntil(mapID,2)
+	
+	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+		return BeStride_Mount:Nagrand()
+	end
+	
+	return nil
 end
 
 function BeStride_Logic:IsRepairable()
