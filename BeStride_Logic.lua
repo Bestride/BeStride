@@ -53,10 +53,24 @@ function BeStride_Logic:Regular()
 			end
 		elseif IsSwimming() then
 			return BeStride_Mount:Swimming()
+		elseif self:IsFlyable() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+			Dismount()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Passenger("flying")
+			else
+				return nil
+			end
 		elseif self:IsFlyable() then
 			Dismount()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Flying()
+			else
+				return nil
+			end
+		elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+			Dismount()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Passenger("ground")
 			else
 				return nil
 			end
@@ -71,9 +85,13 @@ function BeStride_Logic:Regular()
 	elseif CanExitVehicle() then
 		VehicleExit()
 		return BeStride_Mount:Regular()
+	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+		return BeStride_Mount:Passenger("flying")
 	elseif self:IsFlyable() then
 		--BeStride_Debug:Verbose("Flyable")
 		return BeStride_Mount:Flying()
+	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+		return BeStride_Mount:Passenger("ground")
 	elseif self:IsMountable() then
 		return BeStride_Mount:Regular()
 	elseif IsOutdoors() then
@@ -105,14 +123,25 @@ function BeStride_Logic:GroundMountButton()
 		return self:Rogue()
 	elseif self:IsSpecialZone() then
 		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
+	elseif self:IsRepairable() then
+		--Do Nothing yet
 	elseif IsMounted() then
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
+		elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+			Dismount()
+			if BeStride:DBGet("settings.mount.remount") then
+				return BeStride_Mount:Passenger("ground")
+			else
+				return nil
+			end
 		elseif IsSwimming() then
 			return BeStride_Mount:Swimming()
 		else
 			return BeStride_Mount:Ground()
 		end
+	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+		return BeStride_Mount:Passenger("ground")
 	elseif IsOutdoors() then
 		return BeStride_Mount:Ground()
 	else
@@ -567,6 +596,45 @@ end
 
 function BeStride_Logic:IsSpecialZone()
 	return false
+end
+
+function BeStride_Logic:IsRepairable()
+	if not self:IsMountable() then
+		return false
+	end
+	
+	mounts = BeStride:DBGet("mounts.repair")
+	if #mounts ~= 0 then
+		local globalDurability,count = 0
+		for i = 0, 17 do
+			local current, maximum = GetInventoryItemDurability(i)
+			if current ~= nil and maximum ~= nil then
+				local durability = (current / maximum)
+				count = count+1
+				globalDurability = globalDurability + durability
+				if (durability * 100) <= BeStride:DBGet("settings.mount.repair.durability") then
+					return true
+				end
+			end
+		end
+		
+		if ((globalDurability/count)*100) <= BeStride:DBGet("settings.mount.repair.globaldurability") then
+			return true
+		end
+		
+		for i = 0, 4 do
+			for j = 0, GetContainerNumSlots(i) do
+				local current, maximum = GetContainerItemDurability(i, j);
+				if current ~= nil and maximum ~= nil then
+					if ((current / maximum)*100) <= BeStride:DBGet("settings.mount.repair.inventorydurability") then
+						return true
+					end
+				end
+			end
+		end
+	else
+		return false
+	end
 end
 
 function BeStride_Logic:OldIsFlyableArea()

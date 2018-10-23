@@ -169,7 +169,17 @@ function BeStride_GUI:CreateMountCheckBox(group,mountID)
 end
 
 function BeStride_GUI:DrawMountOptionTab(container, parent)
-	container:SetLayout("Flow")
+	container:SetLayout("Fill")
+	
+	local scrollcontainer = AceGUI:Create("SimpleGroup")
+	scrollcontainer:SetFullWidth(true)
+	scrollcontainer:SetFullHeight(true)
+	scrollcontainer:SetLayout("Fill")
+	container:AddChild(scrollcontainer)
+
+	local scroll = AceGUI:Create("ScrollFrame")
+	scroll:SetLayout("Flow") 
+	scrollcontainer:AddChild(scroll)
 	
 	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
 		local element = nil
@@ -193,7 +203,7 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 		end
 		
 		if element ~= nil then
-			container:AddChild(element)
+			scroll:AddChild(element)
 		end
 	end
 end
@@ -270,7 +280,17 @@ function BeStride_GUI:CreateSettingSlider(name,label,minValue,maxValue,increment
 end
 
 function BeStride_GUI:DrawClassOptionTab(container)
-	container:SetLayout("Flow")
+	container:SetLayout("Fill")
+	
+	local scrollcontainer = AceGUI:Create("SimpleGroup")
+	scrollcontainer:SetFullWidth(true)
+	scrollcontainer:SetFullHeight(true)
+	scrollcontainer:SetLayout("Fill")
+	container:AddChild(scrollcontainer)
+
+	local scroll = AceGUI:Create("ScrollFrame")
+	scroll:SetLayout("Flow") 
+	scrollcontainer:AddChild(scroll)
 	
 	table.foreach(BeStride_Constants.Settings.Classes,function (key,classSetting)
 		--if tolower(class) == tolower(playerTable["class"]["name"])
@@ -283,7 +303,7 @@ function BeStride_GUI:DrawClassOptionTab(container)
 				end
 				
 				if element ~= nil then
-					container:AddChild(element)
+					scroll:AddChild(element)
 				end
 			end
 		--end
