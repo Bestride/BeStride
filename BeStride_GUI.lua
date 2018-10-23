@@ -9,7 +9,6 @@ BeStride_GUI = {
 
 function BeStride_GUI:Frame(tab)
 	if not BeStride_Frame then
-		SetBinding
 		BeStride_GUI:Open(tab)
 	else
 		BeStride_GUI:Close()
