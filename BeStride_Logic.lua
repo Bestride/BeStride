@@ -21,8 +21,8 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Chauffeur()
 	elseif self:IsDeathKnightAndSpecial() then
 		return self:DeathKnight()
-	elseif self:IsDemonHunterAndSpecial() then
-		return self:DemonHunter()
+	--elseif self:IsDemonHunterAndSpecial() then
+	--	return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
@@ -38,6 +38,8 @@ function BeStride_Logic:Regular()
 		return self:Shaman()
 	elseif self:IsRogueAndSpecial() then
 		return self:Rogue()
+	elseif self:IsLoanedMount() then
+		BeStride_Debug:Verbose("Loaned Mount")
 	elseif self:IsSpecialZone() then
 		--BeStride_Debug:Error("[SpecialZoneError]This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	elseif self:MovementCheck() then
@@ -608,8 +610,8 @@ end
 -- Special Checks --
 -- +------------+ --
 
-function BeStride_Logic:HasLoanedMount()
-	local loanedMount = BeStride_Logic:CheckLoanerMount()
+function BeStride_Logic:IsLoanedMount()
+	local loanedMount = BeStride_Logic:CheckLoanedMount()
 	
 	if loanedMount then
 		return true
@@ -618,13 +620,12 @@ function BeStride_Logic:HasLoanedMount()
 	end
 end
 
-function BeStride_Logic:CheckLoanerMount()
+function BeStride_Logic:CheckLoanedMount()
 	local mapID = C_Map.GetBestMapForUnit("player")
+	local micro = BeStride:GetMapUntil(mapID,5)
+	local dungeon = BeStride:GetMapUntil(mapID,4)
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
-	
-	print("Zone: " .. zone)
-	print("Continent: " .. continent)
 	
 	--if zone == BestrideLocale.Zone.Dalaran then
 	--	local subzone = GetSubZoneText()
