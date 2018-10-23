@@ -1,0 +1,31 @@
+## Interface: 80000
+## Title: BeStride
+## Notes: Manages your Mounts
+## Author: Anaximander - Burning Legion US
+## Version: 0.5.0
+## X-Category: Interface Enhancements 
+## X-Embeds: Ace3
+## OptionalDeps: Ace3
+## SavedVariables: BeStrideDB, BestrideDB
+
+BeStride_Debug.lua
+## BeStride.xml
+
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+libs\AceAddon-3.0\AceAddon-3.0.xml
+libs\AceEvent-3.0\AceEvent-3.0.xml
+libs\AceConsole-3.0\AceConsole-3.0.xml
+libs\AceDB-3.0\AceDB-3.0.xml
+libs\AceGUI-3.0\AceGUI-3.0.xml
+
+
+localization\en-US.lua
+
+BeStride.lua
+BeStride_Constants.lua
+BeStride_ActionButton.lua
+BeStride_Events.lua
+BeStride_GUI.lua
+BeStride_Logic.lua
+BeStride_Mount.lua
