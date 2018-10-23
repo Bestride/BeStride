@@ -169,6 +169,10 @@ function BeStride_Mount:Chauffeur()
 	end
 end
 
+function BeStride_Mount:Nagrand()
+	return self:MountSpell(BeStride:SpellToName(164222))
+end
+
 function BeStride_Mount:DeathKnightWraithWalk()
 	return self:MountSpell(BeStride:SpellToName(212552))
 end

@@ -67,6 +67,14 @@ BeStride_Locale = {
 		VortexPinnacle = {
 			Name = "The Vortex Pinnacle"
 		},
+		Nagrand = {
+			Name = "Nagrand"
+		},
+	},
+	Continent = {
+		Draenor = {
+			Name = "Draenor",
+		},
 	},
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",
