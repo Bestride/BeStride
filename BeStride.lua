@@ -554,6 +554,12 @@ function BeStride:AddRepairMount(mountId)
 	end
 end
 
+function BeStride:ItemToName(itemID)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, isCraftingReagent = GetItemInfo()
+	
+	return itemName
+end
+
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
 	--BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
