@@ -152,7 +152,7 @@ function BeStride_Mount:Passenger(type)
 end
 
 function BeStride_Mount:Broom()
-	self:Mount(BeStride:ItemToName37011)
+	self:Mount(BeStride:ItemToName(37011))
 end
 
 function BeStride_Mount:Loaned()
