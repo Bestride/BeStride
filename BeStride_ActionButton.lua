@@ -43,23 +43,10 @@ function BeStride_ActionButtonRegularMount:PreClick()
 		return
 	end
 	
-	local passenger = nil
-	
-	if IsInGroup() == true and BeStride_Logic:IsFlyable() and BeStride:DBGet("settings.mount.prioritizepassenger") and IsOutdoors() then
-		passenger = BeStride_Mount:Passenger("flying")
-	elseif IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") and IsOutdoors() then
-		passenger = BeStride_Mount:Passenger()
-	end
-	
-	if passenger ~= nil then
-		--BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
-		self:SetAttribute("macrotext",passenger)
-	else
-		local mount = BeStride_Logic:Regular()
-		if mount ~= nil then
-			self:SetAttribute("macrotext",mount)
-			--BeStride_Debug:Verbose(self:GetAttribute("macrotext"))
-		end
+	local mount = BeStride_Logic:Regular()
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
+		--BeStride_Debug:Verbose(self:GetAttribute("macrotext"))
 	end
 end
 
@@ -82,21 +69,9 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
-	
-	local passenger = nil
-	
-	if IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") and IsOutdoors() then
-		passenger = BeStride_Mount:Passenger("ground")
-	end
-	
-	if passenger ~= nil then
-		--BeStride_Debug:Verbose("Mount:" .. tostring(passenger))
-		self:SetAttribute("macrotext",passenger)
-	else
-		local mount = BeStride_Logic:GroundMountButton()
-		if mount ~= nil then
-			self:SetAttribute("macrotext",mount)
-		end
+	local mount = BeStride_Logic:GroundMountButton()
+	if mount ~= nil then
+		self:SetAttribute("macrotext",mount)
 	end
 end
 

@@ -16,9 +16,11 @@ BeStride_Constants = {
 			{
 				element="Group",
 				children={
-					{name="mount.repair.use",element="CheckBox",label=BeStride_Locale.Settings.Repair.Use, dependants = {"mount.repair.force"} },
+					{name="mount.repair.use",element="CheckBox",label=BeStride_Locale.Settings.Repair.Use, dependants = {"mount.repair.force","mount.repair.durability","mount.repair.globaldurability","mount.repair.inventorydurability"} },
 					{name="mount.repair.force",element="CheckBox",label=BeStride_Locale.Settings.Repair.Force, depends = {"mount.repair.use"}},
-					{name="mount.repair.durability",element="Slider",label=BeStride_Locale.Settings.Repair.Durability,minDurability=0,maxDurability=100, increment=5, depends = {"mount.repair.use"}}
+					{name="mount.repair.durability",element="Slider",label=BeStride_Locale.Settings.Repair.Durability,minDurability=0,maxDurability=100, increment=5, depends = {"mount.repair.use"}},
+					{name="mount.repair.globaldurability",element="Slider",label=BeStride_Locale.Settings.Repair.GlobalDurability,minDurability=0,maxDurability=100, increment=5, depends = {"mount.repair.use"}},
+					{name="mount.repair.inventorydurability",element="Slider",label=BeStride_Locale.Settings.Repair.InventoryDurability,minDurability=0,maxDurability=100, increment=5, depends = {"mount.repair.use"}},
 				}
 			}
 		},

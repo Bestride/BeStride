@@ -70,6 +70,8 @@ local defaults = {
 					use = false,
 					force = false,
 					durability = 20,
+					globaldurability = 20,
+					inventorydurability = 5,
 				},
 			},
 			classes = {
