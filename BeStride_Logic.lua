@@ -13,7 +13,7 @@ end
 
 function BeStride_Logic:Regular()
 	-- Check if we are mounted first
-	
+	print("")
 	if IsMounted() and self:NeedsChauffeur() then
 		Dismount()
 		return BeStride_Mount:Chauffeur()
@@ -42,9 +42,7 @@ function BeStride_Logic:Regular()
 	elseif self:CanBroom() then
 		return BeStride_Mount:Broom()
 	elseif self:IsSpecialZone() then
-		BeStride_Mount:SpecialZone()
-	elseif self:MovementCheck() then
-		return nil
+		return BeStride_Mount:SpecialZone()
 	elseif IsMounted() then
 		if IsFlying() then
 			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
@@ -54,8 +52,6 @@ function BeStride_Logic:Regular()
 				else
 					return nil
 				end
-			elseif BeStride_Logic:IsFlyable() and not self:NoDismountWhileFlying() then
-				return nil
 			else
 				return nil
 			end
@@ -137,9 +133,9 @@ function BeStride_Logic:GroundMountButton()
 	elseif self:IsLoanedMount() then
 		return BeStride_Mount:Loaned()
 	elseif self:IsSpecialZone() then
-		BeStride_Mount:SpecialZone()
+		return BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
-		BeStride_Mount:Repair()
+		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
@@ -243,7 +239,7 @@ end
 function BeStride_Logic:IsDemonHunterAndSpecial()
 	if ( IsFlying() or IsFalling() ) and self:DemonHunterGlide() then
 		if IsFlying() and self:NoDismountWhileFlying() then
-			return true
+			return false
 		elseif IsFalling() and self:DemonHunterGlide() then
 			return true
 		else
@@ -262,6 +258,8 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return false
 		elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
+		elseif IsFlying() and self:NoDismountWhileFlying() then
+			return false
 		elseif self:IsFlyable() and self:DruidFlying() and self:DruidFlightFormPriority() then
 			return true
 		elseif IsFalling() and self:DruidFlying() then
@@ -271,6 +269,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 		elseif self:MovementCheck() then
 			return true
 		elseif IsOutdoors() ~= true then
+			return true
 		else
 			return false
 		end
@@ -281,7 +280,9 @@ end
 
 function BeStride_Logic:IsMageAndSpecial()
 	if self:IsMage() then
-		if IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) and not self:NoDismountWhileFlying() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			return false
+		elseif IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) then
 			return true
 		elseif (self:MageSlowFall() or self:MageBlink()) and IsFalling() then
 			return true
@@ -297,7 +298,9 @@ end
 
 function BeStride_Logic:IsMonkAndSpecial()
 	if self:IsMonk() then
-		if IsMounted() and IsFlying() and self:MonkZenFlight() and not self:NoDismountWhileFlying() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			return false
+		elseif IsMounted() and IsFlying() and self:MonkZenFlight() then
 			return true
 		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
 			return true
@@ -343,7 +346,13 @@ end
 
 function BeStride_Logic:IsRogueAndSpecial()
 	if self:IsRogue() then
-	
+		if IsFlying() then
+			return false
+		elseif not IsFlying() and self:MovementCheck() and self:RogueSprint() then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end
@@ -351,7 +360,9 @@ end
 
 function BeStride_Logic:IsShamanAndSpecial()
 	if self:IsShaman() then
-		if self:ShamanGhostWolf() and self:MovementCheck() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			return false
+		elseif self:ShamanGhostWolf() and self:MovementCheck() then
 			return true
 		else
 			return false
@@ -638,7 +649,7 @@ end
 -- Returns: boolean
 function BeStride_Logic:NoDismountWhileFlying()
 	-- Todo: Bitwise Compare
-	if BeStride.db.profile.settings["nodismountwhileflying"] then
+	if BeStride:DBGet("settings.mount.nodismountwhileflying") then
 		return true
 	else
 		return false

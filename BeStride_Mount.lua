@@ -152,20 +152,20 @@ function BeStride_Mount:Passenger(type)
 end
 
 function BeStride_Mount:Broom()
-	self:Mount(BeStride:ItemToName(37011))
+	return self:Mount(BeStride:ItemToName(37011))
 end
 
 function BeStride_Mount:Loaned()
 	local mount = BeStride_Logic:CheckLoanedMount()
 	
-	self:MountSpell(BeStride:SpellToName(mount))
+	return self:MountSpell(BeStride:SpellToName(mount))
 end
 
 function BeStride_Mount:Chauffeur()
 	if IsUsableSpell(179245) then
-		self:MountSpell(BeStride:SpellToName(179245))
+		return self:MountSpell(BeStride:SpellToName(179245))
 	elseif IsUsableSpell(179244) then
-		self:MountSpell(BeStride:SpellToName(179244))
+		return self:MountSpell(BeStride:SpellToName(179244))
 	end
 end
 

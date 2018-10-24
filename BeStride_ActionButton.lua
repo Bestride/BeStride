@@ -23,7 +23,7 @@ function BeStride:CreateActionButton(buttontype)
 	
 	br.id = buttontype
 	br:SetScript("PreClick",function (self) self:PreClick() end )
-	br:SetScript("PostClick",self.PostClick)
+	br:SetScript("PostClick",function (self) self.PostClick() end)
 	--SaveBindings(GetCurrentBindingSet())
 	if br then
 	    --print("Returning: " .. br:GetName())
