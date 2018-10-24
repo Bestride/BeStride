@@ -23,7 +23,7 @@ function BeStride:CreateActionButton(buttontype)
 	
 	br.id = buttontype
 	br:SetScript("PreClick",function (self) self:PreClick() end )
-	br:SetScript("PostClick",self.PostClick)
+	br:SetScript("PostClick",function (self) self.PostClick() end)
 	--SaveBindings(GetCurrentBindingSet())
 	if br then
 	    --print("Returning: " .. br:GetName())
@@ -42,6 +42,8 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
+	
+	collectgarbage()
 	
 	local mount = BeStride_Logic:Regular()
 	if mount ~= nil then
@@ -69,6 +71,9 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
+	
+	collectgarbage()
+	
 	local mount = BeStride_Logic:GroundMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
@@ -95,6 +100,8 @@ function BeStride_ActionButtonPassengerMount:PreClick()
 		return
 	end
 	
+	collectgarbage()
+	
 	local mount = BeStride_Logic:PassengerMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
@@ -120,6 +127,8 @@ function BeStride_ActionButtonRepairMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
+	
+	collectgarbage()
 	
 	local mount = BeStride_Logic:RepairMountButton()
 	if mount ~= nil then
