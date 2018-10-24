@@ -5,10 +5,12 @@ local BeStride_Frame = nil
 BeStride_GUI = {
 	buttons = {},
 	elements = {},
-	mounts = {}
+	mounts = {},
+	mountsGroup = nil
 }
 
 function BeStride_GUI:Frame(tab)
+	collectgarbage()
 	if not BeStride_Frame then
 		BeStride_GUI:Open(tab)
 	else
@@ -132,25 +134,19 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	local scrollframe = AceGUI:Create("ScrollFrame")
 	scrollcontainerframe:AddChild(scrollframe)
 	
-	local mountsGroup = AceGUI:Create("InlineGroup")
-	mountsGroup:SetFullWidth(true)
-	mountsGroup:SetLayout("Flow")
+	self.mountsGroup = AceGUI:Create("InlineGroup")
+	self.mountsGroup:SetFullWidth(true)
+	self.mountsGroup:SetLayout("Flow")
+	
+	filterButton:SetCallback("OnTextChanged",function(self) BeStride_GUI:FilterMounts(group,self:GetText())  end)
+	
 	
 	self.mounts[group] = {}
+	self:CreateMountCheckBoxes(group)
 	
-	for key,mount in pairs(mountTable[group]) do
-		--BeStride_Debug:Debug(mount["type"] .. ":" .. group)
-		--BeStride_Debug:Debug("Mount: " .. mountTable["master"][mount]["name"])
-		local mountCheck = BeStride_GUI:CreateMountCheckBox(group,mount)
-		if mountCheck ~= nil then
-			local name = mountTable.master[mount].name
-			self.mounts[group][name] = mountCheck
-		end
-	end
+	for _,mountCheck in pairsByKeys(self.mounts[group]) do self.mountsGroup:AddChild(mountCheck) end
 	
-	for _,mountCheck in pairsByKeys(self.mounts[group]) do mountsGroup:AddChild(mountCheck) end
-	
-	scrollframe:AddChild(mountsGroup)
+	scrollframe:AddChild(self.mountsGroup)
 end
 
 function BeStride_GUI:SelectAllMounts(group)
@@ -162,6 +158,26 @@ end
 function BeStride_GUI:ClearAllMounts(group)
 	for key,mount in pairs(self.mounts[group]) do
 		mount:SetValue(false)
+	end
+end
+
+function BeStride_GUI:FilterMounts(group,text)
+	self.mountsGroup:ReleaseChildren()
+	self.mounts[group] = nil
+	self.mounts[group] = {}
+	self:CreateMountCheckBoxes(group,text)
+	for _,mountCheck in pairsByKeys(self.mounts[group]) do self.mountsGroup:AddChild(mountCheck) end
+end
+
+function BeStride_GUI:CreateMountCheckBoxes(group,filter)
+	for key,mount in pairs(mountTable[group]) do
+		if filter == nil or (filter ~= nil and (string.len(filter) == 0 or string.find(string.lower(mountTable.master[mount].name), string.lower(filter)))) then
+			local mountCheck = BeStride_GUI:CreateMountCheckBox(group,mount)
+			if mountCheck ~= nil then
+				local name = mountTable.master[mount].name
+				self.mounts[group][name] = mountCheck
+			end
+		end
 	end
 end
 

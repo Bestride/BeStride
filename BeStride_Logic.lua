@@ -43,6 +43,8 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Broom()
 	elseif self:IsSpecialZone() then
 		return BeStride_Mount:SpecialZone()
+	elseif self:IsRepairable() then
+		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() then
 			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
@@ -526,18 +528,21 @@ function BeStride_Logic:SpecialZone()
 end
 
 function BeStride_Logic:IsRepairable()
-	if not self:IsMountable() then
+	if not self:IsMountable() or IsFlying() or not IsOutdoors() then
 		return false
 	end
-	
 	mounts = BeStride:DBGet("mounts.repair")
-	if #mounts ~= 0 then
-		local globalDurability,count = 0
+	local mountCount = {}
+	
+	table.foreach(mounts,function (key,value) table.insert(mountCount,key) end )
+	
+	if #mountCount ~= 0 then
+		local globalDurability,count = 0,0
 		for i = 0, 17 do
 			local current, maximum = GetInventoryItemDurability(i)
 			if current ~= nil and maximum ~= nil then
 				local durability = (current / maximum)
-				count = count+1
+				count = count + 1
 				globalDurability = globalDurability + durability
 				if (durability * 100) <= BeStride:DBGet("settings.mount.repair.durability") then
 					return true
@@ -551,7 +556,7 @@ function BeStride_Logic:IsRepairable()
 		
 		for i = 0, 4 do
 			for j = 0, GetContainerNumSlots(i) do
-				local current, maximum = GetContainerItemDurability(i, j);
+				local current, maximum = GetContainerItemDurability(i, j)
 				if current ~= nil and maximum ~= nil then
 					if ((current / maximum)*100) <= BeStride:DBGet("settings.mount.repair.inventorydurability") then
 						return true
