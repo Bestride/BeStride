@@ -71,6 +71,7 @@ function BeStride_Logic:Regular()
 				return nil
 			end
 		elseif IsSwimming() then
+			self:DismountAndExit()
 			return BeStride_Mount:Swimming()
 		elseif self:IsFlyable() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 			self:DismountAndExit()
@@ -101,6 +102,9 @@ function BeStride_Logic:Regular()
 				return nil
 			end
 		end
+	elseif IsSwimming() and IsOutdoors() then
+		self:DismountAndExit()
+		return BeStride_Mount:Swimming()
 	elseif CanExitVehicle() then
 		self:DismountAndExit()
 		return BeStride_Mount:Regular()
@@ -174,12 +178,16 @@ function BeStride_Logic:GroundMountButton()
 				return nil
 			end
 		elseif IsSwimming() then
+			self:DismountAndExit()
 			return BeStride_Mount:Swimming()
 		else
 			return BeStride_Mount:Ground()
 		end
 	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 		return BeStride_Mount:Passenger("ground")
+	elseif IsSwimming() and IsOutdoors() then
+		self:DismountAndExit()
+		return BeStride_Mount:Swimming()
 	elseif IsOutdoors() then
 		return BeStride_Mount:Ground()
 	else
