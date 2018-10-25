@@ -1,10 +1,11 @@
-_G["BINDING_HEADER_BESTRIDE_TITLE"] = "BeStride"
-_G["BINDING_NAME_CLICK BeStride_ABRegularMount:LeftButton"] = "Mount Button"
-_G["BINDING_NAME_CLICK BeStride_ABGroundMount:LeftButton"] = "Force Ground Mount Button"
-_G["BINDING_NAME_CLICK BeStride_ABRepairMount:LeftButton"] = "Force Repair Mount Button"
-_G["BINDING_NAME_CLICK BeStride_ABPassengerMount:LeftButton"] = "Force Passenger Mount Button"
-
 BeStride_Locale = {
+	Bindings = {
+		Header = "BeStride",
+		Regular = "Mount Button",
+		Ground = "Force Ground Mount Button",
+		Repair = "Force Repair Mount Button",
+		Passenger = "Force Passenger Mount Button"
+	},
 	Zone = {
 		Deadmines = {
 			Name = "The Deadmines",

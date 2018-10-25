@@ -345,25 +345,25 @@ function BeStride_GUI:DrawKeybindsTab(container)
 	self.buttons[BeStride_ABPassengerMount:GetName()] = AceGUI:Create("Keybinding")
 	self.buttons[BeStride_ABRepairMount:GetName()] = AceGUI:Create("Keybinding")
 	
-	self.buttons[BeStride_ABRegularMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABRegularMount)
+	self.buttons[BeStride_ABRegularMount:GetName()]:SetLabel(BeStride_Locale.Bindings.Regular)
 	self.buttons[BeStride_ABRegularMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABRegularMount:LeftButton"))
 	self.buttons[BeStride_ABRegularMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABRegularMount,self.buttons[BeStride_ABRegularMount:GetName()]:GetKey()) end)
 	container:AddChild(self.buttons[BeStride_ABRegularMount:GetName()])
 	
-	self.buttons[BeStride_ABGroundMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABGroundMount)
+	self.buttons[BeStride_ABGroundMount:GetName()]:SetLabel(BeStride_Locale.Bindings.Ground)
 	self.buttons[BeStride_ABGroundMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABGroundMount:LeftButton"))
 	self.buttons[BeStride_ABGroundMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABGroundMount,self.buttons[BeStride_ABGroundMount:GetName()]:GetKey()) end)
 	container:AddChild(self.buttons[BeStride_ABGroundMount:GetName()])
 	
-	self.buttons[BeStride_ABPassengerMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABPassengerMount)
-	self.buttons[BeStride_ABPassengerMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABPassengerMount:LeftButton"))
-	self.buttons[BeStride_ABPassengerMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABPassengerMount,self.buttons[BeStride_ABPassengerMount:GetName()]:GetKey()) end)
-	container:AddChild(self.buttons[BeStride_ABPassengerMount:GetName()])
-	
-	self.buttons[BeStride_ABRepairMount:GetName()]:SetLabel(BINDING_NAME_BeStride_ABRepairMount)
+	self.buttons[BeStride_ABRepairMount:GetName()]:SetLabel(BeStride_Locale.Bindings.Repair)
 	self.buttons[BeStride_ABRepairMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABRepairMount:LeftButton"))
 	self.buttons[BeStride_ABRepairMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABRepairMount,self.buttons[BeStride_ABRepairMount:GetName()]:GetKey()) end)
 	container:AddChild(self.buttons[BeStride_ABRepairMount:GetName()])
+	
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetLabel(BeStride_Locale.Bindings.Passenger)
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetKey(GetBindingKey("CLICK BeStride_ABPassengerMount:LeftButton"))
+	self.buttons[BeStride_ABPassengerMount:GetName()]:SetCallback("OnKeyChanged",function() BeStride_GUI:UpdateBinding(BeStride_ABPassengerMount,self.buttons[BeStride_ABPassengerMount:GetName()]:GetKey()) end)
+	container:AddChild(self.buttons[BeStride_ABPassengerMount:GetName()])
 end
 
 function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS

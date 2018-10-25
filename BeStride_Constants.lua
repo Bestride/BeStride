@@ -282,3 +282,10 @@ BeStride_Constants.spells.druid.catform = 783
 BeStride_Constants.spells.druid.aquaticform = 783
 BeStride_Constants.spells.druid.travelform = 783
 BeStride_Constants.spells.druid.flightform = 783
+
+
+_G["BINDING_HEADER_BESTRIDE_TITLE"] = BeStride_Locale.Bindings.Header
+_G["BINDING_NAME_CLICK BeStride_ABRegularMount:LeftButton"] = BeStride_Locale.Bindings.Regular
+_G["BINDING_NAME_CLICK BeStride_ABGroundMount:LeftButton"] = BeStride_Locale.Bindings.Ground
+_G["BINDING_NAME_CLICK BeStride_ABRepairMount:LeftButton"] = BeStride_Locale.Bindings.Repair
+_G["BINDING_NAME_CLICK BeStride_ABPassengerMount:LeftButton"] = BeStride_Locale.Bindings.Passenger

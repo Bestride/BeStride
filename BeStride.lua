@@ -254,9 +254,9 @@ function BeStride:Upgrade()
 			elseif key == "FBP" then
 				self.db.profile.settings.mount.flyingbroom = value
 			elseif key == "TTT" then
-				self.db.profile.settings.mount.druid.traveltotravel = value
+				self.db.profile.settings.classes.druid.traveltotravel = value
 			elseif key == "MTFF" then
-				self.db.profile.settings.mount.druid.mountedtoflightform = value
+				self.db.profile.settings.classes.druid.mountedtoflightform = value
 			elseif key == "NDWF" then
 				self.db.profile.settings.mount.nodismountwhileflying = value
 			elseif key == "FFM" then
@@ -305,7 +305,7 @@ function BeStride:Upgrade()
 		end)
 	end
 	
-	--self.db.profile.settings.migrated = true
+	self.db.profile.settings.migrated = true
 end
 
 function BeStride:SetKeyBindings(button)
