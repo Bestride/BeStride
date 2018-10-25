@@ -14,40 +14,54 @@ end
 function BeStride_Logic:Regular()
 	-- Check if we are mounted first
 	if IsMounted() and self:NeedsChauffeur() then
-		Dismount()
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:IsDeathKnightAndSpecial() then
+		self:DismountAndExit()
 		return self:DeathKnight()
 	elseif self:IsDemonHunterAndSpecial() then
+		self:DismountAndExit()
 		return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
+		self:DismountAndExit()
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
+		self:DismountAndExit()
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
+		self:DismountAndExit()
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
+		self:DismountAndExit()
 		return self:Paladin()
 	elseif self:IsPriestAndSpecial() then
+		self:DismountAndExit()
 		return self:Priest()
 	elseif self:IsShamanAndSpecial() then
+		self:DismountAndExit()
 		return self:Shaman()
 	elseif self:IsRogueAndSpecial() then
+		self:DismountAndExit()
 		return self:Rogue()
 	elseif self:IsLoanedMount() then
+		self:DismountAndExit()
 		return BeStride_Mount:Loaned()
 	elseif self:CanBroom() then
+		self:DismountAndExit()
 		return BeStride_Mount:Broom()
 	elseif self:IsSpecialZone() then
+		self:DismountAndExit()
 		return BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
+		self:DismountAndExit()
 		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() then
 			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
-				Dismount()
+				self:DismountAndExit()
 				if BeStride:DBGet("settings.mount.remount") then
 					return BeStride_Mount:Flying()
 				else
@@ -59,28 +73,28 @@ function BeStride_Logic:Regular()
 		elseif IsSwimming() then
 			return BeStride_Mount:Swimming()
 		elseif self:IsFlyable() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
-			Dismount()
+			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Passenger("flying")
 			else
 				return nil
 			end
 		elseif self:IsFlyable() then
-			Dismount()
+			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Flying()
 			else
 				return nil
 			end
 		elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
-			Dismount()
+			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Passenger("ground")
 			else
 				return nil
 			end
 		else
-			Dismount()
+			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Regular()
 			else
@@ -88,7 +102,7 @@ function BeStride_Logic:Regular()
 			end
 		end
 	elseif CanExitVehicle() then
-		VehicleExit()
+		self:DismountAndExit()
 		return BeStride_Mount:Regular()
 	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 		return BeStride_Mount:Passenger("flying")
@@ -109,39 +123,51 @@ end
 
 function BeStride_Logic:GroundMountButton()
 	if IsMounted() and self:NeedsChauffeur() then
-		Dismount()
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
 		return BeStride_Mount:Chauffeur()
 	elseif self:IsDeathKnightAndSpecial() then
+		self:DismountAndExit()
 		return self:DeathKnight()
 	elseif self:IsDemonHunterAndSpecial() then
+		self:DismountAndExit()
 		return self:DemonHunter()
 	elseif self:IsDruidAndSpecial() then
+		self:DismountAndExit()
 		return self:Druid()
 	elseif self:IsMageAndSpecial() then
+		self:DismountAndExit()
 		return self:Mage()
 	elseif self:IsMonkAndSpecial() then
+		self:DismountAndExit()
 		return self:Monk()
 	elseif self:IsPaladinAndSpecial() then
+		self:DismountAndExit()
 		return self:Paladin()
 	elseif self:IsShamanAndSpecial() then
+		self:DismountAndExit()
 		return self:Shaman()
 	elseif self:IsRogueAndSpecial() then
+		self:DismountAndExit()
 		return self:Rogue()
 	elseif self:CanBroom() then
+		self:DismountAndExit()
 		return BeStride_Mount:Broom()
 	elseif self:IsLoanedMount() then
+		self:DismountAndExit()
 		return BeStride_Mount:Loaned()
 	elseif self:IsSpecialZone() then
+		self:DismountAndExit()
 		return BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
+		self:DismountAndExit()
 		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
 		elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
-			Dismount()
+			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Passenger("ground")
 			else
@@ -166,6 +192,7 @@ function BeStride_Logic:RepairMountButton()
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
 		else
+			self:DismountAndExit()
 			return BeStride_Mount:Repair()
 		end
 	else
@@ -178,6 +205,7 @@ function BeStride_Logic:PassengerMountButton(type)
 		if IsFlying() and self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") == true then
 			return nil
 		else
+			self:DismountAndExit()
 			return BeStride_Mount:Passenger(type)
 		end
 	else
@@ -210,6 +238,14 @@ function BeStride_Logic:Combat()
 		return BeStride_Mount:ShamanGhostWolf()
 	elseif self:IsSpecialZone() then
 		BeStride_Mount:SpecialZone()
+	end
+end
+
+function BeStride_Logic:DismountAndExit()
+	if CanExitVehicle() then
+		VehicleExit()
+	elseif IsMounted() then
+		Dismount()
 	end
 end
 
@@ -384,7 +420,6 @@ end
 function BeStride_Logic:DemonHunter()
 	if ( IsFlying() or IsFalling() ) and self:DemonHunterGlide() then
 		if IsFlying() and self:NoDismountWhileFlying() then
-			Dismount()
 			return BeStride_Mount:DemonHunterGlide()
 		elseif IsFalling() and self:DemonHunterGlide() then
 			return BeStride_Mount:DemonHunterGlide()
