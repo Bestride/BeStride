@@ -1,17 +1,11 @@
 BeStride_Mount = {}
 
 function BeStride_Mount:MountSpell(spell)
-	--BeStride_Debug:Debug("Mounting")
-	--BeStride_Debug:Verbose("Action: "..BeStride.buttons["mount"]:GetName())
 	return "/cast " .. spell
 end
 
 function BeStride_Mount:Mount(spell)
-	
-	--BeStride_Debug:Debug("Mounting")
-	--BeStride_Debug:Verbose("Action: "..BeStride.buttons["mount"]:GetAttribute("macrotext"))
 	return "/use " .. spell
-	--BeStride_Debug(debugstack(2,3,2))
 end
 
 function BeStride_Mount:CountRepairMounts()
@@ -21,9 +15,6 @@ function BeStride_Mount:DoMount(mounts)
 	local mount = mounts[math.random(#mounts)]
 	local spell = mountTable["master"][mount]["spellID"]
 	local name = GetSpellInfo(spell)
-	--print(mount .. ":" .. spell .. ":" .. name)
-	--BeStride_Debug:Debug("Mount: " .. mount)
-    --BeStride_Debug:Debug("Spell: " .. spell)
 	return BeStride_Mount:Mount(name)
 end
 
@@ -230,7 +221,6 @@ function BeStride_Mount:MageBlinkNoSlowFall()
 end
 
 function BeStride_Mount:MonkRoll()
-	--BeStride_Debug:Verbose("Monk Roll")
 	if IsUsableSpell(109132) then
 		return self:MountSpell("[@player] " .. BeStride:SpellToName(109132))
 	else

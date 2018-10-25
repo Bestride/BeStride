@@ -167,13 +167,11 @@ end
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
 	
-	--BeStride:RegisterEvent("UPDATE_BINDINGS", "EventUpdateKeyBinding")
 	BeStride:RegisterEvent("NEW_MOUNT_ADDED", "EventNewMount")
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "EventCombatEnter")
 	BeStride:RegisterEvent("PLAYER_REGEN_ENABLED", "EventCombatExit")
 	
-	--BeStride:UpdateBindings()
 	BeStride:Upgrade()
 end
 
@@ -189,7 +187,6 @@ function BeStride:NewMount(...)
 end
 
 function BeStride:UpdateBindings()
-	BeStride_Debug:Verbose("Firing Update Bindings")
 	BeStride:SetKeyBindings(self.buttons["regular"])
 	BeStride:SetKeyBindings(self.buttons["ground"])
 	BeStride:SetKeyBindings(self.buttons["passenger"])
@@ -309,37 +306,28 @@ function BeStride:Upgrade()
 end
 
 function BeStride:SetKeyBindings(button)
-    --BeStride_Debug:Debug("Start Set Bindings: " .. button:GetName())
-	
 	local primaryKey,secondaryKey = GetBindingKey("CLICK " .. button:GetName() .. ":LeftButton")
 	
 	if primaryKey then
-	  --print("1st Key: " .. primaryKey .. " Set!")
       SetBindingClick(primaryKey,button:GetName())
     end
 	
 	if secondaryKey then
-	  --print("2nd Key: " .. secondaryKey .. " Set!")
       SetBindingClick(secondaryKey,button:GetName())
     end
-	--BeStride_Debug:Debug("End Set Bindings")
 end
 
 function BeStride:SetKeyBindingsOverrides(button)
-    --BeStride_Debug:Debug("Start Set Override Bindings: " .. button:GetName())
 	ClearOverrideBindings(button)
 	
 	local primaryKey,secondaryKey = GetBindingKey(button:GetName())
 	if primaryKey then
-	  --print("1st Key: " .. primaryKey .. " Set!")
       SetOverrideBindingClick(button, true, primaryKey, button:GetName())
     end
 	
 	if secondaryKey then
-	  --print("2nd Key: " .. secondaryKey .. " Set!")
       SetOverrideBindingClick(button, true, secondaryKey, button:GetName())
     end
-	--BeStride_Debug:Debug("End Set Override Bindings")
 end
 
 function BeStride:ChatCommand(input)
@@ -347,16 +335,6 @@ function BeStride:ChatCommand(input)
 		BeStride:buildMountTables()
 	elseif input == "map" then
 		BeStride:GetMaps()
-	elseif input == "testpathwalk" then
-		print("Path: settings.mount.emptyrandom (" .. tostring(BeStride:DBGet("settings.emptyrandom")) ..")")
-		BeStride:DBSet("settings.mount.emptyrandom",false)
-		print("Path: settings.mount.emptyrandom (" .. tostring(BeStride:DBGet("settings.emptyrandom")) ..")")
-		print("Path: settings.mount.repair.durability (" .. tostring(BeStride:DBGet("settings.repair.durability")) ..")")
-		BeStride:DBSet("settings.mount.repair.durability",50)
-		print("Path: settings.mount.repair.durability (" .. tostring(BeStride:DBGet("settings.repair.durability")) ..")")
-		print("Path: settings.mount.repair.dura (" .. tostring(BeStride:DBGet("settings.repair.dura")) ..")")
-		BeStride:DBSet("settings.mount.repair.dura",50)
-		print("Path: settings.mount.repair.dura (" .. tostring(BeStride:DBGet("settings.repair.dura")) ..")")
 	else
 		BeStride_GUI:Frame(input)
 	end
@@ -389,14 +367,11 @@ function BeStride:DBGet(path,parent)
 	if child ~= nil and parent ~= nil and parent[child] ~= nil and nextPath == nil then
 		return parent[child]
 	elseif child ~= nil and parent ~= nil and parent[child] ~= nil and nextPath ~= nil then
-		--BeStride_Debug:Debug("Return: BeStride:DBGet(" .. nextPath .. "parent[" .. child .. "]" .. ")")
 		return BeStride:DBGet(nextPath,parent[child])
 	elseif child ~= nil and parent == nil and nextPath == nil then
-		--BeStride_Debug:Debug("Return: self.db.profile[child]:" .. tostring(self.db.profile[child]))
 		return self.db.profile[child]
 	elseif child ~= nil and parent == nil and nextPath ~= nil then
 		if self.db.profile[child] ~= nil then
-			--BeStride_Debug:Debug("Return: BeStride:DBGet(" .. nextPath .. ",self.db.profile[" .. child .. "]" .. ")")
 			return BeStride:DBGet(nextPath,self.db.profile[child])
 		else
 			BeStride_Debug:Debug("Fatal: self.db.profile[child(" .. child .. ")] == nil")
@@ -542,14 +517,12 @@ end
 
 function BeStride:AddPassengerMount(mountId)
 	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["type"] == "passenger" then
-		--print("Adding Mount: " .. mountTable["master"][mountId]["name"] .. " Type: " .. mountTable["master"][mountId]["type"])
 		table.insert(mountTable["passenger"],mountId)
 	end
 end
 
 function BeStride:AddRepairMount(mountId)
 	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["repair"] then
-		--print("Adding Mount: " .. mountTable["master"][mountId]["name"] .. " Type: " .. mountTable["master"][mountId]["type"])
 		table.insert(mountTable["repair"],mountId)
 	end
 end
@@ -562,7 +535,6 @@ end
 
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
-	--BeStride_Debug:Debug(locID .. ":" .. map["name"] .. ":" .. map["mapType"] .. ":" .. map["parentMapID"] .. ":" .. filter)
 	if map["mapType"] ~= filter and map["mapType"] > filter then
 		return BeStride:GetMapUntil(map["parentMapID"],filter)
 	else

@@ -13,7 +13,6 @@ end
 
 function BeStride_Logic:Regular()
 	-- Check if we are mounted first
-	print("")
 	if IsMounted() and self:NeedsChauffeur() then
 		Dismount()
 		return BeStride_Mount:Chauffeur()

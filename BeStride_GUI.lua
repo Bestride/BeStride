@@ -59,8 +59,7 @@ function BeStride_GUI:GetStatusText()
 	return "Version " .. version .. ", by Anaximander <IRONFIST> - Burning Legion US"
 end
 
-function BeStride_GUI:SelectTab(container, event, group)-- Callback function for OnGroupSelected
-	--BeStride_Debug:Debug("Group: " .. group)
+function BeStride_GUI:SelectTab(container, event, group)
 	container:ReleaseChildren()
 	if group == "mounts" then
 		BeStride_GUI:DrawMountsTab(container)
@@ -73,11 +72,8 @@ function BeStride_GUI:SelectTab(container, event, group)-- Callback function for
 	elseif group == "profile" then
 		BeStride_GUI:DrawProfileTab(container)
 	elseif group == "about" then
-		--BeStride_Debug:Debug("Drawing About")
 		BeStride_GUI:DrawAboutTab(container)
 	end
-	
-	--BeStride_Debug:Debug("Group: " .. group)
 	
 	currentTab = group
 end
@@ -221,7 +217,6 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 			element = AceGUI:Create("SimpleGroup")
 			element:SetFullWidth(true)
 			for subName,subSetting in pairs(setting.children) do
-				--print("    SubName: " .. subName)
 				local subElement = nil
 				if subSetting.element == "CheckBox" then
 					subElement = self:CreateSettingCheckBox(subSetting.name,subSetting.label,subSetting.depends, subSetting.dependants)
