@@ -152,12 +152,14 @@ end
 function BeStride_GUI:SelectAllMounts(group)
 	for key,mount in pairs(self.mounts[group]) do
 		mount:SetValue(true)
+		BeStride:DBSetMount(group,mount.mountID,mount:GetValue())
 	end
 end
 
 function BeStride_GUI:ClearAllMounts(group)
 	for key,mount in pairs(self.mounts[group]) do
 		mount:SetValue(false)
+		BeStride:DBSetMount(group,mount.mountID,mount:GetValue())
 	end
 end
 
@@ -189,6 +191,7 @@ function BeStride_GUI:CreateMountCheckBox(group,mountID)
 		mountButton:SetLabel(mount["name"])
 		mountButton:SetValue(BeStride:DBGetMount(group,mountID))
 		mountButton:SetCallback("OnValueChanged", function(container) BeStride:DBSetMount(group,mount.mountID,container:GetValue()) end)
+		mountButton.mountID = mountID
 		return mountButton
 	else
 		return nil
