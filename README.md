@@ -37,7 +37,7 @@ Special mounts are also usable:
 * Abyssal Seahorse
 * Subdued Seahorse
 * Sea Turtle
-* Water strider (prioritized)
+* ~~Water strider (prioritized)~~
 
 Project Pages
 -----------------
@@ -45,6 +45,7 @@ Project Pages
 Curseforge Addon: https://www.curseforge.com/wow/addons/bestride-mm
 Curseforge Project: https://wow.curseforge.com/projects/bestride-mm
 Github Project: https://github.com/DanSheps/Bestride/projects/1
+Github Issues: https://github.com/Dansheps/Bestride/issues
 
 Usage
 =================
@@ -52,19 +53,19 @@ Usage
 Configuration
 -----------------
 
-Configuration is accomplished through the use of the /ym slash command.
+Configuration is accomplished through the use of the /br or /bestride slash command.
 
-This will open the Yay Mounts GUI.
+This will open the BeStride GUI.  The GUI will also appear in the Blizzard "Addons" area under Interface
 
 Mounting
 -----------------
 
 Mounting is accomplished through either setting a keybind or the following "click" buttons:
 
-* Standard Mount: /click BestrideButtonMount
-* Force Ground Mount: /click BestrideButtonGround
-* Force Passenger Mount: /click BestrideButtonPassenger
-* Force Repair Mount: /click BestrideButtonRepair
+* Standard Mount: /click BeStride_ABRegularMount
+* Force Ground Mount: /click BeStride_ABGroundMount
+* Force Passenger Mount: /click BeStride_ABPassengerMount
+* Force Repair Mount: /click BeStride_ABRepairMount
 
 Class Specific Features
 -----------------
@@ -80,7 +81,7 @@ The following classes have special features:
   * Supports: Levitate
   * Pressing a second time will cancel
 * Mages
-  * Supports: Slow fall
+  * Supports: Slow fall, Blink
   * Pressing a second time will cancel
 * Monks
   * Supports: Roll & Zen Flight
@@ -90,17 +91,30 @@ The following classes have special features:
   * Supports: Divine Steed
 * Death Knights
   * Supports: Wraith Walk
+* Demon Hunter
+  * Supports: Fel Rush, Glide
 
 Changelog
 =================
-v0.5.0
+v1.0.0
 -----------------
+* Full Release
 * Logic rewritten
 * UI rewritten
 * New Features:
   * New setting to force flying mounts when unable to fly (previously it would mix ground and flying)
   * Separate Mage Blink and Slowfall if to only trigger one
   * Added Death Knights Fel Rush and Gliding
+
+v0.5.0
+-----------------
+* Beta Version
+* UI rewritten
+* New Features:
+  * New setting to force flying mounts when unable to fly (previously it would mix ground and flying)
+  * Separate Mage Blink and Slowfall if to only trigger one
+  * Added Death Knights Fel Rush and Gliding
+
 v0.0.10
 -----------------
 * Added Mage Logic - Thanks to Daeymien for the pull request(s)

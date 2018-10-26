@@ -39,6 +39,9 @@ BeStride_Locale = {
 		StormPeaks = {
 			Name = "The Storm Peaks",
 		},
+		SholazarBasin = {
+			Name = "Sholazar Basin",
+		},
 		Wintergrasp = {
 			Name = "Wintergrasp",
 		},

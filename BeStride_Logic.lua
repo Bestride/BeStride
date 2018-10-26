@@ -537,6 +537,23 @@ function BeStride_Logic:IsMountable()
 	end
 end
 
+function BeStride_Logic:IsUnderwater()
+	if IsSwimming() then
+		print("Swimming")
+		local timer, initial, maxvalue, scale, paused, label = GetMirrorTimerInfo(2)
+		if timer ~= nil and timer == "BREATH" and scale < 0 then
+			print("Underwater")
+			return true
+		else
+			print("On Surface")
+			return false
+		end
+	else
+		print("Not Swimming")
+		return false
+	end
+end
+
 function BeStride_Logic:IsSpecialZone()
 	local mapID = C_Map.GetBestMapForUnit("player")
 	local micro = BeStride:GetMapUntil(mapID,5)
@@ -681,7 +698,15 @@ function BeStride_Logic:CheckLoanedMount()
 				return 139421
 			end
 		end
-	elseif zone == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown then
+	elseif zone == BestrideLocale.Zone.Oculus then
+		if GetItemCount(37859) == 1 then
+			return 37859
+		elseif GetItemCount(37860) == 1 then
+			return 37860
+		elseif GetItemCount(37815) == 1 then
+			return 37815
+		end
+	elseif zone == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown or zone == BeStride_Locale.Zone.SholazarBasin then
 		if GetItemCount(44221, false) > 0 then
 			return 44221
 		elseif GetItemCount(44229, false) > 0 then

@@ -335,6 +335,8 @@ function BeStride:ChatCommand(input)
 		BeStride:buildMountTables()
 	elseif input == "map" then
 		BeStride:GetMaps()
+	elseif input == "underwater" then
+		BeStride_Logic:IsUnderwater()
 	else
 		BeStride_GUI:Frame(input)
 	end
