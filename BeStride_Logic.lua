@@ -698,7 +698,7 @@ function BeStride_Logic:CheckLoanedMount()
 				return 139421
 			end
 		end
-	elseif zone == BestrideLocale.Zone.Oculus then
+	elseif zone == BeStride_Locale.Zone.Oculus then
 		if GetItemCount(37859) == 1 then
 			return 37859
 		elseif GetItemCount(37860) == 1 then
