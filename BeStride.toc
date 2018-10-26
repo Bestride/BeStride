@@ -21,6 +21,7 @@ libs\AceGUI-3.0\AceGUI-3.0.xml
 
 
 localization\en-US.lua
+localization\zh-TW.lua
 
 BeStride.lua
 BeStride_Constants.lua
