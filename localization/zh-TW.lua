@@ -59,7 +59,7 @@ BeStride_Locale = {
 					Name = "地獄深淵"
 				},
 				DamplightChamber = {
-					Name = "Damplight Chamber"
+					Name = "霧光之間"
 				},
 				Nespirah = {
 					Name = "奈斯畢拉"
@@ -104,13 +104,13 @@ BeStride_Locale = {
 			},
 			Druid = {
 				FlightForm = "德魯伊: 使用飛行型態",
-				TravelToTravel = "德魯伊: 在戰鬥時, shift from Travel or Aquatic form directly back to that form",
+				TravelToTravel = "德魯伊: 在戰鬥時, 從旅行或水棲型態直接切換回那個型態",
 				FlightFormPriority = "德魯伊: 即使未移動時也優先使用飛行型態",
 				MountedToFlightForm = "德魯伊: 當在飛行座騎上且正在飛行時,變換為飛行型態",
 			},
 			DemonHunter = {
-				FelRush = "惡魔獵人: 使用惡魔衝刺",
-				Glide = "惡魔獵人: 使用滑行",
+				FelRush = "惡魔獵人: 使用魔化衝刺",
+				Glide = "惡魔獵人: 使用滑翔",
 			},
 			Mage = {
 				SlowFall = "法師: 緩落",
