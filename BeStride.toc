@@ -20,12 +20,14 @@ libs\AceDB-3.0\AceDB-3.0.xml
 libs\AceGUI-3.0\AceGUI-3.0.xml
 
 
+BeStride_Constants.lua
+
 localization\en-US.lua
 
 BeStride.lua
-BeStride_Constants.lua
 BeStride_ActionButton.lua
 BeStride_Events.lua
 BeStride_GUI.lua
 BeStride_Logic.lua
 BeStride_Mount.lua
+BeStride_Variables.lua

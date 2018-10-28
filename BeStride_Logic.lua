@@ -245,7 +245,7 @@ function BeStride_Logic:Combat()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
 		return BeStride_Mount:ShamanGhostWolf()
 	elseif self:IsSpecialZone() then
-		BeStride_Mount:SpecialZone()
+		return BeStride_Mount:SpecialZone()
 	end
 end
 
@@ -1322,7 +1322,7 @@ end
 function BeStride_Logic:GetRidingSkill()
 	local ridingSkillLevel = 0
 	
-	table.foreach(ridingSkill, function (spellID,skill)
+	table.foreach(BeStride_Constants.Riding.Skill, function (spellID,skill)
 		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
 		end
