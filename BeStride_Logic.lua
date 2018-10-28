@@ -301,7 +301,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 	if self:IsDruid() then
 		if not self:DruidFlying() then
 			return false
-		elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
+		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
 		elseif IsFlying() and self:NoDismountWhileFlying() then
 			return false
@@ -1121,6 +1121,15 @@ end
 -- ----- --
 -- Druid --
 -- ----- --
+
+function BeStride_Logic:IsDruidTraveling()
+  if self:IsDruid() then
+    local index = GetShapeshiftForm()
+    if index == 3 then
+      return true
+    end
+  end
+end
 
 function BeStride_Logic:DruidFlying()
 	if self:IsDruid() then
