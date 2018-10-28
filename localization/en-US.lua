@@ -1,4 +1,33 @@
+
+
 BeStride_Locale = {
+	Options = {
+		OpenGUI = "Open GUI"
+	},
+  GUI = {
+    BUTTON = {
+      SelectAll = "Select All",
+      ClearAll = "Clear All",
+      Filter = "Filter",
+      Copy = "Copy",
+      Delete = "Delete",
+    },
+    TAB = {
+      Mounts = "Mounts",
+      MountOptions = "Mount Options",
+      ClassOptions = "Class Options",
+      Keybinds = "Keybinds",
+      Profile = "Profiles",
+      About = "About",
+      Ground = "Ground",
+      Flying = "Flying",
+      Repair = "Repair",
+      Swimming = "Swimming",
+      Passenger = "Passenger",
+      Special = "Special",
+    },
+  },
+  About = "Version: " .. version .. "\n" .. "Author: " .. author .. "\n" .. "Description: " .. "\n\n" .. "        " .. "BeStride originally started out as YayMounts by Cyrae on Windrunner US and Anzu on Kirin Tor US"  .. "\n" .. "        " .. "Later, Anaximander from Burning Legion US found the project was neglected and had several bugs which needed to be resolved"  .. "\n" .. "        " .. "as part of the bug resolution process, the addon was modernized to make the code cleaner to follow as well as more modular."  .. "\n\n" .. "Special Thanks:" .. "\n\n" .. "        " .. "Mindlessgalaxy: For helping with the beta testing",
 	Bindings = {
 		Header = "BeStride",
 		Regular = "Mount Button",
@@ -133,5 +162,5 @@ BeStride_Locale = {
 				GhostWolf = "Shaman: Ghost Wolf",
 			},
 		}
-	}
+	},
 }

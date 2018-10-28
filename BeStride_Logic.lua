@@ -245,7 +245,7 @@ function BeStride_Logic:Combat()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
 		return BeStride_Mount:ShamanGhostWolf()
 	elseif self:IsSpecialZone() then
-		BeStride_Mount:SpecialZone()
+		return BeStride_Mount:SpecialZone()
 	end
 end
 
@@ -301,7 +301,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 	if self:IsDruid() then
 		if not self:DruidFlying() then
 			return false
-		elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
+		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
 		elseif IsFlying() and self:NoDismountWhileFlying() then
 			return false
@@ -1122,6 +1122,15 @@ end
 -- Druid --
 -- ----- --
 
+function BeStride_Logic:IsDruidTraveling()
+  if self:IsDruid() then
+    local index = GetShapeshiftForm()
+    if index == 3 then
+      return true
+    end
+  end
+end
+
 function BeStride_Logic:DruidFlying()
 	if self:IsDruid() then
 		if self:DruidCanFly() then
@@ -1322,7 +1331,7 @@ end
 function BeStride_Logic:GetRidingSkill()
 	local ridingSkillLevel = 0
 	
-	table.foreach(ridingSkill, function (spellID,skill)
+	table.foreach(BeStride_Constants.Riding.Skill, function (spellID,skill)
 		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
 		end

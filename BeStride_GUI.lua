@@ -20,12 +20,12 @@ end
 
 function BeStride_GUI:Open(defaultTab)
 	local frameTabs = {
-		{text = "Mounts (" .. #mountTable["ground"] + #mountTable["flying"] + #mountTable["swimming"]   .. ")", value="mounts"},
-		{text = "Mount Options", value="mountoptions"},
-		{text = "Class Options", value="classoptions"},
-		{text = "Keybinds", value="keybinds"},
-		{text = "Profile", value="profile"},
-		{text = "About", value="about"}
+		{text = BeStride_Locale.GUI.TAB.Mounts .. " (" .. #mountTable["ground"] + #mountTable["flying"] + #mountTable["swimming"]   .. ")", value="mounts"},
+		{text = BeStride_Locale.GUI.TAB.MountOptions, value="mountoptions"},
+		{text = BeStride_Locale.GUI.TAB.ClassOptions, value="classoptions"},
+		{text = BeStride_Locale.GUI.TAB.Keybinds, value="keybinds"},
+		{text = BeStride_Locale.GUI.TAB.Profile, value="profile"},
+		{text = BeStride_Locale.GUI.TAB.About, value="about"}
 	}
 
 	BeStride_Frame = AceGUI:Create("Frame")
@@ -84,11 +84,11 @@ function BeStride_GUI:DrawMountsTab(container)
 	local tab  = AceGUI:Create("TabGroup")
 	tab:SetLayout("Flow")
 	tab:SetTabs({
-		{text="Ground (".. #mountTable["ground"] ..")", value="ground"},
-		{text="Flying (".. #mountTable["flying"] ..")", value="flying"},
-		{text="Swimming (".. #mountTable["swimming"] ..")", value="swimming"},
-		{text="Repair (".. #mountTable["repair"] ..")", value="repair"},
-		{text="Passenger (".. #mountTable["passenger"] ..")", value="passenger"}}
+		{text=BeStride_Locale.GUI.TAB.Ground .. " (".. #mountTable["ground"] ..")", value="ground"},
+		{text=BeStride_Locale.GUI.TAB.Flying .. " (".. #mountTable["flying"] ..")", value="flying"},
+		{text=BeStride_Locale.GUI.TAB.Swimming .. " (".. #mountTable["swimming"] ..")", value="swimming"},
+		{text=BeStride_Locale.GUI.TAB.Repair .. " (".. #mountTable["repair"] ..")", value="repair"},
+		{text=BeStride_Locale.GUI.TAB.Passenger .. " (".. #mountTable["passenger"] ..")", value="passenger"}}
 	)
 	tab:SetCallback("OnGroupSelected", function (container,event,group) BeStride_GUI:DrawMountsSubTab(container,group) end )
   
@@ -105,18 +105,18 @@ function BeStride_GUI:DrawMountsSubTab(container,group)
 	container:SetLayout("Flow")
     
 	local selectallbutton = AceGUI:Create("Button")
-	selectallbutton:SetText("Select All")
+	selectallbutton:SetText(BeStride_Locale.GUI.BUTTON.SelectAll)
 	selectallbutton:SetCallback("OnClick", function() BeStride_GUI:SelectAllMounts(group) end)
 	container:AddChild(selectallbutton)
 
 	local clearallbutton = AceGUI:Create("Button")
-	clearallbutton:SetText("Clear All")
+	clearallbutton:SetText(BeStride_Locale.GUI.BUTTON.ClearAll)
 	clearallbutton:SetCallback("OnClick", function() BeStride_GUI:ClearAllMounts(group) end)
 	container:AddChild(clearallbutton)
 
 	local filterButton = AceGUI:Create("EditBox")
 	filterButton:SetText("")
-	filterButton:SetLabel("Filter")
+	filterButton:SetLabel(BeStride_Locale.GUI.BUTTON.Filter)
 	filterButton:DisableButton(true)
 	filterButton:SetMaxLetters(25)
 	container:AddChild(filterButton)
@@ -207,7 +207,7 @@ function BeStride_GUI:DrawMountOptionTab(container, parent)
 	scroll:SetLayout("Flow") 
 	scrollcontainer:AddChild(scroll)
 	
-	for name,setting in pairs(BeStride_Constants.Settings.Mount) do
+	for name,setting in pairs(BeStride_Variables.Settings.Mount) do
 		local element = nil
 		if setting.element == "CheckBox" then
 			element = self:CreateSettingCheckBox(setting.name,setting.label,setting.depends, setting.dependants)
@@ -317,7 +317,7 @@ function BeStride_GUI:DrawClassOptionTab(container)
 	scroll:SetLayout("Flow") 
 	scrollcontainer:AddChild(scroll)
 	
-	table.foreach(BeStride_Constants.Settings.Classes,function (key,classSetting)
+	table.foreach(BeStride_Variables.Settings.Classes,function (key,classSetting)
 		--if tolower(class) == tolower(playerTable["class"]["name"])
 			for name,setting in pairs(classSetting) do
 				
@@ -389,7 +389,7 @@ function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS
 	
 	self.elements["profile.copybutton"] = AceGUI:Create("Button")
 	self.elements["profile.copybutton"]:SetWidth(75)
-	self.elements["profile.copybutton"]:SetText("Copy")
+	self.elements["profile.copybutton"]:SetText(BeStride_Locale.GUI.BUTTON.Copy)
 	self.elements["profile.copybutton"]:SetDisabled(true)
 	
 	self.elements["profile.delete"] = AceGUI:Create("Dropdown")
@@ -399,7 +399,7 @@ function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS
 	
 	self.elements["profile.deletebutton"] = AceGUI:Create("Button")
 	self.elements["profile.deletebutton"]:SetWidth(100)
-	self.elements["profile.deletebutton"]:SetText("Delete")
+	self.elements["profile.deletebutton"]:SetText(BeStride_Locale.GUI.BUTTON.Delete)
 	self.elements["profile.deletebutton"]:SetDisabled(true)
 	
 	self.elements["profile.create"]:SetCallback("OnEnterPressed", function() BeStride_GUI:ProfileCreate(self.elements["profile.create"]:GetText()) end)
@@ -483,7 +483,7 @@ end
 function BeStride_GUI:DrawAboutTab(container)
 	container:SetLayout("Flow")
 	local about = AceGUI:Create("Label")
-	about:SetText( "Version: " .. version .. "\n" .. "Author: " .. author .. "\n" .. "Description: " .. "\n\n" .. "        " .. "BeStride originally started out as YayMounts by Cyrae on Windrunner US and Anzu on Kirin Tor US"  .. "\n" .. "        " .. "Later, Anaximander from Burning Legion US found the project was neglected and had several bugs which needed to be resolved"  .. "\n" .. "        " .. "as part of the bug resolution process, the addon was modernized to make the code cleaner to follow as well as more modular."  .. "\n\n" .. "Special Thanks:" .. "\n\n" .. "        " .. "Mindlessgalaxy: For helping with the beta testing")
+	about:SetText(BeStride_Locale.About)
 	about:SetWidth(700)
 	container:AddChild(about)
 end

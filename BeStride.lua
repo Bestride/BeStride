@@ -2,8 +2,6 @@ BeStride = LibStub("AceAddon-3.0"):NewAddon("Bestride","AceConsole-3.0", "AceEve
 
 debugLevel = 8
 
-playerTable = {}
-
 function sortTable(unsortedTable)
 	keys = {}
 	sortedTable = {}
@@ -37,18 +35,21 @@ function pairsByKeys (t, f)
 	return iter
 end
 
-mountTable = {
-	["master"] = {},
-	["ground"] = {},
-	["flying"] = {},
-	["swimming"] = {},
-	["repair"] = {},
-	["passenger"] = {},
-	["zone"] = {},
+local BeStride_Options = {
+  name="BeStride",
+  handler = BeStride,
+  type = "group",
+  args = {
+    enable = {
+      type = "execute",
+      name = BeStride_Locale.Options.OpenGUI,
+      func = "Frame",
+    },
+  }
 }
 
 local defaults = {
-	["version"] = version,
+	version = BeStride_Constants.Version,
 	
 	profile = {
 		settings = {
@@ -129,6 +130,10 @@ function BeStride:OnInitialize()
 	self:RegisterChatCommand("bestride","ChatCommand")
 	self:RegisterChatCommand("br","ChatCommand")
 	
+	local bestrideOptions = LibStub("AceConfigRegistry-3.0")
+	bestrideOptions:RegisterOptionsTable("BeStride",BeStride_Options)
+	self.bestrideOptionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("BeStride","BeStride")
+	
 	self.buttons = {
 		["mount"] = nil,
 		["ground"] = nil,
@@ -162,6 +167,10 @@ function BeStride:OnInitialize()
 	playerTable["faction"]["name"] = factionName
 	playerTable["faction"]["id"] = factionId
 	playerTable["faction"]["localization"] = factionLocalized
+end
+
+function BeStride:Frame()
+	BeStride_GUI:Frame()
 end
 
 function BeStride:OnEnable()
@@ -294,7 +303,7 @@ function BeStride:Upgrade()
 				end
 				
 				if savedType == "special" then
-					if mountData[mountTable.master[mountID].spellID] and mountData[mountTable.master[mountID].spellID].type == "zone" then
+					if BeStride_Constants.Mount.Mounts[mountTable.master[mountID].spellID] and BeStride_Constants.Mount.Mounts[mountTable.master[mountID].spellID].type == "zone" then
 						self.db.profile.mounts[mountType][mountID] = status
 					end
 				end
@@ -481,7 +490,7 @@ function BeStride:AddNewMount(mountId)
 		["icon"] = icon,
 		["source"] = source,
 		["sourceType"] = sourceType,
-		["type"] = mountTypes[mountTypeID],
+		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
 	}
 end
 
@@ -518,13 +527,13 @@ function BeStride:AddCommonMount(mountId)
 end
 
 function BeStride:AddPassengerMount(mountId)
-	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["type"] == "passenger" then
+	if BeStride_Constants.Mount.Mounts[mountTable["master"][mountId]["spellID"]] ~= nil and BeStride_Constants.Mount.Mounts[mountTable["master"][mountId]["spellID"]]["type"] == "passenger" then
 		table.insert(mountTable["passenger"],mountId)
 	end
 end
 
 function BeStride:AddRepairMount(mountId)
-	if mountData[mountTable["master"][mountId]["spellID"]] ~= nil and mountData[mountTable["master"][mountId]["spellID"]]["repair"] then
+	if BeStride_Constants.Mount.Mounts[mountTable["master"][mountId]["spellID"]] ~= nil and BeStride_Constants.Mount.Mounts[mountTable["master"][mountId]["spellID"]]["repair"] then
 		table.insert(mountTable["repair"],mountId)
 	end
 end
