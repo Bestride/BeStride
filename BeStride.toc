@@ -2,7 +2,7 @@
 ## Title: BeStride
 ## Notes: Manages your Mounts
 ## Author: Anaximander - Burning Legion US
-## Version: 1.0.0
+## Version: 1.0.5
 ## X-Category: Interface Enhancements 
 ## X-Embeds: Ace3
 ## OptionalDeps: Ace3
