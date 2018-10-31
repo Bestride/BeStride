@@ -224,8 +224,8 @@ end
 function BeStride_Logic:Combat()
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
 		return BeStride_Mount:DeathKnightWraithWalk()
-	elseif self:IsDemonHunter() and BeStride:DBGet("setting.classes.demonhunter.felrush") then
-		return BeStride_Mount:FelRush()
+	elseif self:IsDemonHunter() and self:DemonHunterFelRush() then
+		return BeStride_Mount:DemonHunterFelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
 		return BeStride_Mount:DruidTravel()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
