@@ -160,6 +160,12 @@ if GetLocale() == "zhTW" then
 				Shaman = {
 					GhostWolf = "薩滿: 鬼魂之狼"
 				}
+			},
+			Profiles = {
+				CreateNew = "Create new Profile:",
+				Current = "Current Profile:",
+				CopyFrom = "Copy settings from:",
+				Delete = "Delete profile:"
 			}
 		}
 	}

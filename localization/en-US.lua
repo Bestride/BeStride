@@ -167,6 +167,12 @@ BeStride_Locale = {
 			Shaman = {
 				GhostWolf = "Shaman: Ghost Wolf"
 			}
+		},
+		Profiles = {
+			CreateNew = "Create new Profile:",
+			Current = "Current Profile:",
+			CopyFrom = "Copy settings from:",
+			Delete = "Delete profile:"
 		}
 	}
 }

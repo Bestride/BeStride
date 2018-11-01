@@ -160,6 +160,12 @@ if GetLocale() == "deDE" then
 				Shaman = {
 					GhostWolf = "Schamane: Geisterwolf"
 				}
+			},
+			Profiles = {
+				CreateNew = "Create new Profile:",
+				Current = "Current Profile:",
+				CopyFrom = "Copy settings from:",
+				Delete = "Delete profile:"
 			}
 		}
 	}
