@@ -162,10 +162,10 @@ if GetLocale() == "deDE" then
 				}
 			},
 			Profiles = {
-				CreateNew = "Create new Profile:",
-				Current = "Current Profile:",
-				CopyFrom = "Copy settings from:",
-				Delete = "Delete profile:"
+				CreateNew = "Neues Profil erstellen:",
+				Current = "Aktuelles Profil:",
+				CopyFrom = "Einstellungen kopieren von:",
+				Delete = "Profil löschen:"
 			}
 		}
 	}
