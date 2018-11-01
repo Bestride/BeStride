@@ -388,7 +388,7 @@ function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS
 	self.elements["profile.copy"]:SetLabel("Copy settings from:")
 	
 	self.elements["profile.copybutton"] = AceGUI:Create("Button")
-	self.elements["profile.copybutton"]:SetWidth(75)
+	self.elements["profile.copybutton"]:SetWidth(100)
 	self.elements["profile.copybutton"]:SetText(BeStride_Locale.GUI.BUTTON.Copy)
 	self.elements["profile.copybutton"]:SetDisabled(true)
 	
