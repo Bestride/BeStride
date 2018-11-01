@@ -300,8 +300,8 @@ end
 
 function BeStride_Logic:IsDruidAndSpecial()
 	if self:IsDruid() then
-		if not self:DruidFlying() then
-			return false
+		if IsOutdoors() ~= true and self:DruidCanCat() then
+			return true
 		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
 		elseif IsFlying() and self:NoDismountWhileFlying() then
@@ -313,8 +313,6 @@ function BeStride_Logic:IsDruidAndSpecial()
 		elseif IsSwimming() and self:DruidSwimming() then
 			return true
 		elseif self:MovementCheck() then
-			return true
-		elseif IsOutdoors() ~= true then
 			return true
 		else
 			return false
@@ -408,7 +406,7 @@ function BeStride_Logic:IsShamanAndSpecial()
 	if self:IsShaman() then
 		if IsFlying() and self:NoDismountWhileFlying() then
 			return false
-		elseif self:ShamanGhostWolf() and self:MovementCheck() then
+		elseif self:ShamanGhostWolf() and (self:MovementCheck() or IsOutdoors() ~= true) then
 			return true
 		else
 			return false
@@ -443,7 +441,7 @@ function BeStride_Logic:DemonHunter()
 end
 
 function BeStride_Logic:Druid()
-	if IsOutdoors() ~= true then
+	if IsOutdoors() ~= true and self:DruidCanCat() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(768))
 	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
@@ -509,7 +507,7 @@ function BeStride_Logic:Priest()
 end
 
 function BeStride_Logic:Shaman()
-	if not IsFlying() and self:MovementCheck() and self:ShamanGhostWolf() then
+	if not IsFlying() and (self:MovementCheck() or IsOutdoors ~= true) and self:ShamanGhostWolf() then
 		return BeStride_Mount:Shaman()
 	end
 end
@@ -916,7 +914,7 @@ end
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride_Logic:DruidCanCat()
-	if IsUsableSpell(783) then
+	if IsSpellKnown(768) and IsUsableSpell(768) then
 		return true
 	else
 		return false
