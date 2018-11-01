@@ -476,7 +476,7 @@ function BeStride:AddNewMount(mountId)
 	else
 		faction = nil
 	end
-
+	
 	mountTable["master"][mountId] = {
 		["name"] = name,
 		["spellID"] = spellID,
@@ -522,6 +522,9 @@ function BeStride:AddCommonMount(mountId)
 	elseif mount["type"] == "swimming" then
 		table.insert(mountTable["swimming"],mountId)
 	elseif mount["type"] == "zone" then
+		if mountId == 373 then
+			table.insert(mountTable["swimming"],mountId)
+		end
 		table.insert(mountTable["zone"],mountId)
 	end
 end

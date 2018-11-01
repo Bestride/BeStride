@@ -689,16 +689,16 @@ function BeStride_Logic:CheckLoanedMount()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	if dungeon == BeStride_Locale.Zone.Dalaran then
-		if micro == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly or
-				micro == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent or
-				micro == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills or
-				micro == BeStridevLocale.Zone.Dalaran.SubZone.BlackMarket then
+	if dungeon.name == BeStride_Locale.Zone.Dalaran then
+		if micro.name == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly or
+				micro.name == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent or
+				micro.name == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills or
+				micro.name == BeStridevLocale.Zone.Dalaran.SubZone.BlackMarket then
 			if GetItemCount(139421, false) > 0 then
 				return 139421
 			end
 		end
-	elseif zone == BeStride_Locale.Zone.Oculus then
+	elseif zone.name == BeStride_Locale.Zone.Oculus then
 		if GetItemCount(37859) == 1 then
 			return 37859
 		elseif GetItemCount(37860) == 1 then
@@ -706,7 +706,7 @@ function BeStride_Logic:CheckLoanedMount()
 		elseif GetItemCount(37815) == 1 then
 			return 37815
 		end
-	elseif zone == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown or zone == BeStride_Locale.Zone.SholazarBasin then
+	elseif zone.name == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown or zone == BeStride_Locale.Zone.SholazarBasin then
 		if GetItemCount(44221, false) > 0 then
 			return 44221
 		elseif GetItemCount(44229, false) > 0 then

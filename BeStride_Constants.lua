@@ -101,6 +101,7 @@ BeStride_Constants = {
   Mount = {
     Mounts = {
       [75207] = {
+		["mountID"] = 373,
         ["type"] = "zone",
         ["subtype"] = "swimming",
         ["zone"] = "Vash'jir",
