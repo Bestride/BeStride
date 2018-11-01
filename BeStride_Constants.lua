@@ -16,50 +16,53 @@ BeStride_Constants = {
         name = "Apprentice Riding",
         unlocks = "ground",
         level = 75,
+		active = true,
       },
       [33391] = {
         name = "Journeyman Riding",
         depends = 33388,
         level = 150,
+		active = true,
       },
       [34090] = {
         name = "Expert Riding",
         depends = 33391,
         level = 225,
+		active = true,
       },
       [34091] = {
         name = "Artisan Riding",
         depends = 34090,
         level = 300,
+		active = true,
       },
       [90265] = {
         name = "Master Riding",
         unlocks = "flying",
         depends = 34091,
         level = 375,
+		active = true,
       },
       [90267] = {
         name = "Flight Master's License",
-        depends = 34090,
-        level = 450,
+		unlocks = "flying",
+		active = true,
       },
       [54197] = {
         name = "Cold Weather Flying",
         unlocks = "flying",
+		active = false,
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 525,
       },
       [115913] = {
         name = "Wisdom of the Four Winds",
         unlocks = "flying",
+		active = false,
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 600,
       },
       [191645] = {
         name = "Draenor Pathfinder",
@@ -67,12 +70,9 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 675,
       },
       [226342] = {
         name = "Broken Isles Pathfinder",
-        depends = 34090
       },
       [233368] = {
         name = "Broken Isles Pathfinder",
@@ -80,8 +80,6 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 226342,
-        level = 750,
       },
       --[] = {
       --	name = "",
@@ -97,10 +95,37 @@ BeStride_Constants = {
         level = 825,
       },
     },
+	Flight = {
+		Restricted = {
+			Worlds = {
+			},
+			Continents = {
+				[905] = {
+					blocked = true,
+				},
+				[875] = {
+					blocked = true,
+				},
+				[876] = {
+					blocked = true,
+				},
+				[619] = {
+					requires = 233368,
+				},
+				[572] = {
+					requires = 191645,
+				},
+			},
+			Zones = {
+				
+			},
+		},
+	},
   },
   Mount = {
     Mounts = {
       [75207] = {
+		["mountID"] = 373,
         ["type"] = "zone",
         ["subtype"] = "swimming",
         ["zone"] = "Vash'jir",

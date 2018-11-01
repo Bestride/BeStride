@@ -36,6 +36,12 @@ BeStride_Locale = {
 		Passenger = "Force Passenger Mount Button"
 	},
 	Zone = {
+		AzuremystIsle = {
+			Name = "Azuremyst Isle"
+		},
+		BloodmystIsle = {
+			Name = "Bloodmyst Isle"
+		},
 		Deadmines = {
 			Name = "The Deadmines"
 		},
@@ -106,8 +112,8 @@ BeStride_Locale = {
 	},
 	Continent = {
 		Draenor = {
-			Name = "Draenor"
-		}
+			Name = "Draenor",
+		},
 	},
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",
