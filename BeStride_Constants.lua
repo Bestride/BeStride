@@ -40,8 +40,7 @@ BeStride_Constants = {
       },
       [90267] = {
         name = "Flight Master's License",
-        depends = 34090,
-        level = 450,
+		unlocks = "flying",
       },
       [54197] = {
         name = "Cold Weather Flying",
@@ -49,8 +48,6 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 525,
       },
       [115913] = {
         name = "Wisdom of the Four Winds",
@@ -58,8 +55,6 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 600,
       },
       [191645] = {
         name = "Draenor Pathfinder",
@@ -67,12 +62,9 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 34090,
-        level = 675,
       },
       [226342] = {
         name = "Broken Isles Pathfinder",
-        depends = 34090
       },
       [233368] = {
         name = "Broken Isles Pathfinder",
@@ -80,8 +72,6 @@ BeStride_Constants = {
         zones = {
           [1] = "",
         },
-        depends = 226342,
-        level = 750,
       },
       --[] = {
       --	name = "",

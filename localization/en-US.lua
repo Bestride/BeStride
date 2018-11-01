@@ -36,6 +36,12 @@ BeStride_Locale = {
 		Passenger = "Force Passenger Mount Button"
 	},
 	Zone = {
+		AzuremystIsle = {
+			Name = "Azuremyst Isle"
+		},
+		BloodmystIsle = {
+			Name = "Bloodmyst Isle"
+		},
 		Deadmines = {
 			Name = "The Deadmines",
 		},

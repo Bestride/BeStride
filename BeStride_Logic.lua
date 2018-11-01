@@ -258,7 +258,8 @@ function BeStride_Logic:DismountAndExit()
 end
 
 function BeStride_Logic:NeedsChauffeur()
-	if self:GetRidingSkill() == 0 then
+	local skill,spells = self:GetRidingSkill()
+	if skill == 0 then
 		if IsUsableSpell(179245) or IsUsableSpell(179244)  then
 			return true
 		else
@@ -539,17 +540,13 @@ end
 
 function BeStride_Logic:IsUnderwater()
 	if IsSwimming() then
-		print("Swimming")
 		local timer, initial, maxvalue, scale, paused, label = GetMirrorTimerInfo(2)
 		if timer ~= nil and timer == "BREATH" and scale < 0 then
-			print("Underwater")
 			return true
 		else
-			print("On Surface")
 			return false
 		end
 	else
-		print("Not Swimming")
 		return false
 	end
 end
@@ -628,9 +625,9 @@ function BeStride_Logic:IsRepairable()
 	end
 end
 
--- Checks Player Speed
--- Returns: integer
 function BeStride_Logic:MovementCheck()
+	-- Checks Player Speed
+	-- Returns: integer
 	if BeStride_Logic:SpeedCheck() ~= 0 then
 		return true
 	else
@@ -638,9 +635,9 @@ function BeStride_Logic:MovementCheck()
 	end
 end
 
--- Checks Player Speed
--- Returns: integer
 function BeStride_Logic:SpeedCheck()
+	-- Checks Player Speed
+	-- Returns: integer
 	return GetUnitSpeed("player")
 end
 
@@ -654,7 +651,12 @@ end
 
 function BeStride_Logic:IsFlyable()
 	if IsOutdoors() then
-		if self:IsFlyableArea() then
+		local skill,spells = self:GetRidingSkill()
+		local mapID = C_Map.GetBestMapForUnit("player")
+		local mapName = BeStride:GetMapName(mapID,3)
+		if mapName == BeStride_Locale.Zone.AzuremystIsle or mapName == BeStride_Locale.Zone.BloodmystIsle then
+			return false
+		elseif self:IsFlyableArea() and skill >= 225 then
 			return true
 		else
 			return false
@@ -717,9 +719,9 @@ function BeStride_Logic:CheckLoanedMount()
 	return nil
 end
 
--- Check whether we can dismount while flying
--- Returns: boolean
 function BeStride_Logic:NoDismountWhileFlying()
+	-- Check whether we can dismount while flying
+	-- Returns: boolean
 	-- Todo: Bitwise Compare
 	if BeStride:DBGet("settings.mount.nodismountwhileflying") then
 		return true
@@ -728,9 +730,9 @@ function BeStride_Logic:NoDismountWhileFlying()
 	end
 end
 
--- Check whether we force a repair mount
--- Returns: boolean
 function BeStride_Logic:ForceRepair()
+	-- Check whether we force a repair mount
+	-- Returns: boolean
 	if BeStride.db.profile.settings["repair"]["force"] then
 		return true
 	else
@@ -738,9 +740,9 @@ function BeStride_Logic:ForceRepair()
 	end
 end
 
--- Checks whether we check to repair or not
--- Returns: boolean
 function BeStride_Logic:UseRepair()
+	-- Checks whether we check to repair or not
+	-- Returns: boolean
 	if BeStride.db.profile.settings["repair"]["use"] then
 		return true
 	else
@@ -748,9 +750,9 @@ function BeStride_Logic:UseRepair()
 	end
 end
 
--- Get repair threshold
--- Returns: signed integer
 function BeStride_Logic:GetRepairThreshold()
+	-- Get repair threshold
+	-- Returns: signed integer
 	if BeStride.db.profile.settings["repair"]["durability"] then
 		return BeStride.db.profile.settings["repair"]["durability"]
 	else
@@ -758,9 +760,9 @@ function BeStride_Logic:GetRepairThreshold()
 	end
 end
 
--- Check whether we can repair
--- Returns: boolean
 function BeStride_Logic:CanRepair()
+	-- Check whether we can repair
+	-- Returns: boolean
 	if canRepair then
 		return true
 	end
@@ -781,9 +783,9 @@ function BeStride_Logic:CanBroomSetting()
 	return BeStride:DBGet("settings.mount.flyingbroom")
 end
 
--- Check whether we need to repair
--- Returns: boolean
 function BeStride_Logic:NeedToRepair()
+	-- Check whether we need to repair
+	-- Returns: boolean
 	if BeStride_Logic:ForceRepair() then
 		return true
 	end
@@ -803,9 +805,8 @@ end
 -- +----------+ --
 -- Class Checks --
 -- +----------+ --
-
--- Check for DeathKnight
 function BeStride_Logic:IsDeathKnight()
+	-- Check for DeathKnight
 	if string.lower(playerTable["class"]["name"]) == "death knight" then
 		return true
 	else
@@ -813,8 +814,8 @@ function BeStride_Logic:IsDeathKnight()
 	end
 end
 
--- Check for DeathKnight
 function BeStride_Logic:IsDemonHunter()
+	-- Check for DeathKnight
 	if string.lower(playerTable["class"]["name"]) == "demon hunter" then
 		return true
 	else
@@ -822,8 +823,8 @@ function BeStride_Logic:IsDemonHunter()
 	end
 end
 
--- Check for Druid
 function BeStride_Logic:IsDruid()
+	-- Check for Druid
 	if string.lower(playerTable["class"]["name"]) == "druid" then
 		return true
 	else
@@ -831,8 +832,8 @@ function BeStride_Logic:IsDruid()
 	end
 end
 
--- Check for Mage
 function BeStride_Logic:IsMage()
+	-- Check for Mage
 	if string.lower(playerTable["class"]["name"]) == "mage" then
 		return true
 	else
@@ -840,8 +841,8 @@ function BeStride_Logic:IsMage()
 	end
 end
 
--- Check for Monk
 function BeStride_Logic:IsMonk()
+	-- Check for Monk
 	if string.lower(playerTable["class"]["name"]) == "monk" then
 		return true
 	else
@@ -849,8 +850,8 @@ function BeStride_Logic:IsMonk()
 	end
 end
 
--- Check for Paladin
 function BeStride_Logic:IsPaladin()
+	-- Check for Paladin
 	if string.lower(playerTable["class"]["name"]) == "paladin" then
 		return true
 	else
@@ -858,8 +859,8 @@ function BeStride_Logic:IsPaladin()
 	end
 end
 
--- Check for Priest
 function BeStride_Logic:IsPriest()
+	-- Check for Priest
 	if string.lower(playerTable["class"]["name"]) == "priest" then
 		return true
 	else
@@ -867,8 +868,8 @@ function BeStride_Logic:IsPriest()
 	end
 end
 
--- Check for Rogue
 function BeStride_Logic:IsRogue()
+	-- Check for Rogue
 	if string.lower(playerTable["class"]["name"]) == "rogue" then
 		return true
 	else
@@ -876,8 +877,8 @@ function BeStride_Logic:IsRogue()
 	end
 end
 
--- Check for Shaman
 function BeStride_Logic:IsShaman()
+	-- Check for Shaman
 	if string.lower(playerTable["class"]["name"]) == "shaman" then
 		return true
 	else
@@ -1330,14 +1331,19 @@ end
 
 function BeStride_Logic:GetRidingSkill()
 	local ridingSkillLevel = 0
+	local ridingSpells = {}
 	
-	table.foreach(BeStride_Constants.Riding.Skill, function (spellID,skill)
+  
+	for spellID,skill in pairsByKeys(BeStride_Constants.Riding.Skill) do
 		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
+			ridingSpells[spellID] = true
+		elseif IsSpellKnown(spellID) and skill.level == nil then
+			ridingSpells[spellID] = true
 		end
-	end)
+	end
 	
-	return ridingSkillLevel
+	return ridingSkillLevel,ridingSpells
 end
 
 function BeStride_Logic:WGActive()

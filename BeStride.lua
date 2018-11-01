@@ -364,9 +364,7 @@ end
 
 function BeStride:GetMap(locID)
 	local map = C_Map.GetMapInfo(locID)
-	
-	print(locID .. ":" .. map["name"] .. ":" .. map["mapType"])
-	
+		
 	if map["mapType"] ~= 0 then
 		BeStride:GetMap(map["parentMapID"])
 	end
@@ -545,6 +543,11 @@ function BeStride:ItemToName(itemID)
 	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, isCraftingReagent = GetItemInfo(itemID)
 	
 	return itemName
+end
+
+function BeStride:GetMapName(locID,filter)
+	local map = self:GetMapUntil(locID,filter)
+	return map.name
 end
 
 function BeStride:GetMapUntil(locID,filter)
