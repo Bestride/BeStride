@@ -130,7 +130,7 @@ BeStride_Locale = {
 			Force = "Force a Repair mount if player owns one",
 			Durability = "Item Low Durability %",
 			GlobalDurability = "Global Low Durability %",
-			IventoryDurability = "Inventory Item Low Durability %"
+			InventoryDurability = "Inventory Item Low Durability %"
 		},
 		Classes = {
 			DeathKnight = {
@@ -167,6 +167,12 @@ BeStride_Locale = {
 			Shaman = {
 				GhostWolf = "Shaman: Ghost Wolf"
 			}
+		},
+		Profiles = {
+			CreateNew = "Create new Profile:",
+			Current = "Current Profile:",
+			CopyFrom = "Copy settings from:",
+			Delete = "Delete profile:"
 		}
 	}
 }

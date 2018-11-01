@@ -26,6 +26,7 @@ libs\AceConfig-3.0\AceConfigDialog-3.0\AceConfigDialog-3.0.xml
 BeStride_Constants.lua
 localization\en-US.lua
 localization\zh-TW.lua
+localization\de-DE.lua
 BeStride_Variables.lua
 
 BeStride.lua

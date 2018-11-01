@@ -374,28 +374,28 @@ function BeStride_GUI:DrawProfileTab(container) --PROFILE OPTIONS
 	table.foreach(profiles,function (k,v) if v == currentProfile then profileID = k end end)
 	
 	self.elements["profile.create"] = AceGUI:Create("EditBox")
-	self.elements["profile.create"]:SetLabel("Create new Profile")
+	self.elements["profile.create"]:SetLabel(BeStride_Locale.Settings.Profiles.CreateNew)
 	self.elements["profile.create"]:SetMaxLetters(15) 
 
 	self.elements["profile.current"] = AceGUI:Create("Dropdown")
 	self.elements["profile.current"]:SetList(profiles)
-	self.elements["profile.current"]:SetLabel("Current Profile:")
+	self.elements["profile.current"]:SetLabel(BeStride_Locale.Settings.Profiles.Current)
 	self.elements["profile.current"]:SetValue(profileID)
 	
 	self.elements["profile.copy"] = AceGUI:Create("Dropdown")
 	self.elements["profile.copy"]:SetList(profiles)
 	self.elements["profile.copy"]:SetItemDisabled(profileID, true)
-	self.elements["profile.copy"]:SetLabel("Copy settings from:")
+	self.elements["profile.copy"]:SetLabel(BeStride_Locale.Settings.Profiles.CopyFrom)
 	
 	self.elements["profile.copybutton"] = AceGUI:Create("Button")
-	self.elements["profile.copybutton"]:SetWidth(75)
+	self.elements["profile.copybutton"]:SetWidth(100)
 	self.elements["profile.copybutton"]:SetText(BeStride_Locale.GUI.BUTTON.Copy)
 	self.elements["profile.copybutton"]:SetDisabled(true)
 	
 	self.elements["profile.delete"] = AceGUI:Create("Dropdown")
 	self.elements["profile.delete"]:SetList(profiles)
 	self.elements["profile.delete"]:SetItemDisabled(profileID, true)
-	self.elements["profile.delete"]:SetLabel("Delete profile:")
+	self.elements["profile.delete"]:SetLabel(BeStride_Locale.Settings.Profiles.Delete)
 	
 	self.elements["profile.deletebutton"] = AceGUI:Create("Button")
 	self.elements["profile.deletebutton"]:SetWidth(100)
