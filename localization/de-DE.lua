@@ -123,7 +123,7 @@ if GetLocale() == "deDE" then
 				Force = "Ein Reparatur-Reittier erzwingen, wenn der Spieler eines hat",
 				Durability = "Gegenstand Niedrige Haltbarkeit %",
 				GlobalDurability = "Globale Niedrige Haltbarkeit %",
-				IventoryDurability = "Inventar Gegenstand Niedrige Haltbarkeit %"
+				InventoryDurability = "Inventar Gegenstand Niedrige Haltbarkeit %"
 			},
 			Classes = {
 				DeathKnight = {

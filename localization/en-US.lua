@@ -130,7 +130,7 @@ BeStride_Locale = {
 			Force = "Force a Repair mount if player owns one",
 			Durability = "Item Low Durability %",
 			GlobalDurability = "Global Low Durability %",
-			IventoryDurability = "Inventory Item Low Durability %"
+			InventoryDurability = "Inventory Item Low Durability %"
 		},
 		Classes = {
 			DeathKnight = {

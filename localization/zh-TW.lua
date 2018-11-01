@@ -123,7 +123,7 @@ if GetLocale() == "zhTW" then
 				Force = "當角色有維修坐騎時強制使用",
 				Durability = "物品低耐久度 %",
 				GlobalDurability = "全局低耐久度 %",
-				IventoryDurability = "背包物品低耐久度 %"
+				InventoryDurability = "背包物品低耐久度 %"
 			},
 			Classes = {
 				DeathKnight = {
