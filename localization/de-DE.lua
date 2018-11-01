@@ -35,6 +35,12 @@ if GetLocale() == "deDE" then
 			Passenger = "Passagier-Reittier erzwingen"
 		},
 		Zone = {
+			AzuremystIsle = {
+				Name = "Azurmythosinsel"
+			},
+			BloodmystIsle = {
+				Name = "Blutmythosinsel"
+			},
 			Deadmines = {
 				Name = "Die Todesminen"
 			},
