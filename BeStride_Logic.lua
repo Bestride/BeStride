@@ -651,10 +651,34 @@ function BeStride_Logic:IsFlyable()
 	if IsOutdoors() then
 		local skill,spells = self:GetRidingSkill()
 		local mapID = C_Map.GetBestMapForUnit("player")
-		local mapName = BeStride:GetMapName(mapID,3)
-		if mapName == BeStride_Locale.Zone.AzuremystIsle or mapName == BeStride_Locale.Zone.BloodmystIsle then
-			return false
-		elseif self:IsFlyableArea() and skill >= 225 then
+		
+		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
+			local continent = BeStride:GetMapUntil(mapID,2)
+			for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Continents) do
+				if continent.mapID == key and value.blocked == true then
+					return false
+				elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+					break
+				elseif continent.mapID == key then
+					return false
+				end
+			end
+		end
+		
+		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
+			local zone = BeStride:GetMapUntil(mapID,3)
+			for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do
+				if zone.mapID == key and value.blocked == true then
+					return false
+				elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+					return true
+				elseif zone.mapID == key then
+					return false
+				end
+			end
+		end
+		
+		if self:IsFlyableArea() and skill >= 225 then
 			return true
 		else
 			return false

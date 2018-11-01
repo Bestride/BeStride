@@ -35,6 +35,16 @@ function pairsByKeys (t, f)
 	return iter
 end
 
+function countTable(t)
+	assert(type(t) == 'table', 'bad parameter #1: must be table')
+	local count = 0
+	for k, v in pairs(t) do
+		count = count + 1
+	end
+	
+	return count
+end
+
 local BeStride_Options = {
   name="BeStride",
   handler = BeStride,
@@ -343,7 +353,7 @@ function BeStride:ChatCommand(input)
 	if input == "reload" then
 		BeStride:buildMountTables()
 	elseif input == "map" then
-		BeStride:GetMaps()
+		BeStride_Debug:DebugGetMaps()
 	elseif input == "underwater" then
 		BeStride_Logic:IsUnderwater()
 	else
@@ -355,19 +365,6 @@ function BeStride:SpellToName(spellID)
 	local name, rank, icon, castTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
 	
 	return name
-end
-
-function BeStride:GetMaps()
-	local locID = C_Map.GetBestMapForUnit("player")
-	BeStride:GetMap(locID)
-end
-
-function BeStride:GetMap(locID)
-	local map = C_Map.GetMapInfo(locID)
-		
-	if map["mapType"] ~= 0 then
-		BeStride:GetMap(map["parentMapID"])
-	end
 end
 
 function BeStride:DBGet(path,parent)

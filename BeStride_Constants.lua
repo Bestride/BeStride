@@ -16,35 +16,42 @@ BeStride_Constants = {
         name = "Apprentice Riding",
         unlocks = "ground",
         level = 75,
+		active = true,
       },
       [33391] = {
         name = "Journeyman Riding",
         depends = 33388,
         level = 150,
+		active = true,
       },
       [34090] = {
         name = "Expert Riding",
         depends = 33391,
         level = 225,
+		active = true,
       },
       [34091] = {
         name = "Artisan Riding",
         depends = 34090,
         level = 300,
+		active = true,
       },
       [90265] = {
         name = "Master Riding",
         unlocks = "flying",
         depends = 34091,
         level = 375,
+		active = true,
       },
       [90267] = {
         name = "Flight Master's License",
 		unlocks = "flying",
+		active = true,
       },
       [54197] = {
         name = "Cold Weather Flying",
         unlocks = "flying",
+		active = false,
         zones = {
           [1] = "",
         },
@@ -52,6 +59,7 @@ BeStride_Constants = {
       [115913] = {
         name = "Wisdom of the Four Winds",
         unlocks = "flying",
+		active = false,
         zones = {
           [1] = "",
         },
@@ -87,6 +95,32 @@ BeStride_Constants = {
         level = 825,
       },
     },
+	Flight = {
+		Restricted = {
+			Worlds = {
+			},
+			Continents = {
+				[905] = {
+					blocked = true,
+				},
+				[875] = {
+					blocked = true,
+				},
+				[876] = {
+					blocked = true,
+				},
+				[619] = {
+					requires = 233368,
+				},
+				[572] = {
+					requires = 191645,
+				},
+			},
+			Zones = {
+				
+			},
+		},
+	},
   },
   Mount = {
     Mounts = {

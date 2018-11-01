@@ -114,6 +114,7 @@ BeStride_Locale = {
 		Draenor = {
 			Name = "Draenor",
 		},
+		
 	},
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",
