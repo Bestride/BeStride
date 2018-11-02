@@ -1,5 +1,4 @@
 
-
 BeStride_Locale = {
 	Options = {
 		OpenGUI = "Open GUI"

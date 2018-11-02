@@ -35,6 +35,12 @@ if GetLocale() == "zhTW" then
 			Passenger = "強制多載坐騎按鈕"
 		},
 		Zone = {
+			AzuremystIsle = {
+				Name = "Azuremyst Isle"
+			},
+			BloodmystIsle = {
+				Name = "Bloodmyst Isle"
+			},
 			Deadmines = {
 				Name = "死亡礦坑"
 			},

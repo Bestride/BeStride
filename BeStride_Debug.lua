@@ -69,8 +69,8 @@ function BeStride_Debug:DebugGetMapUntil(locID,filter)
 	if map ~= nil then
 		self:Debug(map.mapID .. "," .. map.name .. "," .. map.mapType .. "," .. map.parentMapID)
 	end
-	if map["mapType"] ~= filter and map["mapType"] > filter then
-		return self:DebugGetMapUntil(map["parentMapID"],filter)
+	if map.mapType ~= filter and map.mapType > filter and map.parentMapID ~= nil and map.parentMapID ~= 0 then
+		return self:DebugGetMapUntil(map.parentMapID,filter)
 	else
 		return map
 	end
