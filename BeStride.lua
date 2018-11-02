@@ -550,7 +550,12 @@ end
 function BeStride:GetMapUntil(locID,filter)
 	local map = C_Map.GetMapInfo(locID)
 	if map.mapType ~= filter and map.mapType > filter and map.parentMapID ~= nil and map.parentMapID ~= 0 then
-		return BeStride:GetMapUntil(map.parentMapID,filter)
+		local parentMap = self:GetMapUntil(map.parentMapID,filter)
+		if parentMap ~= nil then
+			return parentMap
+		else
+			return map
+		end
 	else
 		return map
 	end
