@@ -310,7 +310,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return true
 		elseif IsFalling() and self:DruidFlying() then
 			return true
-		elseif IsSwimming() and self:DruidSwimming() then
+		elseif IsSwimming() and self:DruidCanSwim() then
 			return true
 		elseif self:MovementCheck() then
 			return true
