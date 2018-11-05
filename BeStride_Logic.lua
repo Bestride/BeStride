@@ -436,13 +436,15 @@ function BeStride_Logic:DemonHunter()
 	elseif self:MovementCheck() and self:DemonHunterFelRush() then
 		return BeStride_Mount:DemonHunterFelRush()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DHBSL")
 	end
 end
 
 function BeStride_Logic:Druid()
 	if IsOutdoors() ~= true and self:DruidCanCat() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(768))
+	elseif IsSwimming() and self:DruidCanSwim() then
+		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif GetShapeshiftForm() == 3 then
