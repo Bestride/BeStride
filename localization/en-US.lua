@@ -50,13 +50,13 @@ BeStride_Locale = {
 		Dalaran = {
 			Name = "Dalaran",
 			SubZone = {
-				UnderBelly = {
+				Underbelly = {
 					Name = "The Underbelly"
 				},
-				UnderBellyDescent = {
+				UnderbellyDescent = {
 					Name = "The Underbelly Descent"
 				},
-				CircleOfWills = {
+				CircleofWills = {
 					Name = "Circle of Wills"
 				},
 				BlackMarket = {

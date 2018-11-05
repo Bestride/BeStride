@@ -50,13 +50,13 @@ if GetLocale() == "deDE" then
 			Dalaran = {
 				Name = "Dalaran",
 				SubZone = {
-					UnderBelly = {
+					Underbelly = {
 						Name = "Die Schattenseite"
 					},
-					UnderBellyDescent = {
+					UnderbellyDescent = {
 						Name = "Der Schattenabstieg"
 					},
-					CircleOfWills = {
+					CircleofWills = {
 						Name = "Kreis der Mächte"
 					},
 					BlackMarket = {

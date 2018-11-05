@@ -33,8 +33,15 @@ end
 
 function BeStride_Mount:IsUsable(mount)
 	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mount)
-	
-	if isUsable then
+	if mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[spellID] ~= nil and BeStride_Constants.Mount.Mounts[spellID].zone ~= nil then
+		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
+		
+		if zone == BeStride_Constants.Mount.Mounts[mountID].zone then
+			return true
+		else
+			return false
+		end
+	elseif isUsable then
 		return true
 	else
 		return false
@@ -150,6 +157,14 @@ function BeStride_Mount:Loaned()
 	local mount = BeStride_Logic:CheckLoanedMount()
 	
 	return self:MountSpell(BeStride:SpellToName(mount))
+end
+
+function BeStride_Mount:VashjirSeahorse()
+	if IsUsableSpell(75207) then
+		return 75207
+	else
+		return nil
+	end
 end
 
 function BeStride_Mount:Chauffeur()

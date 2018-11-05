@@ -698,7 +698,6 @@ end
 
 function BeStride_Logic:IsLoanedMount()
 	local loanedMount = BeStride_Logic:CheckLoanedMount()
-	
 	if loanedMount ~= nil then
 		return true
 	else
@@ -708,21 +707,27 @@ end
 
 function BeStride_Logic:CheckLoanedMount()
 	local mapID = C_Map.GetBestMapForUnit("player")
-	local micro = BeStride:GetMapUntil(mapID,5)
-	local dungeon = BeStride:GetMapUntil(mapID,4)
 	local zone = BeStride:GetMapUntil(mapID,3)
-	local continent = BeStride:GetMapUntil(mapID,2)
-	
-	if dungeon.name == BeStride_Locale.Zone.Dalaran then
-		if micro.name == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly or
-				micro.name == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent or
-				micro.name == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills or
-				micro.name == BeStridevLocale.Zone.Dalaran.SubZone.BlackMarket then
+	if zone == nil then
+		return nil
+	elseif IsSwimming() and (
+		zone.mapID == BeStride_Constants.Zone.Vashjir.KelptharForest.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.ShimmeringExpanse.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.AbyssalDepths.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.id
+	) then
+		return BeStride_Mount:VashjirSeahorse()
+	elseif zone.name == BeStride_Locale.Zone.Dalaran.Name then
+		local subzone = GetSubZoneText()
+		if subzone == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.BlackMarket.Name then
 			if GetItemCount(139421, false) > 0 then
 				return 139421
 			end
 		end
-	elseif zone.name == BeStride_Locale.Zone.Oculus then
+	elseif zone.name == BeStride_Locale.Zone.Oculus.Name then
 		if GetItemCount(37859) == 1 then
 			return 37859
 		elseif GetItemCount(37860) == 1 then
@@ -730,7 +735,7 @@ function BeStride_Logic:CheckLoanedMount()
 		elseif GetItemCount(37815) == 1 then
 			return 37815
 		end
-	elseif zone.name == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown or zone == BeStride_Locale.Zone.SholazarBasin then
+	elseif zone.name == BeStride_Locale.Zone.StormPeaks.Name or zone == BeStride_Locale.Zone.Icecrown.Name or zone == BeStride_Locale.Zone.SholazarBasin.Name then
 		if GetItemCount(44221, false) > 0 then
 			return 44221
 		elseif GetItemCount(44229, false) > 0 then

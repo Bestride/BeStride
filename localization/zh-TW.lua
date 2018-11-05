@@ -50,13 +50,13 @@ if GetLocale() == "zhTW" then
 			Dalaran = {
 				Name = "達拉然",
 				SubZone = {
-					UnderBelly = {
+					Underbelly = {
 						Name = "城底區"
 					},
-					UnderBellyDescent = {
+					UnderbellyDescent = {
 						Name = "城底陷窟"
 					},
-					CircleOfWills = {
+					CircleofWills = {
 						Name = "意志之環"
 					},
 					BlackMarket = {
