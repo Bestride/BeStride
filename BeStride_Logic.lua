@@ -558,7 +558,7 @@ function BeStride_Logic:IsSpecialZone()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+	if continent ~= nil and continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
 		local garrisonAbilityName = GetSpellInfo(161691)
 		local _,_,_,_,_,_,spellID = GetSpellInfo(garrisonAbilityName)
 		if(spellID == 165803 or spellID == 164222) then
@@ -576,7 +576,7 @@ function BeStride_Logic:SpecialZone()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+	if continent ~= nil and continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
 		return BeStride_Mount:Nagrand()
 	end
 	
