@@ -656,26 +656,30 @@ function BeStride_Logic:IsFlyable()
 		
 		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
 			local continent = BeStride:GetMapUntil(mapID,2)
-			for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Continents) do
-				if continent.mapID == key and value.blocked == true then
-					return false
-				elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
-					break
-				elseif continent.mapID == key then
-					return false
+			if continent ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Continents) do
+					if continent.mapID == key and value.blocked == true then
+						return false
+					elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						break
+					elseif continent.mapID == key then
+						return false
+					end
 				end
 			end
 		end
 		
 		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
 			local zone = BeStride:GetMapUntil(mapID,3)
-			for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do
-				if zone.mapID == key and value.blocked == true then
-					return false
-				elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
-					return true
-				elseif zone.mapID == key then
-					return false
+			if zone ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do
+					if zone.mapID == key and value.blocked == true then
+						return false
+					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						return true
+					elseif zone.mapID == key then
+						return false
+					end
 				end
 			end
 		end
