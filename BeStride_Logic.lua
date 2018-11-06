@@ -741,7 +741,7 @@ function BeStride_Logic:CheckLoanedMount()
 		elseif GetItemCount(37815) == 1 then
 			return 37815
 		end
-	elseif zone.name == BeStride_Locale.Zone.StormPeaks.Name or zone == BeStride_Locale.Zone.Icecrown.Name or zone == BeStride_Locale.Zone.SholazarBasin.Name then
+	elseif zone.name == BeStride_Locale.Zone.StormPeaks.Name or zone.name == BeStride_Locale.Zone.Icecrown.Name or zone.name == BeStride_Locale.Zone.SholazarBasin.Name then
 		if GetItemCount(44221, false) > 0 then
 			return 44221
 		elseif GetItemCount(44229, false) > 0 then
