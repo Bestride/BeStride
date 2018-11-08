@@ -115,7 +115,7 @@ if GetLocale() == "zhTW" then
 			}
 		},
 		Settings = {
-			EnableNew = "當學會新作其實自動啟用它們",
+			EnableNew = "當學會新坐騎時自動啟用它們",
 			EmptyRandom = "如果沒有可以使用的已選擇坐騎時隨機使用",
 			RemountAfterDismount = "下馬後立刻重新上馬",
 			NoDismountWhileFlying = "在飛行時不解除坐騎. 你必須要降落或者是施放一個法術 (假使在選項中啟用後)",
@@ -168,10 +168,10 @@ if GetLocale() == "zhTW" then
 				}
 			},
 			Profiles = {
-				CreateNew = "Create new Profile:",
-				Current = "Current Profile:",
-				CopyFrom = "Copy settings from:",
-				Delete = "Delete profile:"
+				CreateNew = "創建新的設定檔:",
+				Current = "當前設定檔:",
+				CopyFrom = "複製設定檔:",
+				Delete = "刪除設定檔:"
 			}
 		}
 	}
