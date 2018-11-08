@@ -58,15 +58,18 @@ end
 
 function BeStride_Mount:Failback()
 	local mounts = {}
-	
-	for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
-	
-	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
+	if BeStride:DBGetSetting("settings.mount.emptyrandom") then
+		for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
+		
+		if #mounts == 0 then
+			BeStride_Debug:Debug("No Mounts")
+			return nil
+		end
+		
+		return self:DoMount(mounts)
+	else
 		return nil
 	end
-	
-	return self:DoMount(mounts)
 end
 
 function BeStride_Mount:Regular()
