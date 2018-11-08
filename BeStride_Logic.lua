@@ -840,7 +840,7 @@ end
 -- +----------+ --
 function BeStride_Logic:IsDeathKnight()
 	-- Check for DeathKnight
-	if string.lower(playerTable["class"]["name"]) == "death knight" then
+	if playerTable["class"]["id"] == 6 then
 		return true
 	else
 		return false
@@ -849,7 +849,7 @@ end
 
 function BeStride_Logic:IsDemonHunter()
 	-- Check for DeathKnight
-	if string.lower(playerTable["class"]["name"]) == "demon hunter" then
+	if playerTable["class"]["id"] == 12 then
 		return true
 	else
 		return false
@@ -858,7 +858,7 @@ end
 
 function BeStride_Logic:IsDruid()
 	-- Check for Druid
-	if string.lower(playerTable["class"]["name"]) == "druid" then
+	if playerTable["class"]["id"] == 11 then
 		return true
 	else
 		return false
@@ -867,7 +867,7 @@ end
 
 function BeStride_Logic:IsMage()
 	-- Check for Mage
-	if string.lower(playerTable["class"]["name"]) == "mage" then
+	if playerTable["class"]["id"] == 8 then
 		return true
 	else
 		return false
@@ -876,7 +876,7 @@ end
 
 function BeStride_Logic:IsMonk()
 	-- Check for Monk
-	if string.lower(playerTable["class"]["name"]) == "monk" then
+	if playerTable["class"]["id"] == 10 then
 		return true
 	else
 		return false
@@ -885,7 +885,7 @@ end
 
 function BeStride_Logic:IsPaladin()
 	-- Check for Paladin
-	if string.lower(playerTable["class"]["name"]) == "paladin" then
+	if playerTable["class"]["id"] == 2 then
 		return true
 	else
 		return false
@@ -894,7 +894,7 @@ end
 
 function BeStride_Logic:IsPriest()
 	-- Check for Priest
-	if string.lower(playerTable["class"]["name"]) == "priest" then
+	if playerTable["class"]["id"] == 5 then
 		return true
 	else
 		return false
@@ -903,7 +903,7 @@ end
 
 function BeStride_Logic:IsRogue()
 	-- Check for Rogue
-	if string.lower(playerTable["class"]["name"]) == "rogue" then
+	if playerTable["class"]["id"] == 4 then
 		return true
 	else
 		return false
@@ -912,7 +912,7 @@ end
 
 function BeStride_Logic:IsShaman()
 	-- Check for Shaman
-	if string.lower(playerTable["class"]["name"]) == "shaman" then
+	if playerTable["class"]["id"] == 7 then
 		return true
 	else
 		return false
