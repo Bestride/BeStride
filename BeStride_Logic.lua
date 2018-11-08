@@ -60,7 +60,6 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() then
-			BeStride_Debug:Debug("Flying")
 			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
 				self:DismountAndExit()
 				if BeStride:DBGet("settings.mount.remount") then
@@ -82,7 +81,6 @@ function BeStride_Logic:Regular()
 				return nil
 			end
 		elseif self:IsFlyable() then
-			BeStride_Debug:Debug("Flyable")
 			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Flying()
@@ -1257,8 +1255,6 @@ end
 function BeStride_Logic:MageBlink()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageCanBlink() then
-		end
 		if self:MageCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
 			return true
 		else
