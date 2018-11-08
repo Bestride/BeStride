@@ -36,7 +36,15 @@ function BeStride_Mount:IsUsable(mount)
 	if mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[spellID] ~= nil and BeStride_Constants.Mount.Mounts[spellID].zone ~= nil then
 		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
 		
-		if zone == BeStride_Constants.Mount.Mounts[mountID].zone then
+		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[spellID].zone then
+			return true
+		else
+			return false
+		end
+	elseif mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[mountID] ~= nil and BeStride_Constants.Mount.Mounts[mountID].zone ~= nil then
+		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
+		
+		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[mountID].zone then
 			return true
 		else
 			return false
