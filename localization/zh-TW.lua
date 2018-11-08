@@ -124,6 +124,7 @@ if GetLocale() == "zhTW" then
 			PrioritizePassenger = "在隊伍時優先使用多載坐騎",
 			FlyingBroom = "總是使用魔法掃帚代替普通坐騎",
 			Telaari = "在納葛蘭時總是使用泰拉蕊塔巴克或是霜狼",
+			ForceRobot = "當你有學草藥學時總是使用機器人",
 			Repair = {
 				Use = "當到達耐久度閥值時且擁有時使用維修坐騎",
 				Force = "當角色有維修坐騎時強制使用",

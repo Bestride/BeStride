@@ -186,6 +186,19 @@ function BeStride_Mount:Chauffeur()
 	end
 end
 
+function BeStride_Mount:Robot()
+	local mounts={}
+
+	if IsUsableSpell(134359) then
+		table.insert(mounts,134359)
+	end
+	if IsUsableSpell(223814) then
+		table.insert(mounts,223814)
+	end
+
+	return self:MountSpell(BeStride:SpellToName(mounts[math.random(#mounts)]))
+end
+
 function BeStride_Mount:Nagrand()
 	return self:MountSpell(BeStride:SpellToName(164222))
 end

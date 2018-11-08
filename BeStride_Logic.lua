@@ -19,6 +19,9 @@ function BeStride_Logic:Regular()
 	elseif self:NeedsChauffeur() then
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -130,7 +133,11 @@ function BeStride_Logic:GroundMountButton()
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -837,6 +844,33 @@ function BeStride_Logic:NeedToRepair()
 	return false
 end
 
+function BeStride_Logic:IsHerbalismAndCanRobot()
+	if BeStride_Logic:IsHerbalism() and not BeStride_Logic:IsCombat() and BeStride_Logic:CanRobotSetting() then
+		if IsUsableSpell(134359) or IsUsableSpell(223814) then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:IsHerbalism()
+	local prof1,prof2 = GetProfessions()
+	-- 182 = Herbalism
+	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
+	if select(7,GetProfessionInfo(prof1)) == 182 or select(7,GetProfessionInfo(prof2)) == 182 then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:CanRobotSetting()
+	return BeStride:DBGet("settings.mount.forcerobot")
+end
+
 -- +----------+ --
 -- Class Checks --
 -- +----------+ --
@@ -850,7 +884,7 @@ function BeStride_Logic:IsDeathKnight()
 end
 
 function BeStride_Logic:IsDemonHunter()
-	-- Check for DeathKnight
+	-- Check for DemonHunter
 	if string.lower(playerTable["class"]["name"]) == "demon hunter" then
 		return true
 	else
