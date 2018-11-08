@@ -322,9 +322,9 @@ function BeStride_GUI:DrawClassOptionTab(container)
 			for name,setting in pairs(classSetting) do
 				
 				if setting.element == "CheckBox" then
-					element = self:CreateSettingCheckBox(setting.name,setting.label)
+					element = self:CreateSettingCheckBox(setting.name,setting.label,setting.depends, setting.dependants)
 				elseif setting.element == "Slider" then
-					element = self:CreateSettingSlider(setting.name,setting.label,setting.minDurability,setting.maxDurability,setting.increment)
+					element = self:CreateSettingSlider(setting.name,setting.label,setting.minDurability,setting.maxDurability,setting.increment,setting.depends, setting.dependants)
 				end
 				
 				if element ~= nil then

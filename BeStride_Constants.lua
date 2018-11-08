@@ -140,7 +140,24 @@ BeStride_Constants = {
 					},
 				},
 				Zones = {
-					
+					[106] = {
+						blocked = true,
+					},
+					[97] = {
+						blocked = true,
+					},
+					[103] = {
+						blocked = true,
+					},
+					[94] = {
+						blocked = true,
+					},
+					[95] = {
+						blocked = true,
+					},
+					[122] = {
+						blocked = true,
+					},
 				},
 			},
 		},

@@ -60,6 +60,7 @@ function BeStride_Logic:Regular()
 		return BeStride_Mount:Repair()
 	elseif IsMounted() then
 		if IsFlying() then
+			BeStride_Debug:Debug("Flying")
 			if self:IsFlyable() and BeStride:DBGet("settings.mount.nodismountwhileflying") ~= true then
 				self:DismountAndExit()
 				if BeStride:DBGet("settings.mount.remount") then
@@ -81,6 +82,7 @@ function BeStride_Logic:Regular()
 				return nil
 			end
 		elseif self:IsFlyable() then
+			BeStride_Debug:Debug("Flyable")
 			self:DismountAndExit()
 			if BeStride:DBGet("settings.mount.remount") then
 				return BeStride_Mount:Flying()
@@ -304,6 +306,8 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return true
 		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
+		elseif IsFlying() and self:DruidFlying() == true and self:DruidUseFlightForm() == false then
+			return false
 		elseif IsFlying() and self:NoDismountWhileFlying() then
 			return false
 		elseif self:IsFlyable() and self:DruidFlying() and self:DruidFlightFormPriority() then
@@ -662,7 +666,7 @@ function BeStride_Logic:IsFlyable()
 						return false
 					elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
 						break
-					elseif continent.mapID == key then
+					elseif continent.mapID == key and value.requires ~= nil then
 						return false
 					end
 				end
@@ -676,14 +680,14 @@ function BeStride_Logic:IsFlyable()
 					if zone.mapID == key and value.blocked == true then
 						return false
 					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
-						return true
+						break
 					elseif zone.mapID == key then
 						return false
 					end
 				end
 			end
 		end
-		
+				
 		if self:IsFlyableArea() and skill >= 225 then
 			return true
 		else
@@ -1167,7 +1171,19 @@ end
 
 function BeStride_Logic:DruidFlying()
 	if self:IsDruid() then
-		if self:DruidCanFly() then
+		if self:DruidCanFly() and self:DruidUseFlightForm() then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DruidUseFlightForm()
+	if self:IsDruid() then
+		if BeStride:DBGet("settings.classes.druid.flightform") then
 			return true
 		else
 			return false
