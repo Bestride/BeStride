@@ -860,7 +860,7 @@ function BeStride_Logic:IsHerbalism()
 	local prof1,prof2 = GetProfessions()
 	-- 182 = Herbalism
 	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
-	if select(7,GetProfessionInfo(prof1)) == 182 or select(7,GetProfessionInfo(prof2)) == 182 then
+	if (prof1 and select(7,GetProfessionInfo(prof1)) == 182) or (prof2 and select(7,GetProfessionInfo(prof2)) == 182) then
 		return true
 	else
 		return false
