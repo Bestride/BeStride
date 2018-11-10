@@ -366,6 +366,10 @@ function BeStride:ChatCommand(input)
 		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	elseif input == "underwater" then
 		BeStride_Logic:IsUnderwater()
+	elseif input == "bug" then
+		BeStride_GUI:BugReport()
+	elseif input == "depth" then
+		BeStride_GUI:DebugTable({},0)
 	else
 		BeStride_GUI:Frame(input)
 	end

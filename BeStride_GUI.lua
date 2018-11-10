@@ -1,10 +1,12 @@
 local AceGUI = LibStub("AceGUI-3.0")
 	
 local BeStride_Frame = nil
+local BeStride_Debug_Frame = nil
 
 BeStride_GUI = {
 	close = nil,
 	closebutton = nil,
+	debugclose = nil,
 	
 	buttons = {},
 	elements = {},
@@ -32,7 +34,7 @@ function BeStride_GUI:Open(defaultTab)
 	}
 
 	BeStride_Frame = AceGUI:Create("Frame")
-	BeStride_Frame:SetCallback("OnClose",function (widget) AceGUI:Release(widget); BeStride_Frame = nil end)
+	BeStride_Frame:SetCallback("OnClose",function (widget) BeStride_GUI:Close() end)
 	BeStride_Frame:SetTitle("BeStride")
 	BeStride_Frame:SetStatusText(BeStride_GUI:GetStatusText())
 	BeStride_Frame:SetLayout("Fill")
@@ -498,4 +500,96 @@ function BeStride_GUI:DrawAboutTab(container)
 	about:SetText(BeStride_Locale.About)
 	about:SetWidth(700)
 	container:AddChild(about)
+end
+
+function BeStride_GUI:BugReport()
+	BeStride_Debug_Frame = AceGUI:Create("Frame")
+	BeStride_Debug_Frame:SetCallback("OnClose",function (widget) BeStride_GUI:BugReportClear() end)
+	BeStride_Debug_Frame:SetTitle("BeStride Bug Report")
+	BeStride_Debug_Frame:SetStatusText("Press Escape or Close to Exit")
+	BeStride_Debug_Frame:SetLayout("Fill")
+	BeStride_Debug_Frame:SetWidth(720)
+	BeStride_Debug_Frame:SetHeight(490)
+	
+	local BeStride_Debug_EditBox = AceGUI:Create("MultiLineEditBox")
+	BeStride_Debug_EditBox:SetLabel("Debug")
+	BeStride_Debug_EditBox:SetFullWidth(true)
+	BeStride_Debug_EditBox:SetFullHeight(true)
+	BeStride_Debug_EditBox:DisableButton(true)
+	BeStride_Debug_EditBox:SetText("Version = " .. version .. "\n"
+		.. "maps = { " .. "\n" .. BeStride_GUI:DebugTable(BeStride_GUI:DebugMap(),0) .. "}" .. "\n"
+		.. "mountTable = { " .. "\n" .. BeStride_GUI:DebugTable(mountTable,0) .. "}" .. "\n"
+		.. "BeStride.db.profile = { " .. "\n" .. BeStride_GUI:DebugTable(BeStride.db.profile,0) .. "}" .. "\n"
+		.. "BeStride_Variables = { " .. "\n" .. BeStride_GUI:DebugTable(BeStride_Variables,0) .. "}" .. "\n"
+		.. "BeStride_Constants = { " .. "\n" .. BeStride_GUI:DebugTable(BeStride_Constants,0) .. "}" .. "\n"
+		)
+	
+	BeStride_Debug_EditBox:HighlightText()
+	
+	BeStride_Debug_Frame:AddChild(BeStride_Debug_EditBox)
+	
+	local closebutton = "BeStride_DebugFrameClose"
+	BeStride_GUI.debugclose = CreateFrame("Button", closebutton, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
+	BeStride_GUI.debugclose:SetAttribute("type","macro")
+	BeStride_GUI.debugclose:SetAttribute("macrotext","/script BeStride_GUI:BugReportClear()")
+	SetOverrideBindingClick(BeStride_GUI.debugclose,true,"ESCAPE",closebutton)
+end
+
+function BeStride_GUI:BugReportClear()
+	ClearOverrideBindings(BeStride_GUI.debugclose)
+	BeStride_GUI.debugclose = nil
+	AceGUI:Release(BeStride_Debug_Frame)
+	BeStride_Debug_Frame = nil
+end
+
+function BeStride_GUI:DebugTable(table,depth)
+	-- depth shouldn't be > 20 and shouldn't be nil
+	if depth == nil or depth > 20 then
+		return ""
+	end
+	
+	local tab = ""
+	local data = ""
+	local lf = "\n"
+	
+	for i=0,depth do
+		tab = tab .. "    "
+	end
+	
+	for k,v in pairs(table) do
+		local line = tab .. k
+		if k == "source" then
+			line = ""
+		elseif type(v) == "table" then
+			line = line .. " = { " .. lf .. self:DebugTable(v,depth+1) .. tab .. "}," .. lf
+		else
+			line = line .. " = " .. tostring(v) .. "," .. lf
+		end
+		
+		data = data .. line
+	end
+	
+	return data
+end
+
+function BeStride_GUI:DebugMap(mapID)
+	if mapID == nil then
+		mapID = C_Map.GetBestMapForUnit("player")
+	end
+	
+	local map = C_Map.GetMapInfo(mapID)
+	local data = {}
+	
+	if (map.parentMapID == 0 or map.parentMapID == nil) then
+		table.insert(data,map)
+		return data
+	else
+		local parent = BeStride_GUI:DebugMap(map.parentMapID)
+		
+		table.insert(data,map)
+		
+		for k,v in pairs(parent) do table.insert(data,v); print(v.name) end
+		
+		return data
+	end
 end
