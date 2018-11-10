@@ -43,9 +43,14 @@ Project Pages
 -----------------
 
 Curseforge Addon: https://www.curseforge.com/wow/addons/bestride-mm
+
 Curseforge Project: https://wow.curseforge.com/projects/bestride-mm
+
 Github Project: https://github.com/DanSheps/Bestride/projects/1
+
 Github Issues: https://github.com/Dansheps/Bestride/issues
+
+Contributing Guidelines: https://github.com/DanSheps/Bestride/blob/develop/.github/ISSUE_TEMPLATE/CONTRIBUTING.md
 
 Usage
 =================
