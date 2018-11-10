@@ -1,4 +1,4 @@
-version = "1.0.7"
+version = "1.0.15"
 author = "Anaximander"
 
 BeStride_Constants = {
