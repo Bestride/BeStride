@@ -35,6 +35,16 @@ function pairsByKeys (t, f)
 	return iter
 end
 
+function countTable(t)
+	assert(type(t) == 'table', 'bad parameter #1: must be table')
+	local count = 0
+	for k, v in pairs(t) do
+		count = count + 1
+	end
+	
+	return count
+end
+
 local BeStride_Options = {
   name="BeStride",
   handler = BeStride,
@@ -343,9 +353,23 @@ function BeStride:ChatCommand(input)
 	if input == "reload" then
 		BeStride:buildMountTables()
 	elseif input == "map" then
-		BeStride:GetMaps()
+		local locID = C_Map.GetBestMapForUnit("player")
+		print("mapID:name:mapType:parentMapID")
+		local map = self:GetMapUntil(locID,0,true)
+		print("Final: ")
+		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+	elseif input == "maplast" then
+		local locID = C_Map.GetBestMapForUnit("player")
+		print("mapID:name:mapType:parentMapID")
+		local map = self:GetMapUntilLast(locID,0,true)
+		print("Final: ")
+		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	elseif input == "underwater" then
 		BeStride_Logic:IsUnderwater()
+	elseif input == "bug" then
+		BeStride_GUI:BugReport()
+	elseif input == "depth" then
+		BeStride_GUI:DebugTable({},0)
 	else
 		BeStride_GUI:Frame(input)
 	end
@@ -355,21 +379,6 @@ function BeStride:SpellToName(spellID)
 	local name, rank, icon, castTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
 	
 	return name
-end
-
-function BeStride:GetMaps()
-	local locID = C_Map.GetBestMapForUnit("player")
-	BeStride:GetMap(locID)
-end
-
-function BeStride:GetMap(locID)
-	local map = C_Map.GetMapInfo(locID)
-	
-	print(locID .. ":" .. map["name"] .. ":" .. map["mapType"])
-	
-	if map["mapType"] ~= 0 then
-		BeStride:GetMap(map["parentMapID"])
-	end
 end
 
 function BeStride:DBGet(path,parent)
@@ -476,7 +485,7 @@ function BeStride:AddNewMount(mountId)
 	else
 		faction = nil
 	end
-
+	
 	mountTable["master"][mountId] = {
 		["name"] = name,
 		["spellID"] = spellID,
@@ -522,6 +531,9 @@ function BeStride:AddCommonMount(mountId)
 	elseif mount["type"] == "swimming" then
 		table.insert(mountTable["swimming"],mountId)
 	elseif mount["type"] == "zone" then
+		if mountId == 373 then
+			table.insert(mountTable["swimming"],mountId)
+		end
 		table.insert(mountTable["zone"],mountId)
 	end
 end
@@ -544,11 +556,53 @@ function BeStride:ItemToName(itemID)
 	return itemName
 end
 
-function BeStride:GetMapUntil(locID,filter)
+function BeStride:GetMapName(locID,filter)
+	local map = self:GetMapUntil(locID,filter)
+	return map.name
+end
+
+function BeStride:GetMap()
+	return C_Map.GetBestMapForUnit("player")
+end
+
+function BeStride:GetMapUntil(locID,filter,printOut)
 	local map = C_Map.GetMapInfo(locID)
-	if map["mapType"] ~= filter and map["mapType"] > filter then
-		return BeStride:GetMapUntil(map["parentMapID"],filter)
-	else
+	
+	if printOut == true then
+		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+	end
+	
+	if map.mapType == filter then
 		return map
+	elseif map.mapType > filter and map.parentMapID ~= nil and map.parentMapID ~= 0 then
+		local parentMap = self:GetMapUntil(map.parentMapID,filter,printOut)
+		if parentMap ~= nil then
+			return parentMap
+		else
+			return map
+		end
+	else
+		return nil
+	end
+end
+
+function BeStride:GetMapUntilLast(locID,filter,printOut)
+	local map = C_Map.GetMapInfo(locID)
+	
+	if printOut == true then
+		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+	end
+	
+	if (map.parentMapID == 0 or map.parentMapID == nil) and map.mapType >= filter then
+		return map
+	elseif map.parentMapID ~= 0 and map.parentMapID ~= nil and map.mapType >= filter then
+		local parentMap = self:GetMapUntilLast(map.parentMapID,filter,printOut)
+		if parentMap ~= nil then
+			return parentMap
+		else
+			return map
+		end
+	else
+		return nil
 	end
 end

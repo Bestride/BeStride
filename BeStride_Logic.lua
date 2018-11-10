@@ -19,6 +19,9 @@ function BeStride_Logic:Regular()
 	elseif self:NeedsChauffeur() then
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -130,7 +133,11 @@ function BeStride_Logic:GroundMountButton()
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -258,7 +265,8 @@ function BeStride_Logic:DismountAndExit()
 end
 
 function BeStride_Logic:NeedsChauffeur()
-	if self:GetRidingSkill() == 0 then
+	local skill,spells = self:GetRidingSkill()
+	if skill == 0 then
 		if IsUsableSpell(179245) or IsUsableSpell(179244)  then
 			return true
 		else
@@ -299,21 +307,21 @@ end
 
 function BeStride_Logic:IsDruidAndSpecial()
 	if self:IsDruid() then
-		if not self:DruidFlying() then
-			return false
+		if IsOutdoors() ~= true and self:DruidCanCat() then
+			return true
 		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
+		elseif IsFlying() and self:DruidFlying() == true and self:DruidUseFlightForm() == false then
+			return false
 		elseif IsFlying() and self:NoDismountWhileFlying() then
 			return false
 		elseif self:IsFlyable() and self:DruidFlying() and self:DruidFlightFormPriority() then
 			return true
 		elseif IsFalling() and self:DruidFlying() then
 			return true
-		elseif IsSwimming() and self:DruidSwimming() then
+		elseif IsSwimming() and self:DruidCanSwim() then
 			return true
 		elseif self:MovementCheck() then
-			return true
-		elseif IsOutdoors() ~= true then
 			return true
 		else
 			return false
@@ -407,7 +415,7 @@ function BeStride_Logic:IsShamanAndSpecial()
 	if self:IsShaman() then
 		if IsFlying() and self:NoDismountWhileFlying() then
 			return false
-		elseif self:ShamanGhostWolf() and self:MovementCheck() then
+		elseif self:ShamanGhostWolf() and (self:MovementCheck() or IsOutdoors() ~= true) then
 			return true
 		else
 			return false
@@ -437,13 +445,15 @@ function BeStride_Logic:DemonHunter()
 	elseif self:MovementCheck() and self:DemonHunterFelRush() then
 		return BeStride_Mount:DemonHunterFelRush()
 	else
-		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
+		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DHBSL")
 	end
 end
 
 function BeStride_Logic:Druid()
-	if IsOutdoors() ~= true then
+	if IsOutdoors() ~= true and self:DruidCanCat() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(768))
+	elseif IsSwimming() and self:DruidCanSwim() then
+		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif GetShapeshiftForm() == 3 then
@@ -508,7 +518,7 @@ function BeStride_Logic:Priest()
 end
 
 function BeStride_Logic:Shaman()
-	if not IsFlying() and self:MovementCheck() and self:ShamanGhostWolf() then
+	if not IsFlying() and (self:MovementCheck() or IsOutdoors ~= true) and self:ShamanGhostWolf() then
 		return BeStride_Mount:Shaman()
 	end
 end
@@ -539,17 +549,13 @@ end
 
 function BeStride_Logic:IsUnderwater()
 	if IsSwimming() then
-		print("Swimming")
 		local timer, initial, maxvalue, scale, paused, label = GetMirrorTimerInfo(2)
 		if timer ~= nil and timer == "BREATH" and scale < 0 then
-			print("Underwater")
 			return true
 		else
-			print("On Surface")
 			return false
 		end
 	else
-		print("Not Swimming")
 		return false
 	end
 end
@@ -561,7 +567,7 @@ function BeStride_Logic:IsSpecialZone()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+	if continent ~= nil and continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
 		local garrisonAbilityName = GetSpellInfo(161691)
 		local _,_,_,_,_,_,spellID = GetSpellInfo(garrisonAbilityName)
 		if(spellID == 165803 or spellID == 164222) then
@@ -579,7 +585,7 @@ function BeStride_Logic:SpecialZone()
 	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
 	
-	if continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
+	if continent ~= nil and continent.name == BeStride_Locale.Continent.Draenor and micro.name == BeStride_Locale.Zone.Nagrand and self:DBGet("settings.mount.telaari") == true then
 		return BeStride_Mount:Nagrand()
 	end
 	
@@ -628,9 +634,9 @@ function BeStride_Logic:IsRepairable()
 	end
 end
 
--- Checks Player Speed
--- Returns: integer
 function BeStride_Logic:MovementCheck()
+	-- Checks Player Speed
+	-- Returns: integer
 	if BeStride_Logic:SpeedCheck() ~= 0 then
 		return true
 	else
@@ -638,9 +644,9 @@ function BeStride_Logic:MovementCheck()
 	end
 end
 
--- Checks Player Speed
--- Returns: integer
 function BeStride_Logic:SpeedCheck()
+	-- Checks Player Speed
+	-- Returns: integer
 	return GetUnitSpeed("player")
 end
 
@@ -654,7 +660,40 @@ end
 
 function BeStride_Logic:IsFlyable()
 	if IsOutdoors() then
-		if self:IsFlyableArea() then
+		local skill,spells = self:GetRidingSkill()
+		local mapID = C_Map.GetBestMapForUnit("player")
+		
+		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
+			local continent = BeStride:GetMapUntil(mapID,2)
+			if continent ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Continents) do
+					if continent.mapID == key and value.blocked == true then
+						return false
+					elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						break
+					elseif continent.mapID == key and value.requires ~= nil then
+						return false
+					end
+				end
+			end
+		end
+		
+		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
+			local zone = BeStride:GetMapUntil(mapID,3)
+			if zone ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do
+					if zone.mapID == key and value.blocked == true then
+						return false
+					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						break
+					elseif zone.mapID == key then
+						return false
+					end
+				end
+			end
+		end
+				
+		if self:IsFlyableArea() and skill >= 225 then
 			return true
 		else
 			return false
@@ -674,7 +713,6 @@ end
 
 function BeStride_Logic:IsLoanedMount()
 	local loanedMount = BeStride_Logic:CheckLoanedMount()
-	
 	if loanedMount ~= nil then
 		return true
 	else
@@ -684,21 +722,27 @@ end
 
 function BeStride_Logic:CheckLoanedMount()
 	local mapID = C_Map.GetBestMapForUnit("player")
-	local micro = BeStride:GetMapUntil(mapID,5)
-	local dungeon = BeStride:GetMapUntil(mapID,4)
 	local zone = BeStride:GetMapUntil(mapID,3)
-	local continent = BeStride:GetMapUntil(mapID,2)
-	
-	if dungeon == BeStride_Locale.Zone.Dalaran then
-		if micro == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly or
-				micro == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent or
-				micro == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills or
-				micro == BeStridevLocale.Zone.Dalaran.SubZone.BlackMarket then
+	if zone == nil then
+		return nil
+	elseif IsSwimming() and (
+		zone.mapID == BeStride_Constants.Zone.Vashjir.KelptharForest.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.ShimmeringExpanse.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.AbyssalDepths.id or
+		zone.mapID == BeStride_Constants.Zone.Vashjir.id
+	) then
+		return BeStride_Mount:VashjirSeahorse()
+	elseif zone.name == BeStride_Locale.Zone.Dalaran.Name then
+		local subzone = GetSubZoneText()
+		if subzone == BeStride_Locale.Zone.Dalaran.SubZone.Underbelly.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.UnderbellyDescent.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.CircleofWills.Name or
+				subzone == BeStride_Locale.Zone.Dalaran.SubZone.BlackMarket.Name then
 			if GetItemCount(139421, false) > 0 then
 				return 139421
 			end
 		end
-	elseif zone == BeStride_Locale.Zone.Oculus then
+	elseif zone.name == BeStride_Locale.Zone.Oculus.Name then
 		if GetItemCount(37859) == 1 then
 			return 37859
 		elseif GetItemCount(37860) == 1 then
@@ -706,7 +750,7 @@ function BeStride_Logic:CheckLoanedMount()
 		elseif GetItemCount(37815) == 1 then
 			return 37815
 		end
-	elseif zone == BeStride_Locale.Zone.StormPeaks or zone == BeStride_Locale.Zone.Icecrown or zone == BeStride_Locale.Zone.SholazarBasin then
+	elseif zone.name == BeStride_Locale.Zone.StormPeaks.Name or zone.name == BeStride_Locale.Zone.Icecrown.Name or zone.name == BeStride_Locale.Zone.SholazarBasin.Name then
 		if GetItemCount(44221, false) > 0 then
 			return 44221
 		elseif GetItemCount(44229, false) > 0 then
@@ -717,9 +761,9 @@ function BeStride_Logic:CheckLoanedMount()
 	return nil
 end
 
--- Check whether we can dismount while flying
--- Returns: boolean
 function BeStride_Logic:NoDismountWhileFlying()
+	-- Check whether we can dismount while flying
+	-- Returns: boolean
 	-- Todo: Bitwise Compare
 	if BeStride:DBGet("settings.mount.nodismountwhileflying") then
 		return true
@@ -728,9 +772,9 @@ function BeStride_Logic:NoDismountWhileFlying()
 	end
 end
 
--- Check whether we force a repair mount
--- Returns: boolean
 function BeStride_Logic:ForceRepair()
+	-- Check whether we force a repair mount
+	-- Returns: boolean
 	if BeStride.db.profile.settings["repair"]["force"] then
 		return true
 	else
@@ -738,9 +782,9 @@ function BeStride_Logic:ForceRepair()
 	end
 end
 
--- Checks whether we check to repair or not
--- Returns: boolean
 function BeStride_Logic:UseRepair()
+	-- Checks whether we check to repair or not
+	-- Returns: boolean
 	if BeStride.db.profile.settings["repair"]["use"] then
 		return true
 	else
@@ -748,9 +792,9 @@ function BeStride_Logic:UseRepair()
 	end
 end
 
--- Get repair threshold
--- Returns: signed integer
 function BeStride_Logic:GetRepairThreshold()
+	-- Get repair threshold
+	-- Returns: signed integer
 	if BeStride.db.profile.settings["repair"]["durability"] then
 		return BeStride.db.profile.settings["repair"]["durability"]
 	else
@@ -758,9 +802,9 @@ function BeStride_Logic:GetRepairThreshold()
 	end
 end
 
--- Check whether we can repair
--- Returns: boolean
 function BeStride_Logic:CanRepair()
+	-- Check whether we can repair
+	-- Returns: boolean
 	if canRepair then
 		return true
 	end
@@ -781,9 +825,9 @@ function BeStride_Logic:CanBroomSetting()
 	return BeStride:DBGet("settings.mount.flyingbroom")
 end
 
--- Check whether we need to repair
--- Returns: boolean
 function BeStride_Logic:NeedToRepair()
+	-- Check whether we need to repair
+	-- Returns: boolean
 	if BeStride_Logic:ForceRepair() then
 		return true
 	end
@@ -800,85 +844,111 @@ function BeStride_Logic:NeedToRepair()
 	return false
 end
 
+function BeStride_Logic:IsHerbalismAndCanRobot()
+	if BeStride_Logic:IsHerbalism() and not BeStride_Logic:IsCombat() and BeStride_Logic:CanRobotSetting() then
+		if IsUsableSpell(134359) or IsUsableSpell(223814) then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:IsHerbalism()
+	local prof1,prof2 = GetProfessions()
+	-- 182 = Herbalism
+	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
+	if (prof1 and select(7,GetProfessionInfo(prof1)) == 182) or (prof2 and select(7,GetProfessionInfo(prof2)) == 182) then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:CanRobotSetting()
+	return BeStride:DBGet("settings.mount.forcerobot")
+end
+
 -- +----------+ --
 -- Class Checks --
 -- +----------+ --
-
--- Check for DeathKnight
 function BeStride_Logic:IsDeathKnight()
-	if string.lower(playerTable["class"]["name"]) == "death knight" then
+	-- Check for DeathKnight
+	if playerTable["class"]["id"] == 6 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for DeathKnight
 function BeStride_Logic:IsDemonHunter()
-	if string.lower(playerTable["class"]["name"]) == "demon hunter" then
+	-- Check for DemonHunter
+	if playerTable["class"]["id"] == 12 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Druid
 function BeStride_Logic:IsDruid()
-	if string.lower(playerTable["class"]["name"]) == "druid" then
+	-- Check for Druid
+	if playerTable["class"]["id"] == 11 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Mage
 function BeStride_Logic:IsMage()
-	if string.lower(playerTable["class"]["name"]) == "mage" then
+	-- Check for Mage
+	if playerTable["class"]["id"] == 8 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Monk
 function BeStride_Logic:IsMonk()
-	if string.lower(playerTable["class"]["name"]) == "monk" then
+	-- Check for Monk
+	if playerTable["class"]["id"] == 10 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Paladin
 function BeStride_Logic:IsPaladin()
-	if string.lower(playerTable["class"]["name"]) == "paladin" then
+	-- Check for Paladin
+	if playerTable["class"]["id"] == 2 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Priest
 function BeStride_Logic:IsPriest()
-	if string.lower(playerTable["class"]["name"]) == "priest" then
+	-- Check for Priest
+	if playerTable["class"]["id"] == 5 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Rogue
 function BeStride_Logic:IsRogue()
-	if string.lower(playerTable["class"]["name"]) == "rogue" then
+	-- Check for Rogue
+	if playerTable["class"]["id"] == 4 then
 		return true
 	else
 		return false
 	end
 end
 
--- Check for Shaman
 function BeStride_Logic:IsShaman()
-	if string.lower(playerTable["class"]["name"]) == "shaman" then
+	-- Check for Shaman
+	if playerTable["class"]["id"] == 7 then
 		return true
 	else
 		return false
@@ -915,7 +985,7 @@ end
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride_Logic:DruidCanCat()
-	if IsUsableSpell(783) then
+	if IsSpellKnown(768) and IsUsableSpell(768) then
 		return true
 	else
 		return false
@@ -1133,7 +1203,19 @@ end
 
 function BeStride_Logic:DruidFlying()
 	if self:IsDruid() then
-		if self:DruidCanFly() then
+		if self:DruidCanFly() and self:DruidUseFlightForm() then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DruidUseFlightForm()
+	if self:IsDruid() then
+		if BeStride:DBGet("settings.classes.druid.flightform") then
 			return true
 		else
 			return false
@@ -1207,8 +1289,6 @@ end
 function BeStride_Logic:MageBlink()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageCanBlink() then
-		end
 		if self:MageCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
 			return true
 		else
@@ -1330,14 +1410,19 @@ end
 
 function BeStride_Logic:GetRidingSkill()
 	local ridingSkillLevel = 0
+	local ridingSpells = {}
 	
-	table.foreach(BeStride_Constants.Riding.Skill, function (spellID,skill)
+  
+	for spellID,skill in pairsByKeys(BeStride_Constants.Riding.Skill) do
 		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
+			ridingSpells[spellID] = true
+		elseif IsSpellKnown(spellID) and skill.level == nil then
+			ridingSpells[spellID] = true
 		end
-	end)
+	end
 	
-	return ridingSkillLevel
+	return ridingSkillLevel,ridingSpells
 end
 
 function BeStride_Logic:WGActive()

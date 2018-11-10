@@ -41,8 +41,6 @@ function BeStride_ActionButtonRegularMount:PreClick()
 		return
 	end
 	
-	collectgarbage()
-	
 	local mount = BeStride_Logic:Regular()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
@@ -68,8 +66,6 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
-	
-	collectgarbage()
 	
 	local mount = BeStride_Logic:GroundMountButton()
 	if mount ~= nil then
@@ -97,8 +93,6 @@ function BeStride_ActionButtonPassengerMount:PreClick()
 		return
 	end
 	
-	collectgarbage()
-	
 	local mount = BeStride_Logic:PassengerMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
@@ -124,8 +118,6 @@ function BeStride_ActionButtonRepairMount:PreClick()
 	if BeStride_Logic:IsCombat() then
 		return
 	end
-	
-	collectgarbage()
 	
 	local mount = BeStride_Logic:RepairMountButton()
 	if mount ~= nil then
