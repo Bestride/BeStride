@@ -124,6 +124,7 @@ if GetLocale() == "deDE" then
 			PrioritizePassenger = "Passagier-Reittiere priorisieren, wenn man in einer Gruppe ist",
 			FlyingBroom = "Immer einen fliegenden Besen anstelle eines normalen Reittiers verwenden",
 			Telaari = "Immer den Telaartalbuk oder Kriegswolf des Frostwolfklans in Nagrand verwenden",
+			ForceRobot = "Always use Robot whern you have learned Herbalism",
 			Repair = {
 				Use = "Ein Reparatur-Reittier verwenden, wenn der Spieler eines hat und die Haltbarkeitsschwelle erreicht ist",
 				Force = "Ein Reparatur-Reittier erzwingen, wenn der Spieler eines hat",

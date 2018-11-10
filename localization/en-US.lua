@@ -124,6 +124,7 @@ BeStride_Locale = {
 		PrioritizePassenger = "Prioritize Passenger Mounts when in group",
 		FlyingBroom = "Always use Flying Broom instead of a normal mount",
 		Telaari = "Always use the Telaari Talbuk or Frostwolf War Wolf while in Nagrand",
+		ForceRobot = "Always use Robot whern you have learned Herbalism",
 		Repair = {
 			Use = "Use a Repair mount if player owns one and if meets durability threshold",
 			Force = "Force a Repair mount if player owns one",
