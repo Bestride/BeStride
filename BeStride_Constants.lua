@@ -1,4 +1,4 @@
-version = "1.0.7"
+version = "1.0.16"
 author = "Anaximander"
 
 BeStride_Constants = {
@@ -140,7 +140,24 @@ BeStride_Constants = {
 					},
 				},
 				Zones = {
-					
+					[106] = {
+						blocked = true,
+					},
+					[97] = {
+						blocked = true,
+					},
+					[103] = {
+						blocked = true,
+					},
+					[94] = {
+						blocked = true,
+					},
+					[95] = {
+						blocked = true,
+					},
+					[122] = {
+						blocked = true,
+					},
 				},
 			},
 		},

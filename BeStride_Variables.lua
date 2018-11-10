@@ -10,6 +10,7 @@ BeStride_Variables = {
 			{name="mount.prioritizepassenger",element="CheckBox",label=BeStride_Locale.Settings.PrioritizePassenger},
 			{name="mount.flyingbroom",element="CheckBox",label=BeStride_Locale.Settings.FlyingBroom},
 			{name="mount.telaari",element="CheckBox",label=BeStride_Locale.Settings.Telaari},
+			{name="mount.forcerobot",element="CheckBox",label=BeStride_Locale.Settings.ForceRobot},
 			{
 				element="Group",
 				children={

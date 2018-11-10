@@ -19,6 +19,9 @@ function BeStride_Logic:Regular()
 	elseif self:NeedsChauffeur() then
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -130,7 +133,11 @@ function BeStride_Logic:GroundMountButton()
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
+		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
+	elseif self:IsHerbalismAndCanRobot() then
+		self:DismountAndExit()
+		return BeStride_Mount:Robot()
 	elseif self:IsDeathKnightAndSpecial() then
 		self:DismountAndExit()
 		return self:DeathKnight()
@@ -304,6 +311,8 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return true
 		elseif (IsMounted() or self:IsDruidTraveling()) and IsFlying() and self:IsFlyable() and self:DruidFlying() and self:DruidFlyingMTFF() then
 			return true
+		elseif IsFlying() and self:DruidFlying() == true and self:DruidUseFlightForm() == false then
+			return false
 		elseif IsFlying() and self:NoDismountWhileFlying() then
 			return false
 		elseif self:IsFlyable() and self:DruidFlying() and self:DruidFlightFormPriority() then
@@ -662,7 +671,7 @@ function BeStride_Logic:IsFlyable()
 						return false
 					elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
 						break
-					elseif continent.mapID == key then
+					elseif continent.mapID == key and value.requires ~= nil then
 						return false
 					end
 				end
@@ -676,14 +685,14 @@ function BeStride_Logic:IsFlyable()
 					if zone.mapID == key and value.blocked == true then
 						return false
 					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
-						return true
+						break
 					elseif zone.mapID == key then
 						return false
 					end
 				end
 			end
 		end
-		
+				
 		if self:IsFlyableArea() and skill >= 225 then
 			return true
 		else
@@ -835,6 +844,33 @@ function BeStride_Logic:NeedToRepair()
 	return false
 end
 
+function BeStride_Logic:IsHerbalismAndCanRobot()
+	if BeStride_Logic:IsHerbalism() and not BeStride_Logic:IsCombat() and BeStride_Logic:CanRobotSetting() then
+		if IsUsableSpell(134359) or IsUsableSpell(223814) then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:IsHerbalism()
+	local prof1,prof2 = GetProfessions()
+	-- 182 = Herbalism
+	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
+	if (prof1 and select(7,GetProfessionInfo(prof1)) == 182) or (prof2 and select(7,GetProfessionInfo(prof2)) == 182) then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:CanRobotSetting()
+	return BeStride:DBGet("settings.mount.forcerobot")
+end
+
 -- +----------+ --
 -- Class Checks --
 -- +----------+ --
@@ -848,7 +884,7 @@ function BeStride_Logic:IsDeathKnight()
 end
 
 function BeStride_Logic:IsDemonHunter()
-	-- Check for DeathKnight
+	-- Check for DemonHunter
 	if playerTable["class"]["id"] == 12 then
 		return true
 	else
@@ -1167,7 +1203,19 @@ end
 
 function BeStride_Logic:DruidFlying()
 	if self:IsDruid() then
-		if self:DruidCanFly() then
+		if self:DruidCanFly() and self:DruidUseFlightForm() then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+function BeStride_Logic:DruidUseFlightForm()
+	if self:IsDruid() then
+		if BeStride:DBGet("settings.classes.druid.flightform") then
 			return true
 		else
 			return false
@@ -1241,8 +1289,6 @@ end
 function BeStride_Logic:MageBlink()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageCanBlink() then
-		end
 		if self:MageCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
 			return true
 		else

@@ -1,5 +1,13 @@
 function BeStride:EventNewMount(arg1, arg2)
 	BeStride:AddNewMount(arg2)
+	BeStride:AddCommonMount(arg2)
+	local mount = mountTable.master[arg2]
+	
+	if BeStride:DBGet("settings.mount.enablenew") then
+		BeStride:DBSetMount(mount.type,arg2,true)
+	else
+		BeStride:DBSetMount(mount.type,arg2,false)
+	end
 end
 
 function BeStride:EventUpdateKeyBinding()

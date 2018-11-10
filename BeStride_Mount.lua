@@ -36,7 +36,15 @@ function BeStride_Mount:IsUsable(mount)
 	if mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[spellID] ~= nil and BeStride_Constants.Mount.Mounts[spellID].zone ~= nil then
 		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
 		
-		if zone == BeStride_Constants.Mount.Mounts[mountID].zone then
+		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[spellID].zone then
+			return true
+		else
+			return false
+		end
+	elseif mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[mountID] ~= nil and BeStride_Constants.Mount.Mounts[mountID].zone ~= nil then
+		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
+		
+		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[mountID].zone then
 			return true
 		else
 			return false
@@ -50,15 +58,18 @@ end
 
 function BeStride_Mount:Failback()
 	local mounts = {}
-	
-	for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
-	
-	if #mounts == 0 then
-		BeStride_Debug:Debug("No Mounts")
+	if BeStride:DBGetSetting("settings.mount.emptyrandom") then
+		for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
+		
+		if #mounts == 0 then
+			BeStride_Debug:Debug("No Mounts")
+			return nil
+		end
+		
+		return self:DoMount(mounts)
+	else
 		return nil
 	end
-	
-	return self:DoMount(mounts)
 end
 
 function BeStride_Mount:Regular()
@@ -173,6 +184,19 @@ function BeStride_Mount:Chauffeur()
 	elseif IsUsableSpell(179244) then
 		return self:MountSpell(BeStride:SpellToName(179244))
 	end
+end
+
+function BeStride_Mount:Robot()
+	local mounts={}
+
+	if IsUsableSpell(134359) then
+		table.insert(mounts,134359)
+	end
+	if IsUsableSpell(223814) then
+		table.insert(mounts,223814)
+	end
+
+	return self:MountSpell(BeStride:SpellToName(mounts[math.random(#mounts)]))
 end
 
 function BeStride_Mount:Nagrand()
