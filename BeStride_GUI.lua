@@ -3,6 +3,9 @@ local AceGUI = LibStub("AceGUI-3.0")
 local BeStride_Frame = nil
 
 BeStride_GUI = {
+	close = nil,
+	closebutton = nil,
+	
 	buttons = {},
 	elements = {},
 	mounts = {},
@@ -48,9 +51,18 @@ function BeStride_GUI:Open(defaultTab)
 	end
 	
     BeStride_Frame:AddChild(tabs)
+	
+	closebutton = "BeStride_GUIClose"
+	self.close = CreateFrame("Button", closebutton, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
+	self.close:SetAttribute("type","macro")
+	self.close:SetAttribute("macrotext","/script BeStride_GUI:Close()")
+	SetOverrideBindingClick(self.close,true,"ESCAPE",closebutton)
 end
 
 function BeStride_GUI:Close()
+	ClearOverrideBindings(self.close)
+	self.close = nil
+	
 	AceGUI:Release(BeStride_Frame)
 	BeStride_Frame = nil
 end
