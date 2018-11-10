@@ -540,6 +540,7 @@ function BeStride_GUI:BugReportClear()
 	BeStride_GUI.debugclose = nil
 	AceGUI:Release(BeStride_Debug_Frame)
 	BeStride_Debug_Frame = nil
+	collectgarbage()
 end
 
 function BeStride_GUI:DebugTable(table,depth)
