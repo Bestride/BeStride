@@ -73,6 +73,96 @@ mountTable = {
 
 playerTable = {}
 
+BeStride_Options = {
+  name="BeStride",
+  handler = BeStride,
+  type = "group",
+  args = {
+    enable = {
+      type = "execute",
+      name = BeStride_Locale.Options.OpenGUI,
+      func = "Frame",
+    },
+  }
+}
+
+defaults = {
+	version = BeStride_Constants.Version,
+	
+	profile = {
+		settings = {
+			migrated = false,
+			bindingsMigrated = false,
+			ymBindingsMigrated = false,
+			mount = {
+				emptyrandom = true, --ER
+				hasmount = false, --HM
+				remount = false,
+				enablenew = false, --ENABLENEW
+				useflyingmount = false,
+				forceflyingmount = false, --FFM
+				nodismountwhileflying = false, --NDWF
+				flyingbroom = false,
+				prioritizepassenger = false,
+				telaari = true,
+				repair = {
+					use = false,
+					force = false,
+					durability = 20,
+					globaldurability = 20,
+					inventorydurability = 5,
+				},
+			},
+			classes = {
+				deathknight = {
+					wraithwalk = true,
+				},
+				demonhunter = {
+					felrush = true,
+					glide = true,
+				},
+				druid = {
+					flightform = true,
+					traveltotravel = false,
+					flightformpriority = false,
+					mountedtoflightform = false,
+				},
+				mage = {
+					blink = true,
+					slowfall = true,
+					blinkpriority = true,
+				},
+				monk = {
+					roll = true,
+					zenflight = true,
+				},
+				paladin = {
+					steed = true,
+				},
+				priest = {
+					levitate = true,
+				},
+				rogue = {
+					sprint = true,
+				},
+				shaman = {
+					ghostwolf = true,
+				},
+			},
+		},
+		mounts = {
+			ground = {},
+			flying = {},
+			repair = {},
+			passenger = {},
+			swimming = {},
+			zone = {
+				aq = {}
+			},
+		}
+	}
+}
+
 _G["BINDING_HEADER_BESTRIDE_TITLE"] = BeStride_Locale.Bindings.Header
 _G["BINDING_NAME_CLICK BeStride_ABRegularMount:LeftButton"] = BeStride_Locale.Bindings.Regular
 _G["BINDING_NAME_CLICK BeStride_ABGroundMount:LeftButton"] = BeStride_Locale.Bindings.Ground

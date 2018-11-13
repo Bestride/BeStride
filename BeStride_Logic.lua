@@ -351,9 +351,9 @@ end
 
 function BeStride_Logic:IsMonkAndSpecial()
 	if self:IsMonk() then
-		if IsFlying() and self:NoDismountWhileFlying() then
+		if IsMounted() and IsFlying() and self:NoDismountWhileFlying() then
 			return false
-		elseif IsMounted() and IsFlying() and self:MonkZenFlight() then
+		elseif IsFlying() and self:MonkZenFlight() then
 			return true
 		elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
 			return true
@@ -480,16 +480,18 @@ function BeStride_Logic:Mage()
 end
 
 function BeStride_Logic:Monk()
-	if not IsFlying() and not IsFalling() and self:MovementCheck() and self:MonkRoll() then
+	if IsMounted() and IsFlying() and self:NoDismountWhileFlying() then
+		return false
+	elseif IsFlying() and self:MonkZenFlight() then
+		return BeStride_Mount:MonkZenFlight()
+	elseif (self:MonkZenFlight() or self:MonkRoll()) and IsFalling() then
+		if self:MonkZenFlight() then
+			return BeStride_Mount:MonkZenFlight()
+		else
+			return BeStride_Mount:MonkRoll()
+		end
+	elseif self:MonkRoll() and self:MovementCheck() then
 		return BeStride_Mount:MonkRoll()
-	elseif IsFalling() and self:MonkZenFlight() then
-		return BeStride_Mount:MonkZenFlight()
-	elseif IsMounted() and self:IsFlyable() and self:MonkZenFlight() then
-		return BeStride_Mount:MonkZenFlight()
-	elseif not IsFlying() and self:IsFlyableArea() and self:MonkZenFlight() then
-		return BeStride_Mount:MonkZenFlight()
-	elseif not self:IsFlyable() and self:MovementCheck() and self:MonkZenFlight() then
-		return BeStride_Mount:MonkZenFlight()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: MONKBSL")
 	end
