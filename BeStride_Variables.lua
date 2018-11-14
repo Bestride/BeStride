@@ -103,6 +103,7 @@ defaults = {
 				forceflyingmount = false, --FFM
 				nodismountwhileflying = false, --NDWF
 				flyingbroom = false,
+				forcerobot = false,
 				prioritizepassenger = false,
 				telaari = true,
 				repair = {
