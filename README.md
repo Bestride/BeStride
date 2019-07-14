@@ -101,6 +101,17 @@ The following classes have special features:
 
 Changelog
 =================
+v1.0.19
+-----------------
+* Add support for Pathfinder
+* Add no Swimming
+* Both thanks to Debuggernaut and Daeymien
+
+v1.0.18
+-----------------
+* Fix Dismount while flying error
+* Fix debug code error
+
 v1.0.17
 -----------------
 * Added Debug Information.  Type "/br bug" to access.  Be aware, your game will freeze while debug information is compiled.
