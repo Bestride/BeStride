@@ -122,6 +122,7 @@ if GetLocale() == "zhTW" then
 			UseFlyingMount = "在不可飛行的區域仍然使用飛行座騎",
 			ForceFlyingMount = "在不可飛行的區域強制使用飛行座騎",
 			PrioritizePassenger = "在隊伍時優先使用多載坐騎",
+			NoSwimming = "不会使用游泳坐骑",
 			FlyingBroom = "總是使用魔法掃帚代替普通坐騎",
 			Telaari = "在納葛蘭時總是使用泰拉蕊塔巴克或是霜狼",
 			ForceRobot = "當你有學草藥學時總是使用機器人",
