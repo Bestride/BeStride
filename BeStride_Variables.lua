@@ -8,6 +8,7 @@ BeStride_Variables = {
 			{name="mount.useflyingmount",element="CheckBox",label=BeStride_Locale.Settings.UseFlyingMount, dependants = {"mount.forceflyingmount"}},
 			{name="mount.forceflyingmount",element="CheckBox",label=BeStride_Locale.Settings.ForceFlyingMount, depends = {"mount.useflyingmount"}},
 			{name="mount.prioritizepassenger",element="CheckBox",label=BeStride_Locale.Settings.PrioritizePassenger},
+			{name="mount.noswimming",element="CheckBox",label=BeStride_Locale.Settings.NoSwimming},
 			{name="mount.flyingbroom",element="CheckBox",label=BeStride_Locale.Settings.FlyingBroom},
 			{name="mount.telaari",element="CheckBox",label=BeStride_Locale.Settings.Telaari},
 			{name="mount.forcerobot",element="CheckBox",label=BeStride_Locale.Settings.ForceRobot},
@@ -102,6 +103,7 @@ defaults = {
 				useflyingmount = false,
 				forceflyingmount = false, --FFM
 				nodismountwhileflying = false, --NDWF
+				noswimming = false,
 				flyingbroom = false,
 				forcerobot = false,
 				prioritizepassenger = false,

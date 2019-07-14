@@ -73,7 +73,7 @@ function BeStride_Logic:Regular()
 			else
 				return nil
 			end
-		elseif IsSwimming() then
+		elseif IsSwimming() and BeStride:DBGet("settings.mount.noswimming") == false then
 			self:DismountAndExit()
 			return BeStride_Mount:Swimming()
 		elseif self:IsFlyable() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
@@ -105,7 +105,7 @@ function BeStride_Logic:Regular()
 				return nil
 			end
 		end
-	elseif IsSwimming() and IsOutdoors() then
+	elseif IsSwimming() and IsOutdoors() and BeStride:DBGet("settings.mount.noswimming") == false then
 		self:DismountAndExit()
 		return BeStride_Mount:Swimming()
 	elseif CanExitVehicle() then
@@ -184,7 +184,7 @@ function BeStride_Logic:GroundMountButton()
 			else
 				return nil
 			end
-		elseif IsSwimming() then
+		elseif IsSwimming() and BeStride:DBGet("settings.mount.noswimming") == false then
 			self:DismountAndExit()
 			return BeStride_Mount:Swimming()
 		else
@@ -192,7 +192,7 @@ function BeStride_Logic:GroundMountButton()
 		end
 	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
 		return BeStride_Mount:Passenger("ground")
-	elseif IsSwimming() and IsOutdoors() then
+	elseif IsSwimming() and IsOutdoors() and BeStride:DBGet("settings.mount.noswimming") == false then
 		self:DismountAndExit()
 		return BeStride_Mount:Swimming()
 	elseif IsOutdoors() then
@@ -319,7 +319,7 @@ function BeStride_Logic:IsDruidAndSpecial()
 			return true
 		elseif IsFalling() and self:DruidFlying() then
 			return true
-		elseif IsSwimming() and self:DruidCanSwim() then
+		elseif IsSwimming() and self:DruidCanSwim() and BeStride:DBGet("settings.mount.noswimming") == false then
 			return true
 		elseif self:MovementCheck() then
 			return true
@@ -452,7 +452,7 @@ end
 function BeStride_Logic:Druid()
 	if IsOutdoors() ~= true and self:DruidCanCat() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(768))
-	elseif IsSwimming() and self:DruidCanSwim() then
+	elseif IsSwimming() and self:DruidCanSwim() and BeStride:DBGet("settings.mount.noswimming") == false then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
 	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:MountSpell(BeStride:SpellToName(783))
@@ -550,7 +550,7 @@ function BeStride_Logic:IsMountable()
 end
 
 function BeStride_Logic:IsUnderwater()
-	if IsSwimming() then
+	if IsSwimming() and BeStride:DBGet("settings.mount.noswimming") == false then
 		local timer, initial, maxvalue, scale, paused, label = GetMirrorTimerInfo(2)
 		if timer ~= nil and timer == "BREATH" and scale < 0 then
 			return true
