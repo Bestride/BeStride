@@ -1,4 +1,4 @@
-## Interface: 80000
+## Interface: 80200
 ## Title: BeStride
 ## Notes: Manages your Mounts
 ## Author: Anaximander - Burning Legion US
