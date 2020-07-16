@@ -277,6 +277,11 @@ BeStride_Constants = {
 			[373] = {
 				zone = 203,
 				zones = { 203 }
+			},
+			[264058] = {
+				["name"] = "Mighty Caravan Brutosaur",
+				["type"] = "ground",
+				["repair"] = true,
 			}
 		},
 		Types = {
