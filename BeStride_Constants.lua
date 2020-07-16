@@ -280,7 +280,8 @@ BeStride_Constants = {
 			},
 			[264058] = {
 				["name"] = "Mighty Caravan Brutosaur",
-				["type"] = "ground",
+				["type"] = "passenger",
+				["subtype"] = "ground",
 				["repair"] = true,
 			}
 		},
