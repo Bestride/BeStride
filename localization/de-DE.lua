@@ -122,9 +122,10 @@ if GetLocale() == "deDE" then
 			UseFlyingMount = "Luft-Reittiere auch in Gebieten verwenden, wo man nicht fliegen kann",
 			ForceFlyingMount = "Luft-Reittiere auch in Gebieten erzwingen, wo man nicht fliegen kann",
 			PrioritizePassenger = "Passagier-Reittiere priorisieren, wenn man in einer Gruppe ist",
+			NoSwimming = "Verwenden Sie niemals Unterwasserhalterungen",
 			FlyingBroom = "Immer einen fliegenden Besen anstelle eines normalen Reittiers verwenden",
 			Telaari = "Immer den Telaartalbuk oder Kriegswolf des Frostwolfklans in Nagrand verwenden",
-			ForceRobot = "Always use Robot whern you have learned Herbalism",
+			ForceRobot = "Immer den Himmelsgolem oder Mechanischen Holzextraktor verwenden, wenn man Kräuterkunde gelernt hat",
 			Repair = {
 				Use = "Ein Reparatur-Reittier verwenden, wenn der Spieler eines hat und die Haltbarkeitsschwelle erreicht ist",
 				Force = "Ein Reparatur-Reittier erzwingen, wenn der Spieler eines hat",

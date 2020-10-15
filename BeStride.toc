@@ -1,12 +1,21 @@
-## Interface: 80000
+## Interface: 90001
+
 ## Title: BeStride
 ## Notes: Manages your Mounts
-## Author: Anaximander - Burning Legion US
-## Version: 1.0.7
-## X-Category: Interface Enhancements 
+
+## Version: 1.0.20
+
+## Author: Anaximander <IRONFIST> - Burning Legion US
+## X-Email: anaximander@ironfist.games
+
+## X-Category: Interface Enhancements
+## X-Website: https://github.com/Bestride/BeStride
+## X-License: GNU GPLv3
 ## X-Embeds: Ace3
-## OptionalDeps: Ace3
+## X-Curse-Project-ID: 289821
+
 ## SavedVariables: BeStrideDB, BestrideDB
+## OptionalDeps: Ace3
 
 BeStride_Debug.lua
 ## BeStride.xml

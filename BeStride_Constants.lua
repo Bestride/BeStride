@@ -1,4 +1,4 @@
-version = "1.0.18"
+version = "1.0.20"
 author = "Anaximander"
 
 BeStride_Constants = {
@@ -117,6 +117,13 @@ BeStride_Constants = {
 				depends = 34090,
 				level = 825,
 			},
+			[278833] = {
+				name = "Battle for Azeroth Pathfinder",
+				unlocks = "flying",
+				zones = {
+					[1] = "",
+				},
+			},
 		},
 		Flight = {
 			Restricted = {
@@ -127,10 +134,10 @@ BeStride_Constants = {
 						blocked = true,
 					},
 					[875] = {
-						blocked = true,
+						requires = 278833,
 					},
-					[876] = {
-						blocked = true,
+					[876] = {                                                 
+						requires = 278833,
 					},
 					[619] = {
 						requires = 233368,
@@ -157,6 +164,9 @@ BeStride_Constants = {
 					},
 					[122] = {
 						blocked = true,
+					},
+					[1355] = {
+						requires = 278833,
 					},
 				},
 			},
