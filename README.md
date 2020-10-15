@@ -101,6 +101,10 @@ The following classes have special features:
 
 Changelog
 =================
+v1.0.20
+-----------------
+* TOC Version Bump for Shadowlands
+
 v1.0.19
 -----------------
 * Add support for Pathfinder
