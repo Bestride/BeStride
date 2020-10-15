@@ -139,12 +139,12 @@ BeStride_Constants = {
 					[876] = {                                                 
 						requires = 278833,
 					},
-					[619] = {
-						requires = 233368,
-					},
-					[572] = {
-						requires = 191645,
-					},
+--					[619] = {
+--						requires = 233368,
+--					},
+--					[572] = {
+--						requires = 191645,
+--					},
 				},
 				Zones = {
 					[106] = {
@@ -287,6 +287,12 @@ BeStride_Constants = {
 			[373] = {
 				zone = 203,
 				zones = { 203 }
+			},
+			[264058] = {
+				["name"] = "Mighty Caravan Brutosaur",
+				["type"] = "passenger",
+				["subtype"] = "ground",
+				["repair"] = true,
 			}
 		},
 		Types = {
