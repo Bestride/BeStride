@@ -7,6 +7,7 @@ Table of Contents
 * [Table of Contents](#table-of-contents)
 * [Description](#description)
 * [History](#history)
+* [Discord](#discord)
 * [Project Pages](#project-pages)
 * [Usage](#usage)
   * [Configuration](#configuration)
