@@ -70,7 +70,7 @@ function BeStride_GUI:Close()
 end
 
 function BeStride_GUI:GetStatusText()
-	return "Version " .. version .. ", by Anaximander <IRONFIST> - Burning Legion US.  https://discord.gg/6bZf5PF"
+	return "Version " .. version .. ", by Anaximander <IRONFIST> - BL US.  https://discord.gg/6bZf5PF"
 end
 
 function BeStride_GUI:SelectTab(container, event, group)
