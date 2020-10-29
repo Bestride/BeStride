@@ -6,6 +6,11 @@ Table of Contents
 
 v1.0
 =================
+
+v1.0.22
+-----------------
+* New Discord Server!
+
 v1.0.21
 -----------------
 * Fix EnableNew functionality
