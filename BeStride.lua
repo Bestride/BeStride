@@ -337,8 +337,11 @@ function BeStride:DBGetMount(mountType,mountID)
 	if self.db.profile.mounts[mountType][mountID] ~= nil then
 		return self.db.profile.mounts[mountType][mountID]
 	else
-		
-		self.db.profile.mounts[mountType][mountID] = true
+		if self.db.profile.settings.mount.enablenew ~= nil and self.db.profile.settings.mount.enablenew == true then
+			self.db.profile.mounts[mountType][mountID] = true
+		else
+			self.db.profile.mounts[mountType][mountID] = true
+		end
 		return self.db.profile.mounts[mountType][mountID]
 	end
 end
