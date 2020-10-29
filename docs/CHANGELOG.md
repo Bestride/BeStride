@@ -6,6 +6,11 @@ Table of Contents
 
 v1.0
 =================
+v1.0.21
+-----------------
+* Fix EnableNew functionality
+* Fix Flying Skill requirements
+
 v1.0.20
 -----------------
 * TOC Version Bump for Shadowlands
