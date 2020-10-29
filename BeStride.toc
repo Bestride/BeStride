@@ -3,7 +3,7 @@
 ## Title: BeStride
 ## Notes: Manages your Mounts
 
-## Version: 1.0.20
+## Version: 1.0.22
 
 ## Author: Anaximander <IRONFIST> - Burning Legion US
 ## X-Email: anaximander@ironfist.games
