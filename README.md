@@ -6,6 +6,8 @@ Table of Contents
 =================
 * [Table of Contents](#table-of-contents)
 * [Description](#description)
+* [History](#history)
+* [Project Pages](#project-pages)
 * [Usage](#usage)
   * [Configuration](#configuration)
   * [Mounting](#mounting)
@@ -38,8 +40,13 @@ Special mounts are also usable:
 * Sea Turtle
 * ~~Water strider (prioritized)~~
 
+Discord
+=================
+
+BeStride Discord: https://discord.gg/6bZf5PF
+
 Project Pages
------------------
+=================
 
 Curseforge Addon: https://www.curseforge.com/wow/addons/bestride-mm
 
