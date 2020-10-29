@@ -49,6 +49,7 @@ BeStride_Constants = {
 			},
 			[34090] = {
 				name = "Expert Riding",
+				unlocks = "flying",
 				depends = 33391,
 				level = 225,
 				active = true,
@@ -61,7 +62,6 @@ BeStride_Constants = {
 			},
 			[90265] = {
 				name = "Master Riding",
-				unlocks = "flying",
 				depends = 34091,
 				level = 375,
 				active = true,
