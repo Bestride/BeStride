@@ -12,8 +12,11 @@ function BeStride_Logic:IsCombat()
 end
 
 function BeStride_Logic:Regular()
-	-- Check if we are mounted first
-	if IsMounted() and self:NeedsChauffeur() then
+	-- Aspect of the Cheetah is available from level 5
+	if self:IsHunterAndSpecial() then
+		return self:Hunter()
+	-- Check if we are mounted
+	elseif IsMounted() and self:NeedsChauffeur() then
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
@@ -129,7 +132,11 @@ end
 
 
 function BeStride_Logic:GroundMountButton()
-	if IsMounted() and self:NeedsChauffeur() then
+	-- Aspect of the Cheetah is available from level 5
+	if self:IsHunterAndSpecial() then
+		return self:Hunter()
+	-- Check if we are mounted
+	elseif IsMounted() and self:NeedsChauffeur() then
 		self:DismountAndExit()
 		return BeStride_Mount:Chauffeur()
 	elseif self:NeedsChauffeur() then
@@ -235,6 +242,8 @@ function BeStride_Logic:Combat()
 		return BeStride_Mount:DemonHunterFelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
 		return BeStride_Mount:DruidTravel()
+	elseif self:IsHunterAndSpecial() then
+		return self:Hunter()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
 		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
 			return BeStride_Mount:MageBlink()
@@ -329,6 +338,15 @@ function BeStride_Logic:IsDruidAndSpecial()
 	else
 		return false
 	end
+end
+
+function BeStride_Logic:IsHunterAndSpecial()
+	if self:IsHunter() and BeStride:DBGet("settings.classes.hunter.aspectofthecheetah") then
+		if (self:MovementCheck() or self:IsCombat()) and self:HunterCanAspectOfTheCheetah() then
+			return true
+		end
+	end
+	return false
 end
 
 function BeStride_Logic:IsMageAndSpecial()
@@ -467,6 +485,16 @@ function BeStride_Logic:Druid()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
 	end
+end
+
+function BeStride_Logic:Hunter()
+	if IsMounted() and IsFlying() and self:NoDismountWhileFlying() then
+		return false
+	else
+		return BeStride_Mount:HunterAspectOfTheCheetah()
+	end
+
+	BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: HUBSL")
 end
 
 function BeStride_Logic:Mage()
@@ -903,6 +931,15 @@ function BeStride_Logic:IsDruid()
 	end
 end
 
+function BeStride_Logic:IsHunter()
+	-- Check for Hunter
+	if playerTable["class"]["id"] == 3 then
+		return true
+	else
+		return false
+	end
+end
+
 function BeStride_Logic:IsMage()
 	-- Check for Mage
 	if playerTable["class"]["id"] == 8 then
@@ -1037,6 +1074,22 @@ end
 function BeStride_Logic:DemonHunterCanGlide()
 	if IsUsableSpell(131347) then
 		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
+-- Hunter Spells --
+-- ------------- --
+function BeStride_Logic:HunterCanAspectOfTheCheetah()
+	if IsSpellKnown(186257) and IsUsableSpell(186257) then
+		local OnCooldown, _, _, _ = GetSpellCooldown(186257)
+		if OnCooldown == 0 then
+			return true
+		else
+			return false
+		end
 	else
 		return false
 	end

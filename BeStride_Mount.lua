@@ -240,6 +240,10 @@ function BeStride_Mount:DruidTravel()
 	return self:MountSpell(BeStride:SpellToName(783))
 end
 
+function BeStride_Mount:HunterAspectOfTheCheetah()
+	return self:MountSpell(BeStride:SpellToName(186257))
+end
+
 function BeStride_Mount:PriestLevitate()
 	return self:MountSpell("[@player] "..BeStride:SpellToName(1706).."\n/cancelaura "..BeStride:SpellToName(1706))
 end

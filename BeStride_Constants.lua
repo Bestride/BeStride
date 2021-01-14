@@ -18,6 +18,9 @@ BeStride_Constants = {
 			travelform = 783,
 			flightform = 783,
 		},
+		hunter = {
+			aspectofthecheetah = 186257,
+		},
 	},
 	Zone = {
 		Vashjir = {

@@ -137,15 +137,18 @@ BeStride_Locale = {
 			DeathKnight = {
 				WraithWalk = "Death Knight: Wraith Walk"
 			},
+			DemonHunter = {
+				FelRush = "Demon Hunter: Use Fel Rush",
+				Glide = "Demon Hunter: Use Gliding"
+			},
 			Druid = {
 				FlightForm = "Druid: Use Flight Form",
 				TravelToTravel = "Druid: When in combat, shift from Travel or Aquatic form directly back to that form",
 				FlightFormPriority = "Druid: Prioritize using Flight Form over a regular mount even when not moving",
 				MountedToFlightForm = "Druid: When on a flying mount and flying + moving, shift into Flight Form"
 			},
-			DemonHunter = {
-				FelRush = "Demon Hunter: Use Fel Rush",
-				Glide = "Demon Hunter: Use Gliding"
+			Hunter = {
+				AspectOfTheCheetah = "Hunter: Aspect of the Cheetah",
 			},
 			Mage = {
 				SlowFall = "Mage: Slowfall",

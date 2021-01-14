@@ -38,6 +38,9 @@ BeStride_Variables = {
 				{name="classes.druid.mountedtoflightform",element="CheckBox",label=BeStride_Locale.Settings.Classes.Druid.MountedToFlightForm,class="druid", depends = {"classes.druid.flightform"}},
 			},
 			{
+				{name="classes.hunter.aspectofthecheetah",element="CheckBox",label=BeStride_Locale.Settings.Classes.Hunter.AspectOfTheCheetah,class="hunter"},
+			},
+			{
 				{name="classes.mage.slowfall",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.SlowFall,class="mage"},
 				{name="classes.mage.blink",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.Blink,class="mage"},
 				{name="classes.mage.blinkpriority",element="CheckBox",label=BeStride_Locale.Settings.Classes.Mage.BlinkPriority,class="mage"},
@@ -129,6 +132,9 @@ defaults = {
 					traveltotravel = false,
 					flightformpriority = false,
 					mountedtoflightform = false,
+				},
+				hunter = {
+					aspectofthecheetah = false,
 				},
 				mage = {
 					blink = true,
