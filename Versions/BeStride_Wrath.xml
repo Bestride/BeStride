@@ -1,14 +1,14 @@
 <Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
-  <Script file="Versions\Common\BeStride_Constants.lua"/>
-  <Script file="localization\en-US.lua"/>
-  <Script file="localization\zh-TW.lua"/>
-  <Script file="localization\de-DE.lua"/>
-  <Script file="Versions\Common\BeStride_Variables.lua"/>
+  <Script file="Common\BeStride_Constants.lua"/>
+  <Script file="..\localization\en-US.lua"/>
+  <Script file="..\localization\zh-TW.lua"/>
+  <Script file="..\localization\de-DE.lua"/>
+  <Script file="Common\BeStride_Variables.lua"/>
 
-  <Script file="BeStride.lua"/>
-  <Script file="Versions\Common\BeStride_ActionButton.lua"/>
-  <Script file="Versions\Common\BeStride_Events.lua"/>
-  <Script file="Versions\Common\BeStride_GUI.lua"/>
-  <Script file="Versions\Common\BeStride_Mount.lua"/>
-  <Script file="Versions\Wrath\BeStride_Logic.lua"/>
+  <Script file="..\BeStride.lua"/>
+  <Script file="Common\BeStride_ActionButton.lua"/>
+  <Script file="Common\BeStride_Events.lua"/>
+  <Script file="Common\BeStride_GUI.lua"/>
+  <Script file="Common\BeStride_Mount.lua"/>
+  <Script file="Wrath\BeStride_Logic.lua"/>
 </UI>
