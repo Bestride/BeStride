@@ -377,45 +377,6 @@ function BeStride:buildMountTables()
 	BeStride:LoadMountTables()
 end
 
-function BeStride:BuildMasterMountTable()
-	for key,value in pairs(C_MountJournal.GetMountIDs()) do
-		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
-		
-		if isCollected then
-			BeStride:AddNewMount(value)
-		end
-	end
-end
-
-
-
-function BeStride:AddNewMount(mountId)
-	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mountId)
-	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
-			
-	if isFactionSpecific then
-		faction = faction
-	else
-		faction = nil
-	end
-	
-	mountTable["master"][mountId] = {
-		["name"] = name,
-		["spellID"] = spellID,
-		["mountID"] = mountID,
-		["factionLocked"] = isFactionSpecific,
-		["faction"] = faction,
-		["description"] = description,
-		["isActive"] = isActive,
-		["isUsable"] = isUsable,
-		["isCollected"] = isCollected,
-		["icon"] = icon,
-		["source"] = source,
-		["sourceType"] = sourceType,
-		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
-	}
-end
-
 function BeStride:LoadMountTables()
 	mountTable["ground"] = {}
 	mountTable["flying"] = {}
@@ -469,53 +430,3 @@ function BeStride:ItemToName(itemID)
 	return itemName
 end
 
-function BeStride:GetMapName(locID,filter)
-	local map = self:GetMapUntil(locID,filter)
-	return map.name
-end
-
-function BeStride:GetMap()
-	return C_Map.GetBestMapForUnit("player")
-end
-
-function BeStride:GetMapUntil(locID,filter,printOut)
-	local map = C_Map.GetMapInfo(locID)
-	
-	if printOut == true then
-		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
-	end
-	
-	if map.mapType == filter then
-		return map
-	elseif map.mapType > filter and map.parentMapID ~= nil and map.parentMapID ~= 0 then
-		local parentMap = self:GetMapUntil(map.parentMapID,filter,printOut)
-		if parentMap ~= nil then
-			return parentMap
-		else
-			return map
-		end
-	else
-		return nil
-	end
-end
-
-function BeStride:GetMapUntilLast(locID,filter,printOut)
-	local map = C_Map.GetMapInfo(locID)
-	
-	if printOut == true then
-		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
-	end
-	
-	if (map.parentMapID == 0 or map.parentMapID == nil) and map.mapType >= filter then
-		return map
-	elseif map.parentMapID ~= 0 and map.parentMapID ~= nil and map.mapType >= filter then
-		local parentMap = self:GetMapUntilLast(map.parentMapID,filter,printOut)
-		if parentMap ~= nil then
-			return parentMap
-		else
-			return map
-		end
-	else
-		return nil
-	end
-end
