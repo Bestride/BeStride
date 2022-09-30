@@ -11,4 +11,5 @@
   <Script file="Common\BeStride_GUI.lua"/>
   <Script file="Common\BeStride_Mount.lua"/>
   <Script file="Wrath\BeStride_Logic.lua"/>
+  <Script file="Wrath\MountTable.lua"/>
 </Ui>
