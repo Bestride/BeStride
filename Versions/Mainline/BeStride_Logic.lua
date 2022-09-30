@@ -3,6 +3,12 @@ BeStride_Logic = {}
 local class = UnitClass("player")
 local canRepair = false
 
+function BeStride_Logic:IsMountUsable(mount)
+	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mount)
+	
+	return spellID,mountID,isUsable
+end
+
 function BeStride_Logic:IsCombat()
 	if InCombatLockdown() then
 		return true
