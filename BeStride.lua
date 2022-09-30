@@ -96,7 +96,7 @@ end
 function BeStride:OnEnable()
 	BeStride:buildMountTables()
 	
-	#BeStride:RegisterEvent("NEW_MOUNT_ADDED", "EventNewMount")
+	--BeStride:RegisterEvent("NEW_MOUNT_ADDED", "EventNewMount")
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "EventCombatEnter")
 	BeStride:RegisterEvent("PLAYER_REGEN_ENABLED", "EventCombatExit")
