@@ -536,7 +536,7 @@ function BeStride_GUI:BugReport()
 end
 
 function BeStride_GUI:BugReportClear()
-	ClearOverrideBindings(BeStride_GUI.debugclose)
+	--ClearOverrideBindings(BeStride_GUI.debugclose)
 	BeStride_GUI.debugclose = nil
 	AceGUI:Release(BeStride_Debug_Frame)
 	BeStride_Debug_Frame = nil
