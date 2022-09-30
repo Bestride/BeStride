@@ -23,4 +23,4 @@ Versions\Common\BeStride_Debug.lua
 libs\embeds.xml
 
 
-Versions\Wrath\embeds.xml
+Versions\BeStride_Wrath.xml
