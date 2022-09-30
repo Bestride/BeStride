@@ -17,7 +17,7 @@
 ## SavedVariables: BeStrideDB, BestrideDB
 ## OptionalDeps: Ace3
 
-BeStride_Debug.lua
+Versions\Common\BeStride_Debug.lua
 ## BeStride.xml
 
 libs\embeds.xml
