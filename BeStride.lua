@@ -388,6 +388,7 @@ function BeStride:LoadMountTables()
 			--if value["faction"] then
 				--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " Faction: " .. value["faction"] .. " Player Faction: " .. playerTable["faction"]["id"] .. " SID: " .. value["spellID"] .. " MID: " .. value["mountID"])
 			--end
+			--print("Adding Mount: " .. value["name"] .. " Id: " .. key .. " Type: " .. value["type"] .. " SID: " .. value["spellID"] .. " MID: " .. value["mountID"] .. " Type: " .. value["type"])
 			BeStride:AddCommonMount(key)
 			BeStride:AddPassengerMount(key)
 			BeStride:AddRepairMount(key)
@@ -397,12 +398,14 @@ end
 
 function BeStride:AddCommonMount(mountId)
 	local mount = mountTable["master"][mountId]
-	--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 	if mount["type"] == "ground" then
+		print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 		table.insert(mountTable["ground"],mountId)
 	elseif mount["type"] == "flying" then
+		print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 		table.insert(mountTable["flying"],mountId)
 	elseif mount["type"] == "swimming" then
+		print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 		table.insert(mountTable["swimming"],mountId)
 	elseif mount["type"] == "zone" then
 		if mountId == 373 then
