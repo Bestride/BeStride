@@ -1,8 +1,6 @@
-
-
 function BeStride:BuildMasterMountTable()
     local num = GetNumCompanions("MOUNT")
-	print("Start mount table")
+	--print("Start mount table")
 	for i=1, GetNumCompanions("MOUNT") do
 		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
 
@@ -10,13 +8,13 @@ function BeStride:BuildMasterMountTable()
 			BeStride:AddNewMount(i)
 		end
 	end
-	print("End mount table")
+	--print("End mount table")
 end
 
 
 function BeStride:AddNewMount(mountId)
     local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
-	print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. BeStride_MountDB[spellID][7])
+	--print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. BeStride_MountDB[spellID][7])
 
 	if BeStride_MountDB[spellID][10] == true then
 		mountType = "flying"
