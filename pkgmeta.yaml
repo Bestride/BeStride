@@ -1,0 +1,30 @@
+package-as: BeStride
+externals:
+    libs/Ace3/LibStub:
+        url: svn://svn.wowace.com/wow/libstub/trunk
+        tag: latest
+    libs/Ace3/CallbackHandler-1.0:
+        url: svn://svn.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
+        tag: latest
+    libs/Ace3/Aceaddon-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/aceaddon-3.0
+        tag: latest
+    libs/Ace3/AceConfig-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/aceconfig-3.0
+        tag: latest
+    libs/Ace3/AceConsole-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/aceconsole-3.0
+        tag: latest
+    libs/Ace3/AceDB-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/acedb-3.0
+        tag: latest
+    libs/Ace3/AceEvent-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/aceevent-3.0
+        tag: latest
+    libs/Ace3/AceGUI-3.0:
+        url: svn://svn.wowace.com/wow/ace3/trunk/acegui-3.0
+        tag: latest
+required-dependencies:
+    - Ace3
+    - LibStub
+    - CallbackHandler
