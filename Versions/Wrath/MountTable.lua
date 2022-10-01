@@ -14,7 +14,8 @@ end
 
 function BeStride:AddNewMount(mountId)
     local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
-	--print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. BeStride_MountDB[spellID][7])
+	print("" .. name .. ":" .. mountID .. ":" .. spellID .. "")
+	print("\t" .. BeStride_MountDB[spellID][7])
 
 	if BeStride_MountDB[spellID][10] == true then
 		mountType = "flying"

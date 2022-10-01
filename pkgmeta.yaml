@@ -6,7 +6,7 @@ externals:
     libs/Ace3/CallbackHandler-1.0:
         url: svn://svn.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
         tag: latest
-    libs/Ace3/Aceaddon-3.0:
+    libs/Ace3/AceAddon-3.0:
         url: svn://svn.wowace.com/wow/ace3/trunk/aceaddon-3.0
         tag: latest
     libs/Ace3/AceConfig-3.0:
