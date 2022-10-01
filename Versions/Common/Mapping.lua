@@ -12,7 +12,7 @@ function BeStride:GetMapUntil(locID,filter,printOut)
 	local map = C_Map.GetMapInfo(locID)
 	
 	if printOut == true then
-		map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	end
 	
 	if map.mapType == filter then
