@@ -1,7 +1,20 @@
 BeStride_Logic = {}
+BeStride_Game = "Wrath"
 
 local class = UnitClass("player")
 local canRepair = false
+
+
+function BeStride_Logic:isMountUsable(mountId)
+	--print("isMountUsable: " .. mountId)
+	spellID = mountTable["master"][mountId].spellID
+	
+	return spellID,mountID,true
+end
+
+function BeStride_Logic:isZoneMount(mountId)
+	return false
+end
 
 function BeStride_Logic:IsCombat()
 	if InCombatLockdown() then
