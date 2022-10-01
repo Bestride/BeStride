@@ -1,7 +1,20 @@
 BeStride_Logic = {}
+BeStride_Game = "Wrath"
 
 local class = UnitClass("player")
 local canRepair = false
+
+
+function BeStride_Logic:isMountUsable(mountId)
+	--print("isMountUsable: " .. mountId)
+	spellID = mountTable["master"][mountId].spellID
+	
+	return spellID,mountID,true
+end
+
+function BeStride_Logic:isZoneMount(mountId)
+	return false
+end
 
 function BeStride_Logic:IsCombat()
 	if InCombatLockdown() then
@@ -875,26 +888,13 @@ function BeStride_Logic:NeedToRepair()
 end
 
 function BeStride_Logic:IsHerbalismAndCanRobot()
-	if BeStride_Logic:IsHerbalism() and not BeStride_Logic:IsCombat() and BeStride_Logic:CanRobotSetting() then
-		if IsUsableSpell(134359) or IsUsableSpell(223814) then
-			return true
-		else
-			return false
-		end
-	else
-		return false
-	end
+	-- Return false as no herbalism mount yet
+	return false
 end
 
 function BeStride_Logic:IsHerbalism()
-	local prof1,prof2 = GetProfessions()
-	-- 182 = Herbalism
-	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
-	if (prof1 and select(7,GetProfessionInfo(prof1)) == 182) or (prof2 and select(7,GetProfessionInfo(prof2)) == 182) then
-		return true
-	else
-		return false
-	end
+	-- Return false as no herbalism mount yet
+	return false
 end
 
 function BeStride_Logic:CanRobotSetting()

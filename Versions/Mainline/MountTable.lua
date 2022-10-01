@@ -2,6 +2,7 @@ function BeStride:BuildMasterMountTable()
 	for key,value in pairs(C_MountJournal.GetMountIDs()) do
 		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(value)
 		
+		--print("" .. name .. ":" .. mountID .. ":" .. spellID )
 		if isCollected then
 			BeStride:AddNewMount(value)
 		end
@@ -13,6 +14,8 @@ end
 function BeStride:AddNewMount(mountId)
 	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mountId)
 	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
+
+	--print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. mountTypeID)
 			
 	if isFactionSpecific then
 		faction = faction

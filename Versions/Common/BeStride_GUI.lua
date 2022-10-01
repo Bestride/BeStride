@@ -186,6 +186,7 @@ function BeStride_GUI:CreateMountCheckBoxes(group,filter)
 		if filter == nil or (filter ~= nil and (string.len(filter) == 0 or string.find(string.lower(mountTable.master[mount].name), string.lower(filter)))) then
 			local mountCheck = BeStride_GUI:CreateMountCheckBox(group,mount)
 			if mountCheck ~= nil then
+				--print("Creating mount: " .. mount)
 				local name = mountTable.master[mount].name
 				self.mounts[group][name] = mountCheck
 			end
@@ -195,7 +196,7 @@ end
 
 function BeStride_GUI:CreateMountCheckBox(group,mountID)
 	local mount = mountTable.master[mountID]
-	if mount.isCollected and (mount.faction== nil or mount.faction == playerTable["faction"]["id"]) then
+	if BeStride_Game == "Wrath" or (BeStride_Game == "Mainline" and mount.isCollected and (mount.faction== nil or mount.faction == playerTable["faction"]["id"])) then
 		mountButton = AceGUI:Create("CheckBox")
 		mountButton:SetImage(mount["icon"])
 		mountButton:SetLabel(mount["name"])
@@ -536,7 +537,7 @@ function BeStride_GUI:BugReport()
 end
 
 function BeStride_GUI:BugReportClear()
-	ClearOverrideBindings(BeStride_GUI.debugclose)
+	--ClearOverrideBindings(BeStride_GUI.debugclose)
 	BeStride_GUI.debugclose = nil
 	AceGUI:Release(BeStride_Debug_Frame)
 	BeStride_Debug_Frame = nil

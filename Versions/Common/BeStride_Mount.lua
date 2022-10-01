@@ -32,19 +32,13 @@ function BeStride_Mount:DBGetMountStatus(mountType,key)
 end
 
 function BeStride_Mount:IsUsable(mount)
-	local spellID,mountID,isUsable = BeStride_Logic:isMountUsable()
-	if mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[spellID] ~= nil and BeStride_Constants.Mount.Mounts[spellID].zone ~= nil then
-		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
+	--print("" .. mount)
+	local spellID,mountID,isUsable = BeStride_Logic:isMountUsable(mount)
+	if BeStride_Logic:isZoneMount(mountID) then
 		
 		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[spellID].zone then
 			return true
-		else
-			return false
-		end
-	elseif mountTable.master[mountID].type == "zone" and BeStride_Constants.Mount.Mounts[mountID] ~= nil and BeStride_Constants.Mount.Mounts[mountID].zone ~= nil then
-		local zone = BeStride:GetMapUntilLast(BeStride:GetMap(),Enum.UIMapType.Zone)
-		
-		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[mountID].zone then
+		elseif zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[mountID].zone then
 			return true
 		else
 			return false
@@ -76,9 +70,18 @@ function BeStride_Mount:Regular()
 	local mounts = {}
 	
 	
-	for k,v in pairs(mountTable["ground"]) do if self:IsUsable(v) and self:DBGetMountStatus("ground",v) then table.insert(mounts,v) end end
-	if BeStride:DBGet("settings.mount.useflyingmount") then
-		for k,v in pairs(mountTable["flying"]) do if self:IsUsable(v) and self:DBGetMountStatus("flying",v) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["ground"]) do
+		--print("" .. k .. ":" .. v .. "")
+		if self:IsUsable(v) and self:DBGetMountStatus("ground",v) then
+			table.insert(mounts,v)
+		end
+	end
+	if BeStride:DBGet("settings.mount.useflyingmount") and BeStride_Gaming ~= 'Wrath' then
+		for k,v in pairs(mountTable["flying"]) do
+			if self:IsUsable(v) and self:DBGetMountStatus("flying",v) then
+				table.insert(mounts,v)
+			end
+		end
 	end
 	
 	if #mounts == 0 then

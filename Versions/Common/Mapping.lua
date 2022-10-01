@@ -5,14 +5,14 @@ function BeStride:GetMapName(locID,filter)
 end
 
 function BeStride:GetMap()
-	return GetBestMapForUnit("player")
+	return C_Map.GetBestMapForUnit("player")
 end
 
 function BeStride:GetMapUntil(locID,filter,printOut)
-	local map = GetMapInfo(locID)
+	local map = C_Map.GetMapInfo(locID)
 	
 	if printOut == true then
-		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+		map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	end
 	
 	if map.mapType == filter then
@@ -30,10 +30,10 @@ function BeStride:GetMapUntil(locID,filter,printOut)
 end
 
 function BeStride:GetMapUntilLast(locID,filter,printOut)
-	local map = GetMapInfo(locID)
+	local map = C_Map.GetMapInfo(locID)
 	
 	if printOut == true then
-		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
+		map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	end
 	
 	if (map.parentMapID == 0 or map.parentMapID == nil) and map.mapType >= filter then

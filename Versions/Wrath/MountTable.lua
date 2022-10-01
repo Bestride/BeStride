@@ -1,27 +1,37 @@
 function BeStride:BuildMasterMountTable()
     local num = GetNumCompanions("MOUNT")
+	--print("Start mount table")
 	for i=1, GetNumCompanions("MOUNT") do
-		local creatureID,creatureName,creatureSpellID,icon,issummoned,mountTypeID = GetCompanionInfo("MOUNT", i)
-		
-        BeStride:AddNewMount(value)
+		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
+
+		if mountTable["master"][spellID] == nil then
+			BeStride:AddNewMount(i)
+		end
 	end
+	--print("End mount table")
 end
 
 
 function BeStride:AddNewMount(mountId)
-    local mountID,name,spellID,icon,isSummoned,mountTypeID = GetCompanionInfo("MOUNT", i)
-			
-	if isFactionSpecific then
-		faction = faction
+    local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
+	--print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. BeStride_MountDB[spellID][7])
+
+	if BeStride_MountDB[spellID][10] == true then
+		mountType = "flying"
+	elseif BeStride_MountDB[spellID][9] == true then
+		mountType = "ground"
 	else
-		faction = nil
+		mountType = "unknown"
 	end
-	
-	mountTable["master"][mountId] = {
+
+	mountTable["master"][mountID] = {
 		["name"] = name,
 		["spellID"] = spellID,
 		["mountID"] = mountID,
 		["isActive"] = isSummoned,
-		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
+		["faction"] = nil,
+		["icon"] = icon,
+		["source"] = BeStride_MountDB[spellID][8],
+		["type"] = mountType,
 	}
 end
