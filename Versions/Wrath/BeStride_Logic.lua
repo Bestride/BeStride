@@ -8,8 +8,13 @@ local canRepair = false
 function BeStride_Logic:isMountUsable(mountId)
 	--print("isMountUsable: " .. mountId)
 	spellID = mountTable["master"][mountId].spellID
+	isUsable = true
+
+	if mountTable["master"][mountId]["type"] == "flying" and not BeStride_Logic:IsFlyable() then
+		isUsable = false
+	end
 	
-	return spellID,mountID,true
+	return spellID,mountID,isUsable
 end
 
 function BeStride_Logic:isZoneMount(mountId)
