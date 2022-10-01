@@ -701,6 +701,16 @@ function BeStride_Logic:IsMountable()
 	end
 end
 
+function BeStride_Logic:CanFly()
+	local skill,spells = self:GetRidingSkill()
+	print(skill)
+	if self:IsFlyableArea() and skill >= 225 then
+		return true
+	end
+
+	return false
+end
+
 function BeStride_Logic:IsFlyable()
 	if IsOutdoors() then
 		local skill,spells = self:GetRidingSkill()
@@ -736,7 +746,7 @@ function BeStride_Logic:IsFlyable()
 			end
 		end
 				
-		if self:IsFlyableArea() and skill >= 225 then
+		if self:CanFly() then
 			return true
 		else
 			return false
@@ -1466,8 +1476,14 @@ end
 function BeStride_Logic:GetRidingSkill()
 	local ridingSkillLevel = 0
 	local ridingSpells = {}
-	
-  
+
+	for skillIndex = 1, GetNumSkillLines() do
+		local skillName, isHeader, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, skillDescription = GetSkillLineInfo(skillIndex)
+		if skillName == 'Riding' then
+			ridingSkillLevel = skillRank
+		end
+	end
+
 	for spellID,skill in pairsByKeys(BeStride_Constants.Riding.Skill) do
 		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
