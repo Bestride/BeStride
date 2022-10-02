@@ -1,317 +1,5341 @@
 BeStride_MountDB={
     -- Name, SpellID, ItemID, MaxSpeed, MinSpeed, SwimSpeed, Category, Source, NormalMount, FlyingMount, PassengerMount, VendorMount, AQMount"
-    [458]={"Brown Horse", 458, 5656, 60, 60, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [459]={"Gray Wolf", 459, 1134, 60, 60, 0, "Wolf", "", true, false, false, false, false},
-    [468]={"White Stallion", 468, 2415, 60, 60, 0, "Horse", "", true, false, false, false, false},
-    [470]={"Black Stallion", 470, 2411, 60, 60, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [471]={"Palamino", 471, 2413, 60, 60, 0, "Horse", "", true, false, false, false, false},
-    [472]={"Pinto", 472, 2414, 60, 60, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [578]={"Black Wolf", 578, 1041, 60, 60, 0, "Wolf", "", true, false, false, false, false},
-    [579]={"Red Wolf", 579, 5663, 1, 1, 0, "Wolf", "", true, false, false, false, false},
-    [580]={"Timber Wolf", 580, 1132, 60, 60, 0, "Wolf", "Gold", true, false, false, false, false},
-    [581]={"Winter Wolf", 581, 1133, 60, 60, 0, "Wolf", "", true, false, false, false, false},
-    [3363]={"Nether Drake", 3363, 21736, 310, 310, 0, "Nether Drake", "", true, true, false, false, false},
-    [5784]={"Felsteed", 5784, 304, 60, 60, 0, "Warlock", "Warlock", true, false, false, false, false},
-    [6648]={"Chestnut Mare", 6648, 5655, 60, 60, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [6653]={"Dire Wolf", 6653, 5665, 60, 60, 0, "Wolf", "Gold", true, false, false, false, false},
-    [6654]={"Brown Wolf", 6654, 5668, 60, 60, 0, "Wolf", "Gold", true, false, false, false, false},
-    [6777]={"Gray Ram", 6777, 5864, 60, 60, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [6896]={"Black Ram", 6896, 5874, 60, 60, 0, "Ram", "", true, false, false, false, false},
-    [6897]={"Blue Ram", 6897, 5875, 60, 60, 0, "Ram", "", true, false, false, false, false},
-    [6898]={"White Ram", 6898, 5873, 60, 60, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [6899]={"Brown Ram", 6899, 5872, 60, 60, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [8394]={"Striped Frostsaber", 8394, 8631, 60, 60, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [8395]={"Emerald Raptor", 8395, 8588, 60, 60, 0, "Raptor", "Gold", true, false, false, false, false},
-    [8595]={"Blue Mechanostrider", 8595, 28025, 1, 1, 0, "Mechanostrider", "", true, false, false, false, false},
-    [8980]={"Skeletal Horse", 8980, 8583, 60, 60, 0, "Horse", "", true, false, false, false, false},
-    [10789]={"Spotted Frostsaber", 10789, 8632, 60, 60, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [10793]={"Striped Nightsaber", 10793, 8629, 60, 60, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [10795]={"Ivory Raptor", 10795, 49280, 60, 60, 0, "Raptor", "TCG", true, false, false, false, false},
-    [10796]={"Turquoise Raptor", 10796, 8591, 60, 60, 0, "Raptor", "Gold", true, false, false, false, false},
-    [10798]={"Obsidian Raptor", 10798, 8590, 60, 60, 0, "Raptor", "", true, false, false, false, false},
-    [10799]={"Violet Raptor", 10799, 8592, 60, 60, 0, "Raptor", "Gold", true, false, false, false, false},
-    [10873]={"Red Mechanostrider", 10873, 8563, 60, 60, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [10969]={"Blue Mechanostrider", 10969, 8595, 60, 60, 0, "Mechanostrider", "Duplicate", true, false, false, false, false},
-    [13819]={"Warhorse", 13819, 9158, 60, 60, 0, "Paladin", "Paladin", true, false, false, false, false},
-    [15779]={"White Mechanostrider Mod B", 15779, 13326, 1, 1, 0, "Mechanostrider", "", true, false, false, false, false},
-    [15780]={"Green Mechanostrider", 15780, 13310, 60, 60, 0, "Mechanostrider", "", true, false, false, false, false},
-    [15787]={"Steel Mechanostrider", 15787, 10180, 60, 60, 0, "Mechanostrider", "", true, false, false, false, false},
-    [16055]={"Black Nightsaber", 16055, 12303, 1, 1, 0, "Saber", "", true, false, false, false, false},
-    [1660]={"Ancient Frostsaber", 1660, 12302, 1, 1, 0, "Saber", "", true, false, false, false, false},
-    [16058]={"Primal Leopard", 16058, 12325, 60, 60, 0, "Saber", "", true, false, false, false, false},
-    [16059]={"Tawny Sabercat", 16059, 12326, 60, 60, 0, "Saber", "", true, false, false, false, false},
-    [16060]={"Golden Sabercat", 16060, 12327, 60, 60, 0, "Saber", "", true, false, false, false, false},
-    [16080]={"Red Wolf", 16080, 12330, 1, 1, 0, "Wolf", "", true, false, false, false, false},
-    [16081]={"Winter Wolf", 16081, 1133, 1, 1, 0, "Wolf", "", true, false, false, false, false},
-    [16082]={"Palomino", 16082, 12354, 1, 1, 0, "Horse", "", true, false, false, false, false},
-    [16083]={"White Stallion", 16083, 12353, 1, 1, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [16084]={"Mottled Red Raptor", 16084, 8586, 1, 1, 0, "Raptor", "", true, false, false, false, false},
-    [17229]={"Winterspring Frostsaber", 17229, 1360, 1, 1, 0, "Saber", "Exalted Winterspring Frostsaber", true, false, false, false, false},
-    [17450]={"Ivory Raptor", 17450, 13107, 1, 1, 0, "Raptor", "", true, false, false, false, false},
-    [17453]={"Green Mechanostrider", 17453, 13310, 60, 60, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [17454]={"Unpainted Mechanostrider", 17454, 13322, 60, 60, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [17455]={"Purple Mechanostrider", 17455, 13323, 60, 60, 0, "Mechanostrider", "", true, false, false, false, false},
-    [17456]={"Red and Blue Mechanostrider", 17456, 13324, 60, 60, 0, "Mechanostrider", "", true, false, false, false, false},
-    [17458]={"Fluorescent Green Mechanostrider", 17458, 13325, 60, 60, 0, "Mechanostrider", "", true, false, false, false, false},
-    [17459]={"Icy Blue Mechanostrider Mod A", 17459, 13327, 1, 1, 0, "Mechanostrider", "", true, false, false, false, false},
-    [17460]={"Frost Ram", 17460, 13329, 1, 1, 0, "Ram", "", true, false, false, false, false},
-    [17461]={"Black Ram", 17461, 13328, 1, 1, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [17462]={"Red Skeletal Horse", 17462, 13310, 60, 60, 0, "Horse", "Gold", true, false, false, false, false},
-    [17463]={"Blue Skeletal Horse", 17463, 46308, 60, 60, 0, "DeadHorse", "Duplicate", true, false, false, false, false},
-    [17464]={"Brown Skeletal Horse", 17464, 13333, 60, 60, 0, "Horse", "Gold", true, false, false, false, false},
-    [17465]={"Green Skeletal Warhorse", 17465, 13334, 1, 1, 0, "Horse", "Gold", true, false, false, false, false},
-    [17481]={"Rivendare's Deathcharger", 17481, 13335, 1, 1, 0, "DeadHorse", "Drop Stratholme", true, false, false, false, false},
-    [18363]={"Riding Kodo", 18363, 14062, 60, 60, 0, "Kodo", "", true, false, false, false, false},
-    [18989]={"Gray Kodo", 18989, 15277, 60, 60, 0, "Kodo", "Gold", true, false, false, false, false},
-    [18990]={"Brown Kodo", 18990, 15290, 60, 60, 0, "Kodo", "Gold", true, false, false, false, false},
-    [18991]={"Green Kodo", 18991, 15292, 1, 1, 0, "Kodo", "Gold", true, false, false, false, false},
-    [18992]={"Teal Kodo", 18992, 15293, 1, 1, 0, "Kodo", "", true, false, false, false, false},
-    [22717]={"Black War Steed", 22717, 29468, 1, 1, 0, "Horse", "Honor", true, false, false, false, false},
-    [22718]={"Black War Kodo", 22718, 29466, 1, 1, 0, "Kodo", "Honor", true, false, false, false, false},
-    [22719]={"Black Battlestrider", 22719, 29465, 1, 1, 0, "Mechanostrider", "Honor", true, false, false, false, false},
-    [22720]={"Black War Ram", 22720, 29467, 1, 1, 0, "Ram", "Honor", true, false, false, false, false},
-    [22721]={"Black War Raptor", 22721, 29472, 1, 1, 0, "Raptor", "Honor", true, false, false, false, false},
-    [22722]={"Red Skeletal Warhorse", 22722, 29470, 1, 1, 0, "Horse", "Honor", true, false, false, false, false},
-    [22723]={"Black War Tiger", 22723, 29471, 1, 1, 0, "Saber", "Honor", true, false, false, false, false},
-    [22724]={"Black War Wolf", 22724, 29469, 1, 1, 0, "Wolf", "Honor", true, false, false, false, false},
-    [23161]={"Dreadsteed", 23161, 14505, 1, 1, 0, "Warlock", "Warlock", true, false, false, false, false},
-    [23214]={"Charger", 23104, 14565, 1, 1, 0, "Paladin", "Paladin", true, false, false, false, false},
-    [23109]={"Swift Mistsaber", 23109, 18767, 1, 1, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [23220]={"Swift Dawnsaber", 23220, 18768, 1, 1, 0, "Saber", "", true, false, false, false, false},
-    [23221]={"Swift Frostsaber", 23221, 18766, 1, 1, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [23222]={"Swift Yellow Mechanostrider", 23222, 18774, 1, 1, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [23223]={"Swift White Mechanostrider", 23223, 18773, 1, 1, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [23225]={"Swift Green Mechanostrider", 23225, 18772, 1, 1, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [23227]={"Swift Palomino", 23227, 18776, 1, 1, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [23280]={"Swift White Steed", 23280, 18778, 1, 1, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [23229]={"Swift Brown Steed", 23229, 18777, 1, 1, 0, "Horse", "Exalted Stormwind", true, false, false, false, false},
-    [23280]={"Swift Brown Ram", 23280, 18786, 1, 1, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [23239]={"Swift Gray Ram", 23239, 18787, 1, 1, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [23240]={"Swift White Ram", 23240, 18785, 1, 1, 0, "Ram", "Exalted IronForge", true, false, false, false, false},
-    [23241]={"Swift Blue Raptor", 23241, 18788, 1, 1, 0, "Raptor", "Gold", true, false, false, false, false},
-    [23242]={"Swift Olive Raptor", 23242, 18789, 1, 1, 0, "Raptor", "Gold", true, false, false, false, false},
-    [23243]={"Swift Orange Raptor", 23243, 18790, 1, 1, 0, "Raptor", "Gold", true, false, false, false, false},
-    [23246]={"Purple Skeletal Warhorse", 23246, 18791, 1, 1, 0, "Horse", "Gold", true, false, false, false, false},
-    [23247]={"Great White Kodo", 23247, 18793, 1, 1, 0, "Kodo", "Gold", true, false, false, false, false},
-    [23280]={"Great Gray Kodo", 23280, 18795, 1, 1, 0, "Kodo", "Gold", true, false, false, false, false},
-    [23249]={"Great Brown Kodo", 23249, 18794, 1, 1, 0, "Kodo", "Gold", true, false, false, false, false},
-    [23250]={"Swift Brown Wolf", 23250, 18796, 1, 1, 0, "Wolf", "Gold", true, false, false, false, false},
-    [23251]={"Swift Timber Wolf", 23251, 18797, 1, 1, 0, "Wolf", "Gold", true, false, false, false, false},
-    [23252]={"Swift Gray Wolf", 23252, 18798, 1, 1, 0, "Wolf", "Gold", true, false, false, false, false},
-    [23338]={"Swift Stormsaber", 23338, 18902, 1, 1, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [23509]={"Frostwolf Howler", 23509, 19029, 1, 1, 0, "Wolf", "Honor", true, false, false, false, false},
-    [23100]={"Stormpike Battle Charger", 23100, 19030, 1, 1, 0, "Ram", "Honor", true, false, false, false, false},
-    [24242]={"Swift Razzashi Raptor", 24242, 19872, 1, 1, 0, "Raptor", "Drop ZG", true, false, false, false, false},
-    [24252]={"Swift Zulian Tiger", 24252, 19902, 1, 1, 0, "Saber", "Drop ZG", true, false, false, false, false},
-    [25953]={"Blue Qiraji Battle Tank", 25953, 21280, 1, 1, 0, "Bug", "Drop, AQ40", false, false, false, false, true},
-    [26054]={"Red Qiraji Battle Tank", 26054, 21310, 1, 1, 0, "Bug", "Drop AQ40", false, false, false, false, true},
-    [26055]={"Yellow Qiraji Battle Tank", 26055, 21324, 1, 1, 0, "Bug", "Drop AQ40", false, false, false, false, true},
-    [26056]={"Green Qiraji Battle Tank", 26056, 21323, 1, 1, 0, "Bug", "Drop AQ40", false, false, false, false, true},
-    [26656]={"Black Qiraji Battle Tank", 26656, 21176, 1, 1, 0, "Bug", "", false, true, false, false, true},
-    [28025]={"Nether Drake", 28025, 21736, 3, 3, 0, "Nether Drake", "", true, false, false, false, false},
-    [29059]={"Naxxramas Deathcharger", 29059, 23193, 1, 1, 0, "DeadHorse", "", true, false, false, false, false},
-    [31074]={"Riding Turtle", 31074, 23720, 0, 0, 1, "Turtle", "TCG", true, false, false, false, false},
-    [32235]={"Golden Gryphon", 32235, 25470, 150, 150, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32239]={"Ebon Gryphon", 32239, 25471, 150, 150, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32240]={"Snowy Gryphon", 32240, 25472, 150, 150, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32242]={"Swift Blue Gryphon", 32242, 25473, 280, 280, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32243]={"Tawny Wind Rider", 32243, 25474, 150, 150, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32244]={"Blue Wind Rider", 32244, 25475, 150, 150, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32245]={"Green Wind Rider", 32245, 25476, 150, 150, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32246]={"Swift Red Wind Rider", 32246, 25477, 280, 280, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32289]={"Swift Red Gryphon", 32289, 25527, 280, 280, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32290]={"Swift Green Gryphon", 32290, 25528, 280, 280, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32292]={"Swift Purple Gryphon", 32292, 25529, 280, 280, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [32295]={"Swift Green Wind Rider", 32295, 25531, 280, 280, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32296]={"Swift Yellow Wind Rider", 32296, 25532, 280, 280, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32297]={"Swift Purple Wind Rider", 32297, 25533, 280, 280, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [32345]={"Peep the Phoenix Mount", 32345, 25596, 310, 310, 0, "Phoenix", "", true, false, false, false, false},
-    [32420]={"Old Crappy McWeakSauce", 32420, 25664, 60, 60, 0, "Wind Rider", "", true, false, false, false, false},
-    [33630]={"Blue Mechanostrider", 33630, 8595, 60, 60, 0, "Mechanostrider", "Exalted Gnomeragan", true, false, false, false, false},
-    [33660]={"Swift Pink Hawkstrider", 33660, 28936, 1, 1, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [34406]={"Brown Elekk", 34406, 28481, 60, 60, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [34407]={"Great Elite Elekk", 34407, 28482, 1, 1, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [34767]={"Summon Charger", 34767, 0, 1, 1, 0, "Paladin", "Duplicate", true, false, false, false, false},
-    [34769]={"Summon Warhorse", 34769, 0, 60, 60, 0, "Paladin", "Duplicate", true, false, false, false, false},
-    [34790]={"Dark War Talbuk", 34790, 29280, 1, 1, 0, "Talbuk", "Hala tokens", true, false, false, false, false},
-    [34795]={"Red Hawkstrider", 34795, 28927, 60, 60, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [34896]={"Cobalt War Talbuk", 34896, 29227, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [34897]={"White War Talbuk", 34897, 29231, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [34898]={"Silver War Talbuk", 34898, 29229, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [34899]={"Tan War Talbuk", 34899, 29230, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [35018]={"Purple Hawkstrider", 35018, 29222, 60, 60, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [35020]={"Blue Hawkstrider", 35020, 29220, 60, 60, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [35022]={"Black Hawkstrider", 35022, 29221, 60, 60, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [35025]={"Swift Green Hawkstrider", 35025, 29223, 1, 1, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [35027]={"Swift Purple Hawkstrider", 35027, 29224, 1, 1, 0, "Hawkstrider", "Gold", true, false, false, false, false},
-    [35028]={"Swift Warstrider", 35028, 31029, 1, 1, 0, "Hawkstrider", "Honor", true, false, false, false, false},
-    [35710]={"Gray Elekk", 35710, 29744, 60, 60, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [35711]={"Purple Elekk", 35711, 29743, 60, 60, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [35712]={"Great Green Elekk", 35712, 29746, 1, 1, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [35713]={"Great Blue Elekk", 35713, 29745, 1, 1, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [35714]={"Great Purple Elekk", 35714, 29747, 1, 1, 0, "Elekk", "Exalted Exodar", true, false, false, false, false},
-    [36702]={"Fiery Warhorse", 36702, 30480, 1, 1, 0, "Horse", "Drop Kara", true, false, false, false, false},
-    [37015]={"Swift Nether Drake", 37015, 30609, 310, 310, 0, "Nether Drake", "Gladiator", false, true, false, false, false},
-    [39315]={"Cobalt Riding Talbuk", 39315, 31830, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [39316]={"Dark Riding Talbuk", 39316, 28915, 1, 1, 0, "Talbuk", "Hala tokens", true, false, false, false, false},
-    [39317]={"Silver Riding Talbuk", 39317, 31832, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [39318]={"Tan Riding Talbuk", 39318, 31834, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [39319]={"White Riding Talbuk", 39319, 31836, 1, 1, 0, "Talbuk", "Exalted Kurenai", true, false, false, false, false},
-    [39798]={"Green Riding Nether Ray", 39798, 32314, 280, 280, 0, "Nether Ray", "Exalted Skyguard", false, true, false, false, false},
-    [39800]={"Red Riding Nether Ray", 39800, 32317, 280, 280, 0, "Nether Ray", "Exalted Skyguard", false, true, false, false, false},
-    [39801]={"Purple Riding Nether Ray", 39801, 32316, 280, 280, 0, "Nether Ray", "Exalted Skyguard", false, true, false, false, false},
-    [39802]={"Silver Riding Nether Ray", 39802, 32318, 280, 280, 0, "Nether Ray", "Exalted Skyguard", false, true, false, false, false},
-    [39803]={"Blue Riding Nether Ray", 39803, 32319, 280, 280, 0, "Nether Ray", "Exalted Skyguard", false, true, false, false, false},
-    [40192]={"Ashes of Al'ar", 40192, 32458, 310, 310, 0, "Phoenix", "Drop Tempest Keep", false, true, false, false, false},
-    [41502]={"Raven Lord", 41502, 32768, 1, 1, 0, "Raven", "Drop Sethekk Halls", true, false, false, false, false},
-    [41513]={"Onyx Netherwing Drake", 41513, 32857, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [41514]={"Azure Netherwing Drake", 41514, 32858, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [41515]={"Cobalt Netherwing Drake", 41515, 32859, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [41516]={"Purple Netherwing Drake", 41516, 32860, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [41517]={"Veridian Netherwing Drake", 41517, 32861, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [41518]={"Violet Netherwing Drake", 41518, 32862, 280, 280, 0, "Nether Drake", "Exalted Netherwing", false, true, false, false, false},
-    [42776]={"Spectral Tiger", 42776, 49283, 60, 60, 0, "Saber", "TCG", true, false, false, false, false},
-    [42777]={"Swift Spectral Tiger", 42777, 49284, 1, 1, 0, "Saber", "TCG", true, false, false, false, false},
-    [43688]={"Amani War Bear", 43688, 33809, 1, 1, 0, "Bear", "ZA", true, false, false, false, false},
-    --[43100]={"Frost Wyrm", 43100, 0, 280, 280, 0, "Wyrm", "", true, false, false, false, false},
-    [43899]={"Brewfest Ram", 43899, 33976, 60, 60, 0, "Ram", "Duplicate", true, false, false, false, false},
-    [43900]={"Swift Brewfest Ram", 43900, 33977, 1, 1, 0, "Ram", "Drop Brewfest", true, false, false, false, false},
-    [43927]={"Cenarion War Hippogryph", 43927, 33999, 280, 280, 0, "Hippogryph", "Exalted Cenarion Expedition", false, true, false, false, false},
-    [44151]={"Turbo-Charged Flying Machine", 44151, 34061, 280, 280, 0, "Machine", "Engineering", false, true, false, false, false},
-    [44153]={"Flying Machine", 44153, 34060, 150, 150, 0, "Machine", "Engineering", false, true, false, false, false},
-    [44317]={"Merciless Nether Drake", 44317, 34092, 310, 310, 0, "Nether Drake", "Gladiator", false, true, false, false, false},
-    [44744]={"Merciless Nether Drake", 44744, 34092, 310, 310, 0, "Nether Drake", "Gladiator", false, true, false, false, false},
-    [46197]={"X-51 Nether-Rocket", 46197, 198629, 150, 150, 0, "Rocket", "TCG", false, true, false, false, false},
-    [46199]={"X-51 Nether-Rocket X-TREME", 46199, 198628, 280, 280, 0, "Rocket", "TCG", false, true, false, false, false},
-    [46628]={"Swift White Hawkstrider", 46628, 35513, 1, 1, 0, "Hawkstrider", "Drop Magisters' Terrace", true, false, false, false, false},
-    [47037]={"Swift War Elekk", 47037, 26439, 1, 1, 0, "Elekk", "", true, false, false, false, false},
-    [48025]={"Headless Horseman's Mount", 48025, 37012, 280, 60, 0, "Horse", "Drop, Halloween", true, true, false, false, false},
-    [48027]={"Black War Elekk", 48027, 35906, 1, 1, 0, "Elekk", "Honor", true, false, false, false, false},
-    [48778]={"Acherus Deathcharger", 48778, 28302, 1, 1, 0, "DeathKnight", "DeathKnight", true, false, false, false, false},
-    [48954]={"Swift Zhevra", 48954, 37598, 1, 1, 0, "Horse", "Recruit a Friend", true, false, false, false, false},
-    [49193]={"Vengeful Nether Drake", 49193, 37676, 310, 310, 0, "Nether Drake", "Gladiator", false, true, false, false, false},
-    [49322]={"Swift Zhevra", 49322, 37719, 1, 1, 0, "Horse", "Recruit a Friend", true, false, false, false, false},
-    [49378]={"Brewfest Riding Kodo", 49378, 37827, 60, 60, 0, "Kodo", "Duplicate", true, false, false, false, false},
-    [49379]={"Great Brewfest Kodo", 49379, 37828, 1, 1, 0, "Kodo", "Drop Brewfest", true, false, false, false, false},
-    [5609]={"Brewfest Kodo", 5609, 37827, 60, 60, 0, "Kodo", "Duplicate", true, false, false, false, false},
-    [50870]={"Brewfest Ram", 50870, 33976, 60, 60, 0, "Ram", "Duplicate", true, false, false, false, false},
-    [51412]={"Big Battle Bear", 51412, 198632, 1, 1, 0, "Bear", "TCG", true, false, false, false, false},
-    [51960]={"Frost Wyrm Mount", 51960, 38690, 280, 280, 0, "Wyrm", "", true, false, false, false, false},
-    [54729]={"Winged Steed of the Ebon Blade", 54729, 40775, 280, 280, 0, "Wyrm", "DeathKnight", false, true, false, false, false},
-    [54753]={"White Polar Bear", 54753, 43962, 1, 1, 0, "Bear", "Daily Storm Peaks", true, false, false, false, false},
-    [55531]={"Mechano-hog", 55531, 41508, 1, 1, 0, "Machine", "Engineering", true, false, true, false, false},
-    [58615]={"Brutal Nether Drake", 58615, 43106, 310, 310, 0, "Nether Drake", "Gladiator", false, true, false, false, false},
-    [58983]={"Big Blizzard Bear", 58983, 43599, 1, 1, 0, "Bear", "TCG", true, false, false, false, false},
-    [59567]={"Azure Drake", 59567, 43952, 280, 280, 0, "Drake", "Drop Eye of Eternity", false, true, false, false, false},
-    [59568]={"Blue Drake", 59568, 43953, 280, 280, 0, "Drake", "Drop, The Eye of Eternity", false, true, false, false, false},
-    [59569]={"Bronze Drake", 59569, 43951, 280, 280, 0, "Drake", "Drop The Culling of Stratholme", false, true, false, false, false},
-    [59570]={"Red Drake", 59570, 43955, 280, 280, 0, "Drake", "Exalted, Wyrmrest Accord", false, true, false, false, false},
-    [59571]={"Twilight Drake", 59571, 43954, 280, 280, 0, "Drake", "Drop, The Obsidian Sanctum", false, true, false, false, false},
-    [59572]={"Black Polar Bear", 59572, 43964, 1, 1, 0, "Bear", "", true, false, false, false, false},
-    [59573]={"Brown Polar Bear", 59573, 43963, 1, 1, 0, "Bear", "", true, false, false, false, false},
-    [59650]={"Black Drake", 59650, 43986, 280, 280, 0, "Drake", "Drop, The Obsidian Sanctum", false, true, false, false, false},
-    [59785]={"Black War Mammoth", 59785, 43956, 1, 1, 0, "Mammoth", "Stone Keeper's Shard", true, false, false, false, false},
-    [59788]={"Black War Mammoth", 59788, 44077, 1, 1, 0, "Mammoth", "Stone Keeper's Shard", true, false, false, false, false},
-    [59791]={"Wooly Mammoth", 59791, 44230, 1, 1, 0, "Mammoth", "Embelm of Heroism", true, false, false, false, false},
-    [59793]={"Wooly Mammoth", 59793, 44231, 1, 1, 0, "Mammoth", "Embelm of Heroism", true, false, false, false, false},
-    [59797]={"Ice Mammoth", 59797, 43958, 1, 1, 0, "Mammoth", "Revered Sons of Hodir", true, false, false, false, false},
-    [59799]={"Ice Mammoth", 59799, 44080, 1, 1, 0, "Mammoth", "Revered Sons of Hodir", true, false, false, false, false},
-    [59802]={"Grand Ice Mammoth", 59802, 44086, 1, 1, 0, "Mammoth", "", true, false, true, false, false},
-    [59804]={"Grand Ice Mammoth", 59804, 43961, 1, 1, 0, "Mammoth", "", true, false, true, false, false},
-    [59961]={"Red Proto-Drake", 59961, 44160, 280, 280, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [59976]={"Black Proto-Drake", 59976, 44164, 310, 310, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [59996]={"Blue Proto-Drake", 59996, 44151, 280, 280, 0, "Proto-Drake", "Drop, Skadi the Ruthless", false, true, false, false, false},
-    [60002]={"Time-Lost Proto-Drake", 60002, 44168, 280, 280, 0, "Proto-Drake", "Drop Rare", false, true, false, false, false},
-    [60021]={"Plagued Proto-Drake", 60021, 44150, 310, 310, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [60024]={"Violet Proto-Drake", 60024, 44177, 310, 310, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [60025]={"Albino Drake", 60025, 44178, 280, 280, 0, "Drake", "Achievment", false, true, false, false, false},
-    [60114]={"Armored Brown Bear", 60114, 44225, 1, 1, 0, "Bear", "Gold", true, false, false, false, false},
-    [60116]={"Armored Brown Bear", 60116, 44226, 1, 1, 0, "Bear", "Gold", true, false, false, false, false},
-    [60118]={"Black War Bear", 60118, 44223, 1, 1, 0, "Bear", "Achievment", true, false, false, false, false},
-    [60119]={"Black War Bear", 60119, 44224, 1, 1, 0, "Bear", "Achievment", true, false, false, false, false},
-    [60136]={"Grand Caravan Mammoth", 60136, 32212, 1, 1, 0, "Mammoth", "", true, false, false, false, false},
-    [60140]={"Grand Caravan Mammoth", 60140, 32213, 1, 1, 0, "Mammoth", "", true, false, false, false, false},
-    [60424]={"Mekgineer's Chopper", 60424, 44413, 1, 1, 0, "Machine", "Engineering", true, false, true, false, false},
-    [61229]={"Armored Snowy Gryphon", 61229, 44689, 280, 280, 0, "Gryphon", "Gold", false, true, false, false, false},
-    [61230]={"Armored Blue Wind Rider", 61230, 44690, 280, 280, 0, "Wind Rider", "Gold", false, true, false, false, false},
-    [61294]={"Green Proto-Drake", 61294, 44707, 280, 280, 0, "Proto-Drake", "Revered Oracles, Mysterious Egg", false, true, false, false, false},
-    [61309]={"Magnificent Flying Carpet", 61309, 44558, 280, 280, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [61425]={"Traveler's Tundra Mammoth", 61425, 44234, 1, 1, 0, "Mammoth", "Gold", true, false, true, true, false},
-    [61442]={"Swift Mooncloth Carpet", 61442, 44555, 280, 280, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [61444]={"Swift Shadoweave Carpet", 61444, 44557, 280, 280, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [61446]={"Swift Spellfire Carpet", 61446, 44556, 280, 280, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [61447]={"Traveler's Tundra Mammoth", 61447, 44235, 1, 1, 0, "Mammoth", "Gold", true, false, true, true, false},
-    [61451]={"Flying Carpet", 61451, 44554, 150, 150, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [61465]={"Grand Black War Mammoth", 61465, 43959, 1, 1, 0, "Mammoth", "Drop Vault", true, false, true, false, false},
-    [61467]={"Grand Black War Mammoth", 61467, 44083, 1, 1, 0, "Mammoth", "Drop Vault", true, false, true, false, false},
-    [61469]={"Grand Ice Mammoth", 61469, 44086, 1, 1, 0, "Mammoth", "Exalted Sons of Hodir", true, false, true, false, false},
-    [61470]={"Grand Ice Mammoth", 61470, 43961, 1, 1, 0, "Mammoth", "Exalted Sons of Hodir", true, false, true, false, false},
-    [61996]={"Blue Dragonhawk", 61996, 44843, 280, 280, 0, "DragonHawk", "Achievment", false, true, false, false, false},
-    [61997]={"Red Dragonhawk", 61997, 44842, 280, 280, 0, "DragonHawk", "Achievment", false, true, false, false, false},
-    [62048]={"Black Dragonhawk Mount", 62048, 44857, 280, 280, 0, "DragonHawk", "", true, false, false, false, false},
-    [63232]={"Stormwind Steed", 63232, 45150, 1, 1, 0, "Horse", "Champion's Seals", true, false, false, false, false},
-    [63635]={"Darkspear Raptor", 63635, 45593, 1, 1, 0, "Raptor", "", true, false, false, false, false},
-    [63636]={"Ironforge Ram", 63636, 45586, 1, 1, 0, "Ram", "Champion's Seals", true, false, false, false, false},
-    [63637]={"Darnassian Nightsaber", 63637, 45591, 1, 1, 0, "Saber", "Champion's Seals", true, false, false, false, false},
-    [63638]={"Gnomeregan Mechanostrider", 63638, 45589, 1, 1, 0, "Mechanostrider", "Champion's Seals", true, false, false, false, false},
-    [63639]={"Exodar Elekk", 63639, 45590, 1, 1, 0, "Elekk", "Champion's Seals", true, false, false, false, false},
-    [63640]={"Orgrimmar Wolf", 63640, 45595, 1, 1, 0, "Wolf", "Champion's Seals", true, false, false, false, false},
-    [63641]={"Thunder Bluff Kodo", 63641, 45592, 1, 1, 0, "Kodo", "Champion's Seals", true, false, false, false, false},
-    [63642]={"Silvermoon Hawkstrider", 63642, 45596, 1, 1, 0, "Hawkstrider", "Champion's Seals", true, false, false, false, false},
-    [63643]={"Forsaken Warhorse", 63643, 45597, 1, 1, 0, "Horse", "Champion's Seals", true, false, false, false, false},
-    [63796]={"Mimiron's Head", 63796, 45693, 310, 310, 0, "Machine", "Drop Ulduar", false, true, false, false, false},
-    [63844]={"Argent Hippogryph", 63844, 45725, 280, 280, 0, "Hippogryph", "Champion's Seals", false, true, false, false, false},
-    [63956]={"Ironbound Proto-Drake", 63956, 45801, 310, 310, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [63963]={"Rusted Proto-Drake", 63963, 45802, 310, 310, 0, "Proto-Drake", "Achievment", false, true, false, false, false},
-    [64656]={"Blue Skeletal Warhorse", 64656, 46101, 1, 1, 0, "Horse", "", true, false, false, false, false},
-    [64657]={"White Kodo", 64657, 46100, 60, 60, 0, "Kodo", "Gold", true, false, false, false, false},
-    [64658]={"Black Wolf", 64658, 46099, 60, 60, 0, "Wolf", "Gold", true, false, false, false, false},
-    [64659]={"Venomhide Ravasaur", 64659, 46102, 1, 1, 0, "Raptor", "Dailies Ungoro Crator", true, false, false, false, false},
-    [64731]={"Sea Turtle", 64731, 46109, 0, 0, 1, "Turtle", "fishing", true, false, false, false, false},
-    [64927]={"Deadly Gladiator's Frost Wyrm", 64927, 46708, 310, 310, 0, "Wyrm", "Gladiator", false, true, false, false, false},
-    [64977]={"Black Skeletal Horse", 64977, 46308, 60, 60, 0, "DeadHorse", "Gold", true, false, false, false, false},
-    [65439]={"Furious Gladiator's Frost Wyrm", 65439, 46171, 310, 310, 0, "Wyrm", "Gladiator", false, true, false, false, false},
-    [65637]={"Great Red Elekk", 65637, 46756, 1, 1, 0, "Elekk", "Champion's Seals", true, false, false, false, false},
-    [65638]={"Swift Moonsaber", 65638, 46744, 1, 1, 0, "Saber", "Champion's Seals", true, false, false, false, false},
-    [65639]={"Swift Red Hawkstrider", 65639, 46751, 1, 1, 0, "Hawkstrider", "Champion's Seals", true, false, false, false, false},
-    [65640]={"Swift Gray Steed", 65640, 46752, 1, 1, 0, "Horse", "Champion's Seals", true, false, false, false, false},
-    [65641]={"Great Golden Kodo", 65641, 46755, 1, 1, 0, "Kodo", "Champion's Seals", true, false, false, false, false},
-    [65642]={"Turbostrider", 65642, 46747, 1, 1, 0, "Mechanostrider", "Champion's Seals", true, false, false, false, false},
-    [65643]={"Swift Violet Ram", 65643, 46748, 1, 1, 0, "Ram", "Champion's Seals", true, false, false, false, false},
-    [65644]={"Swift Purple Raptor", 65644, 46743, 1, 1, 0, "Raptor", "Champion's Seals", true, false, false, false, false},
-    [65645]={"White Skeletal Warhorse", 65645, 46764, 1, 1, 0, "Horse", "Champion's Seals", true, false, false, false, false},
-    [65646]={"Swift Burgundy Wolf", 65646, 46757, 1, 1, 0, "Wolf", "Champion's Seals", true, false, false, false, false},
-    [66087]={"Silver Covenant Hippogryph", 66087, 46813, 280, 280, 0, "Hippogryph", "Champion's Seals", false, true, false, false, false},
-    [66088]={"Sunreaver Dragonhawk", 66088, 46814, 280, 280, 0, "DragonHawk", "Champion's Seals", false, true, false, false, false},
-    [66090]={"Quel'dorei Steed", 66090, 46815, 1, 1, 0, "Horse", "Exalted Argent Tournament", true, false, false, false, false},
-    [66091]={"Sunreaver Hawkstrider", 66091, 46816, 1, 1, 0, "Hawkstrider", "Champion's Seals", true, false, false, false, false},
-    [66122]={"Magic Rooster", 66122, 46778, 1, 1, 0, "Rooster", "Duplicate", true, false, false, false, false},
-    [66123]={"Magic Rooster", 66123, 49290, 1, 1, 0, "Rooster", "Duplicate", true, false, false, false, false},
-    [66124]={"Magic Rooster", 66124, 198631, 1, 1, 0, "Rooster", "TCG", true, false, false, false, false},
-    [66846]={"Ochre Skeletal Warhorse", 66846, 47101, 1, 1, 0, "DeadHorse", "Gold", true, false, false, false, false},
-    [66847]={"Striped Dawnsaber", 66847, 47100, 60, 60, 0, "Saber", "Exalted Darnasses", true, false, false, false, false},
-    [66906]={"Argent Charger", 66906, 47179, 1, 1, 0, "Horse", "Daily", true, false, false, false, false},
-    [66907]={"Argent Warhorse", 66907, 66907, 60, 60, 0, "Horse", "", true, false, false, false, false},
-    [67336]={"Relentless Gladiator's Frost Wyrm", 67336, 47840, 310, 310, 0, "Wyrm", "Gladiator", false, true, false, false, false},
-    [67466]={"Argent Warhorse", 67466, 47180, 1, 1, 0, "Horse", "Exalted Argent Champion", true, false, false, false, false},
-    [6860]={"Swift Horde Wolf", 6860, 4960, 1, 1, 0, "Wolf", "Drop Trial of the Champion", true, false, false, false, false},
-    [68057]={"Swift Alliance Steed", 68057, 49044, 1, 1, 0, "Horse", "Champion's Seals", true, false, false, false, false},
-    [68187]={"Crusader's White Warhorse", 68187, 4960, 1, 1, 0, "Horse", "Achievment", true, false, false, false, false},
-    [68188]={"Crusader's Black Warhorse", 68188, 49098, 1, 1, 0, "Horse", "Achievment", true, false, false, false, false},
-    [69395]={"Onyxian Drake", 69395, 49636, 310, 310, 0, "Drake", "Drop Onyxia'a Lair", false, true, false, false, false},
-    [71342]={"X-45 Heartbreaker", 71342, 50250, 280, 60, 0, "Rocket", "Drop Valentines", true, false, false, false, false},
-    [71810]={"Wrathful Gladiator's Frost Wyrm", 71810, 50435, 310, 310, 0, "Wyrm", "Gladiator", false, true, false, false, false},
-    [72806]={"Invincible", 72806, 50818, 280, 280, 0, "Wyrm", "Drop Icecrown", false, true, false, false, false},
-    [72807]={"Icebound Frostbrood Vanquisher", 72807, 51505, 310, 310, 0, "Wyrm", "Achievment", false, true, false, false, false},
-    [72808]={"Bloodbathed Frostbrood Vanquisher", 72808, 51504, 310, 310, 0, "Wyrm", "Achievment", false, true, false, false, false},
-    [73103]={"Crimson Deathcharger", 73103, 52200, 1, 1, 0, "DeadHorse", "Shadowmourn Quest", true, false, false, false, false},
-    [74856]={"Blazing Hippogryph", 74856, 54069, 280, 280, 0, "Hippogryph", "TCG", false, true, false, false, false},
-    [74918]={"Wooly White Rhino", 74918, 54068, 1, 1, 0, "Rhino", "Duplicate", true, false, false, false, false},
-    [75596]={"Frosty Flying Carpet", 75596, 54797, 280, 280, 0, "Carpet", "Tailoring", false, true, false, false, false},
-    [75614]={"Celestial Steed", 75614, 54811, 280, 280, 0, "Horse", "Store", false, true, false, false, false},
-    [75973]={"X-53 Touring Rocket", 75973, 54860, 280, 280, 0, "Rocket", "Recruit a Friend", false, true, true, false, false},
-    [348459]={"Reawakened Phase-Hunter", 348459, 184865, 1, 1, 0, "Warp Stalker", "Store", true, false, false, false, false},
-    [372677]={"Kalu'ak Whalebone Glider", 372677, 192455, 280, 60, 0, "Glider", "Store", true, true, false, false, false},
-    [387320]={"Blazing Hippogryph", 387320, 198630, 150, 150, 0, "Hippogryph", "TCG", false, true, false, false, false},
-    [387310]={"Wooly White Rhino", 387310, 198633, 1, 1, 0, "Rhino", "TCG", true, false, false, false, false}
+    [458]= {
+		name="Brown Horse",
+		spellid=458,
+		itemid=5656,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [459]= {
+		name="Gray Wolf",
+		spellid=459,
+		itemid=1134,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [468]= {
+		name="White Stallion",
+		spellid=468,
+		itemid=2415,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [470]= {
+		name="Black Stallion",
+		spellid=470,
+		itemid=2411,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [471]= {
+		name="Palamino",
+		spellid=471,
+		itemid=2413,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [472]= {
+		name="Pinto",
+		spellid=472,
+		itemid=2414,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [578]= {
+		name="Black Wolf",
+		spellid=578,
+		itemid=1041,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [579]= {
+		name="Red Wolf",
+		spellid=579,
+		itemid=5663,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [580]= {
+		name="Timber Wolf",
+		spellid=580,
+		itemid=1132,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [581]= {
+		name="Winter Wolf",
+		spellid=581,
+		itemid=1133,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [3363]= {
+		name="Nether Drake",
+		spellid=3363,
+		itemid=21736,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="",
+		attributes={
+			ground=true,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [5784]= {
+		name="Felsteed",
+		spellid=5784,
+		itemid=304,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Warlock",
+		source="Warlock",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6648]= {
+		name="Chestnut Mare",
+		spellid=6648,
+		itemid=5655,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6653]= {
+		name="Dire Wolf",
+		spellid=6653,
+		itemid=5665,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6654]= {
+		name="Brown Wolf",
+		spellid=6654,
+		itemid=5668,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6777]= {
+		name="Gray Ram",
+		spellid=6777,
+		itemid=5864,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6896]= {
+		name="Black Ram",
+		spellid=6896,
+		itemid=5874,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6897]= {
+		name="Blue Ram",
+		spellid=6897,
+		itemid=5875,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6898]= {
+		name="White Ram",
+		spellid=6898,
+		itemid=5873,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6899]= {
+		name="Brown Ram",
+		spellid=6899,
+		itemid=5872,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [8394]= {
+		name="Striped Frostsaber",
+		spellid=8394,
+		itemid=8631,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [8395]= {
+		name="Emerald Raptor",
+		spellid=8395,
+		itemid=8588,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [8595]= {
+		name="Blue Mechanostrider",
+		spellid=8595,
+		itemid=28025,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [8980]= {
+		name="Skeletal Horse",
+		spellid=8980,
+		itemid=8583,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10789]= {
+		name="Spotted Frostsaber",
+		spellid=10789,
+		itemid=8632,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10793]= {
+		name="Striped Nightsaber",
+		spellid=10793,
+		itemid=8629,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10795]= {
+		name="Ivory Raptor",
+		spellid=10795,
+		itemid=49280,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Raptor",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10796]= {
+		name="Turquoise Raptor",
+		spellid=10796,
+		itemid=8591,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10798]= {
+		name="Obsidian Raptor",
+		spellid=10798,
+		itemid=8590,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Raptor",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10799]= {
+		name="Violet Raptor",
+		spellid=10799,
+		itemid=8592,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10873]= {
+		name="Red Mechanostrider",
+		spellid=10873,
+		itemid=8563,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [10969]= {
+		name="Blue Mechanostrider",
+		spellid=10969,
+		itemid=8595,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [13819]= {
+		name="Warhorse",
+		spellid=13819,
+		itemid=9158,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Paladin",
+		source="Paladin",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [15779]= {
+		name="White Mechanostrider Mod B",
+		spellid=15779,
+		itemid=13326,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [15780]= {
+		name="Green Mechanostrider",
+		spellid=15780,
+		itemid=13310,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [15787]= {
+		name="Steel Mechanostrider",
+		spellid=15787,
+		itemid=10180,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16055]= {
+		name="Black Nightsaber",
+		spellid=16055,
+		itemid=12303,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [1660]= {
+		name="Ancient Frostsaber",
+		spellid=1660,
+		itemid=12302,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16058]= {
+		name="Primal Leopard",
+		spellid=16058,
+		itemid=12325,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16059]= {
+		name="Tawny Sabercat",
+		spellid=16059,
+		itemid=12326,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16060]= {
+		name="Golden Sabercat",
+		spellid=16060,
+		itemid=12327,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16080]= {
+		name="Red Wolf",
+		spellid=16080,
+		itemid=12330,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16081]= {
+		name="Winter Wolf",
+		spellid=16081,
+		itemid=1133,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16082]= {
+		name="Palomino",
+		spellid=16082,
+		itemid=12354,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16083]= {
+		name="White Stallion",
+		spellid=16083,
+		itemid=12353,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [16084]= {
+		name="Mottled Red Raptor",
+		spellid=16084,
+		itemid=8586,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17229]= {
+		name="Winterspring Frostsaber",
+		spellid=17229,
+		itemid=1360,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Winterspring Frostsaber",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17450]= {
+		name="Ivory Raptor",
+		spellid=17450,
+		itemid=13107,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17453]= {
+		name="Green Mechanostrider",
+		spellid=17453,
+		itemid=13310,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17454]= {
+		name="Unpainted Mechanostrider",
+		spellid=17454,
+		itemid=13322,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17455]= {
+		name="Purple Mechanostrider",
+		spellid=17455,
+		itemid=13323,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17456]= {
+		name="Red and Blue Mechanostrider",
+		spellid=17456,
+		itemid=13324,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17458]= {
+		name="Fluorescent Green Mechanostrider",
+		spellid=17458,
+		itemid=13325,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17459]= {
+		name="Icy Blue Mechanostrider Mod A",
+		spellid=17459,
+		itemid=13327,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17460]= {
+		name="Frost Ram",
+		spellid=17460,
+		itemid=13329,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17461]= {
+		name="Black Ram",
+		spellid=17461,
+		itemid=13328,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17462]= {
+		name="Red Skeletal Horse",
+		spellid=17462,
+		itemid=13310,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17463]= {
+		name="Blue Skeletal Horse",
+		spellid=17463,
+		itemid=46308,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="DeadHorse",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17464]= {
+		name="Brown Skeletal Horse",
+		spellid=17464,
+		itemid=13333,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17465]= {
+		name="Green Skeletal Warhorse",
+		spellid=17465,
+		itemid=13334,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [17481]= {
+		name="Rivendare's Deathcharger",
+		spellid=17481,
+		itemid=13335,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="DeadHorse",
+		source="Drop Stratholme",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [18363]= {
+		name="Riding Kodo",
+		spellid=18363,
+		itemid=14062,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [18989]= {
+		name="Gray Kodo",
+		spellid=18989,
+		itemid=15277,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [18990]= {
+		name="Brown Kodo",
+		spellid=18990,
+		itemid=15290,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [18991]= {
+		name="Green Kodo",
+		spellid=18991,
+		itemid=15292,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [18992]= {
+		name="Teal Kodo",
+		spellid=18992,
+		itemid=15293,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22717]= {
+		name="Black War Steed",
+		spellid=22717,
+		itemid=29468,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22718]= {
+		name="Black War Kodo",
+		spellid=22718,
+		itemid=29466,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22719]= {
+		name="Black Battlestrider",
+		spellid=22719,
+		itemid=29465,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22720]= {
+		name="Black War Ram",
+		spellid=22720,
+		itemid=29467,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22721]= {
+		name="Black War Raptor",
+		spellid=22721,
+		itemid=29472,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22722]= {
+		name="Red Skeletal Warhorse",
+		spellid=22722,
+		itemid=29470,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22723]= {
+		name="Black War Tiger",
+		spellid=22723,
+		itemid=29471,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [22724]= {
+		name="Black War Wolf",
+		spellid=22724,
+		itemid=29469,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23161]= {
+		name="Dreadsteed",
+		spellid=23161,
+		itemid=14505,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Warlock",
+		source="Warlock",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23214]= {
+		name="Charger",
+		spellid=23104,
+		itemid=14565,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Paladin",
+		source="Paladin",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23109]= {
+		name="Swift Mistsaber",
+		spellid=23109,
+		itemid=18767,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23220]= {
+		name="Swift Dawnsaber",
+		spellid=23220,
+		itemid=18768,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23221]= {
+		name="Swift Frostsaber",
+		spellid=23221,
+		itemid=18766,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23222]= {
+		name="Swift Yellow Mechanostrider",
+		spellid=23222,
+		itemid=18774,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23223]= {
+		name="Swift White Mechanostrider",
+		spellid=23223,
+		itemid=18773,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23225]= {
+		name="Swift Green Mechanostrider",
+		spellid=23225,
+		itemid=18772,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23227]= {
+		name="Swift Palomino",
+		spellid=23227,
+		itemid=18776,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23280]= {
+		name="Swift White Steed",
+		spellid=23280,
+		itemid=18778,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23229]= {
+		name="Swift Brown Steed",
+		spellid=23229,
+		itemid=18777,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Stormwind",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23280]= {
+		name="Swift Brown Ram",
+		spellid=23280,
+		itemid=18786,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23239]= {
+		name="Swift Gray Ram",
+		spellid=23239,
+		itemid=18787,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23240]= {
+		name="Swift White Ram",
+		spellid=23240,
+		itemid=18785,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Exalted IronForge",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23241]= {
+		name="Swift Blue Raptor",
+		spellid=23241,
+		itemid=18788,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23242]= {
+		name="Swift Olive Raptor",
+		spellid=23242,
+		itemid=18789,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23243]= {
+		name="Swift Orange Raptor",
+		spellid=23243,
+		itemid=18790,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23246]= {
+		name="Purple Skeletal Warhorse",
+		spellid=23246,
+		itemid=18791,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23247]= {
+		name="Great White Kodo",
+		spellid=23247,
+		itemid=18793,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23280]= {
+		name="Great Gray Kodo",
+		spellid=23280,
+		itemid=18795,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23249]= {
+		name="Great Brown Kodo",
+		spellid=23249,
+		itemid=18794,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23250]= {
+		name="Swift Brown Wolf",
+		spellid=23250,
+		itemid=18796,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23251]= {
+		name="Swift Timber Wolf",
+		spellid=23251,
+		itemid=18797,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23252]= {
+		name="Swift Gray Wolf",
+		spellid=23252,
+		itemid=18798,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23338]= {
+		name="Swift Stormsaber",
+		spellid=23338,
+		itemid=18902,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23509]= {
+		name="Frostwolf Howler",
+		spellid=23509,
+		itemid=19029,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [23100]= {
+		name="Stormpike Battle Charger",
+		spellid=23010,
+		itemid=19030,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [24242]= {
+		name="Swift Razzashi Raptor",
+		spellid=24242,
+		itemid=19872,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Drop ZG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [24252]= {
+		name="Swift Zulian Tiger",
+		spellid=24252,
+		itemid=19902,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Drop ZG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [25953]= {
+		name="Blue Qiraji Battle Tank",
+		spellid=25953,
+		itemid=21280,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bug",
+		source="Drop, AQ40",
+		attributes={
+			ground=false,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=true
+		}
+	},
+    [26054]= {
+		name="Red Qiraji Battle Tank",
+		spellid=26054,
+		itemid=21310,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bug",
+		source="Drop AQ40",
+		attributes={
+			ground=false,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=true
+		}
+	},
+    [26055]= {
+		name="Yellow Qiraji Battle Tank",
+		spellid=26055,
+		itemid=21324,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bug",
+		source="Drop AQ40",
+		attributes={
+			ground=false,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=true
+		}
+	},
+    [26056]= {
+		name="Green Qiraji Battle Tank",
+		spellid=26056,
+		itemid=21323,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bug",
+		source="Drop AQ40",
+		attributes={
+			ground=false,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=true
+		}
+	},
+    [26656]= {
+		name="Black Qiraji Battle Tank",
+		spellid=26656,
+		itemid=21176,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bug",
+		source="",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=true
+		}
+	},
+    [28025]= {
+		name="Nether Drake",
+		spellid=28025,
+		itemid=21736,
+		maxspeed=3,
+		minspeed=3,
+		swimspeed=0,
+		category="Nether Drake",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [29059]= {
+		name="Naxxramas Deathcharger",
+		spellid=29059,
+		itemid=23193,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="DeadHorse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [31074]= {
+		name="Riding Turtle",
+		spellid=31074,
+		itemid=23720,
+		maxspeed=0,
+		minspeed=0,
+		swimspeed=1,
+		category="Turtle",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32235]= {
+		name="Golden Gryphon",
+		spellid=32235,
+		itemid=25470,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32239]= {
+		name="Ebon Gryphon",
+		spellid=32239,
+		itemid=25471,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32240]= {
+		name="Snowy Gryphon",
+		spellid=32240,
+		itemid=25472,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32242]= {
+		name="Swift Blue Gryphon",
+		spellid=32242,
+		itemid=25473,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32243]= {
+		name="Tawny Wind Rider",
+		spellid=32243,
+		itemid=25474,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32244]= {
+		name="Blue Wind Rider",
+		spellid=32244,
+		itemid=25475,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32245]= {
+		name="Green Wind Rider",
+		spellid=32245,
+		itemid=25476,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32246]= {
+		name="Swift Red Wind Rider",
+		spellid=32246,
+		itemid=25477,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32289]= {
+		name="Swift Red Gryphon",
+		spellid=32289,
+		itemid=25527,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32290]= {
+		name="Swift Green Gryphon",
+		spellid=32290,
+		itemid=25528,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32292]= {
+		name="Swift Purple Gryphon",
+		spellid=32292,
+		itemid=25529,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32295]= {
+		name="Swift Green Wind Rider",
+		spellid=32295,
+		itemid=25531,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32296]= {
+		name="Swift Yellow Wind Rider",
+		spellid=32296,
+		itemid=25532,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32297]= {
+		name="Swift Purple Wind Rider",
+		spellid=32297,
+		itemid=25533,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32345]= {
+		name="Peep the Phoenix Mount",
+		spellid=32345,
+		itemid=25596,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Phoenix",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [32420]= {
+		name="Old Crappy McWeakSauce",
+		spellid=32420,
+		itemid=25664,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wind Rider",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [33630]= {
+		name="Blue Mechanostrider",
+		spellid=33630,
+		itemid=8595,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Exalted Gnomeragan",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [33660]= {
+		name="Swift Pink Hawkstrider",
+		spellid=33660,
+		itemid=28936,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34406]= {
+		name="Brown Elekk",
+		spellid=34406,
+		itemid=28481,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34407]= {
+		name="Great Elite Elekk",
+		spellid=34407,
+		itemid=28482,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34767]= {
+		name="Summon Charger",
+		spellid=34767,
+		itemid=0,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Paladin",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34769]= {
+		name="Summon Warhorse",
+		spellid=34769,
+		itemid=0,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Paladin",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34790]= {
+		name="Dark War Talbuk",
+		spellid=34790,
+		itemid=29280,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Hala tokens",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34795]= {
+		name="Red Hawkstrider",
+		spellid=34795,
+		itemid=28927,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34896]= {
+		name="Cobalt War Talbuk",
+		spellid=34896,
+		itemid=29227,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34897]= {
+		name="White War Talbuk",
+		spellid=34897,
+		itemid=29231,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34898]= {
+		name="Silver War Talbuk",
+		spellid=34898,
+		itemid=29229,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [34899]= {
+		name="Tan War Talbuk",
+		spellid=34899,
+		itemid=29230,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35018]= {
+		name="Purple Hawkstrider",
+		spellid=35018,
+		itemid=29222,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35020]= {
+		name="Blue Hawkstrider",
+		spellid=35020,
+		itemid=29220,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35022]= {
+		name="Black Hawkstrider",
+		spellid=35022,
+		itemid=29221,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35025]= {
+		name="Swift Green Hawkstrider",
+		spellid=35025,
+		itemid=29223,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35027]= {
+		name="Swift Purple Hawkstrider",
+		spellid=35027,
+		itemid=29224,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35028]= {
+		name="Swift Warstrider",
+		spellid=35028,
+		itemid=31029,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35710]= {
+		name="Gray Elekk",
+		spellid=35710,
+		itemid=29744,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35711]= {
+		name="Purple Elekk",
+		spellid=35711,
+		itemid=29743,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35712]= {
+		name="Great Green Elekk",
+		spellid=35712,
+		itemid=29746,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35713]= {
+		name="Great Blue Elekk",
+		spellid=35713,
+		itemid=29745,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [35714]= {
+		name="Great Purple Elekk",
+		spellid=35714,
+		itemid=29747,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Exalted Exodar",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [36702]= {
+		name="Fiery Warhorse",
+		spellid=36702,
+		itemid=30480,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Drop Kara",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [37015]= {
+		name="Swift Nether Drake",
+		spellid=37015,
+		itemid=30609,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39315]= {
+		name="Cobalt Riding Talbuk",
+		spellid=39315,
+		itemid=31830,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39316]= {
+		name="Dark Riding Talbuk",
+		spellid=39316,
+		itemid=28915,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Hala tokens",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39317]= {
+		name="Silver Riding Talbuk",
+		spellid=39317,
+		itemid=31832,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39318]= {
+		name="Tan Riding Talbuk",
+		spellid=39318,
+		itemid=31834,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39319]= {
+		name="White Riding Talbuk",
+		spellid=39319,
+		itemid=31836,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Talbuk",
+		source="Exalted Kurenai",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39798]= {
+		name="Green Riding Nether Ray",
+		spellid=39798,
+		itemid=32314,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Ray",
+		source="Exalted Skyguard",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39800]= {
+		name="Red Riding Nether Ray",
+		spellid=39800,
+		itemid=32317,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Ray",
+		source="Exalted Skyguard",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39801]= {
+		name="Purple Riding Nether Ray",
+		spellid=39801,
+		itemid=32316,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Ray",
+		source="Exalted Skyguard",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39802]= {
+		name="Silver Riding Nether Ray",
+		spellid=39802,
+		itemid=32318,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Ray",
+		source="Exalted Skyguard",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [39803]= {
+		name="Blue Riding Nether Ray",
+		spellid=39803,
+		itemid=32319,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Ray",
+		source="Exalted Skyguard",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [40192]= {
+		name="Ashes of Al'ar",
+		spellid=40192,
+		itemid=32458,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Phoenix",
+		source="Drop Tempest Keep",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41502]= {
+		name="Raven Lord",
+		spellid=41502,
+		itemid=32768,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raven",
+		source="Drop Sethekk Halls",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41513]= {
+		name="Onyx Netherwing Drake",
+		spellid=41513,
+		itemid=32857,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41514]= {
+		name="Azure Netherwing Drake",
+		spellid=41514,
+		itemid=32858,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41515]= {
+		name="Cobalt Netherwing Drake",
+		spellid=41515,
+		itemid=32859,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41516]= {
+		name="Purple Netherwing Drake",
+		spellid=41516,
+		itemid=32860,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41517]= {
+		name="Veridian Netherwing Drake",
+		spellid=41517,
+		itemid=32861,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [41518]= {
+		name="Violet Netherwing Drake",
+		spellid=41518,
+		itemid=32862,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Exalted Netherwing",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [42776]= {
+		name="Spectral Tiger",
+		spellid=42776,
+		itemid=49283,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [42777]= {
+		name="Swift Spectral Tiger",
+		spellid=42777,
+		itemid=49284,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [43688]= {
+		name="Amani War Bear",
+		spellid=43688,
+		itemid=33809,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="ZA",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [43100]= {
+		name="Frost Wyrm",
+		spellid=43100,
+		itemid=0,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wyrm",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [43899]= {
+		name="Brewfest Ram",
+		spellid=43899,
+		itemid=33976,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [43900]= {
+		name="Swift Brewfest Ram",
+		spellid=43900,
+		itemid=33977,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Drop Brewfest",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [43927]= {
+		name="Cenarion War Hippogryph",
+		spellid=43927,
+		itemid=33999,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Hippogryph",
+		source="Exalted Cenarion Expedition",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [44151]= {
+		name="Turbo-Charged Flying Machine",
+		spellid=44151,
+		itemid=34061,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Machine",
+		source="Engineering",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [44153]= {
+		name="Flying Machine",
+		spellid=44153,
+		itemid=34060,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Machine",
+		source="Engineering",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [44317]= {
+		name="Merciless Nether Drake",
+		spellid=44317,
+		itemid=34092,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [44744]= {
+		name="Merciless Nether Drake",
+		spellid=44744,
+		itemid=34092,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [46197]= {
+		name="X-51 Nether-Rocket",
+		spellid=46197,
+		itemid=198629,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Rocket",
+		source="TCG",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [46199]= {
+		name="X-51 Nether-Rocket X-TREME",
+		spellid=46199,
+		itemid=198628,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Rocket",
+		source="TCG",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [46628]= {
+		name="Swift White Hawkstrider",
+		spellid=46628,
+		itemid=35513,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Drop Magisters' Terrace",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [47037]= {
+		name="Swift War Elekk",
+		spellid=47037,
+		itemid=26439,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [48025]= {
+		name="Headless Horseman's Mount",
+		spellid=48025,
+		itemid=37012,
+		maxspeed=280,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="Drop, Halloween",
+		attributes={
+			ground=true,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [48027]= {
+		name="Black War Elekk",
+		spellid=48027,
+		itemid=35906,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Honor",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [48778]= {
+		name="Acherus Deathcharger",
+		spellid=48778,
+		itemid=28302,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="DeathKnight",
+		source="DeathKnight",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [48954]= {
+		name="Swift Zhevra",
+		spellid=48954,
+		itemid=37598,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Recruit a Friend",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [49193]= {
+		name="Vengeful Nether Drake",
+		spellid=49193,
+		itemid=37676,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [49322]= {
+		name="Swift Zhevra",
+		spellid=49322,
+		itemid=37719,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Recruit a Friend",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [49378]= {
+		name="Brewfest Riding Kodo",
+		spellid=49378,
+		itemid=37827,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [49379]= {
+		name="Great Brewfest Kodo",
+		spellid=49379,
+		itemid=37828,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Drop Brewfest",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [5609]= {
+		name="Brewfest Kodo",
+		spellid=5609,
+		itemid=37827,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [50870]= {
+		name="Brewfest Ram",
+		spellid=50870,
+		itemid=33976,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Ram",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [51412]= {
+		name="Big Battle Bear",
+		spellid=51412,
+		itemid=198632,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [51960]= {
+		name="Frost Wyrm Mount",
+		spellid=51960,
+		itemid=38690,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wyrm",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [54729]= {
+		name="Winged Steed of the Ebon Blade",
+		spellid=54729,
+		itemid=40775,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wyrm",
+		source="DeathKnight",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [54753]= {
+		name="White Polar Bear",
+		spellid=54753,
+		itemid=43962,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="Daily Storm Peaks",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [55531]= {
+		name="Mechano-hog",
+		spellid=55531,
+		itemid=41508,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Machine",
+		source="Engineering",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [58615]= {
+		name="Brutal Nether Drake",
+		spellid=58615,
+		itemid=43106,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Nether Drake",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [58983]= {
+		name="Big Blizzard Bear",
+		spellid=58983,
+		itemid=43599,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59567]= {
+		name="Azure Drake",
+		spellid=59567,
+		itemid=43952,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Drop Eye of Eternity",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59568]= {
+		name="Blue Drake",
+		spellid=59568,
+		itemid=43953,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Drop, The Eye of Eternity",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59569]= {
+		name="Bronze Drake",
+		spellid=59569,
+		itemid=43951,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Drop The Culling of Stratholme",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59570]= {
+		name="Red Drake",
+		spellid=59570,
+		itemid=43955,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Exalted, Wyrmrest Accord",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59571]= {
+		name="Twilight Drake",
+		spellid=59571,
+		itemid=43954,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Drop, The Obsidian Sanctum",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59572]= {
+		name="Black Polar Bear",
+		spellid=59572,
+		itemid=43964,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59573]= {
+		name="Brown Polar Bear",
+		spellid=59573,
+		itemid=43963,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59650]= {
+		name="Black Drake",
+		spellid=59650,
+		itemid=43986,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Drop, The Obsidian Sanctum",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59785]= {
+		name="Black War Mammoth",
+		spellid=59785,
+		itemid=43956,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Stone Keeper's Shard",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59788]= {
+		name="Black War Mammoth",
+		spellid=59788,
+		itemid=44077,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Stone Keeper's Shard",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59791]= {
+		name="Wooly Mammoth",
+		spellid=59791,
+		itemid=44230,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Embelm of Heroism",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59793]= {
+		name="Wooly Mammoth",
+		spellid=59793,
+		itemid=44231,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Embelm of Heroism",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59797]= {
+		name="Ice Mammoth",
+		spellid=59797,
+		itemid=43958,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Revered Sons of Hodir",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59799]= {
+		name="Ice Mammoth",
+		spellid=59799,
+		itemid=44080,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Revered Sons of Hodir",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59802]= {
+		name="Grand Ice Mammoth",
+		spellid=59802,
+		itemid=44086,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59804]= {
+		name="Grand Ice Mammoth",
+		spellid=59804,
+		itemid=43961,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59961]= {
+		name="Red Proto-Drake",
+		spellid=59961,
+		itemid=44160,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59976]= {
+		name="Black Proto-Drake",
+		spellid=59976,
+		itemid=44164,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [59996]= {
+		name="Blue Proto-Drake",
+		spellid=59996,
+		itemid=44151,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Drop, Skadi the Ruthless",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60002]= {
+		name="Time-Lost Proto-Drake",
+		spellid=60002,
+		itemid=44168,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Drop Rare",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60021]= {
+		name="Plagued Proto-Drake",
+		spellid=60021,
+		itemid=44150,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60024]= {
+		name="Violet Proto-Drake",
+		spellid=60024,
+		itemid=44177,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60025]= {
+		name="Albino Drake",
+		spellid=60025,
+		itemid=44178,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60114]= {
+		name="Armored Brown Bear",
+		spellid=60114,
+		itemid=44225,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60116]= {
+		name="Armored Brown Bear",
+		spellid=60116,
+		itemid=44226,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60118]= {
+		name="Black War Bear",
+		spellid=60118,
+		itemid=44223,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="Achievment",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60119]= {
+		name="Black War Bear",
+		spellid=60119,
+		itemid=44224,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Bear",
+		source="Achievment",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60136]= {
+		name="Grand Caravan Mammoth",
+		spellid=60136,
+		itemid=32212,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60140]= {
+		name="Grand Caravan Mammoth",
+		spellid=60140,
+		itemid=32213,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [60424]= {
+		name="Mekgineer's Chopper",
+		spellid=60424,
+		itemid=44413,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Machine",
+		source="Engineering",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61229]= {
+		name="Armored Snowy Gryphon",
+		spellid=61229,
+		itemid=44689,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Gryphon",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61230]= {
+		name="Armored Blue Wind Rider",
+		spellid=61230,
+		itemid=44690,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wind Rider",
+		source="Gold",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61294]= {
+		name="Green Proto-Drake",
+		spellid=61294,
+		itemid=44707,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Revered Oracles, Mysterious Egg",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61309]= {
+		name="Magnificent Flying Carpet",
+		spellid=61309,
+		itemid=44558,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61425]= {
+		name="Traveler's Tundra Mammoth",
+		spellid=61425,
+		itemid=44234,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=true,
+			swimming=false
+		}
+	},
+    [61442]= {
+		name="Swift Mooncloth Carpet",
+		spellid=61442,
+		itemid=44555,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61444]= {
+		name="Swift Shadoweave Carpet",
+		spellid=61444,
+		itemid=44557,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61446]= {
+		name="Swift Spellfire Carpet",
+		spellid=61446,
+		itemid=44556,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61447]= {
+		name="Traveler's Tundra Mammoth",
+		spellid=61447,
+		itemid=44235,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=true,
+			swimming=false
+		}
+	},
+    [61451]= {
+		name="Flying Carpet",
+		spellid=61451,
+		itemid=44554,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61465]= {
+		name="Grand Black War Mammoth",
+		spellid=61465,
+		itemid=43959,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Drop Vault",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61467]= {
+		name="Grand Black War Mammoth",
+		spellid=61467,
+		itemid=44083,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Drop Vault",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61469]= {
+		name="Grand Ice Mammoth",
+		spellid=61469,
+		itemid=44086,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Exalted Sons of Hodir",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61470]= {
+		name="Grand Ice Mammoth",
+		spellid=61470,
+		itemid=43961,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mammoth",
+		source="Exalted Sons of Hodir",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61996]= {
+		name="Blue Dragonhawk",
+		spellid=61996,
+		itemid=44843,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="DragonHawk",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [61997]= {
+		name="Red Dragonhawk",
+		spellid=61997,
+		itemid=44842,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="DragonHawk",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [62048]= {
+		name="Black Dragonhawk Mount",
+		spellid=62048,
+		itemid=44857,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="DragonHawk",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63232]= {
+		name="Stormwind Steed",
+		spellid=63232,
+		itemid=45150,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63635]= {
+		name="Darkspear Raptor",
+		spellid=63635,
+		itemid=45593,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63636]= {
+		name="Ironforge Ram",
+		spellid=63636,
+		itemid=45586,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63637]= {
+		name="Darnassian Nightsaber",
+		spellid=63637,
+		itemid=45591,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63638]= {
+		name="Gnomeregan Mechanostrider",
+		spellid=63638,
+		itemid=45589,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63639]= {
+		name="Exodar Elekk",
+		spellid=63639,
+		itemid=45590,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63640]= {
+		name="Orgrimmar Wolf",
+		spellid=63640,
+		itemid=45595,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63641]= {
+		name="Thunder Bluff Kodo",
+		spellid=63641,
+		itemid=45592,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63642]= {
+		name="Silvermoon Hawkstrider",
+		spellid=63642,
+		itemid=45596,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63643]= {
+		name="Forsaken Warhorse",
+		spellid=63643,
+		itemid=45597,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63796]= {
+		name="Mimiron's Head",
+		spellid=63796,
+		itemid=45693,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Machine",
+		source="Drop Ulduar",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63844]= {
+		name="Argent Hippogryph",
+		spellid=63844,
+		itemid=45725,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Hippogryph",
+		source="Champion's Seals",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63956]= {
+		name="Ironbound Proto-Drake",
+		spellid=63956,
+		itemid=45801,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [63963]= {
+		name="Rusted Proto-Drake",
+		spellid=63963,
+		itemid=45802,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Proto-Drake",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64656]= {
+		name="Blue Skeletal Warhorse",
+		spellid=64656,
+		itemid=46101,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64657]= {
+		name="White Kodo",
+		spellid=64657,
+		itemid=46100,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Kodo",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64658]= {
+		name="Black Wolf",
+		spellid=64658,
+		itemid=46099,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Wolf",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64659]= {
+		name="Venomhide Ravasaur",
+		spellid=64659,
+		itemid=46102,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Dailies Ungoro Crator",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64731]= {
+		name="Sea Turtle",
+		spellid=64731,
+		itemid=46109,
+		maxspeed=0,
+		minspeed=0,
+		swimspeed=1,
+		category="Turtle",
+		source="fishing",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64927]= {
+		name="Deadly Gladiator's Frost Wyrm",
+		spellid=64927,
+		itemid=46708,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [64977]= {
+		name="Black Skeletal Horse",
+		spellid=64977,
+		itemid=46308,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="DeadHorse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65439]= {
+		name="Furious Gladiator's Frost Wyrm",
+		spellid=65439,
+		itemid=46171,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65637]= {
+		name="Great Red Elekk",
+		spellid=65637,
+		itemid=46756,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Elekk",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65638]= {
+		name="Swift Moonsaber",
+		spellid=65638,
+		itemid=46744,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Saber",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65639]= {
+		name="Swift Red Hawkstrider",
+		spellid=65639,
+		itemid=46751,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65640]= {
+		name="Swift Gray Steed",
+		spellid=65640,
+		itemid=46752,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65641]= {
+		name="Great Golden Kodo",
+		spellid=65641,
+		itemid=46755,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Kodo",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65642]= {
+		name="Turbostrider",
+		spellid=65642,
+		itemid=46747,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Mechanostrider",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65643]= {
+		name="Swift Violet Ram",
+		spellid=65643,
+		itemid=46748,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Ram",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65644]= {
+		name="Swift Purple Raptor",
+		spellid=65644,
+		itemid=46743,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Raptor",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65645]= {
+		name="White Skeletal Warhorse",
+		spellid=65645,
+		itemid=46764,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [65646]= {
+		name="Swift Burgundy Wolf",
+		spellid=65646,
+		itemid=46757,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66087]= {
+		name="Silver Covenant Hippogryph",
+		spellid=66087,
+		itemid=46813,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Hippogryph",
+		source="Champion's Seals",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66088]= {
+		name="Sunreaver Dragonhawk",
+		spellid=66088,
+		itemid=46814,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="DragonHawk",
+		source="Champion's Seals",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66090]= {
+		name="Quel'dorei Steed",
+		spellid=66090,
+		itemid=46815,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Argent Tournament",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66091]= {
+		name="Sunreaver Hawkstrider",
+		spellid=66091,
+		itemid=46816,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Hawkstrider",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66122]= {
+		name="Magic Rooster",
+		spellid=66122,
+		itemid=46778,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Rooster",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66123]= {
+		name="Magic Rooster",
+		spellid=66123,
+		itemid=49290,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Rooster",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66124]= {
+		name="Magic Rooster",
+		spellid=66124,
+		itemid=198631,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Rooster",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66846]= {
+		name="Ochre Skeletal Warhorse",
+		spellid=66846,
+		itemid=47101,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="DeadHorse",
+		source="Gold",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66847]= {
+		name="Striped Dawnsaber",
+		spellid=66847,
+		itemid=47100,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Saber",
+		source="Exalted Darnasses",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66906]= {
+		name="Argent Charger",
+		spellid=66906,
+		itemid=47179,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Daily",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [66907]= {
+		name="Argent Warhorse",
+		spellid=66907,
+		itemid=66907,
+		maxspeed=60,
+		minspeed=60,
+		swimspeed=0,
+		category="Horse",
+		source="",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [67336]= {
+		name="Relentless Gladiator's Frost Wyrm",
+		spellid=67336,
+		itemid=47840,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [67466]= {
+		name="Argent Warhorse",
+		spellid=67466,
+		itemid=47180,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Exalted Argent Champion",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [6860]= {
+		name="Swift Horde Wolf",
+		spellid=6860,
+		itemid=4960,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Wolf",
+		source="Drop Trial of the Champion",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [68057]= {
+		name="Swift Alliance Steed",
+		spellid=68057,
+		itemid=49044,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Champion's Seals",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [68187]= {
+		name="Crusader's White Warhorse",
+		spellid=68187,
+		itemid=4960,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Achievment",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [68188]= {
+		name="Crusader's Black Warhorse",
+		spellid=68188,
+		itemid=49098,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Horse",
+		source="Achievment",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [69395]= {
+		name="Onyxian Drake",
+		spellid=69395,
+		itemid=49636,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Drake",
+		source="Drop Onyxia'a Lair",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [71342]= {
+		name="X-45 Heartbreaker",
+		spellid=71342,
+		itemid=50250,
+		maxspeed=280,
+		minspeed=60,
+		swimspeed=0,
+		category="Rocket",
+		source="Drop Valentines",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [71810]= {
+		name="Wrathful Gladiator's Frost Wyrm",
+		spellid=71810,
+		itemid=50435,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Gladiator",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [72806]= {
+		name="Invincible",
+		spellid=72806,
+		itemid=50818,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Wyrm",
+		source="Drop Icecrown",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [72807]= {
+		name="Icebound Frostbrood Vanquisher",
+		spellid=72807,
+		itemid=51505,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [72808]= {
+		name="Bloodbathed Frostbrood Vanquisher",
+		spellid=72808,
+		itemid=51504,
+		maxspeed=310,
+		minspeed=310,
+		swimspeed=0,
+		category="Wyrm",
+		source="Achievment",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [73103]= {
+		name="Crimson Deathcharger",
+		spellid=73103,
+		itemid=52200,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="DeadHorse",
+		source="Shadowmourn Quest",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [74856]= {
+		name="Blazing Hippogryph",
+		spellid=74856,
+		itemid=54069,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Hippogryph",
+		source="TCG",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [74918]= {
+		name="Wooly White Rhino",
+		spellid=74918,
+		itemid=54068,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Rhino",
+		source="Duplicate",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [75596]= {
+		name="Frosty Flying Carpet",
+		spellid=75596,
+		itemid=54797,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Carpet",
+		source="Tailoring",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [75614]= {
+		name="Celestial Steed",
+		spellid=75614,
+		itemid=54811,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Horse",
+		source="Store",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [75973]= {
+		name="X-53 Touring Rocket",
+		spellid=75973,
+		itemid=54860,
+		maxspeed=280,
+		minspeed=280,
+		swimspeed=0,
+		category="Rocket",
+		source="Recruit a Friend",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=true,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [348459]= {
+		name="Reawakened Phase-Hunter",
+		spellid=348459,
+		itemid=184865,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Warp Stalker",
+		source="Store",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [372677]= {
+		name="Kalu'ak Whalebone Glider",
+		spellid=372677,
+		itemid=192455,
+		maxspeed=280,
+		minspeed=60,
+		swimspeed=0,
+		category="Glider",
+		source="Store",
+		attributes={
+			ground=true,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [387320]= {
+		name="Blazing Hippogryph",
+		spellid=387320,
+		itemid=198630,
+		maxspeed=150,
+		minspeed=150,
+		swimspeed=0,
+		category="Hippogryph",
+		source="TCG",
+		attributes={
+			ground=false,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	},
+    [387310]= {
+		name="Wooly White Rhino",
+		spellid=387310,
+		itemid=198633,
+		maxspeed=1,
+		minspeed=1,
+		swimspeed=0,
+		category="Rhino",
+		source="TCG",
+		attributes={
+			ground=true,
+			flying=false,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
+	}
 }
