@@ -1700,9 +1700,10 @@ BeStride_MountDB={
 			swimming=false
 		}
 	},
-    [23100]= {
+    [23510]= {
 		name="Stormpike Battle Charger",
-		spellid=23010,
+		spellid=23510,
+		mountid=14745,
 		itemid=19030,
 		maxspeed=1,
 		minspeed=1,
