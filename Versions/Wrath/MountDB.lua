@@ -1412,9 +1412,10 @@ BeStride_MountDB={
 			swimming=false
 		}
 	},
-    [23280]= {
+    [23228]= {
 		name="Swift White Steed",
-		spellid=23280,
+		spellid=23228,
+		mountid=14560,
 		itemid=18778,
 		maxspeed=1,
 		minspeed=1,
