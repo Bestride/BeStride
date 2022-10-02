@@ -1,4 +1,4 @@
-## Interface: 90001
+## Interface: 30400
 
 ## Title: BeStride
 ## Notes: Manages your Mounts

@@ -18,7 +18,7 @@ function BeStride:AddNewMount(mountId)
 	if not BeStride_MountDB[spellID] then	
 		print("Mount not in DB:")
 		print("\tName: " .. name)
-		print("\tMount ID:" .. mountID 
+		print("\tMount ID:" .. mountID)
 		print("\tSpell ID:" .. spellID)
 		return
 
