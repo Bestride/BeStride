@@ -1447,7 +1447,8 @@ BeStride_MountDB={
 	},
     [23280]= {
 		name="Swift Brown Ram",
-		spellid=23280,
+		spellid=23238,
+		mountid=14546,
 		itemid=18786,
 		maxspeed=1,
 		minspeed=1,
