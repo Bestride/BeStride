@@ -3,7 +3,7 @@
 ## Title: BeStride
 ## Notes: Manages your Mounts
 
-## Version: 1.0.22
+## Version: 2.0.0-beta4
 
 ## Author: Anaximander <IRONFIST> - Burning Legion US
 ## X-Email: anaximander@ironfist.games
@@ -13,6 +13,8 @@
 ## X-License: GNU GPLv3
 ## X-Embeds: Ace3
 ## X-Curse-Project-ID: 289821
+## X-WoWI-ID: 26419
+## X-Wago-ID: q96dlO6O
 
 ## SavedVariables: BeStrideDB, BestrideDB
 ## OptionalDeps: Ace3
