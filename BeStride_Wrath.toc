@@ -1,11 +1,11 @@
-## Interface: 90001
+## Interface: 30400
 
 ## Title: BeStride
 ## Notes: Manages your Mounts
 
-## Version: 2.0.0-beta4
+## Version: @project-version@
 
-## Author: Anaximander <IRONFIST> - Burning Legion US
+## Author: Anaximander <IRONFIST> - Whitemane/Burning Legion US
 ## X-Email: anaximander@ironfist.games
 
 ## X-Category: Interface Enhancements
