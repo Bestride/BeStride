@@ -1292,9 +1292,10 @@ BeStride_MountDB={
 			swimming=false
 		}
 	},
-    [23109]= {
+    [23219]= {
 		name="Swift Mistsaber",
-		spellid=23109,
+		spellid=23219,
+		mountid=14555,
 		itemid=18767,
 		maxspeed=1,
 		minspeed=1,
@@ -1445,7 +1446,7 @@ BeStride_MountDB={
 			swimming=false
 		}
 	},
-    [23280]= {
+    [23238]= {
 		name="Swift Brown Ram",
 		spellid=23238,
 		mountid=14546,
