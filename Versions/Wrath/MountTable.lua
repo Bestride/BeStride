@@ -20,6 +20,7 @@ function BeStride:AddNewMount(mountId)
 		print("\tMount ID:" .. mountID)
 		print("\tSpell ID:" .. spellID)
 		return
+	end
 
 	if BeStride_MountDB[spellID][10] == true then
 		mountType = "flying"
