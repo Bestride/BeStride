@@ -164,13 +164,13 @@ function BeStride_Mount:Passenger(type)
 end
 
 function BeStride_Mount:Broom()
-	return self:Mount(BeStride:ItemToName(37011))
+	return self:Mount(ItemToName(37011))
 end
 
 function BeStride_Mount:Loaned()
 	local mount = BeStride:CheckLoanedMount()
 	
-	return self:MountSpell(BeStride:SpellToName(mount))
+	return self:MountSpell(SpellToName(mount))
 end
 
 function BeStride_Mount:VashjirSeahorse()
@@ -183,9 +183,9 @@ end
 
 function BeStride_Mount:Chauffeur()
 	if IsUsableSpell(179245) then
-		return self:MountSpell(BeStride:SpellToName(179245))
+		return self:MountSpell(SpellToName(179245))
 	elseif IsUsableSpell(179244) then
-		return self:MountSpell(BeStride:SpellToName(179244))
+		return self:MountSpell(SpellToName(179244))
 	end
 end
 
@@ -199,32 +199,32 @@ function BeStride_Mount:Robot()
 		table.insert(mounts,223814)
 	end
 
-	return self:MountSpell(BeStride:SpellToName(mounts[math.random(#mounts)]))
+	return self:MountSpell(SpellToName(mounts[math.random(#mounts)]))
 end
 
 function BeStride_Mount:Nagrand()
-	return self:MountSpell(BeStride:SpellToName(164222))
+	return self:MountSpell(SpellToName(164222))
 end
 
 function BeStride_Mount:DeathKnightWraithWalk()
-	return self:MountSpell(BeStride:SpellToName(212552))
+	return self:MountSpell(SpellToName(212552))
 end
 
 function BeStride_Mount:DemonHunterFelRush()
-	return self:MountSpell(BeStride:SpellToName(195072))
+	return self:MountSpell(SpellToName(195072))
 end
 
 function BeStride_Mount:DemonHunterGlide()
-	return self:MountSpell(BeStride:SpellToName(131347))
+	return self:MountSpell(SpellToName(131347))
 end
 
 function BeStride_Mount:Druid()
 	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
 
 	if GetUnitSpeed("player") ~= 0 then
-		return self:MountSpell(BeStride:SpellToName(783))
+		return self:MountSpell(SpellToName(783))
 	elseif BeStride:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
-		return self:MountSpell(BeStride:SpellToName(783))
+		return self:MountSpell(SpellToName(783))
 	elseif IsFlying() then
 		return self:Flying(name)
 	else
@@ -240,42 +240,42 @@ function BeStride_Mount:DruidAquaticForm()
 end
 
 function BeStride_Mount:DruidTravel()
-	return self:MountSpell(BeStride:SpellToName(783))
+	return self:MountSpell(SpellToName(783))
 end
 
 function BeStride_Mount:HunterAspectOfTheCheetah()
-	return self:MountSpell(BeStride:SpellToName(186257))
+	return self:MountSpell(SpellToName(186257))
 end
 
 function BeStride_Mount:PriestLevitate()
-	return self:MountSpell("[@player] "..BeStride:SpellToName(1706).."\n/cancelaura "..BeStride:SpellToName(1706))
+	return self:MountSpell("[@player] "..SpellToName(1706).."\n/cancelaura "..SpellToName(1706))
 end
 
 function BeStride_Mount:MageSlowFall()
 	--Activate SlowFall
-	return self:MountSpell("[@player] "..BeStride:SpellToName(130).."\n/cancelaura "..BeStride:SpellToName(130))
+	return self:MountSpell("[@player] "..SpellToName(130).."\n/cancelaura "..SpellToName(130))
 end
 
 function BeStride_Mount:MageBlink()
 	--Blink
-	return self:MountSpell("[@player] "..BeStride:SpellToName(1953))
+	return self:MountSpell("[@player] "..SpellToName(1953))
 end
 
 function BeStride_Mount:MageBlinkNoSlowFall()
 	--Blink and cancel Slowfall if active, we're running on the ground or swimming.
-	return self:MountSpell("[@player] "..BeStride:SpellToName(1953))
+	return self:MountSpell("[@player] "..SpellToName(1953))
 end
 
 function BeStride_Mount:MonkRoll()
 	if IsUsableSpell(109132) then
-		return self:MountSpell("[@player] " .. BeStride:SpellToName(109132))
+		return self:MountSpell("[@player] " .. SpellToName(109132))
 	else
-		return self:MountSpell("[@player] " .. BeStride:SpellToName(115008))
+		return self:MountSpell("[@player] " .. SpellToName(115008))
 	end
 end
 
 function BeStride_Mount:MonkZenFlight()
-	return self:MountSpell("[@player] " .. BeStride:SpellToName(125883))
+	return self:MountSpell("[@player] " .. SpellToName(125883))
 end
 
 function BeStride_Mount:Paladin()
@@ -283,7 +283,7 @@ function BeStride_Mount:Paladin()
 end
 
 function BeStride_Mount:PaladinDivineSteed()
-	return self:MountSpell("[@player] "..BeStride:SpellToName(190784).."\n/cancelaura "..BeStride:SpellToName(190784))
+	return self:MountSpell("[@player] "..SpellToName(190784).."\n/cancelaura "..SpellToName(190784))
 end
 
 function BeStride_Mount:Shaman()
@@ -291,7 +291,7 @@ function BeStride_Mount:Shaman()
 end
 
 function BeStride_Mount:ShamanGhostWolf()
-	return self:MountSpell("[@player] "..BeStride:SpellToName(2645).."\n/cancelaura "..BeStride:SpellToName(2645))
+	return self:MountSpell("[@player] "..SpellToName(2645).."\n/cancelaura "..SpellToName(2645))
 end
 
 function BeStride_Mount:Rogue()
@@ -299,5 +299,5 @@ function BeStride_Mount:Rogue()
 end
 
 function BeStride_Mount:RogueSprint()
-	return self:MountSpell("[@player] "..BeStride:SpellToName(2983))
+	return self:MountSpell("[@player] "..SpellToName(2983))
 end

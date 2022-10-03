@@ -9,6 +9,7 @@
   <Script file="Common\BeStride_Events.lua"/>
   <Script file="Common\BeStride_GUI.lua"/>
   <Script file="Common\BeStride_Mount.lua"/>
+  <Script file="Common\functions.lua"/>
   <Script file="Common\mapping.lua"/>
   <Script file="Common\logic.class.lua"/>
   <Script file="Common\logic.mounts.lua"/>
@@ -16,11 +17,15 @@
   <Script file="Common\logic.special.lua"/>
   <Script file="Common\logic.zone.lua"/>
   <Script file="Common\mount.lua"/>
+  <Script file="Common\mount.table.lua"/>
   <Script file="Common\mounting.checks.lua"/>
   <Script file="Common\mounting.class.lua"/>
   <Script file="Common\mounting.player.lua"/>
   <Script file="Common\mounting.special.lua"/>
   <Script file="Common\mounting.zone.lua"/>
+  <Script file="Common\settings.lua"/>
   <Script file="Mainline\MountTable.lua"/>
   <Script file="Mainline\logic.lua"/>
+  <Script file="Common\upgrade.lua"/>
+  <Script file="Common\bestride.lua"/>
 </Ui>
