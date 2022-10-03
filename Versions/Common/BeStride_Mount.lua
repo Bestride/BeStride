@@ -33,8 +33,8 @@ end
 
 function BeStride_Mount:IsUsable(mount)
 	--print("" .. mount)
-	local spellID,mountID,isUsable = BeStride_Logic:isMountUsable(mount)
-	if BeStride_Logic:isZoneMount(mountID) then
+	local spellID,mountID,isUsable = BeStride:isMountUsable(mount)
+	if BeStride:isZoneMount(mountID) then
 		
 		if zone ~= nil and zone.mapID == BeStride_Constants.Mount.Mounts[spellID].zone then
 			return true
@@ -168,7 +168,7 @@ function BeStride_Mount:Broom()
 end
 
 function BeStride_Mount:Loaned()
-	local mount = BeStride_Logic:CheckLoanedMount()
+	local mount = BeStride:CheckLoanedMount()
 	
 	return self:MountSpell(BeStride:SpellToName(mount))
 end
@@ -223,7 +223,7 @@ function BeStride_Mount:Druid()
 
 	if GetUnitSpeed("player") ~= 0 then
 		return self:MountSpell(BeStride:SpellToName(783))
-	elseif BeStride_Logic:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
+	elseif BeStride:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
 		return self:MountSpell(BeStride:SpellToName(783))
 	elseif IsFlying() then
 		return self:Flying(name)

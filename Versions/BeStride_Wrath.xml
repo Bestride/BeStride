@@ -6,12 +6,24 @@
   <Script file="Common\BeStride_Variables.lua"/>
 
   <Script file="..\BeStride.lua"/>
+  <Script file="Common\BeStride_Variables.lua"/>
   <Script file="Common\BeStride_ActionButton.lua"/>
   <Script file="Common\BeStride_Events.lua"/>
   <Script file="Common\BeStride_GUI.lua"/>
   <Script file="Common\BeStride_Mount.lua"/>
-  <Script file="Common\Mapping.lua"/>
-  <Script file="Wrath\BeStride_Logic.lua"/>
+  <Script file="Common\mapping.lua"/>
+  <Script file="Common\logic.class.lua"/>
+  <Script file="Common\logic.mounts.lua"/>
+  <Script file="Common\logic.player.lua"/>
+  <Script file="Common\logic.special.lua"/>
+  <Script file="Common\logic.zone.lua"/>
+  <Script file="Common\mount.lua"/>
+  <Script file="Common\mounting.checks.lua"/>
+  <Script file="Common\mounting.class.lua"/>
+  <Script file="Common\mounting.player.lua"/>
+  <Script file="Common\mounting.special.lua"/>
+  <Script file="Common\mounting.zone.lua"/>
+  <Script file="Wrath\logic.lua"/>
   <Script file="Wrath\MountDB.lua"/>
   <Script file="Wrath\MountTable.lua"/>
 </Ui>
