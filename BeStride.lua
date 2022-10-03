@@ -287,9 +287,11 @@ function BeStride:ChatCommand(input)
 	end
 end
 
-function BeStride:SpellToName(spellID)
-	local name, rank, icon, castTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
-	
+function BeStride:SpellToName(id)
+	local name, rank, icon, castTime, minRange, maxRange, spellId = GetSpellInfo(id)
+	if not name then
+		print("Unable to cast spell with spell Id:" .. id)
+	end
 	return name
 end
 
