@@ -98,6 +98,8 @@ function BeStride:OnEnable()
 	
 	if BeStride_Game == "Mainline" then
 		BeStride:RegisterEvent("NEW_MOUNT_ADDED", "EventNewMount")
+	else
+		BeStride:RegisterEvent("COMPANION_LEARNED", "EventNewMount")
 	end
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "EventCombatEnter")

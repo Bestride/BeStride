@@ -121,7 +121,7 @@ function BeStride:IsHerbalismAndCanRobot()
 end
 
 function BeStride:IsHerbalism()
-	local prof1,prof2 = GetProfessions()
+	local prof1,prof2 = self:GetProfessions()
 	-- 182 = Herbalism
 	-- ref: http://wowwiki.wikia.com/wiki/API_GetProfessionInfo
 	if (prof1 and select(7,GetProfessionInfo(prof1)) == 182) or (prof2 and select(7,GetProfessionInfo(prof2)) == 182) then

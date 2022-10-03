@@ -18,3 +18,24 @@ function BeStride:IsZoneMount(mountId)
 
 	return false
 end
+
+function BeStride:GetProfessions()
+	return GetProfessions()
+end
+
+function BeStride:GetRidingSkill()
+	local ridingSkillLevel = 0
+	local ridingSpells = {}
+	
+  
+	for spellID,skill in pairsByKeys(BeStride_Constants.Riding.Skill) do
+		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
+			ridingSkillLevel = skill.level
+			ridingSpells[spellID] = true
+		elseif IsSpellKnown(spellID) and skill.level == nil then
+			ridingSpells[spellID] = true
+		end
+	end
+	
+	return ridingSkillLevel,ridingSpells
+end
