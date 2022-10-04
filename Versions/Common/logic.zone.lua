@@ -38,7 +38,7 @@ function BeStride:IsFlyable()
 			local zone = BeStride:GetMapUntil(mapID,3)
 			if zone ~= nil then
 				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do
-					if zone.mapID == key and value.blocked == true then
+					if zone.mapID == key and value.blocked == true and (not value.except or (value.except and value.except ~= GetSubZoneText())) then
 						return false
 					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
 						break
