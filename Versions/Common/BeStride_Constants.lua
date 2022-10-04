@@ -174,6 +174,10 @@ BeStride_Constants = {
 					[1355] = {
 						requires = 278833,
 					},
+					[125] = {
+						blocked = true,
+						except = "Krasus' Landing"
+					}
 				},
 			},
 		},
