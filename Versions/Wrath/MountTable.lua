@@ -22,9 +22,9 @@ function BeStride:AddNewMount(mountId)
 		return
 	end
 
-	if BeStride_MountDB[spellID][10] == true then
+	if BeStride_MountDB[spellID].attributes.flying == true then
 		mountType = "flying"
-	elseif BeStride_MountDB[spellID][9] == true then
+	elseif BeStride_MountDB[spellID].attributes.ground == true then
 		mountType = "ground"
 	else
 		mountType = "unknown"
@@ -37,7 +37,7 @@ function BeStride:AddNewMount(mountId)
 		["isActive"] = isSummoned,
 		["faction"] = nil,
 		["icon"] = icon,
-		["source"] = BeStride_MountDB[spellID][8],
+		["source"] = BeStride_MountDB[spellID].source,
 		["type"] = mountType,
 	}
 end
