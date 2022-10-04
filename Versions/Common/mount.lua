@@ -223,7 +223,7 @@ function BeStride:PassengerMountButton(type)
 end
 
 function BeStride:Combat()
-	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") then
+	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") and BeStride:CanWraithWalk() then
 		return BeStride_Mount:DeathKnightWraithWalk()
 	elseif self:IsDemonHunter() and self:DemonHunterFelRush() then
 		return BeStride_Mount:DemonHunterFelRush()

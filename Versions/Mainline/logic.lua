@@ -39,3 +39,7 @@ function BeStride:GetRidingSkill()
 	
 	return ridingSkillLevel,ridingSpells
 end
+
+function BeStride:CanWraithWalk()
+	return true
+end
