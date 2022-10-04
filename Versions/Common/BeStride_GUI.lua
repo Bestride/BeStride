@@ -62,8 +62,10 @@ function BeStride_GUI:Open(defaultTab)
 end
 
 function BeStride_GUI:Close()
-	ClearOverrideBindings(self.close)
-	self.close = nil
+	if self.close ~= nil then
+		ClearOverrideBindings(self.close)
+		self.close = nil
+	end
 	
 	AceGUI:Release(BeStride_Frame)
 	BeStride_Frame = nil
@@ -186,8 +188,11 @@ function BeStride_GUI:CreateMountCheckBoxes(group,filter)
 		if filter == nil or (filter ~= nil and (string.len(filter) == 0 or string.find(string.lower(mountTable.master[mount].name), string.lower(filter)))) then
 			local mountCheck = BeStride_GUI:CreateMountCheckBox(group,mount)
 			if mountCheck ~= nil then
-				--print("Creating mount: " .. mount)
 				local name = mountTable.master[mount].name
+				if self.mounts[group] == nil then
+					self.mounts[group] = {}
+					self.mounts[group][name] = nil
+				end
 				self.mounts[group][name] = mountCheck
 			end
 		end

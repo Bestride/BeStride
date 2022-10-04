@@ -52,3 +52,27 @@ function ItemToName(itemID)
 	
 	return itemName
 end
+
+function mapPos(map)
+end
+
+function areaInfo()
+	--vector = Create2DVector(x, y)
+	--DevTools_Dump(vector)
+
+	local ui_map_id = C_Map.GetBestMapForUnit("player")
+	local unit_x, unit_y = C_Map.GetPlayerMapPosition(ui_map_id, "player"):GetXY()
+	local unit_vector = CreateVector2D(unit_x, unit_y)
+	local area = C_MapExplorationInfo.GetExploredAreaIDsAtPosition(ui_map_id, unit_vector)
+	print(area)
+
+	return area
+end
+
+function GetAreaIDsForPlayer()
+	local mapID = C_Map.GetBestMapForUnit("player")
+	local pos = C_Map.GetPlayerMapPosition(mapID, "player")
+	local areaIDs = C_MapExplorationInfo.GetExploredAreaIDsAtPosition(mapID, pos)
+	local areaString = areaIDs and table.concat(areaIDs, ", ") or "none"
+	print(format("MapID=%d, Position=%.3f:%.3f, AreaIDs=%s", mapID, pos.x, pos.y, areaString))
+end
