@@ -14,7 +14,7 @@ function BeStride:EventUpdateKeyBinding()
 end
 
 function BeStride:EventCombatEnter()
-	local combatButton = BeStride_Logic:Combat()
+	local combatButton = BeStride:Combat()
 	if combatButton ~= nil then
 		BeStride_ABRegularMount:SetAttribute("macrotext",combatButton)
 		BeStride_ABGroundMount:SetAttribute("macrotext",combatButton)

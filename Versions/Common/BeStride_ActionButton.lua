@@ -37,11 +37,11 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonRegularMount:PreClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
-	local mount = BeStride_Logic:Regular()
+	local mount = BeStride:Regular()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -49,7 +49,7 @@ end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonRegularMount:PostClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
@@ -63,11 +63,11 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonGroundMount:PreClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
-	local mount = BeStride_Logic:GroundMountButton()
+	local mount = BeStride:GroundMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -75,7 +75,7 @@ end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonGroundMount:PostClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
@@ -89,11 +89,11 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonPassengerMount:PreClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
-	local mount = BeStride_Logic:PassengerMountButton()
+	local mount = BeStride:PassengerMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -101,7 +101,7 @@ end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonPassengerMount:PostClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
@@ -115,11 +115,11 @@ end
 
 -- Action Button Wrapper
 function BeStride_ActionButtonRepairMount:PreClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
-	local mount = BeStride_Logic:RepairMountButton()
+	local mount = BeStride:RepairMountButton()
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -127,7 +127,7 @@ end
 
 -- Action Button Cleanup
 function BeStride_ActionButtonRepairMount:PostClick()
-	if BeStride_Logic:IsCombat() then
+	if BeStride:IsCombat() then
 		return
 	end
 	
