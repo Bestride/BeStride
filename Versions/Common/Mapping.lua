@@ -9,6 +9,9 @@ function BeStride:GetMap()
 end
 
 function BeStride:GetMapUntil(locID,filter,printOut)
+	if not locID then
+		return nil
+	end
 	local map = C_Map.GetMapInfo(locID)
 	
 	if printOut == true then
