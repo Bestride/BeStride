@@ -8,7 +8,7 @@ function BeStride:isMountUsable(mount)
 	return spellID,mountID,isUsable
 end
 
-function BeStride:IsZoneMount(mountId)
+function BeStride:isZoneMount(mountId)
 	spellId = mountTable.master[mountId].spellID
 	if mountTable.master[mountId].type == "zone" and BeStride_Constants.Mount.Mounts[spellId] ~= nil and BeStride_Constants.Mount.Mounts[spellId].zone ~= nil then
 		return true
