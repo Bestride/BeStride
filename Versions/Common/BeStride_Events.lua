@@ -1,12 +1,17 @@
 function BeStride:EventNewMount(arg1, arg2)
-	BeStride:AddNewMount(arg2)
-	BeStride:AddCommonMount(arg2)
-	local mount = mountTable.master[arg2]
-	
-	if BeStride:DBGet("settings.mount.enablenew") then
-		BeStride:DBSetMount(mount.type,arg2,true)
+	if BeStride_Game == "Mainline" then
+		BeStride:AddNewMount(arg2)
+		BeStride:AddCommonMount(arg2)
+		local mount = mountTable.master[arg2]
+		
+		if BeStride:DBGet("settings.mount.enablenew") then
+			BeStride:DBSetMount(mount.type,arg2,true)
+		else
+			BeStride:DBSetMount(mount.type,arg2,false)
+		end
 	else
-		BeStride:DBSetMount(mount.type,arg2,false)
+		BeStride:BuildMasterMountTable()
+		BeStride:LoadMountTables()
 	end
 end
 
