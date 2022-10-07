@@ -42,7 +42,7 @@ function BeStride:IsFlyable()
 						return false
 					elseif zone.mapID == key and value.requires ~= nil and spells[value.requires] == true then
 						break
-					elseif zone.mapID == key then
+					elseif zone.mapID == key and value.requires ~= nil then
 						return false
 					end
 				end
