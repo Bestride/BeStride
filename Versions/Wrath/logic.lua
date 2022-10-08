@@ -51,7 +51,7 @@ function BeStride:GetRidingSkill()
 	for skillIndex = 1, GetNumSkillLines() do
 		local skillName, isHeader, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, skillDescription = GetSkillLineInfo(skillIndex)
 
-		if skillName == 'Riding' then
+		if (skillName == 'Riding') or (skillName=='탈것 타기') then
 			ridingSkillLevel = skillRank
 		end
 	end
