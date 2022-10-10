@@ -62,7 +62,7 @@ if GetLocale() == "deDE" then
 					BlackMarket = {
 						Name = "Der Schwarzmarkt"
 					},
-					KrausLanding = {
+					KrasusLanding = {
 						Name = ""
 					}
 				}

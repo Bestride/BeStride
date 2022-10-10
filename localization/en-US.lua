@@ -62,8 +62,8 @@ BeStride_Locale = {
 				BlackMarket = {
 					Name = "The Black Market"
 				},
-				KrausLanding = {
-					Name = ""
+				KrasusLanding = {
+					Name = "Krasus' Landing"
 				}
 			}
 		},

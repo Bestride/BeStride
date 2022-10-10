@@ -206,7 +206,7 @@ BeStride_Constants = {
 					},
 					[125] = {
 						blocked = true,
-						except = "Krasus' Landing"
+						except = BeStride_Locale.Zone.Dalaran.SubZone.KrasusLanding
 					}
 				},
 			},
