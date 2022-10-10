@@ -61,6 +61,9 @@ if GetLocale() == "zhTW" then
 					},
 					BlackMarket = {
 						Name = "黑市"
+					},
+					KrausLanding = {
+						Name = ""
 					}
 				}
 			},
@@ -112,6 +115,11 @@ if GetLocale() == "zhTW" then
 		Continent = {
 			Draenor = {
 				Name = "德拉諾"
+			}
+		},
+		Skills = {
+			Riding = {
+				Name = ""
 			}
 		},
 		Settings = {
