@@ -61,6 +61,9 @@ if GetLocale() == "koKR" then
 					},
 					BlackMarket = {
 						Name = "암시장"
+					},
+					KrausLanding = {
+						Name = ""
 					}
 				}
 			},
@@ -113,6 +116,11 @@ if GetLocale() == "koKR" then
 			Draenor = {
 				Name = "드레노어",
 			},
+		},
+		Skills = {
+			Riding = {
+				Name = "탈것 타기"
+			}
 		},
 		Settings = {
 			EnableNew = "새로 배운 탈것을 자동으로 활성화",

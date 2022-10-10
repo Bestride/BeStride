@@ -61,6 +61,9 @@ if GetLocale() == "deDE" then
 					},
 					BlackMarket = {
 						Name = "Der Schwarzmarkt"
+					},
+					KrausLanding = {
+						Name = ""
 					}
 				}
 			},
@@ -112,6 +115,11 @@ if GetLocale() == "deDE" then
 		Continent = {
 			Draenor = {
 				Name = "Draenor"
+			}
+		},
+		Skills = {
+			Riding = {
+				Name = ""
 			}
 		},
 		Settings = {

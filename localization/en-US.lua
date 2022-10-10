@@ -61,6 +61,9 @@ BeStride_Locale = {
 				},
 				BlackMarket = {
 					Name = "The Black Market"
+				},
+				KrausLanding = {
+					Name = ""
 				}
 			}
 		},
@@ -113,6 +116,11 @@ BeStride_Locale = {
 		Draenor = {
 			Name = "Draenor",
 		},
+	},
+	Skills = {
+		Riding = {
+			Name = "Riding"
+		}
 	},
 	Settings = {
 		EnableNew = "Automatically enable new mounts upon learning them",
