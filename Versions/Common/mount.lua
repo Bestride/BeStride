@@ -101,11 +101,11 @@ function BeStride:Regular()
 	elseif CanExitVehicle() then
 		self:DismountAndExit()
 		return BeStride_Mount:Regular()
-	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true and #mountTable["passenger"] > 0 then
 		return BeStride_Mount:Passenger("flying")
 	elseif self:IsFlyable() then
 		return BeStride_Mount:Flying()
-	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true then
+	elseif IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true and #mountTable["passenger"] > 0  then
 		return BeStride_Mount:Passenger("ground")
 	elseif self:IsMountable() then
 		return BeStride_Mount:Regular()

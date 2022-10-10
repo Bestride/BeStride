@@ -69,11 +69,33 @@ BeStride_Constants = {
 				level = 375,
 				active = true,
 			},
-			[90267] = {
-				name = "Flight Master's License",
-				unlocks = "flying",
+			-- Alt Spell ID
+			[33389] = {
+				name = "Apprentice Riding",
+				unlocks = "ground",
+				level = 75,
 				active = true,
 			},
+			[33392] = {
+				name = "Journeyman Riding",
+				depends = 33389,
+				level = 150,
+				active = true,
+			},
+			[34092] = {
+				name = "Expert Riding",
+				unlocks = "flying",
+				depends = 33391,
+				level = 225,
+				active = true,
+			},
+			[34093] = {
+				name = "Artisan Riding",
+				depends = 34092,
+				level = 300,
+				active = true,
+			},
+			-- Wrath
 			[54197] = {
 				name = "Cold Weather Flying",
 				unlocks = "flying",
@@ -82,6 +104,13 @@ BeStride_Constants = {
 					[1] = "",
 				},
 			},
+			-- Cata
+			[90267] = {
+				name = "Flight Master's License",
+				unlocks = "flying",
+				active = true,
+			},
+			-- MoP
 			[115913] = {
 				name = "Wisdom of the Four Winds",
 				unlocks = "flying",
@@ -90,6 +119,7 @@ BeStride_Constants = {
 					[1] = "",
 				},
 			},
+			-- WoD
 			[191645] = {
 				name = "Draenor Pathfinder",
 				unlocks = "flying",
