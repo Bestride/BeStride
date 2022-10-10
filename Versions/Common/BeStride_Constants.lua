@@ -1,6 +1,3 @@
-version = "2.0.0"
-author = "Anaximander"
-
 BeStride_Constants = {
 	map = {
 		cosmic = 0,
@@ -206,7 +203,7 @@ BeStride_Constants = {
 					},
 					[125] = {
 						blocked = true,
-						except = BeStride_Locale.Zone.Dalaran.SubZone.KrasusLanding
+						except = BeStride_Locale.Zone.Dalaran.SubZone.KrasusLanding.Name
 					}
 				},
 			},
