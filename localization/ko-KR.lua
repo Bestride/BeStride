@@ -62,7 +62,7 @@ if GetLocale() == "koKR" then
 					BlackMarket = {
 						Name = "암시장"
 					},
-					KrausLanding = {
+					KrasusLanding = {
 						Name = ""
 					}
 				}

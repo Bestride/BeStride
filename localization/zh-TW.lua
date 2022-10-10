@@ -62,7 +62,7 @@ if GetLocale() == "zhTW" then
 					BlackMarket = {
 						Name = "黑市"
 					},
-					KrausLanding = {
+					KrasusLanding = {
 						Name = ""
 					}
 				}
