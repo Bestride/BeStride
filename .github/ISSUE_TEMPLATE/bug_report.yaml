@@ -1,0 +1,44 @@
+---
+name: 🐛 Bug Report
+description: Report a reproducible bug in the current release of Bestride
+labels: ["type: bug"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        **NOTE:** This form is only for reporting _reproducible bugs_ in a current Bestride
+        installation.
+  - type: dropdown
+    attributes:
+      label: WoW Version
+      description: What version of WoW are you currently running?
+      options:
+        - "WotLK (3.4.0)"
+        - "Retail (9.2.5)"
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Bestride Version
+      description: What version of Bestride are you currently running?
+      placeholder: "2.0.4"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      description: >
+        Describe in detail the exact steps that someone else can take to
+        reproduce this bug using the current stable release
+      placeholder: |
+        1. Type /br
+        2. Click on Flying Mounts
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Observed Behavior
+      description: What happened instead?
+      placeholder: Lua error
+    validations:
+      required: true
