@@ -17,7 +17,7 @@ body:
         - "Retail (9.2.5)"
     validations:
       required: true
-  - type: dropdown
+  - type: input
     attributes:
       label: Bestride Version
       description: What version of Bestride are you currently running?
