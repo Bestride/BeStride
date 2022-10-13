@@ -1,0 +1,35 @@
+---
+name: ✨ Feature Request
+description: Propose a new Bestride feature or enhancement
+labels: ["type: feature"]
+body:
+  - type: markdown
+    attributes:
+      value: >
+        **NOTE:** This form is only for submitting well-formed proposals to extend or modify
+        Bestride in some way. If you're trying to solve a problem but can't figure out how, or if
+        you still need time to work on the details of a proposed new feature, please start a
+        [discussion](https://github.com/bestride/bestride/discussions) instead.
+  - type: dropdown
+    attributes:
+      label: WoW Version
+      options:
+        - Retail (9.2.5)
+        - WotLK (3.4.0)
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Bestride version
+      description: What version of Bestride are you currently running?
+      placeholder: 2.0.4
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Proposed functionality
+      description: >
+        Describe in detail the new feature or behavior you are proposing. Include any specific changes
+        The more detail you provide here, the greater chance your proposal has of being discussed.
+    validations:
+      required: true
