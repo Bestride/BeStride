@@ -155,6 +155,9 @@ if GetLocale() == "zhTW" then
 					FelRush = "惡魔獵人: 使用魔化衝刺",
 					Glide = "惡魔獵人: 使用滑翔"
 				},
+				Hunter = {
+					AspectOfTheCheetah = "Aspect of the Cheetah"
+				},
 				Mage = {
 					SlowFall = "法師: 緩落",
 					Blink = "法師: 閃現",
