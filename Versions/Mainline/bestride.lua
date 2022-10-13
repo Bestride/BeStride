@@ -1,0 +1,3 @@
+
+function BeStride:OnEnable()
+end

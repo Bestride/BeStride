@@ -47,6 +47,7 @@ function BeStride:Frame()
 end
 
 function BeStride:OnEnable()
+	BeStride:Version_OnEnable()
 	BeStride:buildMountTables()
 	
 	if BeStride_Game == "Mainline" then
