@@ -155,6 +155,9 @@ if GetLocale() == "deDE" then
 					FelRush = "Dämonenjäger: Teufelsrausch verwenden",
 					Glide = "Dämonenjäger: Gleiten verwenden"
 				},
+				Hunter = {
+					AspectOfTheCheetah = "Aspect of the Cheetah"
+				},
 				Mage = {
 					SlowFall = "Magier: Langsamer Fall",
 					Blink = "Magier: Blinzeln",
