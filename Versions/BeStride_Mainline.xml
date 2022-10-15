@@ -25,6 +25,7 @@
   <Script file="Common\mounting.special.lua"/>
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
+  <Script file="Mainline\bestride.lua"/>
   <Script file="Mainline\MountTable.lua"/>
   <Script file="Mainline\logic.lua"/>
   <Script file="Common\upgrade.lua"/>

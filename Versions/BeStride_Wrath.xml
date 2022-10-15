@@ -26,6 +26,7 @@
   <Script file="Common\mounting.special.lua"/>
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
+  <Script file="Wrath\bestride.lua"/>
   <Script file="Wrath\logic.lua"/>
   <Script file="Wrath\MountDB.lua"/>
   <Script file="Wrath\MountTable.lua"/>
