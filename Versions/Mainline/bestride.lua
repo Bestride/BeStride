@@ -1,3 +1,3 @@
 
-function BeStride:OnEnable()
+function BeStride:Version_OnEnable()
 end

@@ -1,5 +1,5 @@
 
-function BeStride:OnEnable()
+function BeStride:Version_OnEnable()
     BeStride_Constants.spells.druid.travelform = 783
     BeStride_Constants.spells.druid.flightform = 33943
     if IsPlayerSpell(40120) then
