@@ -51,16 +51,16 @@ if GetLocale() == "frFR" then
                 Name = "Dalaran",
                 SubZone = {
                     Underbelly = {
-                        Name = "The Underbelly"
+                        Name = "Les Entrailles"
                     },
                     UnderbellyDescent = {
                         Name = "The Underbelly Descent"
                     },
                     CircleofWills = {
-                        Name = "Circle of Wills"
+                        Name = "Le cercle des Volontés"
                     },
                     BlackMarket = {
-                        Name = "The Black Market"
+                        Name = "Le marché Noir"
                     },
                     KrasusLanding = {
                         Name = "Aire de Krasus"
