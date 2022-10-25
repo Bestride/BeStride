@@ -52,7 +52,7 @@ end
 
 function BeStride_Mount:Failback()
 	local mounts = {}
-	if BeStride:DBGetSetting("settings.mount.emptyrandom") then
+	if BeStride:DBGetSetting("mount.emptyrandom") then
 		for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
 		
 		if #mounts == 0 then
