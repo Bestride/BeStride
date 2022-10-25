@@ -287,7 +287,7 @@ end
 -- Check for Flight Form
 -- Returns: boolean
 function BeStride:DruidCanFly()
-	if IsUsableSpell(BeStride_Constants.spells.druid.flightform) then
+	if IsUsableSpell(BeStride_Constants.spells.druid.flightform) or (BeStride_Game == "Wrath" and GetShapeshiftForm() == 6) then
 		return true
 	else
 		return false
@@ -501,12 +501,18 @@ end
 -- ----- --
 
 function BeStride:IsDruidTraveling()
-  if self:IsDruid() then
-    local index = GetShapeshiftForm()
-    if index == 3 then
-      return true
-    end
-  end
+  	if self:IsDruid() then
+    	local index = GetShapeshiftForm()
+    	if BeStride_Game == "Mainline" and index == 3 then
+			return true
+		elseif index == 2 or index == 4 or index == 6 then -- Wrath traveling forms (ground, swimming, flying)
+			return true
+		else
+			return false
+		end
+	else
+		return false
+  	end
 end
 
 function BeStride:DruidFlying()

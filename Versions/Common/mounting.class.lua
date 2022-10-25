@@ -29,8 +29,14 @@ function BeStride:Druid()
 		return BeStride_Mount:DruidAquaticForm()
 	elseif self:MovementCheck() and IsOutdoors() then
 		return BeStride_Mount:DruidTravelForm()
-	elseif GetShapeshiftForm() == 3 then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+	elseif BeStride_Game == "Mainline" and GetShapeshiftForm() == 3 then
+		return BeStride_Mount:DruidTravelForm()
+	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 2 then
+		return BeStride_Mount:DruidTravelForm()
+	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 4 then
+		return BeStride_Mount:DruidAquaticForm()
+	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 6 then
+		return BeStride_Mount:DruidFlightForm()
 	elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidCanFly() and self:DruidFlyingMTFF() then
 		return BeStride_Mount:DruidFlightForm()
 	elseif self:IsFlyable() and self:DruidCanFly() and self:DruidFlightFormPriority() then
