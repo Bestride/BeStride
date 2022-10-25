@@ -219,16 +219,14 @@ function BeStride_Mount:DemonHunterGlide()
 end
 
 function BeStride_Mount:Druid()
-	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
+	local travelForm, flightForm = BeStride_Constants.spells.druid.travelform, BeStride_Constants.spells.druid.flightform
 
 	if GetUnitSpeed("player") ~= 0 then
-		return self:MountSpell(SpellToName(783))
+		return self:MountSpell(SpellToName(travelForm))
 	elseif BeStride:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
-		return self:MountSpell(SpellToName(783))
-	elseif IsFlying() then
-		return self:Flying(name)
+		return self:MountSpell(SpellToName(flightForm))
 	else
-		return self:Regular(name)
+		return self:Regular()
 	end
 end
 
@@ -236,11 +234,20 @@ function BeStride_Mount:DruidFlying()
 	return self:Druid()
 end
 
-function BeStride_Mount:DruidAquaticForm()
+function BeStride_Mount:DruidCatForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.catform))
 end
 
-function BeStride_Mount:DruidTravel()
-	return self:MountSpell(SpellToName(783))
+function BeStride_Mount:DruidTravelForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.travelform))
+end
+
+function BeStride_Mount:DruidAquaticForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.aquaticform))
+end
+
+function BeStride_Mount:DruidFlightForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.flightform))
 end
 
 function BeStride_Mount:HunterAspectOfTheCheetah()

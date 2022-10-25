@@ -10,7 +10,7 @@ BeStride_Constants = {
 	},
 	spells = {
 		druid = {
-			catform = 783,
+			catform = 768,
 			aquaticform = 783,
 			travelform = 783,
 			flightform = 783,

@@ -24,19 +24,19 @@ end
 
 function BeStride:Druid()
 	if IsOutdoors() ~= true and self:DruidCanCat() then
-		return BeStride_Mount:MountSpell(SpellToName(768))
+		return BeStride_Mount:DruidCatForm()
 	elseif IsSwimming() and self:DruidCanSwim() and BeStride:DBGet("settings.mount.noswimming") == false then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+		return BeStride_Mount:DruidAquaticForm()
 	elseif self:MovementCheck() and IsOutdoors() then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+		return BeStride_Mount:DruidTravelForm()
 	elseif GetShapeshiftForm() == 3 then
 		return BeStride_Mount:MountSpell(SpellToName(783))
 	elseif IsMounted() and IsFlying() and self:IsFlyable() and self:DruidCanFly() and self:DruidFlyingMTFF() then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+		return BeStride_Mount:DruidFlightForm()
 	elseif self:IsFlyable() and self:DruidCanFly() and self:DruidFlightFormPriority() then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+		return BeStride_Mount:DruidFlightForm()
 	elseif IsFalling() and self:DruidCanFly() then
-		return BeStride_Mount:MountSpell(SpellToName(783))
+		return BeStride_Mount:DruidFlightForm()
 	else
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: DRBSL")
 	end
