@@ -283,7 +283,12 @@ function BeStride_Mount:Paladin()
 end
 
 function BeStride_Mount:PaladinDivineSteed()
-	return self:MountSpell("[@player] "..SpellToName(190784).."\n/cancelaura "..SpellToName(190784))
+	spell = SpellToName(190784)
+	if spell then
+		return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
+	else
+		return nil
+	end
 end
 
 function BeStride_Mount:Shaman()
