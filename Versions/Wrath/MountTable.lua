@@ -16,9 +16,11 @@ function BeStride:AddNewMount(mountId)
     local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
 	if not BeStride_MountDB[spellID] then	
 		print("Mount not in DB:")
-		print("\tName: " .. name)
-		print("\tMount ID:" .. mountID)
+		print("\tMount Number:" .. mountId)
 		print("\tSpell ID:" .. spellID)
+		print("\tMount ID:" .. mountID)
+		if name then
+		    print("\tName: " .. name)
 		return
 	end
 

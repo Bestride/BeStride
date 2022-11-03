@@ -60,6 +60,7 @@ function BeStride:Mage()
 	elseif self:MageBlink() and self:MovementCheck() then
 		return BeStride_Mount:MageBlink()
 	end
+	BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: MABSL")
 end
 
 function BeStride:Monk()
@@ -83,9 +84,8 @@ end
 function BeStride:Paladin()
 	if not IsFlying() and self:MovementCheck() and self:PaladinDivineSteed() then
 		return BeStride_Mount:Paladin()
-	else
-		--BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/")
 	end
+	BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: PABSL")
 end
 
 function BeStride:Priest()
