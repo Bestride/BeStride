@@ -5651,5 +5651,23 @@ BeStride_MountDB={
 			vendor=false,
 			swimming=false
 		}
+	},
+    [394209]= {
+		name="Festering Emerald Drake",
+		spellid=394209,
+		mountid=198525,
+		itemid=201699,
+		maxspeed=280,
+		minspeed=100,
+		swimspeed=0,
+		category="Drake",
+		source="Blizzard",
+		attributes={
+			ground=true,
+			flying=true,
+			passenger=false,
+			vendor=false,
+			swimming=false
+		}
 	}
 }
