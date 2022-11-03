@@ -4817,11 +4817,11 @@ BeStride_MountDB={
 		category="Turtle",
 		source="fishing",
 		attributes={
-			ground=true,
+			ground=false,
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=false
+			swimming=true
 		}
 	},
     [64927]= {
