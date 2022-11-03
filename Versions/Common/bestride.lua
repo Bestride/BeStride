@@ -117,6 +117,10 @@ function BeStride:ChatCommand(input)
 		print("/br reload - Rebuild the mount table")
 		print("/br map - Print the current map layers")
 		print("/br - The configuration window")
+	elseif input == "mountdb" then
+		self:ListMountDB()
+	elseif input == "mounts" then
+		self:ListGameMounts()
 	elseif input == "reload" then
 		BeStride:buildMountTables()
 	elseif input == "map" then
@@ -139,5 +143,20 @@ function BeStride:ChatCommand(input)
 		BeStride_GUI:DebugTable({},0)
 	else
 		BeStride_GUI:Frame(input)
+	end
+end
+
+function BeStride:ListGameMounts()
+	print("Mount (index):name:spellID:mountID:isActive")
+	for i=1, GetNumCompanions("MOUNT") do
+		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
+		print("Mount (" .. i .. "):" .. (name or "")..":"..(spellID or "")..":"..(mountID or "")..":"..tostring(isSummoned or ""))
+	end
+end
+
+function BeStride:ListMountDB()
+	print("Mount (mountID):name:spellID:mountID:isActive:faction:source:type")
+	for key,value in pairs(mountTable["master"]) do
+		print("Mount (" .. key .. "):" .. (value.name or "")..":"..(value.spellID or "")..":"..(value.mountID or "")..":"..tostring(value.isActive or "")..":"..tostring(value.faction or "")..":"..(value.source or "")..":"..(value.type or ""))
 	end
 end
