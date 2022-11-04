@@ -91,7 +91,7 @@ BeStride_Options = {
 }
 
 defaults = {
-	version = "@project-version@",
+	version = BeStride_Constants.Version,
 	
 	profile = {
 		settings = {
