@@ -31,9 +31,9 @@ function BeStride:Druid()
 		return BeStride_Mount:DruidTravelForm()
 	elseif BeStride_Game == "Mainline" and GetShapeshiftForm() == 3 then
 		return BeStride_Mount:DruidTravelForm()
-	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 2 then
-		return BeStride_Mount:DruidTravelForm()
 	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 4 then
+		return BeStride_Mount:DruidTravelForm()
+	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 2 then
 		return BeStride_Mount:DruidAquaticForm()
 	elseif BeStride_Game == "Wrath" and GetShapeshiftForm() == 6 then
 		return BeStride_Mount:DruidFlightForm()
