@@ -52,7 +52,7 @@ end
 
 function BeStride_Mount:Failback()
 	local mounts = {}
-	if BeStride:DBGetSetting("settings.mount.emptyrandom") then
+	if BeStride:DBGetSetting("mount.emptyrandom") then
 		for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
 		
 		if #mounts == 0 then
@@ -290,7 +290,12 @@ function BeStride_Mount:Paladin()
 end
 
 function BeStride_Mount:PaladinDivineSteed()
-	return self:MountSpell("[@player] "..SpellToName(190784).."\n/cancelaura "..SpellToName(190784))
+	spell = SpellToName(190784)
+	if spell then
+		return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
+	else
+		return nil
+	end
 end
 
 function BeStride_Mount:Shaman()

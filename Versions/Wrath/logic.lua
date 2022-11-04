@@ -48,19 +48,11 @@ function BeStride:GetRidingSkill()
 	local ridingSkillLevel = 0
 	local ridingSpells = {}
 
-	for skillIndex = 1, GetNumSkillLines() do
-		local skillName, isHeader, isExpanded, skillRank, numTempPoints, skillModifier, skillMaxRank, isAbandonable, stepCost, rankCost, minLevel, skillCostType, skillDescription = GetSkillLineInfo(skillIndex)
-
-		if BeStride_Locale.Skills.Riding.Name and skillName == BeStride_Locale.Skills.Riding.Name then
-			ridingSkillLevel = skillRank
-		end
-	end
-
 	for spellID,skill in pairsByKeys(BeStride_Constants.Riding.Skill) do
-		if IsSpellKnown(spellID) and skill.level ~= nil and skill.level > ridingSkillLevel then
+		if (IsSpellKnown(spellID) or IsPlayerSpell(spellID)) and skill.level ~= nil and skill.level > ridingSkillLevel then
 			ridingSkillLevel = skill.level
 			ridingSpells[spellID] = true
-		elseif IsSpellKnown(spellID) and skill.level == nil then
+		elseif (IsSpellKnown(spellID) or IsPlayerSpell(spellID)) and skill.level == nil then
 			ridingSpells[spellID] = true
 		end
 	end

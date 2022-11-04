@@ -3,7 +3,6 @@ function BeStride:BuildMasterMountTable()
 	--print("Start mount table")
 	for i=1, GetNumCompanions("MOUNT") do
 		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
-
 		if mountTable["master"][spellID] == nil then
 			BeStride:AddNewMount(i)
 		end
@@ -16,9 +15,12 @@ function BeStride:AddNewMount(mountId)
     local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
 	if not BeStride_MountDB[spellID] then	
 		print("Mount not in DB:")
-		print("\tName: " .. name)
-		print("\tMount ID:" .. mountID)
+		print("\tMount Number:" .. mountId)
 		print("\tSpell ID:" .. spellID)
+		print("\tMount ID:" .. mountID)
+		if name then
+		    print("\tName: " .. name)
+		end
 		return
 	end
 
@@ -28,6 +30,10 @@ function BeStride:AddNewMount(mountId)
 		mountType = "ground"
 	else
 		mountType = "unknown"
+	end
+
+	if not name and BeStride_MountDB[spellID].name then
+		name = BeStride_MountDB[spellID].name
 	end
 
 	mountTable["master"][mountID] = {
