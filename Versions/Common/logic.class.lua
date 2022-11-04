@@ -287,7 +287,7 @@ end
 -- Check for Flight Form
 -- Returns: boolean
 function BeStride:DruidCanFly()
-	if IsUsableSpell(BeStride_Constants.spells.druid.flightform) or (BeStride_Game == "Wrath" and GetShapeshiftForm() == 6) then
+	if IsPlayerSpell(BeStride_Constants.spells.druid.flightform) then
 		return true
 	else
 		return false
