@@ -178,7 +178,10 @@ if GetLocale() == "deDE" then
 				},
 				Shaman = {
 					GhostWolf = "Schamane: Geisterwolf"
-				}
+				},
+				Evoker = {
+					Hover = "Rufer: Schweben"
+				},
 			},
 			Profiles = {
 				CreateNew = "Neues Profil erstellen:",

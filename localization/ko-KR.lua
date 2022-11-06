@@ -178,6 +178,9 @@ if GetLocale() == "koKR" then
 				},
 				Shaman = {
 					GhostWolf = "주술사: 늑대 정령"
+				},
+				Evoker = {
+					Hover = "기원사: 부양"
 				}
 			},
 			Profiles = {

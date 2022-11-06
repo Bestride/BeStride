@@ -61,6 +61,9 @@ BeStride_Variables = {
 			{
 				{name="classes.shaman.ghostwolf",element="CheckBox",label=BeStride_Locale.Settings.Classes.Shaman.GhostWolf,class="shaman"},
 			},
+			{
+				{name="classes.evoker.hover",element="CheckBox",label=BeStride_Locale.Settings.Classes.Evoker.Hover,class="evoker"},
+			},
 		}
 	},
 }
@@ -156,6 +159,9 @@ defaults = {
 				},
 				shaman = {
 					ghostwolf = true,
+				},
+				evoker = {
+					hover = true,
 				},
 			},
 		},
