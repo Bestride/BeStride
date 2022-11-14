@@ -91,8 +91,6 @@ BeStride_Options = {
 }
 
 defaults = {
-	version = BeStride_Constants.Version,
-	
 	profile = {
 		settings = {
 			migrated = false,
