@@ -136,11 +136,19 @@ function BeStride:ChatCommand(input)
 	elseif input == "mounts" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Mounts")
 	elseif input == "options" then
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+		if self.IsMainline() then
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
+		else
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+		end
 	elseif input == "profiles" then
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+		if self.IsMainline() then
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
+		else
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+		end
 	elseif input == "debug" or input == "bug" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
 	elseif input == "about" then
