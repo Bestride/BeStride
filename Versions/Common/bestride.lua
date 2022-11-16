@@ -1,11 +1,10 @@
 function BeStride:OnInitialize()
+	self.configDialogs = {}
 	self.db = LibStub("AceDB-3.0"):New("BeStrideDB", defaults, "Default")
 	self:RegisterChatCommand("bestride","ChatCommand")
 	self:RegisterChatCommand("br","ChatCommand")
 	
-	local bestrideOptions = LibStub("AceConfigRegistry-3.0")
-	bestrideOptions:RegisterOptionsTable("BeStride",BeStride_Options)
-	self.bestrideOptionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("BeStride","BeStride")
+	BeStride:OptionsTable()
 	
 	self.buttons = {
 		["mount"] = nil,
@@ -40,10 +39,6 @@ function BeStride:OnInitialize()
 	playerTable["faction"]["name"] = factionName
 	playerTable["faction"]["id"] = factionId
 	playerTable["faction"]["localization"] = factionLocalized
-end
-
-function BeStride:Frame()
-	BeStride_GUI:Frame()
 end
 
 function BeStride:OnEnable()
@@ -113,13 +108,14 @@ end
 
 function BeStride:ChatCommand(input)
 	if input == "help" then
+		print("/br - Open Main Configuration Dialog")
+		print("/br about - Open about Dialog")
 		print("/br help - This help")
 		print("/br reload - Rebuild the mount table")
 		print("/br map - Print the current map layers")
-		print("/br - The configuration window")
 	elseif input == "mountdb" then
 		self:ListMountDB()
-	elseif input == "mounts" then
+	elseif input == "mountsTable" then
 		self:ListGameMounts()
 	elseif input == "reload" then
 		BeStride:buildMountTables()
@@ -137,12 +133,28 @@ function BeStride:ChatCommand(input)
 		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
 	elseif input == "underwater" then
 		BeStride:IsUnderwater()
-	elseif input == "bug" then
-		BeStride_GUI:BugReport()
-	elseif input == "depth" then
-		BeStride_GUI:DebugTable({},0)
+	elseif input == "mounts" then
+		LibStub("AceConfigDialog-3.0"):Open("BeStride-Mounts")
+	elseif input == "options" then
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+	elseif input == "profiles" then
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+	elseif input == "debug" or input == "bug" then
+		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
+	elseif input == "about" then
+		LibStub("AceConfigDialog-3.0"):Open("BeStride")
 	else
-		BeStride_GUI:Frame(input)
+		print("/br - Open Main Configuration Dialog and print help")
+		print("/br options - Open options Dialog")
+		print("/br about - Open about Dialog")
+		print("/br help - This help")
+		print("/br reload - Rebuild the mount table")
+		print("/br map - Print the current map layers")
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+		InterfaceOptionsFrame_OpenToCategory("BeStride")
 	end
 end
 

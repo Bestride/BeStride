@@ -77,19 +77,6 @@ mountTable = {
 
 playerTable = {}
 
-BeStride_Options = {
-  name="BeStride",
-  handler = BeStride,
-  type = "group",
-  args = {
-    enable = {
-      type = "execute",
-      name = BeStride_Locale.Options.OpenGUI,
-      func = "Frame",
-    },
-  }
-}
-
 defaults = {
 	profile = {
 		settings = {
