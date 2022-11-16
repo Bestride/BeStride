@@ -9,7 +9,6 @@
   <Script file="Common\BeStride_Variables.lua"/>
   <Script file="Common\BeStride_ActionButton.lua"/>
   <Script file="Common\BeStride_Events.lua"/>
-  <Script file="Common\BeStride_GUI.lua"/>
   <Script file="Common\BeStride_Mount.lua"/>
   <Script file="Common\functions.lua"/>
   <Script file="Common\mapping.lua"/>
@@ -26,6 +25,7 @@
   <Script file="Common\mounting.special.lua"/>
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
+  <Script file="Common\options.lua"/>
   <Script file="Wrath\bestride.lua"/>
   <Script file="Wrath\logic.lua"/>
   <Script file="Wrath\MountDB.lua"/>
