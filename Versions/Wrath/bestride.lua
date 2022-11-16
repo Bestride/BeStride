@@ -9,3 +9,11 @@ function BeStride:Version_OnEnable()
     end
     BeStride_Constants.spells.druid.aquaticform = 1066
 end
+
+function BeStride:IsWrath()
+    return true
+end
+
+function BeStride:IsMainline()
+    return false
+end
