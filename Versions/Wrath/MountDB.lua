@@ -2934,9 +2934,9 @@ BeStride_MountDB={
 			swimming=false
 		}
 	},
-    [41502]= {
+    [41252]= {
 		name="Raven Lord",
-		spellid=41502,
+		spellid=41252,
 		mountid=nil,
 		itemid=32768,
 		maxspeed=1,
