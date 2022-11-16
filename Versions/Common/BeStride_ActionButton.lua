@@ -8,6 +8,7 @@ function BeStride:CreateActionButton(buttontype)
 	local name = "BeStride_AB" .. buttontype .. "Mount"
 
 	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
+	br:RegisterForClicks("AnyDown")
 	br:SetAttribute("type","macro")
 	br:SetAttribute("macrotext",nil)
 	
