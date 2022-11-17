@@ -113,6 +113,11 @@ function BeStride:ChatCommand(input)
 		print("/br help - This help")
 		print("/br reload - Rebuild the mount table")
 		print("/br map - Print the current map layers")
+	elseif input == "locale" then
+		local L = LibStub("AceLocale-3.0"):GetLocale("BeStride")
+		print(L["Open.GUI"])
+	elseif input == "speed" then
+		print(BeStride:SpeedCheck())
 	elseif input == "mountdb" then
 		self:ListMountDB()
 	elseif input == "mountsTable" then
