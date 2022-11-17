@@ -1,3 +1,5 @@
+local L = LibStub("AceLocale-3.0"):GetLocale("BeStride")
+
 local filter = ""
 
 local optionsTable = {
@@ -6,27 +8,27 @@ local optionsTable = {
     args={
         about_header={
             type = "header",
-            name = "About",
+            name = L["GUI.TAB.About"],
         },
         about_content={
-            name = LibStub("AceLocale-3.0"):GetLocale("BeStride")["GUI.About"],
+            name = L["GUI.About"],
             type = "description",
         },
     },
 }
 
 local optionsTable_Options = {
-    name="Options",
+    name=L["GUI.Options"],
     type = "group",
     childGroups="tab",
     args = {
         mount_options = {
-            name="Mount",
+            name=L["GUI.TAB.MountOptions"],
             type = "group",
             args = {
                 ["mount.enablenew"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.EnableNew"],
+                    name=L["Settings.EnableNew"],
                     order=1,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -34,7 +36,7 @@ local optionsTable_Options = {
                 },
                 ["mount.emptyrandom"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.EmptyRandom"],
+                    name=L["Settings.EmptyRandom"],
                     order=2,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -42,7 +44,7 @@ local optionsTable_Options = {
                 },
                 ["mount.remount"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.RemountAfterDismount"],
+                    name=L["Settings.RemountAfterDismount"],
                     order=3,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -50,7 +52,7 @@ local optionsTable_Options = {
                 },
                 ["mount.nodismountwhileflying"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoDismountWhileFlying"],
+                    name=L["Settings.NoDismountWhileFlying"],
                     order=4,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -58,7 +60,7 @@ local optionsTable_Options = {
                 },
                 ["mount.useflyingmount"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.UseFlyingMount"],
+                    name=L["Settings.UseFlyingMount"],
                     order=5,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -66,7 +68,7 @@ local optionsTable_Options = {
                 },
                 ["mount.forceflyingmount"]={
                     type="toggle",
-                    name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.ForceFlyingMount"],
+                    name=L["Settings.ForceFlyingMount"],
                     order=6,
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -77,11 +79,11 @@ local optionsTable_Options = {
                     type="group",
                     inline=true,
                     order=7,
-                    name="Special mounts",
+                    name=L["GUI.TAB.MountOptions.SpecialMounts"],
                     args={
                         ["mount.prioritizepassenger"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.PrioritizePassenger"],
+                            name=L["Settings.PrioritizePassenger"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -89,7 +91,7 @@ local optionsTable_Options = {
                         },
                         ["mount.noswimming"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoSwimming"],
+                            name=L["Settings.NoSwimming"],
                             order=2,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -97,7 +99,7 @@ local optionsTable_Options = {
                         },
                         ["mount.flyingbroom"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.FlyingBroom"],
+                            name=L["Settings.FlyingBroom"],
                             order=3,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -105,7 +107,7 @@ local optionsTable_Options = {
                         },
                         ["mount.telaari"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Telaari"],
+                            name=L["Settings.Telaari"],
                             order=4,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -113,7 +115,7 @@ local optionsTable_Options = {
                         },
                         ["mount.forcerobot"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.ForceRobot"],
+                            name=L["Settings.ForceRobot"],
                             order=5,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -123,14 +125,14 @@ local optionsTable_Options = {
                 },
                 repair_mounts = {
                     type="group",
-                    name="Repair Mounts",
+                    name=L["GUI.TAB.MountOptions.RepairMounts"],
                     order=8,
                     width="full",
                     inline=true,
                     args={
                         ["mount.repair.use"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Repair.Use"],
+                            name=L["Settings.Repair.Use"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -138,7 +140,7 @@ local optionsTable_Options = {
                         },
                         ["mount.repair.force"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Repair.Force"],
+                            name=L["Settings.Repair.Force"],
                             order=2,
                             width="full",
                             disabled=function(info) return not BeStride:DBGetSetting('mount.repair.use') end,
@@ -147,7 +149,7 @@ local optionsTable_Options = {
                         },
                         ["mount.repair.durability"]={
                             type="range",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Repair.Durability"],
+                            name=L["Settings.Repair.Durability"],
                             order=3,
                             width="full",
                             isPercent=true,
@@ -159,7 +161,7 @@ local optionsTable_Options = {
                         },
                         ["mount.repair.globaldurability"]={
                             type="range",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Repair.GlobalDurability"],
+                            name=L["Settings.Repair.GlobalDurability"],
                             order=4,
                             width="full",
                             isPercent=true,
@@ -171,7 +173,7 @@ local optionsTable_Options = {
                         },
                         ["mount.repair.inventorydurability"]={
                             type="range",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Repair.InventoryDurability"],
+                            name=L["Settings.Repair.InventoryDurability"],
                             order=5,
                             width="full",
                             isPercent=true,
@@ -186,17 +188,17 @@ local optionsTable_Options = {
             },
         },
         class_options = {
-            name="Class",
+            name=L["GUI.TAB.ClassOptions"],
             type = "group",
             args = {
                 deathknight = {
                     type="group",
-                    name="Death Knight",
+                    name=L["Classes.DeathKnight"],
                     disabled = function (info) return BeStride:IsWrath() and not BeStride:IsMainline() end,
                     args = {
                         ["classes.deathknight.wraithwalk"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.DeathKnight.WraithWalk"],
+                            name=L["Settings.Classes.DeathKnight.WraithWalk"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -206,12 +208,12 @@ local optionsTable_Options = {
                 },
                 demonhunter = {
                     type="group",
-                    name="Demon Hunter",
+                    name=L["Classes.DemonHunter"],
                     disabled = function (info) return BeStride:IsWrath() and not BeStride:IsMainline() end,
                     args = {
                         ["classes.demonhunter.felrush"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.DemonHunter.FelRush"],
+                            name=L["Settings.Classes.DemonHunter.FelRush"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -219,7 +221,7 @@ local optionsTable_Options = {
                         },
                         ["classes.demonhunter.glide"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.DemonHunter.Glide"],
+                            name=L["Settings.Classes.DemonHunter.Glide"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -229,11 +231,11 @@ local optionsTable_Options = {
                 },
                 druid = {
                     type="group",
-                    name="Druid",
+                    name=L["Classes.Druid"],
                     args = {
                         ["classes.druid.traveltotravel"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Druid.TravelToTravel"],
+                            name=L["Settings.Classes.Druid.TravelToTravel"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -241,7 +243,7 @@ local optionsTable_Options = {
                         },
                         ["classes.druid.flightform"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Druid.FlightForm"],
+                            name=L["Settings.Classes.Druid.FlightForm"],
                             order=2,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -249,7 +251,7 @@ local optionsTable_Options = {
                         },
                         ["classes.druid.flightformpriority"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Druid.FlightFormPriority"],
+                            name=L["Settings.Classes.Druid.FlightFormPriority"],
                             order=3,
                             width="full",
                             disabled=function (info) return not BeStride:DBGetSetting('classes.druid.flightform') end,
@@ -258,7 +260,7 @@ local optionsTable_Options = {
                         },
                         ["classes.druid.mountedtoflightform"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Druid.MountedToFlightForm"],
+                            name=L["Settings.Classes.Druid.MountedToFlightForm"],
                             order=4,
                             width="full",
                             disabled=function (info) return not BeStride:DBGetSetting('classes.druid.flightform') end,
@@ -269,11 +271,11 @@ local optionsTable_Options = {
                 },
                 evoker = {
                     type="group",
-                    name="Evoker",
+                    name=L["Classes.Evoker"],
                     args={
                         ["classes.evoker.hover"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Evoker.Hover"],
+                            name=L["Settings.Classes.Evoker.Hover"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -283,11 +285,11 @@ local optionsTable_Options = {
                 },
                 hunter = {
                     type="group",
-                    name="Hunter",
+                    name=L["Classes.Hunter"],
                     args = {
                         ["classes.hunter.aspectofthecheetah"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Hunter.AspectOfTheCheetah"],
+                            name=L["Settings.Classes.Hunter.AspectOfTheCheetah"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -297,11 +299,11 @@ local optionsTable_Options = {
                 },
                 mage = {
                     type="group",
-                    name="Mage",
+                    name=L["Classes.Mage"],
                     args = {
                         ["classes.mage.slowfall"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Mage.SlowFall"],
+                            name=L["Settings.Classes.Mage.SlowFall"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -309,7 +311,7 @@ local optionsTable_Options = {
                         },
                         ["classes.mage.blink"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Mage.Blink"],
+                            name=L["Settings.Classes.Mage.Blink"],
                             order=2,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -317,7 +319,7 @@ local optionsTable_Options = {
                         },
                         ["classes.mage.blinkpriority"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Mage.BlinkPriority"],
+                            name=L["Settings.Classes.Mage.BlinkPriority"],
                             order=3,
                             width="full",
                             disabled=function (info) return not BeStride:DBGetSetting('classes.mage.blink') end,
@@ -328,12 +330,12 @@ local optionsTable_Options = {
                 },
                 monk = {
                     type="group",
-                    name="Monk",
+                    name=L["Classes.Monk"],
                     disabled = function (info) return BeStride:IsWrath() and not BeStride:IsMainline() end,
                     args = {
                         ["classes.monk.roll"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Monk.Roll"],
+                            name=L["Settings.Classes.Monk.Roll"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -341,7 +343,7 @@ local optionsTable_Options = {
                         },
                         ["classes.monk.zenflight"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Monk.ZenFlight"],
+                            name=L["Settings.Classes.Monk.ZenFlight"],
                             order=2,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -351,12 +353,12 @@ local optionsTable_Options = {
                 },
                 paladin = {
                     type="group",
-                    name="Paladin",
+                    name=L["Classes.Paladin"],
                     disabled = function (info) return BeStride:IsWrath() and not BeStride:IsMainline() end,
                     args = {
                         ["classes.paladin.steed"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Paladin.DivineSteed"],
+                            name=L["Settings.Classes.Paladin.DivineSteed"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -366,11 +368,11 @@ local optionsTable_Options = {
                 },
                 priest = {
                     type="group",
-                    name="Priest",
+                    name=L["Classes.Priest"],
                     args = {
                         ["classes.priest.levitate"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Priest.Levitate"],
+                            name=L["Settings.Classes.Priest.Levitate"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -380,11 +382,11 @@ local optionsTable_Options = {
                 },
                 rogue = {
                     type="group",
-                    name="Rogue",
+                    name=L["Classes.Rogue"],
                     args = {
                         ["classes.rogue.sprint"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Rogue.Sprint"],
+                            name=L["Settings.Classes.Rogue.Sprint"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -394,11 +396,11 @@ local optionsTable_Options = {
                 },
                 shaman = {
                     type="group",
-                    name="Shaman",
+                    name=L["Classes.Shaman"],
                     args = {
                         ["classes.shaman.ghostwolf"]={
                             type="toggle",
-                            name=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Shaman.GhostWolf"],
+                            name=L["Settings.Classes.Shaman.GhostWolf"],
                             order=1,
                             width="full",
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
@@ -412,7 +414,7 @@ local optionsTable_Options = {
 }
 
 local optionsTable_Mounts = {
-    name="Mounts",
+    name=L["Mounts"],
     type = "group",
     childGroups="tab",
     args={
@@ -424,48 +426,48 @@ local optionsTable_Mounts = {
                 filter = {        
                     type = "input",
                     order = 1,
-                    name = "Filter",
+                    name = L["GUI.BUTTON.Filter"],
                     set = function (info,val) filter = val end,
                     get = function (info) return filter end,
                 },
                 filter_clear = {        
                     type = "execute",
                     order = 100,
-                    name = "Clear",
+                    name = L["GUI.BUTTON.ClearAll"],
                     func = function (info) filter = "" end,
                 }
             },
         },
         ground = {
-            name="Ground",
+            name=L["GUI.TAB.Mounts.Ground"],
             type = "group",
             order=1,
             hidden = toggleHidden,
             args = {},
         },
         flying = {
-            name="Flying",
+            name=L["GUI.TAB.Mounts.Flying"],
             type = "group",
             order=2,
             hidden = toggleHidden, 
             args = {},
         },
         swimming = {
-            name="Swimming",
+            name=L["GUI.TAB.Mounts.Swimming"],
             type = "group",
             order=3,
             hidden = toggleHidden, 
             args = {},
         },
         repair = {
-            name="Repair",
+            name=L["GUI.TAB.Mounts.Repair"],
             type = "group",
             order=4,
             hidden = toggleHidden, 
             args = {},
         },
         passenger = {
-            name="Passenger",
+            name=L["GUI.TAB.Mounts.Passenger"],
             type = "group",
             order=5,
             hidden = toggleHidden, 
@@ -565,13 +567,13 @@ local function generateDebugOptions()
     .. "BeStride_Constants = { " .. "\n" .. debugTable(BeStride_Constants,0) .. "}" .. "\n"
 
     return {
-        name = "Debug Information",
+        name = L["DebugInformation"],
         type = "group",
         inline = true,
         width = "full",
         args = {
             debug = {
-                name = "Debug",
+                name = L["Debug"],
                 type = 'input',
                 multiline = 25,
                 width = "full",

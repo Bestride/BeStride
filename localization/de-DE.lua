@@ -1,4 +1,4 @@
-local L = LibStub("AceLocale-3.0"):NewLocale("BeStride", "deDE", true)
+local L = LibStub("AceLocale-3.0"):NewLocale("BeStride", "deDE")
 if not L then return end
 
 
