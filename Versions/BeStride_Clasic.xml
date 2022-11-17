@@ -1,8 +1,8 @@
 <Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
   <Script file="Common\version.lua"/>
+  <Script file="..\localization\de-DE.lua"/>
   <Script file="..\localization\en-US.lua"/>
   <Script file="..\localization\zh-TW.lua"/>
-  <Script file="..\localization\de-DE.lua"/>
   <Script file="..\localization\ko-KR.lua"/>
   <Script file="..\localization\fr-FR.lua"/>
   <Script file="Common\BeStride_Constants.lua"/>
