@@ -108,6 +108,12 @@ function BeStride:Shaman()
 	end
 end
 
+function BeStride:Evoker()
+	if not IsFlying() and self:MovementCheck() and self:EvokerHover() then
+		return BeStride_Mount:Evoker()
+	end
+end
+
 function BeStride:Rogue()
 	if not IsFlying() and self:MovementCheck() and self:RogueSprint() then
 		return BeStride_Mount:Rogue()

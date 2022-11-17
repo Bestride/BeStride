@@ -178,7 +178,10 @@ if GetLocale() == "frFR" then
                 },
                 Shaman = {
                     GhostWolf = "Shaman: Ghost Wolf"
-                }
+                },
+				Evoker = {
+					Hover = "Évocateur: Survoler"
+				}
             },
             Profiles = {
                 CreateNew = "Create new Profile:",

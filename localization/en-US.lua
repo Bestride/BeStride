@@ -178,7 +178,10 @@ BeStride_Locale = {
 			},
 			Shaman = {
 				GhostWolf = "Shaman: Ghost Wolf"
-			}
+			},
+			Evoker = {
+				Hover = "Evoker: Hover"
+			},
 		},
 		Profiles = {
 			CreateNew = "Create new Profile:",

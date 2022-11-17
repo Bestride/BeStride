@@ -36,6 +36,9 @@ function BeStride:Regular()
 	elseif self:IsShamanAndSpecial() then
 		self:DismountAndExit()
 		return self:Shaman()
+	elseif self:IsEvokerAndSpecial() then
+		self:DismountAndExit()
+		return self:Evoker()
 	elseif self:IsRogueAndSpecial() then
 		self:DismountAndExit()
 		return self:Rogue()
@@ -246,7 +249,9 @@ function BeStride:Combat()
 	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
 		return BeStride_Mount:RogueSprint()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
-		return BeStride_Mount:ShamanGhostWolf()
+		return BeStride_Mount:ShamanGhostWolf()	
+	elseif self:IsEvoker() and BeStride:DBGet("settings.classes.evoker.hover") then
+			return BeStride_Mount:EvokerHover()
 	elseif self:IsSpecialZone() then
 		return BeStride_Mount:SpecialZone()
 	end

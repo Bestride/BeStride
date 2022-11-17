@@ -178,6 +178,9 @@ if GetLocale() == "zhTW" then
 				},
 				Shaman = {
 					GhostWolf = "薩滿: 鬼魂之狼"
+				},
+				Evoker = {
+					Hover = "唤魔师: 悬空"
 				}
 			},
 			Profiles = {
