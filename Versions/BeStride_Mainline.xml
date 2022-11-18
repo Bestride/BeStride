@@ -1,5 +1,6 @@
 <Ui xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
   <Script file="Common\version.lua"/>
+  <Script file="..\localization\de-DE.lua"/>
   <Script file="..\localization\en-US.lua"/>
   <Script file="..\localization\zh-TW.lua"/>
   <Script file="..\localization\de-DE.lua"/>
@@ -8,7 +9,6 @@
   <Script file="Common\BeStride_Variables.lua"/>
   <Script file="Common\BeStride_ActionButton.lua"/>
   <Script file="Common\BeStride_Events.lua"/>
-  <Script file="Common\BeStride_GUI.lua"/>
   <Script file="Common\BeStride_Mount.lua"/>
   <Script file="Common\functions.lua"/>
   <Script file="Common\mapping.lua"/>
@@ -25,6 +25,7 @@
   <Script file="Common\mounting.special.lua"/>
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
+  <Script file="Common\options.lua"/>
   <Script file="Mainline\bestride.lua"/>
   <Script file="Mainline\MountTable.lua"/>
   <Script file="Mainline\logic.lua"/>

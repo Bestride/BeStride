@@ -58,7 +58,8 @@ function BeStride:DBSetMount(mountType,mountID,value)
 end
 
 function BeStride:DBGetSetting(setting)
-	return self:DBGet("settings." .. setting)
+	value = self:DBGet("settings." .. setting)
+	return value
 end
 
 function BeStride:DBSetSetting(setting, value)

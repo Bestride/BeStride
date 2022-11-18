@@ -1,191 +1,105 @@
-if GetLocale() == "frFR" then
-    BeStride_Locale = {
-        Options = {
-            OpenGUI = "Open GUI"
-        },
-        GUI = {
-            BUTTON = {
-                SelectAll = "Select All",
-                ClearAll = "Clear All",
-                Filter = "Filter",
-                Copy = "Copy",
-                Delete = "Delete"
-            },
-            TAB = {
-                Mounts = "Mounts",
-                MountOptions = "Mount Options",
-                ClassOptions = "Class Options",
-                Keybinds = "Keybinds",
-                Profile = "Profiles",
-                About = "About",
-                Ground = "Ground",
-                Flying = "Flying",
-                Repair = "Repair",
-                Swimming = "Swimming",
-                Passenger = "Passenger",
-                Special = "Special"
-            }
-        },
-        About = "Version: " .. version .. "\n" .. "Author: " .. author .. "\n" .. "Discord: https://discord.gg/6bZf5PF" .. "\n" .. "Description: " .. "\n\n" .. "        " .. "BeStride originally started out as YayMounts by Cyrae on Windrunner US and Anzu on Kirin Tor US" .. "\n" .. "        " .. "Later, Anaximander from Burning Legion US found the project was neglected and had several bugs which needed to be resolved" .. "\n" .. "        " .. "as part of the bug resolution process, the addon was modernized to make the code cleaner to follow as well as more modular." .. "\n\n" .. "Special Thanks:" .. "\n\n" .. "        " .. "Mindlessgalaxy: For helping with the beta testing",
-        Bindings = {
-            Header = "BeStride",
-            Regular = "Mount Button",
-            Ground = "Force Ground Mount Button",
-            Repair = "Force Repair Mount Button",
-            Passenger = "Force Passenger Mount Button"
-        },
-        Zone = {
-            AzuremystIsle = {
-                Name = "Île de Brume-azur"
-            },
-            BloodmystIsle = {
-                Name = "Île de Brume-sang"
-            },
-            Deadmines = {
-                Name = "Mortemines"
-            },
-            AQ = {
-                Name = "Ahn'Qiraj"
-            },
-            Dalaran = {
-                Name = "Dalaran",
-                SubZone = {
-                    Underbelly = {
-                        Name = "Les Entrailles"
-                    },
-                    UnderbellyDescent = {
-                        Name = "The Underbelly Descent"
-                    },
-                    CircleofWills = {
-                        Name = "Le cercle des Volontés"
-                    },
-                    BlackMarket = {
-                        Name = "Le marché Noir"
-                    },
-                    KrasusLanding = {
-                        Name = "Aire de Krasus"
-                    }
-                }
-            },
-            Icecrown = {
-                Name = "La Couronne de glace"
-            },
-            Oculus = {
-                Name = "L'Oculus"
-            },
-            StormPeaks = {
-                Name = "Les pics Foudroyés"
-            },
-            SholazarBasin = {
-                Name = "Bassin de Sholazar"
-            },
-            Wintergrasp = {
-                Name = "Joug-d'hiver"
-            },
-            Vashjir = {
-                Name = "Vashj'ir",
-                SubZone = {
-                    KelptharForest = {
-                        Name = "Kelp'thar Forest"
-                    },
-                    ShimmeringExpanse = {
-                        Name = "Shimmering Expanse"
-                    },
-                    AbyssalDepths = {
-                        Name = "Abyssal Depths"
-                    },
-                    DamplightChamber = {
-                        Name = "Damplight Chamber"
-                    },
-                    Nespirah = {
-                        Name = "Nespirah"
-                    },
-                    LGhorek = {
-                        Name = "L'Ghorek"
-                    }
-                }
-            },
-            VortexPinnacle = {
-                Name = "The Vortex Pinnacle"
-            },
-            Nagrand = {
-                Name = "Nagrand"
-            }
-        },
-        Continent = {
-            Draenor = {
-                Name = "Draenor",
-            },
-        },
-        Skills = {
-            Riding = {
-                Name = "Monte"
-            }
-        },
-        Settings = {
-            EnableNew = "Automatically enable new mounts upon learning them",
-            EmptyRandom = "Choose random usable mount if no usable mounts selected",
-            RemountAfterDismount = "Remount Immediately After Dismounting",
-            NoDismountWhileFlying = "Don't dismount while flying. You'll have to land or (if enabled in Blizzard options) cast a spell",
-            UseFlyingMount = "Use Flying type mounts even in areas where you cannot fly",
-            ForceFlyingMount = "Force Flying type mounts even in areas where you cannot fly",
-            PrioritizePassenger = "Prioritize Passenger Mounts when in group",
-            NoSwimming = "Never use underwater mounts even when swimming",
-            FlyingBroom = "Always use Flying Broom instead of a normal mount",
-            Telaari = "Always use the Telaari Talbuk or Frostwolf War Wolf while in Nagrand",
-            ForceRobot = "Always use Sky Golem or Mechanized Lumber Extractor when you have learned Herbalism",
-            Repair = {
-                Use = "Use a Repair mount if player owns one and if meets durability threshold",
-                Force = "Force a Repair mount if player owns one",
-                Durability = "Item Low Durability %",
-                GlobalDurability = "Global Low Durability %",
-                InventoryDurability = "Inventory Item Low Durability %"
-            },
-            Classes = {
-                DeathKnight = {
-                    WraithWalk = "Death Knight: Wraith Walk"
-                },
-                DemonHunter = {
-                    FelRush = "Demon Hunter: Use Fel Rush",
-                    Glide = "Demon Hunter: Use Gliding"
-                },
-                Druid = {
-                    FlightForm = "Druid: Use Flight Form",
-                    TravelToTravel = "Druid: When in combat, shift from Travel or Aquatic form directly back to that form",
-                    FlightFormPriority = "Druid: Prioritize using Flight Form over a regular mount even when not moving",
-                    MountedToFlightForm = "Druid: When on a flying mount and flying + moving, shift into Flight Form"
-                },
-                Hunter = {
-                    AspectOfTheCheetah = "Hunter: Aspect of the Cheetah",
-                },
-                Mage = {
-                    SlowFall = "Mage: Slowfall",
-                    Blink = "Mage: Blink",
-                    BlinkPriority = "Mage: Prioritize Blink before Slowfall (even when falling)"
-                },
-                Monk = {
-                    Roll = "Monk: Roll",
-                    ZenFlight = "Monk: Use Zen Flight while moving or falling"
-                },
-                Paladin = {
-                    DivineSteed = "Paladin: Divine Steed"
-                },
-                Priest = {
-                    Levitate = "Priest: Levitate"
-                },
-                Rogue = {
-                    Sprint = "Rogue: Sprint"
-                },
-                Shaman = {
-                    GhostWolf = "Shaman: Ghost Wolf"
-                }
-            },
-            Profiles = {
-                CreateNew = "Create new Profile:",
-                Current = "Current Profile:",
-                CopyFrom = "Copy settings from:",
-                Delete = "Delete profile:"
-            }
-        }
-    }
-end
+local L = LibStub("AceLocale-3.0"):NewLocale("BeStride", "frFR")
+if not L then return end
+
+
+-- L["GUI.Options.Open.GUI"] = ""
+-- L["GUI.BUTTON.SelectAll"] = ""
+-- L["GUI.BUTTON.ClearAll"] = ""
+-- L["GUI.BUTTON.Filter"] = ""
+-- L["GUI.BUTTON.Copy"] = ""
+-- L["GUI.BUTTON.Delete"] = ""
+-- L["GUI.TAB.Mounts"] = ""
+-- L["GUI.TAB.MountOptions"] = ""
+-- L["GUI.TAB.ClassOptions"] = ""
+-- L["GUI.TAB.Keybinds"] = ""
+-- L["GUI.TAB.Profiles"] = ""
+-- L["GUI.TAB.About"] = ""
+-- L["GUI.TAB.Mounts.Ground"] = ""
+-- L["GUI.TAB.Mounts.Flying"] = ""
+-- L["GUI.TAB.Mounts.Repair"] = ""
+-- L["GUI.TAB.Mounts.Swimming"] = ""
+-- L["GUI.TAB.Mounts.Passenger"] = ""
+-- L["GUI.TAB.Mounts.Special"] = ""
+-- L["GUI.About"] = ""
+-- L["Bindings.Header"] = ""
+-- L["Bindings.Regular"] = ""
+-- L["Bindings.Ground"] = ""
+-- L["Bindings.Repair"] = ""
+-- L["Bindings.Passenger"] = ""
+L["Zone.AzuremystIsle"] = "Île de Brume-azur"
+L["Zone.BloodmystIsle"] = "Île de Brume-sang"
+L["Zone.Deadmines"] = "Mortemines"
+-- L["Zone.AQ"] = ""
+-- L["Zone.Dalaran"] = ""
+L["Zone.Dalaran.SubZone.Underbelly"] = "Les Entrailles"
+-- L["Zone.Dalaran.SubZone.UnderbellyDescent"] = ""
+L["Zone.Dalaran.SubZone.CircleofWills"] = "Le cercle des Volontés"
+L["Zone.Dalaran.SubZone.BlackMarket"] = "Le marché Noir"
+L["Zone.Dalaran.SubZone.KrasusLanding"] = "Aire de Krasus"
+L["Zone.Icecrown"] = "La Couronne de glace"
+L["Zone.Oculus"] = "L'Oculus"
+L["Zone.StormPeaks"] = "Les pics Foudroyés"
+L["Zone.SholazarBasin"] = "Bassin de Sholazar"
+L["Zone.Wintergrasp"] = "Joug-d'hiver"
+-- L["Zone.Vashjir"] = ""
+-- L["Zone.Vashjir.SubZone.KelptharForest"] = ""
+-- L["Zone.Vashjir.SubZone.ShimmeringExpanse"] = ""
+-- L["Zone.Vashjir.SubZone.AbyssalDepths"] = ""
+-- L["Zone.Vashjir.SubZone.DamplightChamber"] = ""
+-- L["Zone.Vashjir.SubZone.Nespirah"] = ""
+-- L["Zone.Vashjir.SubZone.LGhorek"] = ""
+-- L["Zone.VortexPinnacle"] = ""
+-- L["Zone.Nagrand"] = ""
+-- L["Continent.Draenor"] = ""
+L["Skills.Riding"] = "Monte"
+-- L["Settings.EnableNew"] = ""
+-- L["Settings.EmptyRandom"] = ""
+-- L["Settings.RemountAfterDismount"] = ""
+-- L["Settings.NoDismountWhileFlying"] = ""
+-- L["Settings.UseFlyingMount"] = ""
+-- L["Settings.ForceFlyingMount"] = ""
+-- L["Settings.PrioritizePassenger"] = ""
+-- L["Settings.NoSwimming"] = ""
+-- L["Settings.FlyingBroom"] = ""
+-- L["Settings.Telaari"] = ""
+-- L["Settings.ForceRobot"] = ""
+-- L["Settings.Repair.Use"] = ""
+-- L["Settings.Repair.Force"] = ""
+-- L["Settings.Repair.Durability"] = ""
+-- L["Settings.Repair.GlobalDurability"] = ""
+-- L["Settings.Repair.InventoryDurability"] = ""
+-- L["Settings.Classes.DeathKnight"] = ""
+-- L["Settings.Classes.DemonHunter"] = ""
+-- L["Settings.Classes.Druid"] = ""
+-- L["Settings.Classes.Evoker"] = ""
+-- L["Settings.Classes.Hunter"] = ""
+-- L["Settings.Classes.Mage"] = ""
+-- L["Settings.Classes.Monk"] = ""
+-- L["Settings.Classes.Paladin"] = ""
+-- L["Settings.Classes.Priest"] = ""
+-- L["Settings.Classes.Rogue"] = ""
+-- L["Settings.Classes.Shaman"] = ""
+-- L["Settings.Classes.Warlock"] = ""
+-- L["Settings.Classes.Warrior"] = ""
+-- L["Settings.Classes.DeathKnight.WraithWalk"] = ""
+-- L["Settings.Classes.DemonHunter.FelRush"] = ""
+-- L["Settings.Classes.DemonHunter.Glide"] = ""
+-- L["Settings.Classes.Druid.FlightForm"] = ""
+-- L["Settings.Classes.Druid.TravelToTravel"] = ""
+-- L["Settings.Classes.Druid.FlightFormPriority"] = ""
+-- L["Settings.Classes.Druid.MountedToFlightForm"] = ""
+-- L["Settings.Classes.Hunter.AspectOfTheCheetah"] = ""
+-- L["Settings.Classes.Mage.SlowFall"] = ""
+-- L["Settings.Classes.Mage.Blink"] = ""
+-- L["Settings.Classes.Mage.BlinkPriority"] = ""
+-- L["Settings.Classes.Monk.Roll"] = ""
+-- L["Settings.Classes.Monk.ZenFlight"] = ""
+-- L["Settings.Classes.Paladin.DivineSteed"] = ""
+-- L["Settings.Classes.Priest.Levitate"] = ""
+-- L["Settings.Classes.Rogue.Sprint"] = ""
+-- L["Settings.Classes.Shaman.GhostWolf"] = ""
+-- L["Settings.Classes.Evoker.Hover"] = ""
+-- L["Settings.Profiles.CreateNew"] = ""
+-- L["Settings.Profiles.Current"] = ""
+-- L["Settings.Profiles.CopyFrom"] = ""
+-- L["Settings.Profiles.Delete"] = ""

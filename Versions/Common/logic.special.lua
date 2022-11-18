@@ -62,11 +62,25 @@ function BeStride:IsRepairable()
 		if ((globalDurability/count)*100) <= BeStride:DBGet("settings.mount.repair.globaldurability") then
 			return true
 		end
+
+		local bagSlots = 0
+		
 		
 		for i = 0, 4 do
-			for j = 0, GetContainerNumSlots(i) do
-				local current, maximum = GetContainerItemDurability(i, j)
-				if current ~= nil and maximum ~= nil then
+			if self.IsMainline() then
+				local bagSlots = C_Container.GetContainerNumSlots(i)
+			else
+				local bagSlots = GetContainerNumSlots(i)
+			end
+
+			for j = 0, bagSlots do
+				local current, maximum = 0, 0
+				if self.IsMainline() then
+					local current, maximum = C_Container.GetContainerItemDurability(i, j)
+				else
+					local current, maximum = GetContainerItemDurability(i, j)
+				end
+				if current ~= nil and maximum ~= nil and maximum ~= 0 then
 					if ((current / maximum)*100) <= BeStride:DBGet("settings.mount.repair.inventorydurability") then
 						return true
 					end
