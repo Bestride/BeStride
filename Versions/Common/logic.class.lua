@@ -88,6 +88,29 @@ function BeStride:IsShaman()
 	end
 end
 
+function BeStride:IsEvoker()
+	-- Check for Evoker
+	if playerTable["class"]["id"] == 13 then
+		return true
+	else
+		return false
+	end
+end
+
+function BeStride:IsEvokerAndSpecial()
+	if self:IsEvoker() then
+		if IsFlying() and self:NoDismountWhileFlying() then
+			return false
+		elseif self:EvokerHover() and self:MovementCheck() then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 function BeStride:IsDeathKnightAndSpecial()
 	if self:IsDeathKnight() then
 		if not IsFlying() and not IsFalling() and self:MovementCheck() and self:DeathKnightWraithWalk() then
@@ -438,6 +461,17 @@ function BeStride:ShamanCanGhostWolf()
 end
 
 -- ------------- --
+-- Evoker Spells --
+-- ------------- --
+function BeStride:EvokerCanHover()
+	if IsUsableSpell(394784) then
+		return true
+	else
+		return false
+	end
+end
+
+-- ------------- --
 -- Rogue Spells --
 -- ------------- --
 
@@ -711,6 +745,23 @@ function BeStride:ShamanGhostWolf()
 	-- Todo: Bitwise Compare
 	if self:IsShaman() then
 		if self:ShamanCanGhostWolf() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
+-- ------ --
+-- Evoker --
+-- ------ --
+
+function BeStride:EvokerHover()
+	-- Todo: Bitwise Compare
+	if self:IsEvoker() then
+		if self:EvokerCanHover() and BeStride:DBGet("settings.classes.evoker.hover") then
 			return true
 		else
 			return false

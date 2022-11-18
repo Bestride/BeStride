@@ -27,10 +27,10 @@
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
   <Script file="Common\options.lua"/>
-  <Script file="Wrath\bestride.lua"/>
-  <Script file="Wrath\logic.lua"/>
-  <Script file="Wrath\MountDB.lua"/>
-  <Script file="Wrath\MountTable.lua"/>
+  <Script file="Classic\bestride.lua"/>
+  <Script file="Classic\logic.lua"/>
+  <Script file="Classic\MountDB.lua"/>
+  <Script file="Classic\MountTable.lua"/>
   <Script file="Common\upgrade.lua"/>
   <Script file="Common\bestride.lua"/>
 </Ui>

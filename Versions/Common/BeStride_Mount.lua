@@ -294,6 +294,14 @@ function BeStride_Mount:ShamanGhostWolf()
 	return self:MountSpell("[@player] "..SpellToName(2645).."\n/cancelaura "..SpellToName(2645))
 end
 
+function BeStride_Mount:Evoker()
+	return self:EvokerHover()
+end
+
+function BeStride_Mount:EvokerHover()
+	return self:MountSpell("[@player] "..SpellToName(358267))
+end
+
 function BeStride_Mount:Rogue()
 	return self:RogueSprint()
 end
