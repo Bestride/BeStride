@@ -536,10 +536,8 @@ end
 
 function BeStride:IsDruidTraveling()
 	if self:IsDruid() then
-		local index = GetShapeshiftForm()
-		if BeStride_Game == "Mainline" and index == 3 then
-			return true
-		elseif index == 2 or index == 4 or index == 6 then -- Wrath traveling forms (ground, swimming, flying)
+		local index = GetShapeshiftFormID()
+		if index == 3 or index == 4 or index == 29 or index == 27 then
 			return true
 		else
 			return false
