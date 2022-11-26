@@ -231,7 +231,7 @@ function BeStride:Combat()
 	elseif self:IsDemonHunter() and self:DemonHunterFelRush() then
 		return BeStride_Mount:DemonHunterFelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
-		return BeStride_Mount:DruidTravel()
+		return BeStride_Mount:DruidTravelForm()
 	elseif self:IsHunterAndSpecial() then
 		return self:Hunter()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
