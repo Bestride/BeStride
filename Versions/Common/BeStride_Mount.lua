@@ -218,29 +218,24 @@ function BeStride_Mount:DemonHunterGlide()
 	return self:MountSpell(SpellToName(131347))
 end
 
-function BeStride_Mount:Druid()
-	local travelForm, flightForm = 783, 783 -- 3 in 1 travel form
-
-	if GetUnitSpeed("player") ~= 0 then
-		return self:MountSpell(SpellToName(783))
-	elseif BeStride:DruidFlyingMTFF() or IsFalling() or IsFlying() or GetShapeshiftForm() == 3 then
-		return self:MountSpell(SpellToName(783))
-	elseif IsFlying() then
-		return self:Flying(name)
-	else
-		return self:Regular(name)
-	end
+function BeStride_Mount:DruidCatForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.catform))
 end
 
-function BeStride_Mount:DruidFlying()
-	return self:Druid()
+function BeStride_Mount:DruidTravelForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.travelform))
 end
 
 function BeStride_Mount:DruidAquaticForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.aquaticform))
 end
 
-function BeStride_Mount:DruidTravel()
-	return self:MountSpell(SpellToName(783))
+function BeStride_Mount:DruidFlightForm()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.druid.flightform))
+end
+
+function BeStride_Mount:DruidNoForm()
+	return "/cancelform"
 end
 
 function BeStride_Mount:HunterAspectOfTheCheetah()

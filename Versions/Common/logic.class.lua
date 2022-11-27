@@ -280,7 +280,7 @@ end
 -- Check for Swim Form
 -- Returns: boolean
 function BeStride:DruidCanSwim()
-	if IsUsableSpell(783) then
+	if IsUsableSpell(BeStride_Constants.spells.druid.aquaticform) then
 		return true
 	else
 		return false
@@ -290,7 +290,7 @@ end
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride:DruidCanTravel()
-	if IsUsableSpell(783) then
+	if IsUsableSpell(BeStride_Constants.spells.druid.travelform) then
 		return true
 	else
 		return false
@@ -300,7 +300,7 @@ end
 -- Check for Travel Form
 -- Returns: boolean
 function BeStride:DruidCanCat()
-	if IsSpellKnown(768) and IsUsableSpell(768) then
+	if IsSpellKnown(BeStride_Constants.spells.druid.catform) and IsUsableSpell(BeStride_Constants.spells.druid.catform) then
 		return true
 	else
 		return false
@@ -310,7 +310,7 @@ end
 -- Check for Flight Form
 -- Returns: boolean
 function BeStride:DruidCanFly()
-	if IsUsableSpell(783) then
+	if IsPlayerSpell(BeStride_Constants.spells.druid.flightform) then
 		return true
 	else
 		return false
@@ -535,12 +535,16 @@ end
 -- ----- --
 
 function BeStride:IsDruidTraveling()
-  if self:IsDruid() then
-    local index = GetShapeshiftForm()
-    if index == 3 then
-      return true
-    end
-  end
+	if self:IsDruid() then
+		local index = GetShapeshiftFormID()
+		if index == 3 or index == 4 or index == 29 or index == 27 then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
 end
 
 function BeStride:DruidFlying()

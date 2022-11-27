@@ -4821,7 +4821,7 @@ BeStride_MountDB={
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=false
+			swimming=true
 		}
 	},
     [64927]= {
