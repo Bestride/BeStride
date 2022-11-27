@@ -1869,7 +1869,7 @@ BeStride_MountDB={
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=true
+			swimming=false
 		}
 	},
     [26054]= {
@@ -1887,7 +1887,7 @@ BeStride_MountDB={
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=true
+			swimming=false
 		}
 	},
     [26055]= {
@@ -1905,7 +1905,7 @@ BeStride_MountDB={
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=true
+			swimming=false
 		}
 	},
     [26056]= {
@@ -1923,7 +1923,7 @@ BeStride_MountDB={
 			flying=false,
 			passenger=false,
 			vendor=false,
-			swimming=true
+			swimming=false
 		}
 	},
     [26656]= {
@@ -1941,7 +1941,7 @@ BeStride_MountDB={
 			flying=true,
 			passenger=false,
 			vendor=false,
-			swimming=true
+			swimming=false
 		}
 	},
     [28025]= {

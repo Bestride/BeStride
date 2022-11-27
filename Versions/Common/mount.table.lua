@@ -24,23 +24,32 @@ end
 
 function BeStride:AddCommonMount(mountId)
 	local mount = mountTable["master"][mountId]
-	if BeStride_MountDB and BeStride_MountDB[mount.spellID] and BeStride_MountDB[mount.spellID].attributes.flying and BeStride_MountDB[mount.spellID].attributes.ground then
-		table.insert(mountTable["flying"],mountId)
-		table.insert(mountTable["ground"],mountId)
-	elseif mount["type"] == "ground" then
-		--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-		table.insert(mountTable["ground"],mountId)
-	elseif mount["type"] == "flying" then
-		--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-		table.insert(mountTable["flying"],mountId)
-	elseif mount["type"] == "swimming" then
-		--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-		table.insert(mountTable["swimming"],mountId)
-	elseif mount["type"] == "zone" then
-		if mountId == 373 then
+	if BeStride_MountDB and BeStride_MountDB[mount.spellID] then
+		if BeStride_MountDB[mount.spellID].attributes.flying then
+			table.insert(mountTable["flying"],mountId)
+		end
+		if BeStride_MountDB[mount.spellID].attributes.ground then
+			table.insert(mountTable["ground"],mountId)
+		end
+		if BeStride_MountDB[mount.spellID].attributes.swimming then
 			table.insert(mountTable["swimming"],mountId)
 		end
-		table.insert(mountTable["zone"],mountId)
+	else
+		if mount["type"] == "ground" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["ground"],mountId)
+		elseif mount["type"] == "flying" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["flying"],mountId)
+		elseif mount["type"] == "swimming" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["swimming"],mountId)
+		elseif mount["type"] == "zone" then
+			if mountId == 373 then
+				table.insert(mountTable["swimming"],mountId)
+			end
+			table.insert(mountTable["zone"],mountId)
+		end
 	end
 end
 
