@@ -344,6 +344,9 @@ BeStride_Constants = {
 			[269] = "ground",
 			[270] = "flying",
 			[284] = "chauffeured",
+			[398] = "flying",
+			[407] = "flying",
+			[408] = "ground"
 		},
 	}
 }
