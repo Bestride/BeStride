@@ -154,6 +154,19 @@ BeStride_Constants = {
 					[1] = "",
 				},
 			},
+			[376777] = {
+				name = "Dragonriding",
+				unlocks = "dragonriding",
+			},
+		},
+		Dragonriding = {
+			Restricted = {
+				Continents = {
+					[1978] = {
+						requires = 376777,
+					},
+				},
+			},
 		},
 		Flight = {
 			Restricted = {
@@ -345,6 +358,7 @@ BeStride_Constants = {
 			[270] = "flying",
 			[284] = "chauffeured",
 			[398] = "flying",
+			[402] = "dragonriding",
 			[407] = "flying",
 			[408] = "ground"
 		},
