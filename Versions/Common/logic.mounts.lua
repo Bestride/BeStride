@@ -56,6 +56,7 @@ end
 
 function BeStride:CanUseTargetsMount()
 	if (not self:DBGet("settings.mount.copytargetmount") or not BeStride:IsMainline()) then return false end
+	if (self:MovementCheck() or not UnitExists("target")) then return false end
 
 	local mountId = nil
 	AuraUtil.ForEachAura("target", "HELPFUL", 40, function(...)
