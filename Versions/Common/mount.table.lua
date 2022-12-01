@@ -6,6 +6,7 @@ end
 function BeStride:LoadMountTables()
 	mountTable["ground"] = {}
 	mountTable["flying"] = {}
+	mountTable["dragonriding"] = {}
 	mountTable["swimming"] = {}
 	mountTable["passenger"] = {}
 	mountTable["repair"] = {}
@@ -44,8 +45,11 @@ function BeStride:AddCommonMount(mountId)
 		elseif mount.type and mount["type"] == "swimming" then
 			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["swimming"],mountId)
+		elseif mount["type"] == "dragonriding" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["dragonriding"],mountId)
 		elseif mount.type and mount["type"] == "zone" then
-			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			if mountId == 373 then
 				table.insert(mountTable["swimming"],mountId)
 			end

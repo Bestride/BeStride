@@ -14,6 +14,30 @@ function BeStride:IsMountable()
 	end
 end
 
+function BeStride:IsDragonRidingZone()
+	if IsOutdoors() then		
+		if countTable(BeStride_Constants.Riding.Dragonriding.Restricted.Continents) > 0 then
+			local skill,spells = self:GetRidingSkill()
+			local mapID = C_Map.GetBestMapForUnit("player")
+			local continent = BeStride:GetMapUntil(mapID,2)			
+
+			if continent ~= nil then
+				for key,value in pairsByKeys(BeStride_Constants.Riding.Dragonriding.Restricted.Continents) do
+					if continent.mapID == key and value.blocked == true then
+						return false
+					elseif continent.mapID == key and value.requires ~= nil and spells[value.requires] == true then
+						return true
+					elseif continent.mapID == key and value.requires ~= nil then
+						return false
+					end
+				end
+			end
+		end
+	end
+
+	return false
+end
+
 function BeStride:IsFlyable()
 	if IsOutdoors() then
 		local skill,spells = self:GetRidingSkill()
