@@ -107,56 +107,63 @@ function BeStride:SetKeyBindingsOverrides(button)
 end
 
 function BeStride:ChatCommand(input)
-	if input == "help" then
+	local command,args = strsplit(" ", input, 2)
+	if command == "help" then
 		print("/br - Open Main Configuration Dialog")
 		print("/br about - Open about Dialog")
 		print("/br help - This help")
 		print("/br reload - Rebuild the mount table")
 		print("/br map - Print the current map layers")
-	elseif input == "locale" then
+	elseif command == "locale" then
 		local L = LibStub("AceLocale-3.0"):GetLocale("BeStride")
 		print(L["Open.GUI"])
-	elseif input == "speed" then
+	elseif command == "speed" then
 		print(BeStride:SpeedCheck())
-	elseif input == "mountdb" then
+	elseif command == "mountdb" then
 		self:ListMountDB()
-	elseif input == "mountsTable" then
+	elseif command == "mountsTable" then
 		self:ListGameMounts()
-	elseif input == "reload" then
+	elseif command == "reload" then
 		BeStride:buildMountTables()
-	elseif input == "map" then
+	elseif command == "map" then
 		local locID = C_Map.GetBestMapForUnit("player")
 		print("mapID:name:mapType:parentMapID")
 		local map = self:GetMapUntil(locID,0,true)
 		print("Final: ")
 		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
-	elseif input == "maplast" then
+	elseif command == "maplast" then
 		local locID = C_Map.GetBestMapForUnit("player")
 		print("mapID:name:mapType:parentMapID")
 		local map = self:GetMapUntilLast(locID,0,true)
 		print("Final: ")
 		print(map.mapID .. ":" .. map.name .. ":" .. map.mapType .. ":" .. map.parentMapID)
-	elseif input == "underwater" then
+	elseif command == "underwater" then
 		BeStride:IsUnderwater()
-	elseif input == "mounts" then
+	elseif command == "mountID" then
+		mount = BeStride:GetMountInfoByMountID(args)
+		print(mount.creatureName)
+	elseif command == "spellID" then
+		mount = BeStride:GetMountInfoBySpellID(args)
+		print(mount.creatureName)
+	elseif command == "mounts" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Mounts")
-	elseif input == "options" then
+	elseif command == "options" then
 		if self.IsMainline() then
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
 		else
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
 		end
-	elseif input == "profiles" then
+	elseif command == "profiles" then
 		if self.IsMainline() then
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
 		else
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
 		end
-	elseif input == "debug" or input == "bug" then
+	elseif command == "debug" or input == "bug" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
-	elseif input == "about" then
+	elseif command == "about" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride")
 	else
 		print("/br - Open Main Configuration Dialog and print help")
