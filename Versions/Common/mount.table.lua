@@ -37,13 +37,13 @@ function BeStride:AddCommonMount(mountId)
 		end
 	else
 		if mount.type and mount["type"] == "ground" then
-			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["ground"],mountId)
 		elseif mount.type and mount["type"] == "flying" then
-			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["flying"],mountId)
 		elseif mount.type and mount["type"] == "swimming" then
-			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["swimming"],mountId)
 		elseif mount["type"] == "dragonriding" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
