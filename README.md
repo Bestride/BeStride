@@ -24,7 +24,7 @@ BeStride is a mount manager that has the following functionality
 * Randomly select mount, based on a customizable list
 * Intelligently select between ground, flying, swimming, repair or passenger
 * Intelligently select class specific spells & mounts depending on the situation (druid cat form in combat, priest levitate, paladin divine steed, warlock underwater breating, etc)
-* [OPie](https://www.curseforge.com/wow/addons/opie) Integration
+* [OPie](https://www.townlong-yak.com/addons/opie) Integration
 
 History
 =================
