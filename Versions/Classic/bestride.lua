@@ -22,3 +22,15 @@ end
 function BeStride:IsMainline()
     return false
 end
+
+function BeStride:GetMountInfoBySpellID()
+    return nil
+end
+
+function BeStride:GetMountInfoByMountID()
+    return nil
+end
+
+function BeStride:GetMountInfoByIndex()
+    return nil
+end

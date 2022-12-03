@@ -36,23 +36,26 @@ function BeStride:AddCommonMount(mountId)
 			table.insert(mountTable["swimming"],mountId)
 		end
 	else
-		if mount["type"] == "ground" then
+		if mount.type and mount["type"] == "ground" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["ground"],mountId)
-		elseif mount["type"] == "flying" then
+		elseif mount.type and mount["type"] == "flying" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["flying"],mountId)
-		elseif mount["type"] == "swimming" then
+		elseif mount.type and mount["type"] == "swimming" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["swimming"],mountId)
 		elseif mount["type"] == "dragonriding" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["dragonriding"],mountId)
-		elseif mount["type"] == "zone" then
+		elseif mount.type and mount["type"] == "zone" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			if mountId == 373 then
 				table.insert(mountTable["swimming"],mountId)
 			end
 			table.insert(mountTable["zone"],mountId)
+		else
+			print("Not Adding Mount")
 		end
 	end
 end
