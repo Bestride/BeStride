@@ -31,4 +31,5 @@
   <Script file="Mainline\logic.lua"/>
   <Script file="Common\upgrade.lua"/>
   <Script file="Common\bestride.lua"/>
+  <Script file="Common\opie.lua"/>
 </Ui>
