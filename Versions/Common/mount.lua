@@ -269,15 +269,6 @@ function BeStride:DismountAndExit()
 end
 
 function BeStride:UseTargetsMount()
-	local mountSpellId = nil
-	AuraUtil.ForEachAura("target", "HELPFUL", 40, function(...)
-		local spellId = select(10, ...)
-		local spellIsMount = C_MountJournal.GetMountFromSpell(spellId)
-		if (spellIsMount) then
-			mountSpellId = spellId
-			return true -- non-nil return exits ForEachAura
-		end
-	end)
-
-	return BeStride_Mount:MountSpell(GetSpellInfo(mountSpellId))
+	local spellId = self:GetKnownMountFromTarget()
+	return BeStride_Mount:MountSpell(GetSpellInfo(spellId))
 end

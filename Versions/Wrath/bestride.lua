@@ -51,3 +51,19 @@ function BeStride:GetMountInfoByIndex(index)
         isForDragonriding = nil
     }
 end
+
+function BeStride:GetKnownMountFromTarget()
+	local mountIdBySpellId = {}
+	for i=1,GetNumCompanions("MOUNT"),1 do
+		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
+		mountIdBySpellId[spellID] = mountID
+	end
+	-- look for unit aura that matches known AND usable mount ID
+	local mountId = nil
+	for i=1,40,1 do
+		local spellId = select(10,UnitBuff("target",i))
+		if mountIdBySpellId[spellId] ~= nil then
+            return spellId, mountIdBySpellId[spellId], true
+		end
+	end
+end

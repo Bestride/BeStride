@@ -34,3 +34,7 @@ end
 function BeStride:GetMountInfoByIndex()
     return nil
 end
+
+function BeStride:GetKnownMountFromTarget()
+    return nil
+end

@@ -55,21 +55,9 @@ function BeStride:CheckLoanedMount()
 end
 
 function BeStride:CanUseTargetsMount()
-	if (not self:DBGet("settings.mount.copytargetmount") or not BeStride:IsMainline()) then return false end
+	if (not self:DBGet("settings.mount.copytargetmount")) then return false end
 	if (self:MovementCheck() or not UnitExists("target")) then return false end
 
-	local mountId = nil
-	AuraUtil.ForEachAura("target", "HELPFUL", 40, function(...)
-		local spellId = select(10, ...)
-		local spellIsMount = C_MountJournal.GetMountFromSpell(spellId)
-		if (spellIsMount) then
-			mountId = spellIsMount
-			return true -- exits ForEachAura
-		end
-	end)
-
-	if (not mountId) then return false end
-
-	local spellID, mountID, isUsable = self:isMountUsable(mountId)
+	local spellId, mountId, isUsable = self:GetKnownMountFromTarget()
 	return isUsable
 end

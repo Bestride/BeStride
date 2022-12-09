@@ -39,3 +39,13 @@ end
 function BeStride:GetMountInfoByIndex(index)
     return nil
 end
+
+function BeStride:GetKnownMountFromTarget()
+    for i=1,40,1 do
+        local spellId = select(10, UnitBuff("target", i))
+        local mountId = C_MountJournal.GetMountFromSpell(spellId)
+        if mountId ~= nil then
+            return self:isMountUsable(mountId)
+        end
+    end
+end
