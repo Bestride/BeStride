@@ -61,6 +61,7 @@ function BeStride:GetKnownMountFromTarget()
 	-- look for unit aura that matches known AND usable mount ID
 	for i=1,40,1 do
 		local spellId = select(10,UnitBuff("target",i))
+        if not spellId then return end
 		if mountIdBySpellId[spellId] ~= nil then
             return spellId, mountIdBySpellId[spellId], true
 		end
