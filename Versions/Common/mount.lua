@@ -1,8 +1,8 @@
 function BeStride:Regular()
-	-- Aspect of the Cheetah is available from level 5
 	if self:CanUseTargetsMount() then
 		self:DismountAndExit()
 		return self:UseTargetsMount()
+	-- Aspect of the Cheetah is available from level 5
 	elseif self:IsHunterAndSpecial() then
 		return self:Hunter()
 	-- Check if we are mounted
