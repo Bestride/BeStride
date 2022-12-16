@@ -21,12 +21,7 @@ function BeStride:GetMapUntil(locID,filter,printOut)
 	if map.mapType == filter then
 		return map
 	elseif map.mapType > filter and map.parentMapID ~= nil and map.parentMapID ~= 0 then
-		local parentMap = self:GetMapUntil(map.parentMapID,filter,printOut)
-		if parentMap ~= nil then
-			return parentMap
-		else
-			return map
-		end
+		return self:GetMapUntil(map.parentMapID,filter,printOut) or map
 	else
 		return nil
 	end
