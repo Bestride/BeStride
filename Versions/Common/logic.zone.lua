@@ -16,6 +16,16 @@ end
 
 function BeStride:IsDragonRidingZone()
 	if IsOutdoors() then		
+		if IsInInstance() then
+			local instanceID = select(8,GetInstanceInfo())
+			local instancesWithDragonRiding = {
+				[2516]=true, --The Nokhud Offensive
+			}
+			if not instancesWithDragonRiding[instanceID] then 
+				return false
+			end
+		end
+
 		if countTable(BeStride_Constants.Riding.Dragonriding.Restricted.Continents) > 0 then
 			local skill,spells = self:GetRidingSkill()
 			local mapID = C_Map.GetBestMapForUnit("player")
