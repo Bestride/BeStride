@@ -39,6 +39,10 @@ function BeStride:OnInitialize()
 	playerTable["faction"]["name"] = factionName
 	playerTable["faction"]["id"] = factionId
 	playerTable["faction"]["localization"] = factionLocalized
+
+	if BeStride.OverrideConstants ~= nil then
+		BeStride:OverrideConstants()
+	end
 end
 
 function BeStride:OnEnable()

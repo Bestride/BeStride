@@ -51,3 +51,7 @@ function BeStride:GetMountInfoByIndex(index)
         isForDragonriding = nil
     }
 end
+
+function BeStride:OverrideConstants()
+    BeStride_Constants.Riding.Flight.Restricted.Continents[113].requires = 54197
+end

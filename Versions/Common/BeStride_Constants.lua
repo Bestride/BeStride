@@ -173,9 +173,6 @@ BeStride_Constants = {
 				Worlds = {
 				},
 				Continents = {
-					[113] = {
-						requires = 54197,
-					},
 					[905] = {
 						blocked = true,
 					},

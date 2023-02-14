@@ -109,11 +109,13 @@ end
 function BeStride:IsSpecialZone()
 	local mapID = C_Map.GetBestMapForUnit("player")
 	local micro = BeStride:GetMapUntil(mapID,5)
-	local dungeon = BeStride:GetMapUntil(mapID,4)
-	local zone = BeStride:GetMapUntil(mapID,3)
 	local continent = BeStride:GetMapUntil(mapID,2)
+
+	if continent == nil or micro == nil then
+		return false
+	end
 	
-	if continent ~= nil and continent.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Continent.Draenor"] and micro.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Zone.Nagrand"] and self:DBGet("settings.mount.telaari") == true then
+	if continent.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Continent.Draenor"] and micro.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Zone.Nagrand"] and self:DBGet("settings.mount.telaari") == true then
 		local garrisonAbilityName = GetSpellInfo(161691)
 		local _,_,_,_,_,_,spellID = GetSpellInfo(garrisonAbilityName)
 		if(spellID == 165803 or spellID == 164222) then
