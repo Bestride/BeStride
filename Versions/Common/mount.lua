@@ -1,6 +1,9 @@
 function BeStride:Regular()
+	if self:CanUseTargetsMount() then
+		self:DismountAndExit()
+		return self:UseTargetsMount()
 	-- Aspect of the Cheetah is available from level 5
-	if self:IsHunterAndSpecial() then
+	elseif self:IsHunterAndSpecial() then
 		return self:Hunter()
 	-- Check if we are mounted
 	elseif IsMounted() and self:NeedsChauffeur() then
@@ -263,4 +266,9 @@ function BeStride:DismountAndExit()
 	elseif IsMounted() then
 		Dismount()
 	end
+end
+
+function BeStride:UseTargetsMount()
+	local spellId = self:GetKnownMountFromTarget()
+	return BeStride_Mount:MountSpell(GetSpellInfo(spellId))
 end

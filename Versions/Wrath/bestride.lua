@@ -55,3 +55,19 @@ end
 function BeStride:OverrideConstants()
     BeStride_Constants.Riding.Flight.Restricted.Continents[113].requires = 54197
 end
+
+function BeStride:GetKnownMountFromTarget()
+	local mountIdBySpellId = {}
+	for i=1,GetNumCompanions("MOUNT"),1 do
+		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
+		mountIdBySpellId[spellID] = mountID
+	end
+	-- look for unit aura that matches known AND usable mount ID
+	for i=1,40,1 do
+		local spellId = select(10,UnitBuff("target",i))
+        if not spellId then return end
+		if mountIdBySpellId[spellId] ~= nil then
+            return spellId, mountIdBySpellId[spellId], true
+		end
+	end
+end
