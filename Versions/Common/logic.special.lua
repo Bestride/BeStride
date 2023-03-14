@@ -37,7 +37,7 @@ function BeStride:NeedToRepair()
 end
 
 function BeStride:IsRepairable()
-	if not self:IsMountable() or IsFlying() or not IsOutdoors() then
+	if not BeStride:DBGetSetting('mount.repair.use') or not self:IsMountable() or IsFlying() or not IsOutdoors() then
 		return false
 	end
 	mounts = BeStride:DBGet("mounts.repair")
