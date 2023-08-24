@@ -215,6 +215,9 @@ BeStride_Constants = {
 						blocked = true,
 						except = LibStub("AceLocale-3.0"):GetLocale("BeStride")["Zone.Dalaran.SubZone.KrasusLanding"]
 					}
+					[127] = {
+						blocked = true,
+					},
 				},
 			},
 		},
