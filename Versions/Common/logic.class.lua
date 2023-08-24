@@ -97,6 +97,15 @@ function BeStride:IsEvoker()
 	end
 end
 
+function BeStride:IsWarlock()
+    -- Check for Warlock
+    if playerTable["class"]["id"] == 9 then
+        return true
+    else
+        return false
+    end
+end
+
 function BeStride:IsEvokerAndSpecial()
 	if self:IsEvoker() then
 		if IsFlying() and self:NoDismountWhileFlying() then
@@ -268,7 +277,17 @@ function BeStride:IsShamanAndSpecial()
 	end
 end
 
-
+function BeStride:IsWarlockAndSpecial()
+      if self:IsWarlock() then
+              if self:WarlockBurningRush() and self:MovementCheck() then
+                      return true
+              else
+                      return false
+              end
+      else
+              return false
+      end
+end
 
 -- +--------------------------+ --
 -- Class Specific Spells Checks --
@@ -481,6 +500,18 @@ function BeStride:RogueCanSprint()
 	else
 		return false
 	end
+end
+
+-- -------------- --
+-- Warlock Spells --
+-- -------------- --
+
+function BeStride:WarlockCanBurningRush()
+    if IsUsableSpell(111400) then
+            return true
+    else
+            return false
+    end
 end
 
 -- +-------------------------+ --
@@ -752,6 +783,24 @@ function BeStride:ShamanGhostWolf()
 	else
 		return false
 	end
+end
+
+
+-- ------- --
+-- Warlock --
+-- ------- --
+
+function BeStride:WarlockBurningRush()
+     -- Todo: Bitwise Compare
+     if self:IsWarlock() then
+            if self:WarlockCanBruningRush() and BeStride:DBGet("settings.classes.warlock.rush") then
+                    return true
+            else
+                    return false
+            end
+    else
+            return false
+    end
 end
 
 -- ------ --

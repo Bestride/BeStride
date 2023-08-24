@@ -131,3 +131,10 @@ function BeStride:Rogue()
 		BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: RGBSL")
 	end
 end
+
+function BeStride:Warlock()
+    if not IsFlying() and self:MovementCheck() and self:WarlockBurningRush() then
+            return BeStride_Mount:Warlock()
+    end
+    BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: PABSL")
+end
