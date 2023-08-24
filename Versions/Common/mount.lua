@@ -229,35 +229,42 @@ function BeStride:PassengerMountButton(type)
 end
 
 function BeStride:Combat()
+	if IsMounted() then
+		action = BeStride_Mount:Dismount() .. "\n"
+	else
+		action = ""
+	end
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") and BeStride:CanWraithWalk() then
-		return BeStride_Mount:DeathKnightWraithWalk()
+		action = action .. BeStride_Mount:DeathKnightWraithWalk()
 	elseif self:IsDemonHunter() and self:DemonHunterFelRush() then
-		return BeStride_Mount:DemonHunterFelRush()
+		action = action .. BeStride_Mount:DemonHunterFelRush()
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
-		return BeStride_Mount:DruidTravelForm()
+		action = action .. BeStride_Mount:DruidTravelForm()
 	elseif self:IsHunterAndSpecial() then
-		return self:Hunter()
+		action = action .. self:Hunter()
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
 		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
-			return BeStride_Mount:MageBlink()
+			action = action .. BeStride_Mount:MageBlink()
 		else
-			return BeStride_Mount:MageSlowFall()
+			action = action .. BeStride_Mount:MageSlowFall()
 		end
 	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
-		return BeStride_Mount:MonkRoll()
+		action = action .. BeStride_Mount:MonkRoll()
 	elseif self:IsPaladin() and BeStride:DBGet("settings.classes.paladin.steed") then
-		return BeStride_Mount:PaladinDivineSteed()
+		action = action .. BeStride_Mount:PaladinDivineSteed()
 	elseif self:IsPriest() and BeStride:DBGet("settings.classes.priest.levitate") then
-		return BeStride_Mount:PriestLevitate()
+		action = action .. BeStride_Mount:PriestLevitate()
 	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
-		return BeStride_Mount:RogueSprint()
+		action = action .. BeStride_Mount:RogueSprint()
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
-		return BeStride_Mount:ShamanGhostWolf()	
+		action = action .. BeStride_Mount:ShamanGhostWolf()	
 	elseif self:IsEvoker() and BeStride:DBGet("settings.classes.evoker.hover") then
-			return BeStride_Mount:EvokerHover()
+		action = action .. BeStride_Mount:EvokerHover()
 	elseif self:IsSpecialZone() then
-		return BeStride_Mount:SpecialZone()
+		action = action .. BeStride_Mount:SpecialZone()
 	end
+
+	return action
 end
 
 function BeStride:DismountAndExit()
