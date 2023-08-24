@@ -1,8 +1,7 @@
 function BeStride:BuildMasterMountTable()
     local num = GetNumCompanions("MOUNT")
-	--print("Start mount table")
 	for i=1, GetNumCompanions("MOUNT") do
-		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
+		local mountID,name,spellID,icon,isSummoned, mountTypeID = GetCompanionInfo("MOUNT", i)
 		if mountTable["master"][spellID] == nil then
 			BeStride:AddNewMount(i)
 		end
