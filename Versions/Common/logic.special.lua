@@ -20,11 +20,11 @@ end
 function BeStride:NeedToRepair()
 	-- Check whether we need to repair
 	-- Returns: boolean
-	if BeStride:ForceRepair() then
+	if BeStride:IsForceRepair() then
 		return true
 	end
 	
-	if size(BeStride.db.profile.misc.RepairMounts) > 0 and BeStride:UseRepair() then
+	if BeStride.db.profile.misc ~= nil and BeStride.db.profile.misc.RepairMounts ~= nil and size(BeStride.db.profile.misc.RepairMounts) > 0 and BeStride:UseRepair() then
 		for i = 0, 17 do
 			local current, maximum = GetInventoryItemDurability(i)
 			if current ~= nil and maximum ~= nil and ( (current/maximum) <= BeStride:GetRepairThreshold() ) then
@@ -95,6 +95,10 @@ end
 function BeStride:IsForceRepair()
 	-- Check whether we force a repair mount
 	-- Returns: boolean
+	if BeStride.db.profile.settings["repair"] == nil or BeStride.db.profile.settings["repair"]["force"] == nil then
+		return false
+	end
+
 	if BeStride.db.profile.settings["repair"]["force"] then
 		return true
 	else
