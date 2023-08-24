@@ -1,6 +1,10 @@
 function BeStride:buildMountTables()
+	--print("Start Build")
+	--print("Start Master")
 	BeStride:BuildMasterMountTable()
+	--print("End Master")
 	BeStride:LoadMountTables()
+	--print("End Build")
 end
 
 function BeStride:LoadMountTables()
@@ -36,16 +40,20 @@ function BeStride:AddCommonMount(mountId)
 			table.insert(mountTable["swimming"],mountId)
 		end
 	else
-		if mount.type and mount["type"] == "ground" then
+		
+		if mount.type and mount.type == "chauffeured" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["ground"],mountId)
-		elseif mount.type and mount["type"] == "flying" then
+		elseif mount.type and mount.type == "ground" then
+			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["ground"],mountId)
+		elseif mount.type and mount.type == "flying" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["flying"],mountId)
-		elseif mount.type and mount["type"] == "swimming" then
+		elseif mount.type and mount.type == "swimming" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["swimming"],mountId)
-		elseif mount["type"] == "dragonriding" then
+		elseif mount.type and mount.type == "dragonriding" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["dragonriding"],mountId)
 		elseif mount.type and mount["type"] == "zone" then
@@ -55,7 +63,8 @@ function BeStride:AddCommonMount(mountId)
 			end
 			table.insert(mountTable["zone"],mountId)
 		else
-			print("Not Adding Mount")
+			--local mountID,name,spellID,icon,isSummoned,mountTypeID = GetCompanionInfo("MOUNT", mountId)
+			print("Not Adding Mount" .. mount["name"] .. " Id: " .. mountId .. " SpellId: " .. mount.spellID)
 		end
 	end
 end

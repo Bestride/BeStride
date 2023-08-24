@@ -15,7 +15,11 @@ function BeStride:AddNewMount(mountId)
 	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(mountId)
 	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 
-	--print("" .. name .. ":" .. mountID .. ":" .. spellID .. "" .. mountTypeID)
+	if BeStride_Constants.Mount.Types[mountTypeID] == nil then
+		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
+	--elseif mountId == 678 then
+	--		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
+	end
 			
 	if isFactionSpecific then
 		faction = faction

@@ -113,6 +113,7 @@ end
 function BeStride:ChatCommand(input)
 	local command,args = strsplit(" ", input, 2)
 	if command == "help" then
+		print("Bestride Command options")
 		print("/br - Open Main Configuration Dialog")
 		print("/br about - Open about Dialog")
 		print("/br help - This help")
@@ -128,6 +129,7 @@ function BeStride:ChatCommand(input)
 	elseif command == "mountsTable" then
 		self:ListGameMounts()
 	elseif command == "reload" then
+		mountTable.master = {}
 		BeStride:buildMountTables()
 	elseif command == "map" then
 		local locID = C_Map.GetBestMapForUnit("player")
