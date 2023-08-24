@@ -235,33 +235,72 @@ function BeStride:Combat()
 		action = ""
 	end
 	if self:IsDeathKnight() and BeStride:DBGet("settings.classes.deathknight.wraithwalk") and BeStride:CanWraithWalk() then
-		action = action .. BeStride_Mount:DeathKnightWraithWalk()
+		special = BeStride_Mount:DeathKnightWraithWalk()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsDemonHunter() and self:DemonHunterFelRush() then
-		action = action .. BeStride_Mount:DemonHunterFelRush()
+		special = BeStride_Mount:DemonHunterFelRush()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsDruid() and BeStride:DBGet("settings.classes.druid.traveltotravel") then
-		action = action .. BeStride_Mount:DruidTravelForm()
+		special = BeStride_Mount:DruidTravelForm()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsHunterAndSpecial() then
 		action = action .. self:Hunter()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
 		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
-			action = action .. BeStride_Mount:MageBlink()
+			special = BeStride_Mount:MageBlink()
+			if special ~= nil then
+				action = action .. special
+			end
 		else
-			action = action .. BeStride_Mount:MageSlowFall()
+			special = BeStride_Mount:MageSlowFall()
+			if special ~= nil then
+				action = action .. special
+			end
 		end
 	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
-		action = action .. BeStride_Mount:MonkRoll()
+		special = BeStride_Mount:MonkRoll()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsPaladin() and BeStride:DBGet("settings.classes.paladin.steed") then
-		action = action .. BeStride_Mount:PaladinDivineSteed()
+		special = BeStride_Mount:PaladinDivineSteed()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsPriest() and BeStride:DBGet("settings.classes.priest.levitate") then
-		action = action .. BeStride_Mount:PriestLevitate()
+		special = BeStride_Mount:PriestLevitate()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsRogue() and BeStride:DBGet("settings.classes.rogue.sprint") then
-		action = action .. BeStride_Mount:RogueSprint()
+		special = BeStride_Mount:RogueSprint()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsShaman() and BeStride:DBGet("settings.classes.shaman.ghostwolf") then
-		action = action .. BeStride_Mount:ShamanGhostWolf()	
+		special = BeStride_Mount:ShamanGhostWolf()	
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsEvoker() and BeStride:DBGet("settings.classes.evoker.hover") then
-		action = action .. BeStride_Mount:EvokerHover()
+		special = BeStride_Mount:EvokerHover()
+		if special ~= nil then
+			action = action .. special
+		end
 	elseif self:IsSpecialZone() then
-		action = action .. BeStride_Mount:SpecialZone()
+		special = BeStride_Mount:SpecialZone()
+		if special ~= nil then
+			action = action .. special
+		end
 	end
 
 	return action
