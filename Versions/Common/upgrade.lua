@@ -76,6 +76,8 @@ function BeStride:Upgrade()
 				self.db.profile.settings.classes.mage.blink = value
 			elseif key == "EVOKER" then
 				self.db.profile.settings.classes.evoker.hover = value
+			elseif key == "Warlock" then
+				self.db.profile.settings.classes.warlock.rush = value
 			end
 		end)
 		

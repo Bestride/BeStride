@@ -321,3 +321,16 @@ end
 function BeStride_Mount:RogueSprint()
 	return self:MountSpell("[@player] "..SpellToName(2983))
 end
+
+function BeStride_Mount:Warlock()
+      return self:WarlockBurningRush()
+end
+
+function BeStride_Mount:WarlockBurningRush()
+    spell = SpellToName(111400)
+    if spell then
+        return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
+    else
+        return nil
+    end
+end

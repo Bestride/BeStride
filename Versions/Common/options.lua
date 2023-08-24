@@ -416,6 +416,21 @@ local optionsTable_Options = {
                         },
                     },
                 },
+                warlock = {
+                    type="group",
+                    name=L["Classes.Warlock"],
+                    disabled = function (info) return BeStride:IsWrath() and not BeStride:IsMainline() end,
+                    args = {
+                        ["classes.warlock.rush"]={
+                            type="toggle",
+                            name=L["Settings.Classes.Warlock.BurningRush"],
+                            order=1,
+                            width="full",
+                            get=function (info) return BeStride:DBGetSetting(info[#info]) end,
+                            set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                        },
+                    },
+                },
             },
         },
     }
