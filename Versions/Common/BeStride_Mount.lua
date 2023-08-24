@@ -8,6 +8,10 @@ function BeStride_Mount:Mount(spell)
 	return "/use " .. spell
 end
 
+function BeStride_Mount:Dismount()
+	return "/dismount"
+end
+
 function BeStride_Mount:CountRepairMounts()
 end
 
@@ -291,7 +295,7 @@ end
 
 function BeStride_Mount:PaladinDivineSteed()
 	spell = SpellToName(190784)
-	if spell then
+	if spell ~= nil and spell then
 		return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
 	else
 		return nil
