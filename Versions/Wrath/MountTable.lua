@@ -1,49 +1,55 @@
 function BeStride:BuildMasterMountTable()
-    local num = GetNumCompanions("MOUNT")
-	--print("Start mount table")
-	for i=1, GetNumCompanions("MOUNT") do
-		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
-		if mountTable["master"][spellID] == nil then
-			BeStride:AddNewMount(i)
+	for key,value in pairs(C_MountJournal.GetMountIDs()) do
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(value)
+		
+		--print("" .. name .. ":" .. mountID .. ":" .. spellID )
+		if isCollected then
+			BeStride:AddNewMount(value)
 		end
 	end
-	--print("End mount table")
 end
 
 
+
 function BeStride:AddNewMount(mountId)
-    local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", mountId)
-	if not BeStride_MountDB[spellID] then	
-		print("Mount not in DB:")
-		print("\tMount Number:" .. mountId)
-		print("\tSpell ID:" .. spellID)
-		print("\tMount ID:" .. mountID)
-		if name then
-		    print("\tName: " .. name)
-		end
-		return
-	end
+	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(mountId)
+	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 
-	if BeStride_MountDB[spellID].attributes.flying == true then
-		mountType = "flying"
-	elseif BeStride_MountDB[spellID].attributes.ground == true then
-		mountType = "ground"
+	if BeStride_Constants.Mount.Types[mountTypeID] == nil then
+		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
+	--elseif mountId == 678 then
+	--		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
+	end
+			
+	if isFactionSpecific then
+		faction = faction
 	else
-		mountType = "unknown"
+		faction = nil
 	end
-
-	if not name and BeStride_MountDB[spellID].name then
-		name = BeStride_MountDB[spellID].name
-	end
-
-	mountTable["master"][mountID] = {
+	
+	mountTable["master"][mountId] = {
 		["name"] = name,
 		["spellID"] = spellID,
 		["mountID"] = mountID,
-		["isActive"] = isSummoned,
-		["faction"] = nil,
+		["factionLocked"] = isFactionSpecific,
+		["faction"] = faction,
+		["description"] = description,
+		["isActive"] = isActive,
+		["isUsable"] = isUsable,
+		["isCollected"] = isCollected,
 		["icon"] = icon,
-		["source"] = BeStride_MountDB[spellID].source,
-		["type"] = mountType,
+		["source"] = source,
+		["sourceType"] = sourceType,
+		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
 	}
+end
+
+function BeStride:PrintAllMounts()
+	for key,value in pairs(C_MountJournal.GetMountIDs()) do
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(value)
+		local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
+		if isCollected then
+			print("" + mountID + ":" + name + ":" + spellID  + ":" + icon + ":" + isSummoned + ":" + mountTypeID+"")
+		end
+	end
 end

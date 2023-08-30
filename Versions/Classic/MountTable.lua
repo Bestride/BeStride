@@ -46,3 +46,12 @@ function BeStride:AddNewMount(mountId)
 		["type"] = mountType,
 	}
 end
+
+function BeStride:PrintAllMounts()
+	local num = GetNumCompanions("MOUNT")
+	print("MountID:name:spellID,icon,isSummoned,mountTypeID")
+	for i=1, GetNumCompanions("MOUNT") do
+		local mountID,name,spellID,icon,isSummoned, mountTypeID = GetCompanionInfo("MOUNT", i)
+		print("" + MountID + ":" + name + ":" + spellID  + ":" + icon + ":" + isSummoned + ":" + mountTypeID+"")
+	end
+end
