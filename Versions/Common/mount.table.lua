@@ -64,7 +64,7 @@ function BeStride:AddCommonMount(mountId)
 			table.insert(mountTable["zone"],mountId)
 		else
 			--local mountID,name,spellID,icon,isSummoned,mountTypeID = GetCompanionInfo("MOUNT", mountId)
-			print("Not Adding Mount" .. mount["name"] .. " Id: " .. mountId .. " SpellId: " .. mount.spellID)
+			BeStride_Debug:Debug("Not Adding Mount" .. mount["name"] .. " Id: " .. mountId .. " SpellId: " .. mount.spellID)
 		end
 	end
 end
