@@ -10,31 +10,51 @@ local function addBeStrideRingToOpie()
     if not (major and major == 4) then return end
 
     local opieMountRing = {
-        { "macrotext", "/click BeStride_ABRegularMount", icon = "Interface/Icons/inv_misc_summerfest_brazierorange",
-            fastClick = true },
+        {
+            "macrotext",
+            "/click BeStride_ABRegularMount",
+            _u = "d", -- default
+            icon = "Interface/Icons/inv_misc_summerfest_brazierorange",
+            fastClick = true
+        },
     }
 
-    -- Passenger 
-    if next(BeStride:DBGet("mounts.passenger")) then tinsert(opieMountRing,
-            { "macrotext", "/click BeStride_ABPassengerMount",
+    -- Passenger
+    if next(BeStride:DBGet("mounts.passenger")) then
+        tinsert(opieMountRing,
+            {
+                "macrotext",
+                "/click BeStride_ABPassengerMount",
+                _u = "p", -- passenger
                 icon = BeStride:IsMainline() and "Interface/Icons/inv_misc_stonedragonorange" or
-                    "Interface/Icons/ability_mount_mammoth_black" })
+                    "Interface/Icons/ability_mount_mammoth_black"
+            })
     end
 
     -- Ground Mount
     tinsert(opieMountRing,
-        { "macrotext", "/click BeStride_ABGroundMount",
+        {
+            "macrotext",
+            "/click BeStride_ABGroundMount",
+            _u = "g", -- ground
             icon = BeStride:IsMainline() and "Interface/Icons/misc_arrowdown" or
-                "Interface/Icons/ability_mount_dreadsteed" })
+                "Interface/Icons/ability_mount_dreadsteed"
+        })
 
     -- Repair
-    if next(BeStride:DBGet("mounts.repair")) then tinsert(opieMountRing,
-            { "macrotext", "/click BeStride_ABRepairMount", icon = "Interface/Icons/trade_blacksmithing" })
+    if next(BeStride:DBGet("mounts.repair")) then
+        tinsert(opieMountRing,
+            {
+                "macrotext",
+                "/click BeStride_ABRepairMount",
+                _u = "r", -- repair
+                icon = "Interface/Icons/trade_blacksmithing"
+            })
     end
 
     opieMountRing["name"] = ringname
     opieMountRing["hotkey"] = "SHIFT-SPACE"
-    opieMountRing["u"] = "OPCBR"
+    opieMountRing["_u"] = "BSR" -- [B]e[S]t[r]ide
 
     OPie.CustomRings:AddDefaultRing(ringname, opieMountRing)
 end
