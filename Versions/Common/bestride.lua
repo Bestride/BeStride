@@ -126,6 +126,8 @@ function BeStride:ChatCommand(input)
 		print(BeStride:SpeedCheck())
 	elseif command == "mountdb" then
 		self:ListMountDB()
+	elseif command == "gamemounts" then
+		self:PrintGameMounts()
 	elseif command == "mountsTable" then
 		self:ListGameMounts()
 	elseif command == "reload" then
@@ -197,4 +199,8 @@ function BeStride:ListMountDB()
 	for key,value in pairs(mountTable["master"]) do
 		print("Mount (" .. key .. "):" .. (value.name or "")..":"..(value.spellID or "")..":"..(value.mountID or "")..":"..tostring(value.isActive or "")..":"..tostring(value.faction or "")..":"..(value.source or "")..":"..(value.type or ""))
 	end
+end
+
+function BeStride:PrintGameMounts()
+	self:PrintAllMounts()
 end
