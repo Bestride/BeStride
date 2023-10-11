@@ -1,11 +1,9 @@
 BeStride_Game = "Wrath"
 
-
-function BeStride:isMountUsable(mountId)
-	--print("isMountUsable: " .. mountId)
-	spellID = mountTable["master"][mountId].spellID
+function BeStride:isMountUsable(mount)
+	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID = C_MountJournal.GetMountInfoByID(mount)
 	
-	return spellID,mountID,true
+	return spellID,mountID,isUsable
 end
 
 function BeStride:isZoneMount(mountId)
