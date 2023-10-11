@@ -188,6 +188,10 @@ function BeStride:ChatCommand(input)
 			local status, err = pcall(BeStride_Mount:Regular())
 			print(err.code)
 		end
+	elseif command == "version" then
+		interface_version = select(4, GetBuildInfo())
+		print("Addon Version: " .. version)
+		print("WoW Interface Version: " .. interface_version)
 	else
 		print("/br - Open Main Configuration Dialog and print help")
 		print("/br options - Open options Dialog")
