@@ -173,6 +173,21 @@ function BeStride:ChatCommand(input)
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
 	elseif command == "about" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride")
+	elseif command == "simulate" then
+		if args == "ground" then
+			print("Ground:")
+			local status, err = pcall(BeStride_Mount:Ground())
+			BeStride_Mount:Ground()
+			print(err.code)
+		elseif args == "flying" then
+			print("Flying:")
+			local status, err = pcall(BeStride_Mount:Flying())
+			print(err.code)
+		else
+			print("Regular:")
+			local status, err = pcall(BeStride_Mount:Regular())
+			print(err.code)
+		end
 	else
 		print("/br - Open Main Configuration Dialog and print help")
 		print("/br options - Open options Dialog")

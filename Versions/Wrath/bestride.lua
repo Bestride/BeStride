@@ -16,59 +16,42 @@ function BeStride:IsMainline()
 end
 
 function BeStride:GetMountInfoBySpellID(id)
-    for i=1, GetNumCompanions("MOUNT") do
-		mount = self:GetMountInfoByIndex(i)
-        if mount.spellID == id then
-            return mount
-        end
-	end
+    local mountID = C_MountJournal.GetMountFromSpell(id)
+    if mountID then
+        return self:GetMountInfoByMountID(mountID)
+    end
 end
 
 function BeStride:GetMountInfoByMountID(id)
-    for i=1, GetNumCompanions("MOUNT") do
-		mount = self:GetMountInfoByIndex(i)
-        if mount.mountID == id then
-            return mount
-        end
-	end
-end
-
-function BeStride:GetMountInfoByIndex(index)
-    local mountID,creatureName,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", index)
+    local creatureName,spellID,icon,active,isUsable,sourceType,isFavorite,isFactionSpecific,faction,hideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(id)
     return {
         creatureName = creatureName,
         spellID = spellID,
         mountID = mountID,
         icon = icon,
-        active = nil,
-        isUsable = nil,
-        sourceType = nil,
-        isFavorite = nil,
-        isFactionSpecific = nil,
-        faction = nil,
-        hideOnChar = nil,
-        isCollected = true,
-        isForDragonriding = nil
+        active = active,
+        isUsable = isUsable,
+        sourceType = sourceType,
+        isFavorite = isFavorite,
+        isFactionSpecific = isFactionSpecific,
+        faction = faction,
+        hideOnChar = hideOnChar,
+        isCollected = isCollected,
+        isForDragonriding = isForDragonriding
     }
 end
 
-function BeStride:OverrideConstants()
-    BeStride_Constants.Riding.Flight.Restricted.Continents[113] = {}
-    BeStride_Constants.Riding.Flight.Restricted.Continents[113].requires = 54197
+function BeStride:GetMountInfoByIndex(index)
+    return nil
 end
 
 function BeStride:GetKnownMountFromTarget()
-	local mountIdBySpellId = {}
-	for i=1,GetNumCompanions("MOUNT"),1 do
-		local mountID,name,spellID,icon,isSummoned = GetCompanionInfo("MOUNT", i)
-		mountIdBySpellId[spellID] = mountID
-	end
-	-- look for unit aura that matches known AND usable mount ID
-	for i=1,40,1 do
-		local spellId = select(10,UnitBuff("target",i))
+    for i=1,40,1 do
+        local spellId = select(10, UnitBuff("target", i))
         if not spellId then return end
-		if mountIdBySpellId[spellId] ~= nil then
-            return spellId, mountIdBySpellId[spellId], true
-		end
-	end
+        local mountId = C_MountJournal.GetMountFromSpell(spellId)
+        if mountId ~= nil then
+            return self:isMountUsable(mountId)
+        end
+    end
 end
