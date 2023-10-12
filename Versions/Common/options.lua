@@ -82,6 +82,7 @@ local optionsTable_Options = {
                     width="full",
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
                     set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                    disabled=function (info) return not BeStride:DBCanSetSetting("Mount" ,info[#info]) end,
                 },
                 special_mounts = {
                     type="group",

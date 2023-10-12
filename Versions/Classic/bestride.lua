@@ -10,8 +10,7 @@ function BeStride:Version_OnEnable()
     BeStride_Constants.spells.druid.aquaticform = 1066
 end
 
-function BeSTride:IsClassicEra()
-    print("Classic Era")
+function BeStride:IsClassicEra()
     return true
 end
 

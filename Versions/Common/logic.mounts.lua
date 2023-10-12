@@ -55,6 +55,7 @@ function BeStride:CheckLoanedMount()
 end
 
 function BeStride:CanUseTargetsMount()
+	if self:IsClassicEra() then return false end
 	if (not self:DBGet("settings.mount.copytargetmount")) then return false end
 	if (self:MovementCheck() or not UnitExists("target")) then return false end
 
