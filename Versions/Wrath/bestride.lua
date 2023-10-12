@@ -7,6 +7,10 @@ function BeStride:Version_OnEnable()
     BeStride_Constants.spells.druid.aquaticform = 1066
 end
 
+function BeStride:IsClassicEra()
+    return false
+end
+
 function BeStride:IsWrath()
     return true
 end

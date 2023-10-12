@@ -2,6 +2,10 @@
 function BeStride:Version_OnEnable()
 end
 
+function BeStride:IsClassicEra()
+    return false
+end
+
 function BeStride:IsWrath()
     return false
 end

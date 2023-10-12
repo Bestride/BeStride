@@ -83,7 +83,11 @@ end
 function BeStride:DBCanSetSetting(parent, setting)
 	if BeStride_Variables.Settings[parent] ~= nil and BeStride_Variables.Settings[parent][setting] ~= nil then
 		local variable = BeStride_Variables.Settings[parent][setting]
-		if variable["era"] ~= nil and variable["era"]["classic"] ~= nil and variable["era"]["classic"] == false then
+		if variable["era"] ~= nil and variable["era"]["classic"] ~= nil and variable["era"]["classic"] == false and self:IsClassicEra() then
+			return false
+		elseif variable["era"] ~= nil and variable["era"]["wrath"] ~= nil and variable["era"]["wrath"] == false and self:IsWrath() then
+			return false
+		elseif variable["era"] ~= nil and variable["era"]["mainline"] ~= nil and variable["era"]["mainline"] == false and self:IsMainline() then
 			return false
 		else
 			return true
