@@ -3,7 +3,8 @@
   <Script file="..\localization\de-DE.lua"/>
   <Script file="..\localization\en-US.lua"/>
   <Script file="..\localization\zh-TW.lua"/>
-  <Script file="..\localization\de-DE.lua"/>
+  <Script file="..\localization\ko-KR.lua"/>
+  <Script file="..\localization\fr-FR.lua"/>
   <Script file="Common\BeStride_Constants.lua"/>
   <Script file="..\BeStride.lua"/>
   <Script file="Common\BeStride_Variables.lua"/>

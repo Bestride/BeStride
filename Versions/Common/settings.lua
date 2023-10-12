@@ -79,3 +79,16 @@ function BeStride:DBSetClassSetting(parent,setting, value)
 		self.db.profile.settings.classes[parent][setting] = value
 	end
 end
+
+function BeStride:DBCanSetSetting(parent, setting)
+	if BeStride_Variables.Settings[parent] ~= nil and BeStride_Variables.Settings[parent][setting] ~= nil then
+		local variable = BeStride_Variables.Settings[parent][setting]
+		if variable["era"] ~= nil and variable["era"]["classic"] ~= nil and variable["era"]["classic"] == false then
+			return false
+		else
+			return true
+		end
+	else
+		return nil
+	end
+end
