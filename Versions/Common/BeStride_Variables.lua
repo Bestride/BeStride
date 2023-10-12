@@ -7,7 +7,7 @@ BeStride_Variables = {
 			["mount.nodismountwhileflying"]={name="mount.nodismountwhileflying",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoDismountWhileFlying"]},
 			["mount.useflyingmount"]={name="mount.useflyingmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.UseFlyingMount"], dependants = {"mount.forceflyingmount"}},
 			["mount.forceflyingmount"]={name="mount.forceflyingmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.ForceFlyingMount"], depends = {"mount.useflyingmount"}},
-			["mount.copytargetmount"]={name="mount.copytargetmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.CopyTargetMount"], era={classic=false,wrath=false}},
+			["mount.copytargetmount"]={name="mount.copytargetmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.CopyTargetMount"], era={classic=false}},
 			["mount.prioritizepassenger"]={name="mount.prioritizepassenger",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.PrioritizePassenger"]},
 			["mount.noswimming"]={name="mount.noswimming",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoSwimming"]},
 			["mount.flyingbroom"]={name="mount.flyingbroom",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.FlyingBroom"]},
