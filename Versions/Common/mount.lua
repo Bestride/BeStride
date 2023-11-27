@@ -1,5 +1,8 @@
 function BeStride:Regular()
-	if self:CanUseTargetsMount() then
+	if self:IsKnownSpecialCombatEncounter() then
+		self:DismountAndExit()
+		return self:KnownSpecialCombatEncounter()
+	elseif self:CanUseTargetsMount() then
 		self:DismountAndExit()
 		return self:UseTargetsMount()
 	-- Aspect of the Cheetah is available from level 5

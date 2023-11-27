@@ -57,6 +57,9 @@ function BeStride:OnEnable()
 	
 	BeStride:RegisterEvent("PLAYER_REGEN_DISABLED", "EventCombatEnter")
 	BeStride:RegisterEvent("PLAYER_REGEN_ENABLED", "EventCombatExit")
+
+	BeStride:RegisterEvent("ENCOUNTER_START", function(encounterId) BeStride.encounterId = encounterId end)
+	BeStride:RegisterEvent("ENCOUNTER_END", function() BeStride.encounterId = nil end)
 	
 	BeStride:Upgrade()
 end
