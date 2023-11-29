@@ -11,3 +11,11 @@ function BeStride:SpecialZone()
 	
 	return nil
 end
+
+function BeStride:KnownSpecialCombatEncounter()
+	local encounter = self:IsKnownSpecialCombatEncounter()
+	local _, _, br_mount_fn_name = unpack(encounter or {});
+	if br_mount_fn_name == nil then return nil end
+
+	return BeStride_Mount[br_mount_fn_name]()
+end
