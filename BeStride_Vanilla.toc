@@ -20,7 +20,6 @@
 ## OptionalDeps: Ace3
 
 Versions\Common\BeStride_Debug.lua
-## BeStride.xml
 
 libs\embeds.xml
 
