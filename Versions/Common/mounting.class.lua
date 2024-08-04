@@ -120,8 +120,14 @@ end
 
 function BeStride:Evoker()
 	if not IsFlying() and self:MovementCheck() and self:EvokerHover() then
+		--hover
 		return BeStride_Mount:Evoker()
+	elseif self:IsFlyable() and self:EvokerSoar() then
+		--soar
+		return BeStride_Mount:EvokerSoar()
 	end
+
+	BeStride_Debug:Error("This is a error.  Please report to the maintainer at https://www.github.com/dansheps/bestride/issues/. ID: EVBSL")
 end
 
 function BeStride:Rogue()
