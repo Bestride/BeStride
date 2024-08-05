@@ -1,25 +1,24 @@
 function BeStride:BuildMasterMountTable()
 	for key,value in pairs(C_MountJournal.GetMountIDs()) do
-		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(value)
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(value)
 		
-		--print("" .. name .. ":" .. mountID .. ":" .. spellID )
 		if isCollected then
 			BeStride:AddNewMount(value)
 		end
+	end
+
+	for _,value in pairs(C_MountJournal.GetCollectedDragonridingMounts()) do
+		-- With dynamic flying, we can treat any 'dragonriding' mount as a flying mount
+		-- Note that some mounts can steady flight but NOT dynamic fly (ie. Otterworldy Ottuk)
+		mountTable["master"][value]["canFly"] = true
 	end
 end
 
 
 
 function BeStride:AddNewMount(mountId)
-	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(mountId)
+	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(mountId)
 	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
-
-	if BeStride_Constants.Mount.Types[mountTypeID] == nil then
-		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
-	--elseif mountId == 678 then
-	--		print("" .. name .. ":" .. mountID .. ":" .. spellID .. ":" .. mountTypeID)
-	end
 			
 	if isFactionSpecific then
 		faction = faction
@@ -40,13 +39,14 @@ function BeStride:AddNewMount(mountId)
 		["icon"] = icon,
 		["source"] = source,
 		["sourceType"] = sourceType,
+		["isSteadyFlight"] = isSteadyFlight,
 		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
 	}
 end
 
 function BeStride:PrintAllMounts()
 	for key,value in pairs(C_MountJournal.GetMountIDs()) do
-		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(value)
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(value)
 		local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 		if isCollected then
 			print("" + mountID + ":" + name + ":" + spellID  + ":" + icon + ":" + isSummoned + ":" + mountTypeID+"")

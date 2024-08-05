@@ -110,8 +110,6 @@ function BeStride:Regular()
 	elseif CanExitVehicle() then
 		self:DismountAndExit()
 		return BeStride_Mount:Regular()
-	elseif self:IsDragonRidingZone() then
-		return BeStride_Mount:Dragonriding()
 	elseif self:IsFlyable() and IsOutdoors() and IsInGroup() == true and BeStride:DBGet("settings.mount.prioritizepassenger") == true and #mountTable["passenger"] > 0 then
 		return BeStride_Mount:Passenger("flying")
 	elseif self:IsFlyable() then
