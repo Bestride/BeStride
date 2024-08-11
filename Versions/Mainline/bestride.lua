@@ -22,7 +22,7 @@ function BeStride:GetMountInfoBySpellID(id)
 end
 
 function BeStride:GetMountInfoByMountID(id)
-    local creatureName,spellID,icon,active,isUsable,sourceType,isFavorite,isFactionSpecific,faction,hideOnChar,isCollected,mountID,isForDragonriding = C_MountJournal.GetMountInfoByID(id)
+    local creatureName,spellID,icon,active,isUsable,sourceType,isFavorite,isFactionSpecific,faction,hideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(id)
     return {
         creatureName = creatureName,
         spellID = spellID,
@@ -36,7 +36,7 @@ function BeStride:GetMountInfoByMountID(id)
         faction = faction,
         hideOnChar = hideOnChar,
         isCollected = isCollected,
-        isForDragonriding = isForDragonriding
+        isSteadyFlight = isSteadyFlight
     }
 end
 

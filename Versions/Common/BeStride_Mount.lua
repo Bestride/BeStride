@@ -95,18 +95,6 @@ function BeStride_Mount:Regular()
 	return self:DoMount(mounts)
 end
 
-function BeStride_Mount:Dragonriding()
-	local mounts = {}
-	
-	for k,v in pairs(mountTable["dragonriding"]) do if self:IsUsable(v) and self:DBGetMountStatus("dragonriding",v) then table.insert(mounts,v) end end
-	
-	if #mounts == 0 then
-		return self:Failback()
-	end
-	
-	return BeStride_Mount:DoMount(mounts)
-end
-
 function BeStride_Mount:Flying()
 	local mounts = {}
 	

@@ -10,7 +10,6 @@ end
 function BeStride:LoadMountTables()
 	mountTable["ground"] = {}
 	mountTable["flying"] = {}
-	mountTable["dragonriding"] = {}
 	mountTable["swimming"] = {}
 	mountTable["passenger"] = {}
 	mountTable["repair"] = {}
@@ -39,10 +38,15 @@ function BeStride:AddCommonMount(mountId)
 		if BeStride_MountDB[mount.spellID].attributes.swimming then
 			table.insert(mountTable["swimming"],mountId)
 		end
-	else
-		
+	else		
 		if mount.type and mount.type == "chauffeured" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			table.insert(mountTable["ground"],mountId)
+		elseif mount.canFly then
+			table.insert(mountTable["flying"],mountId)
+		elseif mount.isSteadyFlight then
+			--only 1 mount is SteadyFlightOnly, and Blizz provides no way to easily query flight state...
+			--so treat it as a ground mount for simplicity, for now
 			table.insert(mountTable["ground"],mountId)
 		elseif mount.type and mount.type == "ground" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
@@ -52,10 +56,7 @@ function BeStride:AddCommonMount(mountId)
 			table.insert(mountTable["flying"],mountId)
 		elseif mount.type and mount.type == "swimming" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-			table.insert(mountTable["swimming"],mountId)
-		elseif mount.type and mount.type == "dragonriding" then
-			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-			table.insert(mountTable["dragonriding"],mountId)
+			table.insert(mountTable["swimming"],mountId)		
 		elseif mount.type and mount["type"] == "zone" then
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			if mountId == 373 then
@@ -64,7 +65,7 @@ function BeStride:AddCommonMount(mountId)
 			table.insert(mountTable["zone"],mountId)
 		else
 			--local mountID,name,spellID,icon,isSummoned,mountTypeID = GetCompanionInfo("MOUNT", mountId)
-			print("Not Adding Mount" .. mount["name"] .. " Id: " .. mountId .. " SpellId: " .. mount.spellID)
+			print("Not Adding Mount " .. mount["name"] .. " Id: " .. mountId .. " SpellId: " .. mount.spellID)
 		end
 	end
 end

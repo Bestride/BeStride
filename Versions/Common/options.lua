@@ -484,13 +484,6 @@ local optionsTable_Mounts = {
             hidden = toggleHidden, 
             args = {},
         },
-        dragonriding = {
-            name=L["GUI.TAB.Mounts.Dragonriding"],
-            type = "group",
-            order=3,
-            hidden = toggleHidden, 
-            args = {},
-        },
         swimming = {
             name=L["GUI.TAB.Mounts.Swimming"],
             type = "group",
@@ -516,7 +509,7 @@ local optionsTable_Mounts = {
 }
 
 local function generateMountTable()
-    for _,group in pairs({"ground", "flying", "dragonriding", "swimming", "repair", "passenger"}) do
+    for _,group in pairs({"ground", "flying", "swimming", "repair", "passenger"}) do
         for key,mountID in pairs(mountTable[group]) do
             local mount = mountTable.master[mountID]
             local name = mount.name
