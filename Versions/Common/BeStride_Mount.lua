@@ -25,6 +25,8 @@ end
 function BeStride_Mount:DBGetMountStatus(mountType,key)
 
 	local mounts = BeStride:DBGet("mounts." .. mountType)
+	print(#mounts)
+	print(key)
 	local status = mounts[key]
 	if status ~= nil and status then
 		return true
@@ -57,7 +59,16 @@ end
 function BeStride_Mount:Failback()
 	local mounts = {}
 	if BeStride:DBGetSetting("mount.emptyrandom") then
-		for k,v in pairs(mountTable["master"]) do if self:IsUsable(k) then table.insert(mounts,k) end end
+		
+		for k,v in pairs(mountTable["master"]) do
+		    if BeStride:DBGetSetting("mount.emptyrandomflying") and v.type == "flying" and BeStride:IsFlyable() then
+			    table.insert(mounts,k)
+			elseif BeStride:DBGetSetting("mount.emptyrandomflying") and v.type == "ground" and not BeStride:IsFlyable() then
+			    table.insert(mounts,k)
+		    elseif not BeStride:DBGetSetting("mount.emptyrandomflying") and self:IsUsable(k) then
+			    table.insert(mounts,k)
+		    end
+		end
 		
 		if #mounts == 0 then
 			BeStride_Debug:Debug("No Mounts")

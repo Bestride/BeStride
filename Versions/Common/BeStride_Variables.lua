@@ -4,6 +4,7 @@ BeStride_Variables = {
 			["mount.enablenew"]={name="mount.enablenew",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.EnableNew"]},
 			["mount.remount"]={name="mount.remount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.RemountAfterDismount"]},
 			["mount.emptyrandom"]={name="mount.emptyrandom",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.EmptyRandom"]},
+			["mount.emptyrandomflying"]={name="mount.emptyrandomflying",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.EmptyRandomFlying"]},
 			["mount.nodismountwhileflying"]={name="mount.nodismountwhileflying",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoDismountWhileFlying"]},
 			["mount.useflyingmount"]={name="mount.useflyingmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.UseFlyingMount"], dependants = {"mount.forceflyingmount"}},
 			["mount.forceflyingmount"]={name="mount.forceflyingmount",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.ForceFlyingMount"], depends = {"mount.useflyingmount"}},
