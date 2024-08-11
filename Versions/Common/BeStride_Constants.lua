@@ -18,6 +18,10 @@ BeStride_Constants = {
 		hunter = {
 			aspectofthecheetah = 186257,
 		},
+		evoker = {
+			hover = 394784,
+			soar = 369536
+		}
 	},
 	Zone = {
 		Vashjir = {

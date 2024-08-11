@@ -110,7 +110,9 @@ function BeStride:IsEvokerAndSpecial()
 	if self:IsEvoker() then
 		if IsFlying() and self:NoDismountWhileFlying() then
 			return false
-		elseif self:EvokerHover() and self:MovementCheck() then
+		elseif not IsMounted() and self:EvokerHover() and self:MovementCheck() then
+			return true
+		elseif not IsMounted() and self:IsFlyable() and self:EvokerSoar() then
 			return true
 		else
 			return false
@@ -490,6 +492,19 @@ function BeStride:EvokerCanHover()
 	end
 end
 
+function BeStride:EvokerCanSoar()	
+	if IsUsableSpell(BeStride_Constants.spells.evoker.soar) then
+		local OnCooldown, _, _, _ = GetSpellCooldown(BeStride_Constants.spells.evoker.soar)
+		if OnCooldown == 0 then
+			return true
+		else
+			return false
+		end
+	else
+		return false
+	end
+end
+
 -- ------------- --
 -- Rogue Spells --
 -- ------------- --
@@ -818,4 +833,14 @@ function BeStride:EvokerHover()
 	else
 		return false
 	end
+end
+
+function BeStride:EvokerSoar()
+	if self:IsEvoker() and BeStride:DBGet("settings.classes.evoker.soar") then 
+		if self:EvokerCanSoar() then
+			return true
+		end
+	end
+
+	return false
 end

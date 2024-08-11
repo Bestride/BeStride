@@ -254,6 +254,10 @@ function BeStride_Mount:DruidNoForm()
 	return "/cancelform"
 end
 
+function BeStride_Mount:EvokerSoar()
+	return self:MountSpell(SpellToName(BeStride_Constants.spells.evoker.soar))
+end
+
 function BeStride_Mount:HunterAspectOfTheCheetah()
 	return self:MountSpell(SpellToName(186257))
 end

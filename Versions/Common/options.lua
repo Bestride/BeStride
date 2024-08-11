@@ -290,6 +290,14 @@ local optionsTable_Options = {
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
                             set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
                         },
+                        ["classes.evoker.soar"]={
+                            type="toggle",
+                            name=L["Settings.Classes.Evoker.Soar"],
+                            order=2,
+                            width="full",
+                            get=function (info) return BeStride:DBGetSetting(info[#info]) end,
+                            set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                        },
                     },
                 },
                 hunter = {

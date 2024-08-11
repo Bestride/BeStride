@@ -64,6 +64,7 @@ BeStride_Variables = {
 			},
 			{
 				["classes.evoker.hover"]={name="classes.evoker.hover",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Evoker.Hover"],class="evoker"},
+				["classes.evoker.soar"]={name="classes.evoker.soar",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Evoker.Soar"],class="evoker"},
 			},
 			{
 				["classes.warlock.rush"]={name="classes.warlock.rush",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Classes.Warlock.BurningRush"],class="warlock"},
@@ -153,6 +154,7 @@ defaults = {
 				},
 				evoker = {
 					hover = true,
+					soar = true,
 				},
 				warlock = {
 					rush = true,
