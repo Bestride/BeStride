@@ -196,15 +196,7 @@ function BeStride:ChatCommand(input)
 		print("Addon Version: " .. version)
 		print("WoW Interface Version: " .. interface_version)
 	else
-		print("/br - Open Main Configuration Dialog and print help")
-		print("/br options - Open options Dialog")
-		print("/br about - Open about Dialog")
-		print("/br help - This help")
-		print("/br reload - Rebuild the mount table")
-		print("/br map - Print the current map layers")
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
-		InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
-		InterfaceOptionsFrame_OpenToCategory("BeStride")
+		Settings.OpenToCategory("BeStride")
 	end
 end
 
