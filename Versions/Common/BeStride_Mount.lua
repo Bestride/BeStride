@@ -25,8 +25,6 @@ end
 function BeStride_Mount:DBGetMountStatus(mountType,key)
 
 	local mounts = BeStride:DBGet("mounts." .. mountType)
-	print(#mounts)
-	print(key)
 	local status = mounts[key]
 	if status ~= nil and status then
 		return true
