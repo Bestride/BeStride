@@ -42,6 +42,15 @@ local optionsTable_Options = {
                     get=function (info) return BeStride:DBGetSetting(info[#info]) end,
                     set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
                 },
+                ["mount.emptyrandomflying"]={
+                    type="toggle",
+                    name=L["Settings.EmptyRandomFlying"],
+                    order=2,
+                    width="full",
+                    get=function (info) return BeStride:DBGetSetting(info[#info]) end,
+                    set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                    disabled=function(info) return not BeStride:DBGetSetting('mount.emptyrandom') end,
+                },
                 ["mount.remount"]={
                     type="toggle",
                     name=L["Settings.RemountAfterDismount"],
