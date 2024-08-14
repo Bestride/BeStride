@@ -60,7 +60,7 @@ local function addBeStrideRingToOpie()
 end
 
 local function awaitAddonThen(addonName, andThen)
-    if (IsAddOnLoaded(addonName)) then
+    if (C_AddOns.IsAddOnLoaded(addonName)) then
         andThen()
     else
         f:RegisterEvent("ADDON_LOADED");

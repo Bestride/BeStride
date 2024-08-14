@@ -42,13 +42,11 @@ function countTable(t)
 end
 
 function SpellToName(spellID)
-	local name, rank, icon, castTime, minRange, maxRange, spellID = GetSpellInfo(spellID)
-	
-	return name
+	return BeStride:GetSpellInfo(spellID).name
 end
 
 function ItemToName(itemID)
-	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, isCraftingReagent = GetItemInfo(itemID)
+	local itemName, itemLink, itemRarity, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemIcon, itemSellPrice, itemClassID, itemSubClassID, bindType, expacID, itemSetID, isCraftingReagent = C_Item.GetItemInfo(itemID)
 	
 	return itemName
 end

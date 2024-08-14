@@ -128,7 +128,7 @@ end
 
 function BeStride:IsHerbalismAndCanRobot()
 	if BeStride:IsHerbalism() and not BeStride:IsCombat() and BeStride:CanRobotSetting() then
-		if IsUsableSpell(134359) or IsUsableSpell(223814) then
+		if BeStride:IsSpellUsable(134359) or BeStride:IsSpellUsable(223814) then
 			return true
 		else
 			return false
