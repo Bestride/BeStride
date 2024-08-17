@@ -160,14 +160,14 @@ function BeStride:ChatCommand(input)
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Mounts")
 	elseif command == "options" then
 		if self.IsMainline() then
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
+			Settings.OpenToCategory(self.configDialogs.options.id)
 		else
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
 		end
 	elseif command == "profiles" then
 		if self.IsMainline() then
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.configuration.frame)
+			Settings.OpenToCategory(self.configDialogs.profiles.id)
 		else
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
 			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
@@ -196,7 +196,7 @@ function BeStride:ChatCommand(input)
 		print("Addon Version: " .. version)
 		print("WoW Interface Version: " .. interface_version)
 	else
-		Settings.OpenToCategory("BeStride")
+		Settings.OpenToCategory(self.configDialogs.mounts.id)		
 	end
 end
 
