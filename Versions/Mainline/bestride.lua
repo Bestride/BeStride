@@ -21,6 +21,38 @@ function BeStride:GetMountInfoBySpellID(id)
     end
 end
 
+function BeStride:IsSpellUsable(spell)
+    if C_Spell.IsSpellUsable then
+        return C_Spell.IsSpellUsable(spell)
+    elseif C_Spell.IsUsableSpell then
+        return C_Spell.IsUsableSpell(spell)
+    elseif IsUsableSpell then
+        return IsUsableSpell(spell)
+    else
+        return false
+    end
+end
+
+function BeStride:GetSpellInfo(spell)
+    local info = C_Spell.GetSpellInfo(spell)
+    if info and type(info) == "table" then
+        return { name = info.name, spellID = info.spellID }
+    else
+        local name,_,_,_,_,_,spellID = C_Spell.GetSpellInfo(spell)
+        return { name = name, spellID = spellID }
+    end
+end
+
+function BeStride:GetSpellOnCooldown(spell)
+    local info = C_Spell.GetSpellCooldown(spell)
+    if info and type(info) == "table" then
+        return info.duration ~= 0
+    else
+        local onCooldown, _, _, _ = GetSpellCooldown(195072)
+        return onCooldown ~= 0
+    end
+end
+
 function BeStride:GetMountInfoByMountID(id)
     local creatureName,spellID,icon,active,isUsable,sourceType,isFavorite,isFactionSpecific,faction,hideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(id)
     return {
@@ -46,9 +78,9 @@ end
 
 function BeStride:GetKnownMountFromTarget()
     for i=1,40,1 do
-        local spellId = select(10, UnitBuff("target", i))
-        if not spellId then return end
-        local mountId = C_MountJournal.GetMountFromSpell(spellId)
+        local info = C_UnitAuras.GetBuffDataByIndex("target", i)
+        if not info then return end
+        local mountId = C_MountJournal.GetMountFromSpell(info.spellId)
         if mountId ~= nil then
             return self:isMountUsable(mountId)
         end

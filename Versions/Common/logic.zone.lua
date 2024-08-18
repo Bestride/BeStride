@@ -82,8 +82,7 @@ function BeStride:IsSpecialZone()
 	end
 	
 	if continent.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Continent.Draenor"] and micro.name == LibStub("AceLocale-3.0"):GetLocale("BeStride")["Zone.Nagrand"] and self:DBGet("settings.mount.telaari") == true then
-		local garrisonAbilityName = GetSpellInfo(161691)
-		local _,_,_,_,_,_,spellID = GetSpellInfo(garrisonAbilityName)
+		local spellID = BeStride:GetSpellInfo(161691).spellID
 		if(spellID == 165803 or spellID == 164222) then
 			return true
 		end

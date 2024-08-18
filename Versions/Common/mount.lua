@@ -317,5 +317,5 @@ end
 
 function BeStride:UseTargetsMount()
 	local spellId = self:GetKnownMountFromTarget()
-	return BeStride_Mount:MountSpell(GetSpellInfo(spellId))
+	return BeStride_Mount:MountSpell(BeStride:GetSpellInfo(spellId).name)
 end
