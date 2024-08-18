@@ -34,23 +34,37 @@ function BeStride:IsSpellUsable(spell)
 end
 
 function BeStride:GetSpellInfo(spell)
-    local info = C_Spell.GetSpellInfo(spell)
-    if info and type(info) == "table" then
-        return { name = info.name, spellID = info.spellID }
-    else
-        local name,_,_,_,_,_,spellID = C_Spell.GetSpellInfo(spell)
-        return { name = name, spellID = spellID }
-    end
+	if C_Spell.GetSpellInfo then
+		local info = C_Spell.GetSpellInfo(spell)
+		if info and type(info) == "table" then
+			return { name = info.name, spellID = info.spellID }
+		else
+			local name,_,_,_,_,_,spellID = C_Spell.GetSpellInfo(spell)
+			return { name = name, spellID = spellID }
+		end
+	elseif GetSpellInfo then
+		local name,_,_,_,_,_,spellID = GetSpellInfo(spell)
+		return { name = name, spellID = spellID }
+	else
+		return nil
+	end
 end
 
 function BeStride:GetSpellOnCooldown(spell)
-    local info = C_Spell.GetSpellCooldown(spell)
-    if info and type(info) == "table" then
-        return info.duration ~= 0
-    else
-        local onCooldown, _, _, _ = GetSpellCooldown(195072)
-        return onCooldown ~= 0
-    end
+    if C_Spell.GetSpellCooldown then
+		local info = C_Spell.GetSpellCooldown(spell)
+		if info and type(info) == "table" then
+			return info.duration ~= 0
+		else
+			local onCooldown, _, _, _ = GetSpellCooldown(195072)
+			return onCooldown ~= 0
+		end
+	elseif GetSpellCooldown then
+		local onCooldown, _, _, _ = GetSpellCooldown(195072)
+		return onCooldown ~= 0
+	else
+		return nil
+	end
 end
 
 function BeStride:GetMountInfoByMountID(id)
