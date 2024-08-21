@@ -8,8 +8,23 @@ BeStride_Constants = {
 		micro = 5,
 		orphan = 6,
 	},
+	ClassmovementAbilityDefaults = {
+		[1] = 0,-- warrior
+        [2] = 0, -- paladin		
+        [3] = 186257, -- hunter, aspect of the cheetah	
+        [4] = 0, -- rogue			
+        [5] = 0, -- priest			
+        [6] = 212552, -- deathknight, wraithwalk
+        [7] = 0, -- shaman
+        [8] = 0, -- mage
+        [9] = 0,-- warlock
+        [10] = 0, -- monk
+        [11] = 0, -- druid
+        [12] = 0, -- demonhunter
+		[13] = 394784, -- evoker, soar
+	},
 	spells = {
-		druid = {
+        druid = {
 			catform = 768,
 			aquaticform = 783,
 			travelform = 783,
