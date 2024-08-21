@@ -117,6 +117,7 @@ defaults = {
 			classes = {
 				deathknight = {
 					wraithwalk = true,
+					custom = nil,
 				},
 				demonhunter = {
 					felrush = true,

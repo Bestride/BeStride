@@ -219,8 +219,23 @@ function BeStride_Mount:Nagrand()
 	return self:MountSpell(SpellToName(164222))
 end
 
+function BeStride_Mount:ClassMovementAbility()
+	local _, englishClass, index = UnitClass("player")
+
+	local customAbility = BeStride:DBGet("settings.classes."..string.lower(englishClass)..".custom")
+	if customAbility ~= nil then
+		local info = BeStride:GetSpellInfo(customAbility)
+		if info then
+			return info.name
+		end
+	end
+		
+	return SpellToName(BeStride_Constants.ClassmovementAbilityDefaults[index])
+end
+
 function BeStride_Mount:DeathKnightWraithWalk()
-	return self:MountSpell(SpellToName(212552))
+	return self:MountSpell(BeStride_Mount:ClassMovementAbility())
+	-- return self:MountSpell(SpellToName(212552))
 end
 
 function BeStride_Mount:DemonHunterFelRush()
