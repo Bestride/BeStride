@@ -58,8 +58,9 @@ function BeStride:AddCommonMount(mountId)
 			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
 			table.insert(mountTable["swimming"],mountId)		
 		elseif mount.type and mount["type"] == "zone" then
-			--print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
-			if mountId == 373 then
+			print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: " .. mount["type"])
+			if mountTable.subtype == "swimming" then
+			    print("Adding Mount: " .. mount["name"] .. " Id: " .. mountId .. " Type: swimming" )
 				table.insert(mountTable["swimming"],mountId)
 			end
 			table.insert(mountTable["zone"],mountId)

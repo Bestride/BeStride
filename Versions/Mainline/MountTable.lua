@@ -41,7 +41,16 @@ function BeStride:AddNewMount(mountId)
 		["sourceType"] = sourceType,
 		["isSteadyFlight"] = isSteadyFlight,
 		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
+		["subtype"] = nil,
 	}
+	
+	if BeStride_Constants.Mount.Mounts[spellID]  then
+		mountOverrides = BeStride_Constants.Mount.Mounts[spellID]
+		if mountOverrides["subtype"] then
+		    mountTable["master"][mountId]["subtype"] = mountOverrides["subtype"]
+		end
+	end
+	
 end
 
 function BeStride:PrintAllMounts()
