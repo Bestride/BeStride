@@ -87,6 +87,8 @@ function BeStride:DBCanSetSetting(parent, setting)
 			return false
 		elseif variable["era"] ~= nil and variable["era"]["wrath"] ~= nil and variable["era"]["wrath"] == false and self:IsWrath() then
 			return false
+		elseif variable["era"] ~= nil and variable["era"]["cata"] ~= nil and variable["era"]["cata"] == false and self:IsCata() then
+			return false
 		elseif variable["era"] ~= nil and variable["era"]["mainline"] ~= nil and variable["era"]["mainline"] == false and self:IsMainline() then
 			return false
 		else

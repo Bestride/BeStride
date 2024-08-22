@@ -26,7 +26,7 @@ local function addBeStrideRingToOpie()
                 "macrotext",
                 "/click BeStride_ABPassengerMount",
                 _u = "p", -- passenger
-                icon = BeStride:IsMainline() and "Interface/Icons/inv_misc_stonedragonorange" or
+                icon = (BeStride:IsMainline() or BeStride:IsCata()) and "Interface/Icons/inv_misc_stonedragonorange" or
                     "Interface/Icons/ability_mount_mammoth_black"
             })
     end
@@ -37,7 +37,7 @@ local function addBeStrideRingToOpie()
             "macrotext",
             "/click BeStride_ABGroundMount",
             _u = "g", -- ground
-            icon = BeStride:IsMainline() and "Interface/Icons/misc_arrowdown" or
+            icon = (BeStride:IsMainline() or BeStride:IsCata()) and "Interface/Icons/misc_arrowdown" or
                 "Interface/Icons/ability_mount_dreadsteed"
         })
 

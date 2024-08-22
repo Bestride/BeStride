@@ -67,7 +67,7 @@ function BeStride:IsRepairable()
 		
 		
 		for i = 0, 4 do
-			if self.IsMainline() then
+			if self.IsMainline() or self.IsCata() then
 				local bagSlots = C_Container.GetContainerNumSlots(i)
 			else
 				local bagSlots = GetContainerNumSlots(i)
@@ -75,7 +75,7 @@ function BeStride:IsRepairable()
 
 			for j = 0, bagSlots do
 				local current, maximum = 0, 0
-				if self.IsMainline() then
+				if self.IsMainline() or self.IsCata() then
 					local current, maximum = C_Container.GetContainerItemDurability(i, j)
 				else
 					local current, maximum = GetContainerItemDurability(i, j)
