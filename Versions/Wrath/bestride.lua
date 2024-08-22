@@ -15,6 +15,10 @@ function BeStride:IsWrath()
     return true
 end
 
+function BeStride:IsCata()
+    return false
+end
+
 function BeStride:IsMainline()
     return false
 end
