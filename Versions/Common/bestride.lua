@@ -160,21 +160,22 @@ function BeStride:ChatCommand(input)
 	elseif command == "spellID" then
 		mount = BeStride:GetMountInfoBySpellID(args)
 		print(mount.creatureName)
+	elseif command == "mount" then
+	    BeStride:GetMountInfoByName(args)
 	elseif command == "mounts" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Mounts")
 	elseif command == "options" then
 		if self.IsMainline() then
+
 			Settings.OpenToCategory(self.configDialogs.options.id)
 		else
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.options.frame)
+			InterfaceOptionsFrame_OpenToCategory("BeStride")
 		end
 	elseif command == "profiles" then
 		if self.IsMainline() then
 			Settings.OpenToCategory(self.configDialogs.profiles.id)
 		else
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
-			InterfaceOptionsFrame_OpenToCategory(self.configDialogs.profiles.frame)
+			InterfaceOptionsFrame_OpenToCategory("BeStride")
 		end
 	elseif command == "debug" or input == "bug" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
@@ -213,13 +214,28 @@ function BeStride:ChatCommand(input)
 		    print("Classic")
 		elseif self:IsWrath() then
 		    print("Wrath")
+		elseif self:IsCata() then
+		    print("Cata")
 		elseif self:IsMainline() then
 		    print("Mainline")
 		else
 		    print("Other")
 		end
 	else
-		Settings.OpenToCategory(self.configDialogs.mounts.id)		
+		if self.IsMainline() then
+			Settings.OpenToCategory(self.configDialogs.mounts.id)
+		else
+			InterfaceOptionsFrame_OpenToCategory("BeStride")
+		end
+	end
+end
+
+function BeStride:GetMountInfoByName(mount)
+	for key,value in pairs(C_MountJournal.GetMountIDs()) do
+		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(value)
+		if name == mount then
+		    self:PrintMount(value)
+		end
 	end
 end
 
@@ -227,6 +243,7 @@ function BeStride:PrintMount(mountId)
     local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(mountId)
 	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 	print(name)
+	print("    mountId: " .. tostring(mountId))
 	print("    spellID: " .. tostring(spellID))
 	print("    icon: " .. tostring(icon))
 	print("    isActive: " .. tostring(isActive))

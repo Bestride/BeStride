@@ -337,6 +337,7 @@ BeStride_Constants = {
 			}
 		},
 		Types = {
+			[229] = "flying",
 			[230] = "ground",
 			[231] = "swimming",
 			[232] = "zone",

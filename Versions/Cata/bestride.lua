@@ -11,11 +11,11 @@ function BeStride:IsWrath()
 end
 
 function BeStride:IsCata()
-    return false
+    return true
 end
 
 function BeStride:IsMainline()
-    return true
+    return false
 end
 
 function BeStride:GetMountInfoBySpellID(id)

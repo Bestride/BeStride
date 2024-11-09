@@ -18,18 +18,12 @@ end
 
 function BeStride:AddNewMount(mountId)
 	local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(mountId)
-	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID,animID,spellVisualKitID,disablePlayerMountPreview = C_MountJournal.GetMountInfoExtraByID(mountId)
+	local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 			
 	if isFactionSpecific then
 		faction = faction
 	else
 		faction = nil
-	end
-	
-	if BeStride_Constants.Mount.Types[mountTypeID] == 'flying' then
-	    canFly = true
-	else
-	    canFly = false
 	end
 	
 	mountTable["master"][mountId] = {
@@ -48,7 +42,6 @@ function BeStride:AddNewMount(mountId)
 		["isSteadyFlight"] = isSteadyFlight,
 		["type"] = BeStride_Constants.Mount.Types[mountTypeID],
 		["subtype"] = nil,
-		["canFly"] = canFly
 	}
 	
 	if BeStride_Constants.Mount.Mounts[spellID]  then
@@ -63,13 +56,9 @@ end
 function BeStride:PrintAllMounts()
 	for key,value in pairs(C_MountJournal.GetMountIDs()) do
 		local name,spellID,icon,isActive,isUsable,sourceType,isFavorite,isFactionSpecific,faction,shouldHideOnChar,isCollected,mountID,isSteadyFlight = C_MountJournal.GetMountInfoByID(value)
-		
-		if mountID == nil then
-		    print("" .. key .. ":" .. value .. ":" .. name .. ":" )
-		end
-		local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID,animID,spellVisualKitID,disablePlayerMountPreview = C_MountJournal.GetMountInfoExtraByID(value)
+		local creatureDisplayInfoID,description,source,isSelfMount,mountTypeID,uiModelSceneID = C_MountJournal.GetMountInfoExtraByID(mountId)
 		if isCollected then
-			print("" .. mountID .. ":" .. name .. ":" .. spellID  .. ":" .. icon .. ":" .. ":" .. mountTypeID .. "")
+			print("" + mountID + ":" + name + ":" + spellID  + ":" + icon + ":" + isSummoned + ":" + mountTypeID+"")
 		end
 	end
 end
