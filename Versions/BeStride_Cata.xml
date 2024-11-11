@@ -27,9 +27,9 @@
   <Script file="Common\mounting.zone.lua"/>
   <Script file="Common\settings.lua"/>
   <Script file="Common\options.lua"/>
-  <Script file="Cata\bestride.lua"/>
-  <Script file="Cata\MountTable.lua"/>
-  <Script file="Cata\logic.lua"/>
+  <Script file="Mainline\bestride.lua"/>
+  <Script file="Mainline\MountTable.lua"/>
+  <Script file="Mainline\logic.lua"/>
   <Script file="Common\upgrade.lua"/>
   <Script file="Common\bestride.lua"/>
   <Script file="Common\opie.lua"/>

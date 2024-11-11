@@ -222,7 +222,7 @@ function BeStride:ChatCommand(input)
 		    print("Other")
 		end
 	else
-		if self.IsMainline() then
+		if self.IsMainline() or self.IsCata() then
 			Settings.OpenToCategory(self.configDialogs.mounts.id)
 		else
 			InterfaceOptionsFrame_OpenToCategory("BeStride")
