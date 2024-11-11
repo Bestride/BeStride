@@ -519,15 +519,9 @@ local optionsTable_Mounts = {
 
 local function generateMountTable()
     for _,group in pairs({"ground", "flying", "swimming", "repair", "passenger"}) do
-	    print(group)
         for key,mountID in pairs(mountTable[group]) do
             local mount = mountTable.master[mountID]
             local name = mount.name
-			
-			if group == "swimming" then
-			    print(name)
-				print(mountID)
-			end
 
             options = {
                 name=name,
