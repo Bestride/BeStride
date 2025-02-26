@@ -222,6 +222,15 @@ local optionsTable_Options = {
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
                             set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
                         },
+                        ["classes.deathknight.custom"]={
+                            type="input",
+                            name=L["Settings.Classes.DeathKnight.Custom"],
+                            order=2,
+                            width="normal",
+                            disabled=function (info) return not BeStride:DBGetSetting('classes.deathknight.wraithwalk') end,
+                            get=function (info) return BeStride:DBGetSetting(info[#info]) end,
+                            set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                        }                        
                     },
                 },
                 demonhunter = {

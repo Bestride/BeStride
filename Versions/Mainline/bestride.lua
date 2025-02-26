@@ -42,13 +42,19 @@ function BeStride:GetSpellInfo(spell)
 		local info = C_Spell.GetSpellInfo(spell)
 		if info and type(info) == "table" then
 			return { name = info.name, spellID = info.spellID }
-		else
+        elseif info then
 			local name,_,_,_,_,_,spellID = C_Spell.GetSpellInfo(spell)
 			return { name = name, spellID = spellID }
+        else
+            return nil
 		end
 	elseif GetSpellInfo then
 		local name,_,_,_,_,_,spellID = GetSpellInfo(spell)
-		return { name = name, spellID = spellID }
+        if name then
+		    return { name = name, spellID = spellID }
+        else
+            return nil    
+        end
 	else
 		return nil
 	end
