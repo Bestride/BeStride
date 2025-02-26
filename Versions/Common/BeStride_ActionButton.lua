@@ -6,7 +6,7 @@ BeStride_ActionButtonRepairMount = {}
 -- Creates Action Buttons
 function BeStride:CreateActionButton(buttontype)
 	local name = "BeStride_AB" .. buttontype .. "Mount"
-	local br = CreateFrame("Button", name, UIParent, "SecureActionButtonTemplate,ActionButtonTemplate")
+	local br = CreateFrame("Button", name, UIParent, "ActionButtonTemplate,SecureActionButtonTemplate")
 
 	-- If UseKeyDown is false, we'll need to use AnyUp (and AnyDown if it's true)
 	local mouseDown = C_CVar.GetCVar("ActionButtonUseKeyDown")
