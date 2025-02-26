@@ -139,6 +139,14 @@ local optionsTable_Options = {
                             get=function (info) return BeStride:DBGetSetting(info[#info]) end,
                             set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
                         },
+                        ["mount.g99breakneck"]={
+                            type="toggle",
+                            name=L["Settings.G99Breakneck"],
+                            order=4,
+                            width="full",
+                            get=function (info) return BeStride:DBGetSetting(info[#info]) end,
+                            set=function (info,val) BeStride:DBSetSetting(info[#info],val) end,
+                        },
                     },
                 },
                 repair_mounts = {

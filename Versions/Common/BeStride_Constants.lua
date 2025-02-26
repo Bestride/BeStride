@@ -36,6 +36,10 @@ BeStride_Constants = {
 				id = 204,
 			},
 		},
+		Undermine = {
+			id = 2346,
+			mountID = 460013
+		}
 	},
 	Riding = {
 		Skill = {

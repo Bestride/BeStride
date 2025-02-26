@@ -54,7 +54,7 @@ function BeStride:Regular()
 	elseif self:CanBroom() then
 		self:DismountAndExit()
 		return BeStride_Mount:Broom()
-	elseif self:IsSpecialZone() then
+	elseif self:IsSpecialZone(false) then
 		self:DismountAndExit()
 		return BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
@@ -169,7 +169,7 @@ function BeStride:GroundMountButton()
 	elseif self:IsLoanedMount() then
 		self:DismountAndExit()
 		return BeStride_Mount:Loaned()
-	elseif self:IsSpecialZone() then
+	elseif self:IsSpecialZone(true) then
 		self:DismountAndExit()
 		return BeStride_Mount:SpecialZone()
 	elseif self:IsRepairable() then
@@ -297,7 +297,7 @@ function BeStride:Combat()
 		if special ~= nil then
 			action = action .. special
 		end
-	elseif self:IsSpecialZone() then
+	elseif self:IsSpecialZone(false) then
 		special = BeStride_Mount:SpecialZone()
 		if special ~= nil then
 			action = action .. special

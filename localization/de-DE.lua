@@ -63,6 +63,7 @@ L["Settings.PrioritizePassenger"] = "Passagier-Reittiere priorisieren, wenn man 
 L["Settings.NoSwimming"] = "Verwenden Sie niemals Unterwasserhalterungen"
 L["Settings.FlyingBroom"] = "Immer einen fliegenden Besen anstelle eines normalen Reittiers verwenden"
 L["Settings.Telaari"] = "Immer den Telaartalbuk oder Kriegswolf des Frostwolfklans in Nagrand verwenden"
+L["Settings.G99Breakneck"] = "Benutze in Lorenhall das Auto 99-G-Genickbrecher"
 L["Settings.ForceRobot"] = "Immer den Himmelsgolem oder Mechanischen Holzextraktor verwenden, wenn man Kräuterkunde gelernt hat"
 L["Settings.Repair.Use"] = "Ein Reparatur-Reittier verwenden, wenn der Spieler eines hat und die Haltbarkeitsschwelle erreicht ist"
 L["Settings.Repair.Force"] = "Ein Reparatur-Reittier erzwingen, wenn der Spieler eines hat"

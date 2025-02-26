@@ -63,6 +63,7 @@ L["Settings.NoSwimming"] = "수영중일 때 수중 탈것을 사용하지 않�
 L["Settings.FlyingBroom"] = "일반 탈것 대신 비행 빗자루를 탑승(할로윈 축제)"
 L["Settings.Telaari"] = "나그란드에서 텔라아리 탈부크나 서리늑대 전투늑대를 항상 사용합니다."
 L["Settings.ForceRobot"] = "약초채집을 배운 경우 항상 하늘골렘이나 기계화 목재 추출기를 탑승합니다."
+L["Settings.G99Breakneck"] = "언더마인 G-99 광폭질주차 자동차를 사용하세요"
 L["Settings.Repair.Use"] = "소유중 + 내구도 문제가 있을 때, 수리탈것을 탑승합니다."
 L["Settings.Repair.Force"] = "소유중일 때, 수리탈것 탑승을 강제합니다."
 L["Settings.Repair.Durability"] = "내구도 알림 기준(%) - 착용템"
