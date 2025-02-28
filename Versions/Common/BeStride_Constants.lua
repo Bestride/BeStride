@@ -265,6 +265,12 @@ BeStride_Constants = {
 				["subtype"] = "ground",
 				["repair"] = true,
 			},
+			[457485] = {
+				["name"] = "Grizzly Hills Packmaster",
+				["type"] = "passenger",
+				["subtype"] = "ground",
+				["repair"] = true,
+			},
 			[61467] = {
 				["name"] = "Grand Black War Mammoth",
 				["type"] = "passenger",
