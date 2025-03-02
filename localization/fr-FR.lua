@@ -62,6 +62,7 @@ L["Settings.PrioritizePassenger"] = "Prioriser l'utilisation d'une monture avec 
 L["Settings.NoSwimming"] = "Ne jamais utiliser de monture aquatique pendant la nage"
 L["Settings.FlyingBroom"] = "Toujours utiliser le Balai volant au lieu d'une monture normale"
 L["Settings.Telaari"] = "Toujours utiliser le Talbuk Telaari ou le Loup de guerre Loup-de-givre à Nagrand"
+L["Settings.G99Breakneck"] = "Utilisez la voiture G-99 Ventraterre dans Terremine"
 L["Settings.ForceRobot"] = "Toujours utiliser le Golem céleste ou l'Extracteur de bois mécanique si vous avez appris Herboristerie"
 L["Settings.Repair.Use"] = "Utiliser une monture avec réparateur si le joueur en possède une et atteint le seuil de durabilité"
 L["Settings.Repair.Force"] = "Forcer une monture avec réparateur si le joueur en possède une"

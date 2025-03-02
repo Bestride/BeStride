@@ -72,10 +72,15 @@ function BeStride:IsUnderwater()
 	end
 end
 
-function BeStride:IsSpecialZone()
+function BeStride:IsSpecialZone(isGroundForced)
 	local mapID = C_Map.GetBestMapForUnit("player")
 	local micro = BeStride:GetMapUntil(mapID,5)
 	local continent = BeStride:GetMapUntil(mapID,2)
+
+	if not isGroundForced and mapID == BeStride_Constants.Zone.Undermine.id and BeStride:IsSpellUsable(BeStride_Constants.Zone.Undermine.mountID) and self:DBGet("settings.mount.g99breakneck") == true then
+		--undermine
+		return true
+	end
 
 	if continent == nil or micro == nil then
 		return false

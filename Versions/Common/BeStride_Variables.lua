@@ -13,6 +13,7 @@ BeStride_Variables = {
 			["mount.noswimming"]={name="mount.noswimming",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.NoSwimming"]},
 			["mount.flyingbroom"]={name="mount.flyingbroom",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.FlyingBroom"]},
 			["mount.telaari"]={name="mount.telaari",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.Telaari"]},
+			["mount.g99breakneck"]={name="mount.g99breakneck",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.G99Breakneck"]},
 			["mount.forcerobot"]={name="mount.forcerobot",element="CheckBox",label=LibStub("AceLocale-3.0"):GetLocale("BeStride")["Settings.ForceRobot"]},
 			{
 				element="Group",
@@ -106,6 +107,7 @@ defaults = {
 				forcerobot = false,
 				prioritizepassenger = false,
 				telaari = true,
+				g99breakneck = true,
 				repair = {
 					use = false,
 					force = false,

@@ -219,6 +219,10 @@ function BeStride_Mount:Nagrand()
 	return self:MountSpell(SpellToName(164222))
 end
 
+function BeStride_Mount:Undermine()
+	return self:MountSpell(SpellToName(BeStride_Constants.Zone.Undermine.mountID))
+end
+
 function BeStride_Mount:DeathKnightWraithWalk()
 	return self:MountSpell(SpellToName(212552))
 end
