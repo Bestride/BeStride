@@ -100,48 +100,6 @@ BeStride_Constants = {
 				level = 300,
 				active = true,
 			},
-			-- Wrath
-			[54197] = {
-				name = "Cold Weather Flying",
-				unlocks = "flying",
-				active = false,
-				zones = {
-					[1] = "",
-				},
-			},
-			-- Cata
-			[90267] = {
-				name = "Flight Master's License",
-				unlocks = "flying",
-				active = true,
-			},
-			-- MoP
-			[115913] = {
-				name = "Wisdom of the Four Winds",
-				unlocks = "flying",
-				active = false,
-				zones = {
-					[1] = "",
-				},
-			},
-			-- WoD
-			[191645] = {
-				name = "Draenor Pathfinder",
-				unlocks = "flying",
-				zones = {
-					[1] = "",
-				},
-			},
-			[226342] = {
-				name = "Broken Isles Pathfinder",
-			},
-			[233368] = {
-				name = "Broken Isles Pathfinder",
-				unlocks = "flying",
-				zones = {
-					[1] = "",
-				},
-			},
 			--[] = {
 				--name = "",
 				--unlocks = "zone",
@@ -150,18 +108,6 @@ BeStride_Constants = {
 				--},
 				--depends = ""
 			--},
-			[281576] = {
-				name = "Battle for Azeroth Pathfinder",
-				depends = 34090,
-				level = 825,
-			},
-			[278833] = {
-				name = "Battle for Azeroth Pathfinder",
-				unlocks = "flying",
-				zones = {
-					[1] = "",
-				},
-			},
 		},
 		Flight = {
 			Restricted = {
@@ -171,18 +117,6 @@ BeStride_Constants = {
 					[905] = {
 						blocked = true,
 					},
-					[875] = {
-						requires = 278833,
-					},
-					[876] = {                                                 
-						requires = 278833,
-					},
---					[619] = {
---						requires = 233368,
---					},
---					[572] = {
---						requires = 191645,
---					},
 				},
 				Zones = {
 					[106] = {
