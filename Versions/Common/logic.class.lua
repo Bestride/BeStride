@@ -808,7 +808,7 @@ end
 function BeStride:WarlockBurningRush()
      -- Todo: Bitwise Compare
      if self:IsWarlock() then
-            if self:WarlockCanBruningRush() and BeStride:DBGet("settings.classes.warlock.rush") then
+            if self:WarlockCanBurningRush() and BeStride:DBGet("settings.classes.warlock.rush") then
                     return true
             else
                     return false

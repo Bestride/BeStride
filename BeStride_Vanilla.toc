@@ -1,11 +1,12 @@
-## Interface: 11403
+## Interface: 11509
 
+## Category: Collections
 ## Title: BeStride
 ## Notes: Manages your Mounts
 
 ## Version: @project-version@
 
-## Author: Anaximander <IRONFIST> - Whitemane/Burning Legion US
+## Author: Anaximander <IRONFIST> - Whitemane/Burning Legion US | Athaea Hoshino <IRONFIST FOREVER> - Normal | Althaea Hoshino <IRONFIST> - PvP
 ## X-Email: anaximander@ironfist.games
 
 ## X-Category: Interface Enhancements

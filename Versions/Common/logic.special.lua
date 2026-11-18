@@ -40,45 +40,45 @@ function BeStride:IsRepairable()
 	if not BeStride:DBGetSetting('mount.repair.use') or not self:IsMountable() or IsFlying() or not IsOutdoors() then
 		return false
 	end
-	mounts = BeStride:DBGet("mounts.repair")
+	local mounts = BeStride:DBGet("mounts.repair")
 	local mountCount = {}
+	local globalDurability, durability, count, bagSlots, current, maximum = 0, 0, 0, 0, 0, 0
 	
 	table.foreach(mounts,function (key,value) table.insert(mountCount,key) end )
 	
 	if #mountCount ~= 0 then
-		local globalDurability,count = 0,0
 		for i = 0, 17 do
-			local current, maximum = GetInventoryItemDurability(i)
+			current, maximum = GetInventoryItemDurability(i)
 			if current ~= nil and maximum ~= nil then
-				local durability = (current / maximum)
+				durability = (current / maximum)
 				count = count + 1
 				globalDurability = globalDurability + durability
 				if (durability * 100) <= BeStride:DBGet("settings.mount.repair.durability") then
 					return true
 				end
 			end
+		else
+			return false
 		end
 		
-		if ((globalDurability/count)*100) <= BeStride:DBGet("settings.mount.repair.globaldurability") then
+		if count > 0 and ((globalDurability/count)*100) <= BeStride:DBGet("settings.mount.repair.globaldurability") then
 			return true
 		end
-
-		local bagSlots = 0
 		
 		
 		for i = 0, 4 do
 			if self.IsMainline() or self.IsCata() then
-				local bagSlots = C_Container.GetContainerNumSlots(i)
+				bagSlots = C_Container.GetContainerNumSlots(i)
 			else
-				local bagSlots = GetContainerNumSlots(i)
+				bagSlots = GetContainerNumSlots(i)
 			end
 
 			for j = 0, bagSlots do
-				local current, maximum = 0, 0
+				current, maximum = 0, 0
 				if self.IsMainline() or self.IsCata() then
-					local current, maximum = C_Container.GetContainerItemDurability(i, j)
+					current, maximum = C_Container.GetContainerItemDurability(i, j)
 				else
-					local current, maximum = GetContainerItemDurability(i, j)
+					current, maximum = GetContainerItemDurability(i, j)
 				end
 				if current ~= nil and maximum ~= nil and maximum ~= 0 then
 					if ((current / maximum)*100) <= BeStride:DBGet("settings.mount.repair.inventorydurability") then

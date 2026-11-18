@@ -34,7 +34,7 @@ function BeStride:IsFlyable()
 			end
 		end
 		
-		if countTable(BeStride_Constants.Riding.Flight.Restricted.Continents) > 0 then
+		if countTable(BeStride_Constants.Riding.Flight.Restricted.Zones) > 0 then
 			local zone = BeStride:GetMapUntil(mapID,3)
 			if zone ~= nil then
 				for key,value in pairsByKeys(BeStride_Constants.Riding.Flight.Restricted.Zones) do

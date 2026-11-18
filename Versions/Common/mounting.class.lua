@@ -113,7 +113,7 @@ function BeStride:Priest()
 end
 
 function BeStride:Shaman()
-	if not IsFlying() and (self:MovementCheck() or IsOutdoors ~= true) and self:ShamanGhostWolf() then
+	if not IsFlying() and (self:MovementCheck() or IsOutdoors() ~= true) and self:ShamanGhostWolf() then
 		return BeStride_Mount:Shaman()
 	end
 end

@@ -89,7 +89,7 @@ function BeStride_Mount:Regular()
 			table.insert(mounts,v)
 		end
 	end
-	if BeStride:DBGet("settings.mount.useflyingmount") and BeStride_Gaming ~= 'Wrath' then
+	if BeStride:DBGet("settings.mount.useflyingmount") and BeStride:IsWrath() then
 		for k,v in pairs(mountTable["flying"]) do
 			if self:IsUsable(v) and self:DBGetMountStatus("flying",v) then
 				table.insert(mounts,v)
@@ -160,10 +160,10 @@ function BeStride_Mount:Repair()
 	return BeStride_Mount:DoMount(mounts)
 end
 
-function BeStride_Mount:Passenger(type)
+function BeStride_Mount:Passenger(mount_type)
 	local mounts = {}
 	
-	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) and self:DBGetMountStatus("passenger",v) and ( (type ~= nil and mountTable.master[v].type) or type == nil ) then table.insert(mounts,v) end end
+	for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) and self:DBGetMountStatus("passenger",v) and ( (mount_type ~= nil and mountTable.master[v].type and mountTable.master[v].type == mount_type) or mount_type == nil ) then table.insert(mounts,v) end end
 	
 	if #mounts == 0 then
 		for k,v in pairs(mountTable["passenger"]) do if self:IsUsable(v) then table.insert(mounts,v) end end
@@ -299,7 +299,7 @@ function BeStride_Mount:Paladin()
 end
 
 function BeStride_Mount:PaladinDivineSteed()
-	spell = SpellToName(190784)
+	local spell = SpellToName(190784)
 	if spell ~= nil and spell then
 		return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
 	else
@@ -336,7 +336,7 @@ function BeStride_Mount:Warlock()
 end
 
 function BeStride_Mount:WarlockBurningRush()
-    spell = SpellToName(111400)
+    local spell = SpellToName(111400)
     if spell then
         return self:MountSpell("[@player] " .. spell .. "\n/cancelaura " .. spell)
     else

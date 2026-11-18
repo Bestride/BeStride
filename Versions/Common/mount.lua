@@ -230,6 +230,8 @@ function BeStride:PassengerMountButton(type)
 end
 
 function BeStride:Combat()
+	local action = nil
+	local special = nil
 	if IsMounted() then
 		action = BeStride_Mount:Dismount() .. "\n"
 	else

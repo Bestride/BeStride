@@ -59,12 +59,11 @@ function BeStride:GetSpellOnCooldown(spell)
 		local info = C_Spell.GetSpellCooldown(spell)
 		if info and type(info) == "table" then
 			return info.duration ~= 0
-		else
-			local onCooldown, _, _, _ = GetSpellCooldown(195072)
-			return onCooldown ~= 0
+        else
+            return nil
 		end
 	elseif GetSpellCooldown then
-		local onCooldown, _, _, _ = GetSpellCooldown(195072)
+		local onCooldown, _, _, _ = GetSpellCooldown(spell)
 		return onCooldown ~= 0
 	else
 		return nil

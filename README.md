@@ -106,4 +106,8 @@ The following classes have special features:
   * Supports: Wraith Walk
 * Demon Hunter
   * Supports: Fel Rush, Glide
+* Evokers
+  * Supports: Hover, Soar
+* Warlocks
+  * Supports: Burning Rush
 
