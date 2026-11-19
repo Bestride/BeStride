@@ -1,0 +1,27 @@
+## Interface: 16001
+
+## Category: Collections
+## Title: BeStride
+## Notes: Manages your Mounts
+
+## Version: @project-version@
+
+## Author: Anaximander <IRONFIST> - Whitemane/Burning Legion US | Athaea Hoshino <IRONFIST FOREVER> - Normal | Althaea Hoshino <IRONFIST> - PvP
+## X-Email: anaximander@ironfist.games
+
+## X-Category: Interface Enhancements
+## X-Website: https://github.com/Bestride/BeStride
+## X-License: GNU GPLv3
+## X-Embeds: Ace3
+## X-Curse-Project-ID: 289821
+## X-WoWI-ID: 26419
+## X-Wago-ID: q96dlO6O
+
+## SavedVariables: BeStrideDB, BestrideDB
+## OptionalDeps: Ace3
+
+Versions\Common\BeStride_Debug.lua
+
+libs\embeds.xml
+
+Versions\BeStride_Mainline.xml
