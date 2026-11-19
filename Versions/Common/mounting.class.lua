@@ -63,10 +63,30 @@ function BeStride:Hunter()
 end
 
 function BeStride:Mage()
+	BeStride_Debug:Debug("Mage special combat= " .. tostring(BeStride:IsCombat()) ..
+		" moving= " .. tostring(BeStride:MovementCheck()) ..
+		" falling= " .. tostring(IsFalling()) ..
+		" mounted= " .. tostring(IsMounted()))
 	if IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) and not self:NoDismountWhileFlying() then
-		return BeStride_Mount:MageSlowFall()
-	elseif (self:MageSlowFall() or self:MageBlink()) and IsFalling() then
-		return BeStride_Mount:MageSlowFall()
+		if BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageBlink() then
+			return BeStride_Mount:MageBlink()
+		elseif not BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
+		elseif self:MageBlink() and self:MovementCheck() then
+			return BeStride_Mount:MageBlink()
+		elseif self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
+		end
+	elseif IsFalling() then
+		if BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageBlink() then
+			return BeStride_Mount:MageBlink()
+		elseif not BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
+		elseif self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
+		elseif self:MageBlink() and self:MovementCheck() then
+			return BeStride_Mount:MageBlink()
+		end
 	elseif self:MageBlink() and self:MovementCheck() then
 		return BeStride_Mount:MageBlink()
 	end

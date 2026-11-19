@@ -178,7 +178,50 @@ function BeStride:ChatCommand(input)
 			InterfaceOptionsFrame_OpenToCategory("BeStride")
 		end
 	elseif command == "debug" or input == "bug" then
+		if BeStride_Debug.debugLevel ~= nil then
+			print("[BeStride Debug] Previous level: " .. tostring(BeStride_Debug.debugLevel))
+		end
+		if BeStride_Debug.debugLevel ~= 8 then
+			print("[BeStride Debug] Setting level to 8")
+			BeStride_Debug.debugLevel = 8
+		else
+			print("[BeStride Debug] Enabled")
+			print("[BeStride Debug] Disabling Debug")
+			BeStride_Debug.debugLevel = 2
+		end
 		LibStub("AceConfigDialog-3.0"):Open("BeStride-Debug")
+	elseif command == "mage" then
+		local unitSpeed = nil
+		if GetUnitSpeed then
+			unitSpeed = GetUnitSpeed("player")
+		end
+		local isPlayerMoving = false
+		if IsPlayerMoving then
+			isPlayerMoving = IsPlayerMoving()
+		end
+		local blinkSetting = BeStride:DBGet("settings.classes.mage.blink")
+		local slowFallSetting = BeStride:DBGet("settings.classes.mage.slowfall")
+		local blinkUsable = BeStride:IsSpellUsable(1953)
+		local slowFallUsable = BeStride:IsSpellUsable(130)
+		local blinkKnown = false
+		if IsSpellKnown then
+			blinkKnown = IsSpellKnown(1953)
+		end
+		local blinkCooldown = nil
+		if BeStride.GetSpellOnCooldown ~= nil then
+			blinkCooldown = BeStride:GetSpellOnCooldown(1953)
+		end
+		print("[BeStride Mage] speed=" .. tostring(unitSpeed) ..
+			" moving=" .. tostring(isPlayerMoving) ..
+			" combat=" .. tostring(BeStride:IsCombat()) ..
+			" falling=" .. tostring(IsFalling()) ..
+			" mounted=" .. tostring(IsMounted()))
+		print("[BeStride Mage] blinkSetting=" .. tostring(blinkSetting) ..
+			" blinkKnown=" .. tostring(blinkKnown) ..
+			" blinkUsable=" .. tostring(blinkUsable) ..
+			" blinkCooldown=" .. tostring(blinkCooldown))
+		print("[BeStride Mage] slowFallSetting=" .. tostring(slowFallSetting) ..
+			" slowFallUsable=" .. tostring(slowFallUsable))
 	elseif command == "about" then
 		LibStub("AceConfigDialog-3.0"):Open("BeStride")
 	elseif command == "simulate" then

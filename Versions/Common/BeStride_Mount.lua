@@ -274,7 +274,12 @@ end
 
 function BeStride_Mount:MageBlink()
 	--Blink
-	return self:MountSpell("[@player] "..SpellToName(1953))
+	local spellName = SpellToName(1953)
+	BeStride_Debug:Debug("MageBlink spellName= " .. tostring(spellName))
+	if spellName == nil then
+		return nil
+	end
+	return self:MountSpell("[@player] "..spellName)
 end
 
 function BeStride_Mount:MageBlinkNoSlowFall()

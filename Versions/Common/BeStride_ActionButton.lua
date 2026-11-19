@@ -30,8 +30,9 @@ function BeStride:CreateActionButton(buttontype)
 	end
 	
 	br.id = buttontype
-	br:SetScript("PreClick",function (self) self:PreClick() end )
-	br:SetScript("PostClick",function (self) self.PostClick() end)
+
+	br:SetScript("PreClick",function (button) button:PreClick() end )
+	br:SetScript("PostClick",function (button) button:PostClick() end)
 	if br then
 		return br
 	else
@@ -50,6 +51,7 @@ function BeStride_ActionButtonRegularMount:PreClick()
 	end
 	
 	local mount = BeStride:Regular()
+	BeStride_Debug:Debug("Regular PreClick macro= " .. tostring(mount))
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -61,7 +63,7 @@ function BeStride_ActionButtonRegularMount:PostClick()
 		return
 	end
 	
-	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
+	self:SetAttribute("macrotext", nil)
 end
 
 
@@ -76,6 +78,7 @@ function BeStride_ActionButtonGroundMount:PreClick()
 	end
 	
 	local mount = BeStride:GroundMountButton()
+	BeStride_Debug:Debug("Ground PreClick macro= " .. tostring(mount))
 	if mount ~= nil then
 		self:SetAttribute("macrotext",mount)
 	end
@@ -87,7 +90,7 @@ function BeStride_ActionButtonGroundMount:PostClick()
 		return
 	end
 	
-	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
+	self:SetAttribute("macrotext", nil)
 end
 
 
@@ -113,7 +116,7 @@ function BeStride_ActionButtonPassengerMount:PostClick()
 		return
 	end
 	
-	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
+	self:SetAttribute("macrotext", nil)
 end
 
 
@@ -139,5 +142,5 @@ function BeStride_ActionButtonRepairMount:PostClick()
 		return
 	end
 	
-	BeStride_ABRegularMount:SetAttribute("macrotext", nil)
+	self:SetAttribute("macrotext", nil)
 end
