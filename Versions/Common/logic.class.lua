@@ -416,7 +416,7 @@ function BeStride:MageCanBlink()
 		isUsable = true
 		BeStride_Debug:Debug("MageBlink usability fallback= spell known")
 	end
-	if isUsable then
+	if isUsable and not BeStride:GetSpellOnCooldown(1953) then
 		BeStride_Debug:Debug("MageBlink usable= true")
 		return true
 	else
