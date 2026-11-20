@@ -187,6 +187,11 @@ end
 
 function BeStride:IsMageAndSpecial()
 	if self:IsMage() then
+		BeStride_Debug:Debug("MageAndSpecial blinkSetting= " .. tostring(BeStride:DBGet("settings.classes.mage.blink")) ..
+			" slowFallSetting= " .. tostring(BeStride:DBGet("settings.classes.mage.slowfall")) ..
+			" blinkUsable= " .. tostring(self:MageBlink()) ..
+			" slowFallUsable= " .. tostring(self:MageSlowFall()) ..
+			" moving= " .. tostring(self:MovementCheck()))
 		if IsFlying() and self:NoDismountWhileFlying() then
 			return false
 		elseif IsMounted() and IsFlying() and (self:MageSlowFall() or self:MageBlink()) then
@@ -397,7 +402,7 @@ end
 -- ----------- --
 
 function BeStride:MageCanSlowFall()
-	if BeStride:IsSpellUsable(1706) then
+	if BeStride:IsSpellUsable(130) then
 		return true
 	else
 		return false
@@ -405,13 +410,15 @@ function BeStride:MageCanSlowFall()
 end
 
 function BeStride:MageCanBlink()
-	if BeStride:IsSpellUsable(1953) then
-		local OnCooldown = BeStride:GetSpellOnCooldown(1953)
-		if OnCooldown then
-			return false
-		else
-			return true
-		end
+	local isUsable = BeStride:IsSpellUsable(1953)
+	BeStride_Debug:Debug("MageBlink usability= " .. tostring(isUsable))
+	if not isUsable and IsSpellKnown and IsSpellKnown(1953) then
+		isUsable = true
+		BeStride_Debug:Debug("MageBlink usability fallback= spell known")
+	end
+	if isUsable and not BeStride:GetSpellOnCooldown(1953) then
+		BeStride_Debug:Debug("MageBlink usable= true")
+		return true
 	else
 		return false
 	end
@@ -663,25 +670,25 @@ end
 
 function BeStride:MageSpecial()
 	if self:IsMage() then
-		if (not self:IsCombat()) then
-			local BlinkOnCooldown = BeStride:GetSpellOnCooldown(1953)
-			if not BlinkOnCooldown and IsFalling() and self:MovementCheck() and self:MageCanBlink() then
-				BeStride_Mount:MageBlinkNoSlowFall()
-			elseif not BlinkOnCooldown and not IsFalling() and self:MovementCheck() and self:MageCanBlink() and self:MageIsSlowFalling() then
-				BeStride_Mount:MageBlink()
-			elseif IsFalling() then
-				BeStride_Mount:MageSlowFall()
-			end
+		if BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageBlink() then
+			return BeStride_Mount:MageBlink()
+		elseif not BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
+		elseif self:MageBlink() then
+			return BeStride_Mount:MageBlink()
+		elseif self:MageSlowFall() then
+			return BeStride_Mount:MageSlowFall()
 		end
-	else
-		return false
 	end
+	return nil
 end
 
 function BeStride:MageBlink()
 	-- Todo: Bitwise Compare
 	if self:IsMage() then
-		if self:MageCanBlink() and BeStride:DBGet("settings.classes.mage.blink") then
+		local setting = BeStride:DBGet("settings.classes.mage.blink")
+		BeStride_Debug:Debug("MageBlink setting= " .. tostring(setting))
+		if self:MageCanBlink() and setting then
 			return true
 		else
 			return false

@@ -57,8 +57,6 @@ function BeStride:IsRepairable()
 					return true
 				end
 			end
-		else
-			return false
 		end
 		
 		if count > 0 and ((globalDurability/count)*100) <= BeStride:DBGet("settings.mount.repair.globaldurability") then

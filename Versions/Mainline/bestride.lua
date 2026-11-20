@@ -26,15 +26,34 @@ function BeStride:GetMountInfoBySpellID(id)
 end
 
 function BeStride:IsSpellUsable(spell)
-    if C_Spell.IsSpellUsable then
-        return C_Spell.IsSpellUsable(spell)
-    elseif C_Spell.IsUsableSpell then
-        return C_Spell.IsUsableSpell(spell)
-    elseif IsUsableSpell then
-        return IsUsableSpell(spell)
-    else
-        return false
+    if C_Spell and C_Spell.IsSpellUsable then
+        local isUsable = C_Spell.IsSpellUsable(spell)
+        if isUsable then
+            return true
+        end
     end
+    if C_Spell and C_Spell.IsUsableSpell then
+        local isUsable = C_Spell.IsUsableSpell(spell)
+        if isUsable then
+            return true
+        end
+    end
+    if IsUsableSpell then
+        local isUsable = IsUsableSpell(spell)
+        if isUsable then
+            return true
+        end
+        if GetSpellInfo then
+            local name = GetSpellInfo(spell)
+            if name then
+                isUsable = IsUsableSpell(name)
+                if isUsable then
+                    return true
+                end
+            end
+        end
+    end
+    return false
 end
 
 function BeStride:GetSpellInfo(spell)

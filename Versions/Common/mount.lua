@@ -258,16 +258,17 @@ function BeStride:Combat()
 			action = action .. special
 		end
 	elseif self:IsMage() and (BeStride:DBGet("settings.classes.mage.blink") or BeStride:DBGet("settings.classes.mage.slowfall"))  then
-		if self:MageBlink() and BeStride:DBGet("settings.classes.mage.blinkpriority") then
+		if BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageBlink() then
 			special = BeStride_Mount:MageBlink()
-			if special ~= nil then
-				action = action .. special
-			end
-		else
+		elseif not BeStride:DBGet("settings.classes.mage.blinkpriority") and self:MageSlowFall() then
 			special = BeStride_Mount:MageSlowFall()
-			if special ~= nil then
-				action = action .. special
-			end
+		elseif self:MageBlink() then
+			special = BeStride_Mount:MageBlink()
+		elseif self:MageSlowFall() then
+			special = BeStride_Mount:MageSlowFall()
+		end
+		if special ~= nil then
+			action = action .. special
 		end
 	elseif self:IsMonk() and BeStride:DBGet("settings.classes.monk.roll") then
 		special = BeStride_Mount:MonkRoll()
