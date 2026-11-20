@@ -42,7 +42,11 @@ function countTable(t)
 end
 
 function SpellToName(spellID)
-	return BeStride:GetSpellInfo(spellID).name
+	local spellInfo = BeStride:GetSpellInfo(spellID)
+	if spellInfo then
+		return spellInfo.name
+	end
+	return nil
 end
 
 function ItemToName(itemID)

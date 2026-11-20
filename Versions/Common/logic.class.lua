@@ -424,6 +424,14 @@ function BeStride:MageCanBlink()
 	end
 end
 
+function BeStride:MageHasBlink()
+	if not IsSpellKnown then
+		local spellInfo = BeStride:GetSpellInfo(1953)
+		return spellInfo ~= nil and spellInfo.name ~= nil
+	end
+	return IsSpellKnown(1953)
+end
+
 -- ----------- --
 -- Monk Spells --
 -- ----------- --
